@@ -5,7 +5,6 @@
 /server/travelneer-spring-boot/*.jar
 /server/travelneer-spring-boot/*.class
 /server/travelneer-spring-boot/src/main/resources/application.yml
-/server/travelneer-spring-boot/src/main/java/com/travelneer/domain/**
 /server/travelneer-spring-boot/.project
 /server/travelneer-spring-boot/.classpath
 /server/travelneer-spring-boot/.idea/
