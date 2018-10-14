@@ -1,0 +1,80 @@
+@import "../../variables";
+
+.div {
+    padding: 20px;
+    align-content: center !important;
+}
+
+@media only screen and (min-width: $xl-screen-min) {
+    .div {
+        position: absolute;
+        top: 15%;
+        right: 5%;
+        width: auto;
+        height: auto;
+        padding-left: 50px;
+        padding-right: 50px;
+        background-color: #FFF;
+        border-radius: 20px;
+    }
+}
+
+@media only screen and (min-width: $l-screen-min) and (max-width: $l-screen-max) {
+    .div {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #FFF;
+        text-align: center;
+
+        .form {
+            text-align: center;
+            width: 100%;
+
+            .SignUpButton {
+                height: 40px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $s-screen-min) and (max-width: $s-screen-max) {
+    .div {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #FFF;
+        text-align: center;
+
+        .form {
+            text-align: center;
+            width: 100%;
+
+            .SignUpButton {
+                height: 30px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $xs-screen-max) {
+    .div {
+        position: relative;
+        width: 100%;
+        height: auto;
+        background-color: #FFF;
+        text-align: center;
+
+        .form {
+            text-align: center;
+            width: 100%;
+
+            .SignUpButton {
+                height: 25px;
+                width: 100%;
+            }
+        }
+    }
+}

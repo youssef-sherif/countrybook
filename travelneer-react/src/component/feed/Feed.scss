@@ -1,0 +1,12 @@
+@import '../variables.scss';
+
+.div {    
+    position: relative;    
+    width: 100%;    
+}
+
+.img {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+}

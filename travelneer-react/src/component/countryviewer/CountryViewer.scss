@@ -1,0 +1,16 @@
+@import "../variables.scss";
+
+.button {
+    float: left;
+}
+
+.div {
+    position: relative;
+    left: 40%;    
+}
+
+@media only screen and (min-width: $xl-screen-min) {
+    .postsDiv {
+        width: 50%;
+    }    
+}

@@ -1,0 +1,17 @@
+@import "../../variables.scss";
+
+.textarea {
+    position: relative;
+    width: 100%;
+    resize: none;    
+}
+
+.div {
+    position: relative;
+    width: 50%;
+    left: 20%;
+}
+
+.button {
+    float: right;
+}

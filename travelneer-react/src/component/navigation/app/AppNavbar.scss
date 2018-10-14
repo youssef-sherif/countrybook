@@ -1,0 +1,32 @@
+@import "../../variables";
+
+.coloredNavbar {
+    background-color: $menu-background;
+    border-radius: 0;
+}
+
+.img {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.option {
+    position: relative;
+    float: right;
+    vertical-align: bottom;
+    display: table-cell;
+}
+
+@media only screen and (min-width: $xl-screen-min) {
+    .logo {
+        position: relative;
+        float: left;
+    }
+}
+
+@media only screen and (max-width: $l-screen-max) {
+    .logo {
+        display: none;
+    }
+}
