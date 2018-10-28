@@ -27,10 +27,10 @@ const handleErrors = (response) =>{
     return (dispatch) => {
       dispatch(loginBegin())
       fetch('http://localhost:8080/access-token', {
-        method: 'get',
+        method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          userName: userName,
+          name: userName,
           email: email,
           password: password
           })

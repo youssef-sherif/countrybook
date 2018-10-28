@@ -31,7 +31,7 @@ export const createUser = (userName, email, password) => {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userName: userName,
+        name: userName,
         email: email,
         password: password
       })
