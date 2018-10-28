@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
+import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
 import com.travelneer.jooq.tables.pojos.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;
@@ -22,24 +23,24 @@ import org.springframework.stereotype.Repository;
  * @author Youssef
  */
 @Repository
-public class CountryDAO implements CountryRepository {
+public class CountryRepositoryImpl implements CountryRepository {
 
     private final DSLContext create;
 
     @Autowired
-    public CountryDAO(DSLContext create) {
+    public CountryRepositoryImpl(DSLContext create) {
         this.create = create;
     }
 
     @Override
-    public Country getOneById(Short countryId) throws SQLException{
+    public Country getOneById(Short countryId) throws SQLException {
         CountryRecord countriesRecord = create.fetchOne(COUNTRY, COUNTRY.ID.eq(countryId));
 
         return countriesRecord.into(Country.class);
     }
 
     @Override
-    public List<Country> search(String searchParam) throws SQLException{
+    public List<Country> search(String searchParam) throws SQLException {
         List<Country> countries = create.select(COUNTRY.NAME, COUNTRY.FLAG_URL, COUNTRY.CODE).from(COUNTRY)
                 .where(COUNTRY.NAME.like(searchParam)).fetchInto(Country.class);
         return countries;

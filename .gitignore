@@ -8,3 +8,7 @@
 /server/travelneer-spring-boot/.project
 /server/travelneer-spring-boot/.classpath
 /server/travelneer-spring-boot/.idea/
+/server/travelneer-spring-boot/.settings/org.eclipse.jdt.apt.core.prefs
+/server/travelneer-spring-boot/.settings/org.eclipse.m2e.core.prefs
+/server/travelneer-spring-boot/src/generated/generated.iml
+/server/travelneer-spring-boot/src/main/main.iml

@@ -15,12 +15,12 @@ import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
 @Repository
-public class CountryFollowsDAO implements CountryFollowsRepository {
+public class CountryFollowsRepositoryImpl implements com.travelneer.repository.CountryFollowsRepository {
 
     private final DSLContext create;
 
     @Autowired
-    public CountryFollowsDAO(DSLContext create) {
+    public CountryFollowsRepositoryImpl(DSLContext create) {
         this.create = create;
     }
 

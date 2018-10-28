@@ -1,6 +1,7 @@
 package com.travelneer.service;
 
 import com.travelneer.jooq.tables.pojos.Favourites;
+import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.FavouritesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,10 @@ import java.sql.Timestamp;
 public class FavouritesService {
 
     private final FavouritesRepository favouritesRepository;
-    private final JwtValidatorService validator;
+    private final JwtValidator validator;
 
     @Autowired
-    public FavouritesService(FavouritesRepository favouritesRepository, JwtValidatorService validator) {
+    public FavouritesService(FavouritesRepository favouritesRepository, JwtValidator validator) {
 
         this.favouritesRepository = favouritesRepository;
         this.validator = validator;

@@ -7,7 +7,8 @@ package com.travelneer.repository.impl;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.USER;
-import static com.travelneer.jooq.tables.Post.POST;
+import static com.travelneer.jooq.Tables.FAVOURITES;
+import static com.travelneer.jooq.Tables.POST;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -26,12 +27,12 @@ import org.springframework.stereotype.Repository;
  * @author Youssef
  */
 @Repository
-public class PostDAO implements PostRepository {
+public class PostRepositoryImpl implements com.travelneer.repository.PostRepository {
 
 	private final DSLContext create;
 
 	@Autowired
-	public PostDAO(DSLContext create) {
+	public PostRepositoryImpl(DSLContext create) {
 		this.create = create;
 	}
 
@@ -82,7 +83,6 @@ public class PostDAO implements PostRepository {
 
 		return posts;
 	}
-
 
 	@Override
 	public void delete(Post entity) throws SQLException {

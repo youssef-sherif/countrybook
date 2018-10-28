@@ -10,7 +10,7 @@ const handleErrors = (response) =>{
   }
   
   
-  const loginbegin = () => ({
+  const loginBegin = () => ({
     type: CREATE_USER_BEGIN
   })
   
@@ -25,7 +25,7 @@ const handleErrors = (response) =>{
   
   export const login = (userName, email, password) => {
     return (dispatch) => {
-      dispatch(loginbegin())
+      dispatch(loginBegin())
       fetch('http://localhost:8080/access-token', {
         method: 'get',
         headers: {'Content-Type': 'application/json'},

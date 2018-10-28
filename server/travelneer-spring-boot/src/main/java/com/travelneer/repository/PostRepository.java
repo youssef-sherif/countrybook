@@ -22,4 +22,5 @@ public interface PostRepository extends IRepository<Post> {
 	List<Post> getPostsByAuthorId(Integer authorId) throws SQLException;
 
 	List<Post> getPostsByCountryId(Short countryId) throws SQLException;
+
 }

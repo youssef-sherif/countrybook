@@ -12,8 +12,6 @@ import com.travelneer.jwt.JwtAuthenticationSuccessHandler;
 
 import java.util.Collections;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.NameTokenizers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,16 +60,6 @@ public class Config extends WebSecurityConfigurerAdapter {
         filter.setAuthenticationFailureHandler(new JwtAuthenticationFailureHandler());
         filter.setAuthenticationSuccessHandler(new JwtAuthenticationSuccessHandler());
         return filter;
-    }
-
-    @Bean
-    public ModelMapper modelMapper()
-    {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper
-                .getConfiguration()
-                .setSourceNameTokenizer(NameTokenizers.UNDERSCORE);
-        return modelMapper;
     }
 
     @Override

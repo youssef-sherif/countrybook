@@ -45,10 +45,11 @@ public class TokensController {
             UserEntity userEntity  = userFactory.createUser(user.getName(),user.getEmail(), user.getPassword());
             userEntity.validate();
 
-            if(userRepository.exists(userEntity)) {
+
+            if(userRepository.exists(user)) {
                 throw new Exception("User already exists");
             }
-            userRepository.create(userEntity);
+            userRepository.create(user);
 
             var token = jwtGenerator.generate(userEntity);
 
@@ -69,7 +70,9 @@ public class TokensController {
     	var body = new HashMap<String, String>();
 
         try {
-            UserEntity userEntity = userRepository.getOneByName(user.getName());
+            user = userRepository.getOneByName(user.getName());
+
+            UserEntity userEntity = userFactory.createUser(user.getName(), user.getEmail(), user.getPassword());
             userEntity.attemptLogin(user.getName(), user.getEmail(), user.getPassword());
 
             var token = jwtGenerator.generate(userEntity);

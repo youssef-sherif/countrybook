@@ -12,13 +12,6 @@ import logo from '../logo.png'
 
 class AppNavbar extends Component {
 
-    componentWillMount() {
-        setTimeout(() => {
-            if (localStorage.getItem('logged_in') === 'false')
-                this.props.navigateTo('/')
-        }, 1000)
-    }
-
     render() {
         return (
             <div className={`navbar navbar-fixed-top ${styles.coloredNavbar}`}>

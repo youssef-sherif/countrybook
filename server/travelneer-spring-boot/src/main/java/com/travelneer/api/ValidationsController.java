@@ -5,9 +5,9 @@
  */
 package com.travelneer.api;
 
+import com.travelneer.domain.user.Password;
 import com.travelneer.domain.user.UserEntity;
 import com.travelneer.domain.user.UserFactory;
-import com.travelneer.service.ValidationService;
 
 import java.util.HashMap;
 
@@ -26,6 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class ValidationsController {
+
+
 
     private final UserEntity userEntity;
 
@@ -82,14 +84,14 @@ public class ValidationsController {
         String password = request.getParameter("password");
 
         switch (userEntity.getPasswordStrength(password)) {
-            case ValidationService.STRONG_PASSWORD:
-                body.put("passwordStrength", ValidationService.STRONG_PASSWORD);
+            case Password.STRONG_PASSWORD:
+                body.put("passwordStrength", Password.STRONG_PASSWORD);
                 break;
-            case ValidationService.MEDIUM_PASSWORD:
-                body.put("passwordStrength", ValidationService.MEDIUM_PASSWORD);
+            case Password.MEDIUM_PASSWORD:
+                body.put("passwordStrength", Password.MEDIUM_PASSWORD);
                 break;
             default:
-                body.put("passwordStrength", ValidationService.INVALID_PASSWORD);
+                body.put("passwordStrength", Password.INVALID_PASSWORD);
                 break;
         }
         body.put("password", password);

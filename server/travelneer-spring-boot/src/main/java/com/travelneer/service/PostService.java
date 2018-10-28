@@ -5,6 +5,7 @@
  */
 package com.travelneer.service;
 
+import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.PostRepository;
 import com.travelneer.hateoas.PostResource;
 import com.travelneer.jooq.tables.pojos.Post;
@@ -24,10 +25,10 @@ import org.springframework.stereotype.Service;
 public class PostService {
 
 	private final PostRepository postRepository;
-	private final JwtValidatorService validator;
+	private final JwtValidator validator;
 
 	@Autowired
-	public PostService(PostRepository postDAO, JwtValidatorService validator) {
+	public PostService(PostRepository postDAO, JwtValidator validator) {
 		this.postRepository = postDAO;
 		this.validator = validator;
 	}

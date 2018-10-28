@@ -12,12 +12,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class FavouritesDAO implements FavouritesRepository {
+public class FavouritesRepositoryImpl implements com.travelneer.repository.FavouritesRepository {
 
     private final DSLContext create;
 
     @Autowired
-    public FavouritesDAO(DSLContext create) {
+    public FavouritesRepositoryImpl(DSLContext create) {
         this.create = create;
     }
 

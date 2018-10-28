@@ -3,6 +3,7 @@ package com.travelneer.service;
 import com.travelneer.hateoas.CountryResource;
 import com.travelneer.jooq.tables.pojos.Country;
 import com.travelneer.jooq.tables.pojos.CountryFollows;
+import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryFollowsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,10 @@ public class CountryFollowsService {
 
     private final CountryFollowsRepository countryFollowsRepository;
     private final S3Service s3Service;
-    private final JwtValidatorService validator;
+    private final JwtValidator validator;
 
     @Autowired
-    public CountryFollowsService(CountryFollowsRepository countryFollowsRepository, S3Service s3Service, JwtValidatorService validator) {
+    public CountryFollowsService(CountryFollowsRepository countryFollowsRepository, S3Service s3Service, JwtValidator validator) {
         this.countryFollowsRepository = countryFollowsRepository;
         this.s3Service = s3Service;
         this.validator = validator;

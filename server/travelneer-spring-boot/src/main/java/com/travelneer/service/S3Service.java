@@ -22,12 +22,12 @@ public class S3Service {
 	
 	private AmazonS3 s3Client;
 
-	@Value("${amazonProperties.bucketName}")
-	private String bucketName;
-	@Value("${amazonProperties.accessKey}")
-	private String accessKey;
-	@Value("${amazonProperties.secretKey}")
-	private String secretKey;
+	//@Value("${amazonProperties.bucketName}")
+	private String bucketName = "";
+	//@Value("${amazonProperties.accessKey}")
+	private String accessKey = "";
+	//@Value("${amazonProperties.secretKey}")
+	private String secretKey = "";
 
 	@PostConstruct
 	private void initializeAmazon() {

@@ -10,7 +10,7 @@ const handleErrors = (response) => {
 }
 
 
-const createUserbegin = () => ({
+const createUserBegin = () => ({
   type: CREATE_USER_BEGIN
 })
 
@@ -26,7 +26,7 @@ const createUserFailure = (error) => ({
 
 export const createUser = (userName, email, password) => {
   return (dispatch) => {
-    dispatch(createUserbegin())
+    dispatch(createUserBegin())
     fetch('http://localhost:8080/users', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
