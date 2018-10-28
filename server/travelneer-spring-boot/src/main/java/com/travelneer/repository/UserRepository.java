@@ -16,14 +16,14 @@ import org.springframework.stereotype.Repository;
  *
  * @author Youssef
  */
-public interface UserRepository extends IRepository<User> {
+public interface UserRepository extends IRepository<UserEntity> {
 
-    User getOneByName(String name) throws SQLException;
+    UserEntity getOneByName(String name) throws SQLException;
 
     boolean nameExists(String name) throws SQLException;
 
     boolean emailExists(String email) throws SQLException;
 
-    boolean exists(User user) throws SQLException;
+    boolean exists(UserEntity user) throws SQLException;
 
 }

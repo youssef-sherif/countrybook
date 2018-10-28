@@ -5,6 +5,7 @@
  */
 package com.travelneer.repository.impl;
 
+import com.travelneer.domain.user.UserEntity;
 import com.travelneer.jooq.tables.pojos.User;
 
 import java.sql.*;
@@ -39,11 +40,11 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	}
 
 	@Override
-	public boolean exists(User user) throws SQLException {
+	public boolean exists(UserEntity user) throws SQLException {
 
 		return create.fetchExists(USER,
-				USER.EMAIL.eq(user.getEmail())
-						.or(USER.NAME.eq(user.getName())));
+				USER.EMAIL.eq(user.getEmail().getValue())
+						.or(USER.NAME.eq(user.getUsername().getValue())));
 	}
 
 	@Override
@@ -54,35 +55,34 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	}
 
 	@Override
-	public void create(User user) throws SQLException{
+	public void create(UserEntity user) throws SQLException{
 
-		create.insertInto(USER,
+		Integer userId = create.insertInto(USER,
 				USER.NAME, USER.EMAIL, USER.PASSWORD, USER.CREATED_AT)
-				.values(user.getName(), user.getEmail(), user.getPassword(), user.getCreatedAt())
-				.returning(USER.ID)
-				.fetchOne()
-				.into(User.class);
+				.values(user.getUsername().getValue(), user.getEmail().getValue(), user.getPassword().getValue(), user.getCreatedAt())
+				.returning(USER.ID).execute();
+
+		user.setId(userId);
 	}
 
 	@Override
-	public User getOneByName(String name) throws SQLException {
+	public UserEntity getOneByName(String name) throws SQLException {
 
 		User user = create.fetchOne(USER,
 				USER.NAME.eq(name)).into(User.class);
 
-		return user;
+		return null;
 	}
 
 	@Override
-	public List<User> getAll() throws SQLException {
+	public List<UserEntity> getAll() throws SQLException {
 		List<User> users = create.fetch(USER).into(User.class);
 
-		return users;
-
+		return null;
 	}
 
 	@Override
-	public void delete(User user)  throws SQLException{
+	public void delete(UserEntity user)  throws SQLException{
 		create.deleteFrom(USER).where(USER.ID.eq(user.getId()));
 	}
 }

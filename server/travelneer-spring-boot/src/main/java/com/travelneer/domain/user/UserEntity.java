@@ -22,6 +22,11 @@ public class UserEntity {
         return id;
     }
 
+    public void setId(Integer id){
+        this.id = id;
+    }
+
+
     public Username getUsername() {
         return username;
     }
@@ -71,7 +76,18 @@ public class UserEntity {
         return password.getStrength(value);
     }
 
-    public void attemptLogin(String username, String email, String password) throws Exception {
+    public void loginWithEmail(String email, String password) throws Exception {
+
+        if(!this.email.getValue().equals(email)) {
+            throw new Exception("Incorrect Email");
+        }
+
+        if (!this.password.matches(password)) {
+            throw new Exception("Incorrect Password");
+        }
+    }
+
+    public void loginWithUsername(String username, String password) throws Exception {
 
         if(!this.username.getValue().equals(username)) {
             throw new Exception("Incorrect Username");

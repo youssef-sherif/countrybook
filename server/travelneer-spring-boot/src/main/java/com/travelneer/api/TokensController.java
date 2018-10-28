@@ -45,11 +45,10 @@ public class TokensController {
             UserEntity userEntity  = userFactory.createUser(user.getName(),user.getEmail(), user.getPassword());
             userEntity.validate();
 
-
-            if(userRepository.exists(user)) {
+            if(userRepository.exists(userEntity)) {
                 throw new Exception("User already exists");
             }
-            userRepository.create(user);
+            userRepository.create(userEntity);
 
             var token = jwtGenerator.generate(userEntity);
 
@@ -65,7 +64,7 @@ public class TokensController {
     }
 
     @RequestMapping(value = "/access-token",
-            method = RequestMethod.GET, headers = {"Content-type=application/json"})
+            method = RequestMethod.POST, headers = {"Content-type=application/json"})
     public ResponseEntity<?> login(@RequestBody User user) {
     	var body = new HashMap<String, String>();
 
@@ -73,7 +72,7 @@ public class TokensController {
             user = userRepository.getOneByName(user.getName());
 
             UserEntity userEntity = userFactory.createUser(user.getName(), user.getEmail(), user.getPassword());
-            userEntity.attemptLogin(user.getName(), user.getEmail(), user.getPassword());
+            userEntity.loginWithUsername(user.getName(), user.getPassword());
 
             var token = jwtGenerator.generate(userEntity);
 
