@@ -5,7 +5,7 @@
  */
 package com.travelneer.repository;
 
-import com.travelneer.jooq.tables.pojos.Country;
+import com.travelneer.dto.Country;
 import com.travelneer.repository.IRepository;
 
 import java.sql.SQLException;

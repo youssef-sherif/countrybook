@@ -1,7 +1,7 @@
 package com.travelneer.repository;
 
-import com.travelneer.jooq.tables.pojos.Country;
-import com.travelneer.jooq.tables.pojos.CountryFollows;
+import com.travelneer.dto.Country;
+import com.travelneer.dto.CountryFollows;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface IRepository<T> {
 
-    void create(T entity) throws SQLException;
+    void save(T entity) throws SQLException;
 
     void delete(T entity) throws SQLException;
 

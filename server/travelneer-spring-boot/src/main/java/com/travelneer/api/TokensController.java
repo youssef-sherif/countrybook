@@ -7,7 +7,7 @@ package com.travelneer.api;
 
 import com.travelneer.domain.user.UserEntity;
 import com.travelneer.domain.user.UserFactory;
-import com.travelneer.dto.User;
+import com.travelneer.dto.UserSignUpDto;
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.repository.UserRepository;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class TokensController {
 
     @RequestMapping(value = "/users",
             method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> signUp(@RequestBody User user) {
+    public ResponseEntity<?> signUp(@RequestBody UserSignUpDto user) {
         var body = new HashMap<String, String>();
 
         try {

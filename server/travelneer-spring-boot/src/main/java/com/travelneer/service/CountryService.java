@@ -7,7 +7,7 @@ package com.travelneer.service;
 
 import com.travelneer.repository.CountryRepository;
 import com.travelneer.hateoas.CountryResource;
-import com.travelneer.jooq.tables.pojos.Country;
+import com.travelneer.dto.Country;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -68,6 +68,8 @@ public class CountryService {
 
 		List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
 				.collect(Collectors.toList());
+
+		countryResources.stream().forEach(e -> e.setFollowed(true));
 
 		return countryResources;
 	}

@@ -10,7 +10,7 @@ import com.travelneer.api.v1.CountryFollowsController;
 import com.travelneer.api.v1.CountryPostsController;
 import com.travelneer.api.v1.FavouritesController;
 
-import com.travelneer.jooq.tables.pojos.Country;
+import com.travelneer.dto.Country;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

@@ -1,8 +1,8 @@
 package com.travelneer.repository.impl;
 
-import com.travelneer.jooq.tables.pojos.Favourites;
+import com.travelneer.dto.Favourites;
 import com.travelneer.jooq.tables.records.FavouritesRecord;
-import com.travelneer.repository.FavouritesRepository;
+
 import static com.travelneer.jooq.tables.Favourites.FAVOURITES;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class FavouritesRepositoryImpl implements com.travelneer.repository.Favou
 
 
     @Override
-    public void create(Favourites favourites) {
+    public void save(Favourites favourites) {
         FavouritesRecord record = create.newRecord(FAVOURITES);
         record.from(favourites);
         record.store();

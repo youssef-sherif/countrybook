@@ -39,7 +39,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
     @Override
     protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
 
-        System.out.println("Retrieve User");
+        System.out.println("Retrieve UserSignUpDto");
 
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) usernamePasswordAuthenticationToken;
                

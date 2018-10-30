@@ -1,6 +1,6 @@
 package com.travelneer.repository;
 
-import com.travelneer.jooq.tables.pojos.Favourites;
+import com.travelneer.dto.Favourites;
 
 
 public interface FavouritesRepository extends IRepository<Favourites> {

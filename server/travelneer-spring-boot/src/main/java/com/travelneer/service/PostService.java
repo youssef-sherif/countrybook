@@ -8,7 +8,7 @@ package com.travelneer.service;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.PostRepository;
 import com.travelneer.hateoas.PostResource;
-import com.travelneer.jooq.tables.pojos.Post;
+import com.travelneer.dto.Post;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -38,7 +38,7 @@ public class PostService {
 		post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		post.setAuthorId(validator.getUserId());
 
-		postRepository.create(post);
+		postRepository.save(post);
 	}
 
 

@@ -7,15 +7,12 @@ package com.travelneer.repository.impl;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.USER;
-import static com.travelneer.jooq.Tables.FAVOURITES;
 import static com.travelneer.jooq.Tables.POST;
 
 import java.sql.SQLException;
 import java.util.List;
 
-
-import com.travelneer.hateoas.PostResource;
-import com.travelneer.jooq.tables.pojos.Post;
+import com.travelneer.dto.Post;
 import com.travelneer.jooq.tables.records.PostRecord;
 import com.travelneer.repository.PostRepository;
 import org.jooq.DSLContext;
@@ -44,7 +41,7 @@ public class PostRepositoryImpl implements com.travelneer.repository.PostReposit
 	}
 
 	@Override
-	public void create(Post entity) throws SQLException {
+	public void save(Post entity) throws SQLException {
 		PostRecord postRecord = create.newRecord(POST);
 		postRecord.from(entity);
 

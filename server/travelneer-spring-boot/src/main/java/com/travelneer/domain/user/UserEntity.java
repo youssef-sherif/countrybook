@@ -1,7 +1,5 @@
 package com.travelneer.domain.user;
 
-import com.travelneer.dto.User;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

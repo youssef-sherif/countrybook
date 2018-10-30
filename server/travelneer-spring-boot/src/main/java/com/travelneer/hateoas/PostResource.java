@@ -7,7 +7,7 @@ package com.travelneer.hateoas;
 
 import com.travelneer.api.PostsController;
 import com.travelneer.api.v1.FavouritesController;
-import com.travelneer.jooq.tables.pojos.Post;
+import com.travelneer.dto.Post;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

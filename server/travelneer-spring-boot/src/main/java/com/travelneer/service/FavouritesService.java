@@ -1,6 +1,6 @@
 package com.travelneer.service;
 
-import com.travelneer.jooq.tables.pojos.Favourites;
+import com.travelneer.dto.Favourites;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.FavouritesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class FavouritesService {
         favourites.setUserId(validator.getUserId());
         favourites.setPostId(postId);
 
-        favouritesRepository.create(favourites);
+        favouritesRepository.save(favourites);
     }
 
     public void unFavouritePost(int postId) throws Exception{

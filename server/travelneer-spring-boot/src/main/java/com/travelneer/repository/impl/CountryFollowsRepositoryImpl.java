@@ -1,7 +1,7 @@
 package com.travelneer.repository.impl;
 
-import com.travelneer.jooq.tables.pojos.Country;
-import com.travelneer.jooq.tables.pojos.CountryFollows;
+import com.travelneer.dto.Country;
+import com.travelneer.dto.CountryFollows;
 import com.travelneer.jooq.tables.records.CountryFollowsRecord;
 import com.travelneer.repository.CountryFollowsRepository;
 import org.jooq.DSLContext;
@@ -26,7 +26,7 @@ public class CountryFollowsRepositoryImpl implements com.travelneer.repository.C
 
 
     @Override
-    public void create(CountryFollows countryFollows) throws SQLException {
+    public void save(CountryFollows countryFollows) throws SQLException {
         CountryFollowsRecord countryFollowsRecord = create.newRecord(COUNTRY_FOLLOWS);
         countryFollowsRecord.from(countryFollows);
 

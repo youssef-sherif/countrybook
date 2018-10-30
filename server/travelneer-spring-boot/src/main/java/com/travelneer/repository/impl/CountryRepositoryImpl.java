@@ -9,9 +9,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
-import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
-import com.travelneer.jooq.tables.pojos.Country;
+import com.travelneer.dto.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;
 import com.travelneer.repository.CountryRepository;
 import org.jooq.DSLContext;
@@ -55,7 +54,7 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public void create(Country entity) throws SQLException {
+    public void save(Country entity) throws SQLException {
         CountryRecord record = create.newRecord(COUNTRY);
         record.from(entity);
     }

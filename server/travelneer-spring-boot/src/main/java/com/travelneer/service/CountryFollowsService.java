@@ -1,8 +1,8 @@
 package com.travelneer.service;
 
 import com.travelneer.hateoas.CountryResource;
-import com.travelneer.jooq.tables.pojos.Country;
-import com.travelneer.jooq.tables.pojos.CountryFollows;
+import com.travelneer.dto.Country;
+import com.travelneer.dto.CountryFollows;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryFollowsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +62,6 @@ public class CountryFollowsService {
         countryFollows.setUserId(validator.getUserId());
         countryFollows.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
-        countryFollowsRepository.create(countryFollows);
+        countryFollowsRepository.save(countryFollows);
     }
 }
