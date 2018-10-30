@@ -6,11 +6,7 @@
 package com.travelneer.repository;
 
 import com.travelneer.domain.user.UserEntity;
-import com.travelneer.jooq.tables.pojos.User;
 import java.sql.SQLException;
-
-import com.travelneer.repository.IRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *

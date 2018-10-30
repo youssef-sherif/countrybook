@@ -1,38 +1,77 @@
 package com.travelneer.domain.user;
 
+import com.travelneer.dto.User;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 
 public class UserEntity {
 
     private Integer id;
-    private Username username;
+    private Username name;
     private Email email;
     private Password password;
     private Timestamp createdAt;
+    private PasswordEncoder passwordEncoder;
+
+
+    public UserEntity() {
+        this.name = new Username();
+        this.email = new Email();
+        this.password = new Password();
+        this.passwordEncoder = new BCryptPasswordEncoder();
+
+    }
 
     public UserEntity(String username, String email, String password) {
-        this.username = new Username(username);
+        this.name = new Username(username);
         this.email = new Email(email);
-        this.password = new Password((password), new BCryptPasswordEncoder());
+        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.password = new Password(this.passwordEncoder.encode(password));
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
-    public Integer getId() {
-        return id;
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", username=" + name.getValue() +
+                ", password=" + password.getEncoded() +
+                ", email=" + email.getValue() +
+                ", createdAt=" + createdAt +
+                '}';
     }
 
     public void setId(Integer id){
         this.id = id;
     }
 
-
-    public Username getUsername() {
-        return username;
+    public void setName(String name) {
+        this.name.setValue(name);
     }
 
-    public void setUsername(String userName) {
-        this.username.setValue(userName);
+    public void setEmail(String email) {
+        this.email.setValue(email);
+    }
+
+    public void setPassword(String password) {
+        this.password.setEncoded(password);
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+
+    public Username getName() {
+        return name;
     }
 
     public Email getEmail() {
@@ -47,19 +86,9 @@ public class UserEntity {
         return createdAt;
     }
 
-    public void validate() throws Exception {
-        if (!username.isValid()) {
-            throw new Exception("Invalid Username");
-        }
-        else if(!email.isValid()) {
-            throw new Exception("Invalid Email");
-        } else if(password.getStrength() == Password.INVALID_PASSWORD) {
-            throw new Exception("Invalid Password");
-        }
-    }
 
     public void validateUsername(String username) throws Exception {
-        if ( !this.username.isValid(username)) {
+        if ( !this.name.isValid(username)) {
             throw new Exception("Invalid Username");
         }
     }
@@ -71,30 +100,10 @@ public class UserEntity {
         }
     }
 
-    public int getPasswordStrength(String value) {
-
-        return password.getStrength(value);
-    }
-
-    public void loginWithEmail(String email, String password) throws Exception {
-
-        if(!this.email.getValue().equals(email)) {
-            throw new Exception("Incorrect Email");
-        }
-
-        if (!this.password.matches(password)) {
-            throw new Exception("Incorrect Password");
+    public void login(String password) throws Exception {
+        if(!passwordEncoder.matches(password, this.password.getEncoded())) {
+            throw new Exception("Invalid Username or Password");
         }
     }
 
-    public void loginWithUsername(String username, String password) throws Exception {
-
-        if(!this.username.getValue().equals(username)) {
-            throw new Exception("Incorrect Username");
-        }
-
-        if (!this.password.matches(password)) {
-            throw new Exception("Incorrect Password");
-        }
-    }
 }

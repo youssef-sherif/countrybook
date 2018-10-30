@@ -5,13 +5,20 @@
  */
 package com.travelneer.config;
 
+import com.travelneer.domain.user.Email;
+import com.travelneer.domain.user.Password;
+import com.travelneer.domain.user.UserEntity;
+import com.travelneer.domain.user.Username;
+import com.travelneer.jooq.tables.records.UserRecord;
 import com.travelneer.jwt.JwtAuthenticationProvider;
 import com.travelneer.jwt.JwtAuthenticationTokenFilter;
 import com.travelneer.jwt.JwtAuthenticationFailureHandler;
 import com.travelneer.jwt.JwtAuthenticationSuccessHandler;
 
 import java.util.Collections;
-
+import org.modelmapper.*;
+import org.modelmapper.convention.NameTokenizers;
+import org.modelmapper.jooq.RecordValueReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +32,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import javax.sql.DataSource;
 
 /**
  *
@@ -42,9 +51,19 @@ public class Config extends WebSecurityConfigurerAdapter {
         this.authenticationProvider = authenticationProvider;
     }
 
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().addValueReader(new RecordValueReader());
+        modelMapper.getConfiguration().setSourceNameTokenizer(NameTokenizers.UNDERSCORE);
+
+        return modelMapper;
     }
 
     @Bean
