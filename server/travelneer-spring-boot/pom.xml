@@ -33,6 +33,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.modelmapper.extensions</groupId>
+			<artifactId>modelmapper-jooq</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 			<version>5.1.0</version>
@@ -155,7 +161,6 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>properties-maven-plugin</artifactId>
-						<version>1.0.0</version>
 						<executions>
 							<execution>
 								<phase>initialize</phase>
@@ -198,9 +203,13 @@
 						</dependencies>
 						<configuration>
 							<jdbc>
+								<!--suppress UnresolvedMavenProperty -->
 								<driver>${spring.datasource.driver-class-name}</driver>
+								<!--suppress UnresolvedMavenProperty -->
 								<url>${spring.datasource.url}</url>
-								<userEntity>${spring.datasource.username}</userEntity>
+								<!--suppress UnresolvedMavenProperty -->
+								<user>${spring.datasource.username}</user>
+								<!--suppress UnresolvedMavenProperty -->
 								<password>${spring.datasource.password}</password>
 							</jdbc>
 							<generator>
@@ -211,11 +220,6 @@
 									<includes>.*</includes>
 									<excludes>flyway_schema_history</excludes>
 								</database>
-								<generate>
-									<pojos>
-										true
-									</pojos>
-								</generate>
 								<target>
 									<packageName>com.travelneer.jooq</packageName>
 									<directory>${basedir}/src/generated/java</directory>
