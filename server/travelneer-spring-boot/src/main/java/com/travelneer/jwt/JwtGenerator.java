@@ -6,7 +6,6 @@
 package com.travelneer.jwt;
 
 import com.travelneer.domain.user.UserEntity;
-import com.travelneer.security.SecurityConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -24,12 +23,12 @@ public class JwtGenerator {
     public String generate(UserEntity userEntity) {
         Claims claims = Jwts.claims()
                 .setId(Integer.toString(userEntity.getId()))
-                .setSubject(userEntity.getUsername().getValue())
-                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME));
+                .setSubject(userEntity.getName().getValue())
+                .setExpiration(new Date(System.currentTimeMillis() + JwtConstants.EXPIRATION_TIME));
 
         return Jwts.builder()
                 .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, SecurityConstants.SECRET)
+                .signWith(SignatureAlgorithm.HS512, JwtConstants.SECRET)
                 .compact();
     }
 

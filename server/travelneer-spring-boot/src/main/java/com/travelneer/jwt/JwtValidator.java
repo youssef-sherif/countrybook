@@ -5,7 +5,6 @@
  */
 package com.travelneer.jwt;
 
-import com.travelneer.security.SecurityConstants;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class JwtValidator {
         
         try {
             Claims body = Jwts.parser()
-                    .setSigningKey(SecurityConstants.SECRET)
+                    .setSigningKey(JwtConstants.SECRET)
                     .parseClaimsJws(token)
                     .getBody();            
             

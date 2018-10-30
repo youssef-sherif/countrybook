@@ -9,7 +9,6 @@ package com.travelneer.jwt;
  *
  * @author Youssef
  */
-import com.travelneer.security.SecurityConstants;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
@@ -31,7 +30,7 @@ public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessi
 
         String header = httpServletRequest.getHeader("Authorization");
 
-        if (header == null || !header.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+        if (header == null || !header.startsWith(JwtConstants.TOKEN_PREFIX)) {
             throw new AuthenticationException("JWT is missing") {
             };
         }
