@@ -4,7 +4,7 @@ import com.travelneer.hateoas.PostResource;
 
 import java.util.List;
 
-import com.travelneer.jooq.tables.pojos.Post;
+import com.travelneer.dto.Post;
 import com.travelneer.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

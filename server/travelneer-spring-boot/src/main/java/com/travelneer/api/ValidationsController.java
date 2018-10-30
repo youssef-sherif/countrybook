@@ -11,9 +11,11 @@ import com.travelneer.domain.user.UserFactory;
 
 import java.util.HashMap;
 
+import com.travelneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,31 +29,33 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class ValidationsController {
 
-
-
     private final UserEntity userEntity;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ValidationsController(UserFactory userFactory) {
+    public ValidationsController(UserFactory userFactory, UserRepository userRepository) {
         this.userEntity = userFactory.createUser("", "", "");
+        this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = "/validations", method = RequestMethod.GET, params = "userName")
+    @RequestMapping(value = "/validations", method = RequestMethod.GET, params = "username")
     public ResponseEntity<?> validateUsername(HttpServletRequest request) {
 
         var body = new HashMap<String, Object>();
-        String userName = request.getParameter("userName");
 
         try {
-            userEntity.validateUsername(userName);
+            String username = request.getParameter("username");
+            if(userRepository.nameExists(username)) {
+                throw new Exception("Username Exists");
+            }
+            userEntity.validateUsername(username);
 
             body.put("isValid", true);
-            body.put("userName", userName);
+            body.put("username", username);
 
             return new ResponseEntity<>(body, HttpStatus.OK);
         } catch(Exception e) {
             body.put("isValid", false);
-            body.put("userName", userName);
             return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
 
@@ -61,9 +65,12 @@ public class ValidationsController {
     public ResponseEntity<?> validateEmail(HttpServletRequest request) {
 
         var body = new HashMap<String, Object>();
-        String email = request.getParameter("email");
 
         try {
+            String email = request.getParameter("email");
+            if(userRepository.emailExists(email)) {
+                throw new Exception("Email exists");
+            }
             userEntity.validateEmail(email);
 
             body.put("isValid", true);
@@ -72,7 +79,6 @@ public class ValidationsController {
             return new ResponseEntity<>(body, HttpStatus.OK);
         } catch(Exception e) {
             body.put("isValid", false);
-            body.put("email", email);
             return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
     }
@@ -83,7 +89,7 @@ public class ValidationsController {
         var body = new HashMap<String, Object>();
         String password = request.getParameter("password");
 
-        switch (userEntity.getPasswordStrength(password)) {
+        switch (Password.getStrength(password)) {
             case Password.STRONG_PASSWORD:
                 body.put("passwordStrength", Password.STRONG_PASSWORD);
                 break;
@@ -95,7 +101,7 @@ public class ValidationsController {
                 break;
         }
         body.put("password", password);
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
 }

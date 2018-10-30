@@ -23,23 +23,19 @@ const handleErrors = (response) =>{
     type: CREATE_USER_FAILURE
   })
   
-  export const login = (userName, email, password) => {
+  export const login = (username, email, password) => {
     return (dispatch) => {
       dispatch(loginBegin())
-      fetch('http://localhost:8080/access-token', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          name: userName,
-          email: email,
-          password: password
-          })
+      fetch(`http://localhost:8080/access-token?username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
+        method: 'get',
+        headers: {'Content-Type': 'application/json'}
         })
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {
           dispatch(loginSuccess(data.userId))        
-          localStorage.setItem('token', data.token)        
+          localStorage.setItem('token', data.token)      
+          localStorage.setItem('logged_in', true)  
           return data
         })
         .catch((error) => dispatch(loginFailure()) )

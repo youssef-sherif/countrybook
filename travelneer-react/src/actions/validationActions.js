@@ -31,15 +31,15 @@ const handleErrors = (response) =>{
     payload: {error}
   })
   
-  export const validateUserName = (userName) => {
+  export const validateUserName = (username) => {
     return (dispatch) => {      
       dispatch(validateUserNameBegin())
-      return fetch(`http://localhost:8080/validations?userName=${encodeURIComponent(userName)}`, {
+      return fetch(`http://localhost:8080/validations?username=${encodeURIComponent(username)}`, {
       method: 'get'})
       .then( handleErrors)
       .then( (response) => {return response.json()})
       .then( (data) => {
-        dispatch(validateUserNameSuccess(data.isValid, userName))
+        dispatch(validateUserNameSuccess(data.isValid, username))
         return data})
       .catch(error => dispatch(validateUserNameFailure(error)))
     }
