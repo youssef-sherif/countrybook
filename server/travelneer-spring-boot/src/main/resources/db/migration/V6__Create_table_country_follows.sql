@@ -1,7 +1,7 @@
 CREATE TABLE country_follows (
 	user_id INT NOT NULL,
     country_id SMALLINT NOT NULL,
-    created_at DATETIME NOT NULL,
+    created_at TIMESTAMP,
     PRIMARY KEY(user_id, country_id),    
 	FOREIGN KEY (user_id) REFERENCES user (id)
 	ON DELETE CASCADE ON UPDATE CASCADE,    
