@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Favourites extends TableImpl<FavouritesRecord> {
 
-    private static final long serialVersionUID = 1043615792;
+    private static final long serialVersionUID = 1628244241;
 
     /**
      * The reference instance of <code>travelneer.favourites</code>
@@ -56,11 +56,6 @@ public class Favourites extends TableImpl<FavouritesRecord> {
     }
 
     /**
-     * The column <code>travelneer.favourites.created_at</code>.
-     */
-    public final TableField<FavouritesRecord, Timestamp> CREATED_AT = createField("created_at", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
-
-    /**
      * The column <code>travelneer.favourites.post_id</code>.
      */
     public final TableField<FavouritesRecord, Integer> POST_ID = createField("post_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
@@ -69,6 +64,11 @@ public class Favourites extends TableImpl<FavouritesRecord> {
      * The column <code>travelneer.favourites.user_id</code>.
      */
     public final TableField<FavouritesRecord, Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+
+    /**
+     * The column <code>travelneer.favourites.created_at</code>.
+     */
+    public final TableField<FavouritesRecord, Timestamp> CREATED_AT = createField("created_at", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * Create a <code>travelneer.favourites</code> table reference

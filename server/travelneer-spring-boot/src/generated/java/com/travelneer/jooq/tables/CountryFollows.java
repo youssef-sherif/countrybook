@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CountryFollows extends TableImpl<CountryFollowsRecord> {
 
-    private static final long serialVersionUID = 1036483997;
+    private static final long serialVersionUID = 643640988;
 
     /**
      * The reference instance of <code>travelneer.country_follows</code>
@@ -68,7 +68,7 @@ public class CountryFollows extends TableImpl<CountryFollowsRecord> {
     /**
      * The column <code>travelneer.country_follows.created_at</code>.
      */
-    public final TableField<CountryFollowsRecord, Timestamp> CREATED_AT = createField("created_at", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<CountryFollowsRecord, Timestamp> CREATED_AT = createField("created_at", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * Create a <code>travelneer.country_follows</code> table reference
