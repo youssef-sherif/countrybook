@@ -31,14 +31,12 @@ public class TokensController {
     private final JwtGenerator jwtGenerator;
     private final UserRepository userRepository;
     private final UserFactory userFactory;
-    private final ModelMapper modelMapper;
 
     @Autowired
-    public TokensController(JwtGenerator jwtGenerator, UserRepository userRepository, UserFactory userFactory, ModelMapper modelMapper) {
+    public TokensController(JwtGenerator jwtGenerator, UserRepository userRepository, UserFactory userFactory) {
         this.jwtGenerator = jwtGenerator;
         this.userRepository = userRepository;
         this.userFactory = userFactory;
-        this.modelMapper = modelMapper;
     }
 
     @RequestMapping(value = "/users",

@@ -5,6 +5,9 @@
  */
 package com.travelneer.api;
 
+import com.travelneer.domain.user.UserEntity;
+import com.travelneer.jwt.JwtUserDetails;
+import com.travelneer.jwt.JwtValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,13 +23,20 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping(value = "/api")
 public class UsersController {
-   
 
-    @RequestMapping(value = "/user",
+    private final JwtValidator validator;
+
+    public UsersController(JwtValidator validator) {
+        this.validator = validator;
+    }
+
+    @RequestMapping(value = "/me",
             method = {RequestMethod.GET}, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> user() {
+    public ResponseEntity<?> getUserDetails() {
+
+        JwtUserDetails user = validator.getUserDetails();
     	
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }
