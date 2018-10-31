@@ -59,7 +59,6 @@ public class TokensController {
             return new ResponseEntity<>(body, HttpStatus.CREATED);
         } catch (Exception e) {
             body.put("signUpError", e.getMessage());
-            System.out.println(e.getMessage());
 
             return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
@@ -84,6 +83,7 @@ public class TokensController {
             return new ResponseEntity<>(body, HttpStatus.OK);
         } catch (Exception e) {
             body.put("loginError", e.getMessage());
+            
             return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
         }
     }
