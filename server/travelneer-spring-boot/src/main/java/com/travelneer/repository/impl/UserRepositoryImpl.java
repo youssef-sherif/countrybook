@@ -64,9 +64,9 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	public void save(UserEntity user) throws SQLException{
 
 		Integer userId = create.insertInto(USER,
-				USER.NAME, USER.EMAIL, USER.PASSWORD)
+				USER.NAME, USER.EMAIL, USER.PASSWORD, USER.CREATED_AT)
 				.values(user.getName().getValue(), user.getEmail().getValue(),
-						user.getPassword().getEncoded())
+						user.getPassword().getEncoded(), user.getCreatedAt())
 				.returning(USER.ID).execute();
 
 		user.setId(userId);
