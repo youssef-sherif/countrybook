@@ -14,7 +14,7 @@ export const USERNAME_OR_EMAIL = 'USERNAME_OR_EMAIL'
 export const PASSWORD = 'PASSWORD'
 
 const handleErrors = (response) =>{
-    if (!response.ok || !response.created) {
+    if (!response.ok && !response.created) {
       throw Error(response.statusText)
     }
     return response

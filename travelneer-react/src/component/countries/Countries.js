@@ -10,7 +10,7 @@ import styles from './Countries.scss'
 
 class Countries extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
         this.props.fetchCountries()
     }
 
@@ -30,7 +30,6 @@ class Countries extends Component {
 
 
     followingCountries() {
-        this.props.fetchFollowedCountries(this.props.followedResource)
         return (
             <div>
                 <p>Countries you are following</p>
@@ -63,7 +62,7 @@ class Countries extends Component {
                 <br />
                 <div className={`container`}>
                     {this.props.search ?
-                        searchCountries : followingCountries}
+                       searchCountries : followingCountries}
                 </div>
             </div>
         )

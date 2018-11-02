@@ -1,5 +1,6 @@
 package com.travelneer.api.v1;
 
+import com.travelneer.hateoas.CountriesResource;
 import com.travelneer.hateoas.CountryResource;
 import com.travelneer.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1")
+@CrossOrigin(origins = { "http://localhost:3000" })
 public class    SearchCountriesController {
 
     private final CountryService countryService;
@@ -24,12 +26,12 @@ public class    SearchCountriesController {
     }
 
     @RequestMapping(value = "/countries", method = RequestMethod.GET, params = "searchParam")
-    public ResponseEntity<?> searchCountries(HttpServletRequest request) {
+    public ResponseEntity<?> searchCountries(@RequestParam(name = "searchParam", defaultValue = "") String searchParam) {
         try {
-            var searchParam = request.getParameter("searchParam");
             List<CountryResource> countryResources = countryService.searchCountries(searchParam);
+            var countriesResource = new CountriesResource(countryResources);
 
-            return new ResponseEntity<>(countryResources, HttpStatus.OK);
+            return new ResponseEntity<>(countriesResource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

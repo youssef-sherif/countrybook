@@ -17,8 +17,10 @@ import {
 
 
 const initialState = {
-    username: {
-        value: null,
+    loginUsername: "",
+    loginPassword: "",
+    username: { 
+        value: "",
         loading: false,
         errorMessage: null,
         error: null,
@@ -26,7 +28,7 @@ const initialState = {
         message: null
     },
     email: {
-        value: null,
+        value: "",
         loading: false,
         errorMessage: null,
         error: null,
@@ -34,7 +36,7 @@ const initialState = {
         message: null
     },
     password: {
-        value: null,
+        value: "",
         loading: false,
         errorMessage: null,
         error: null,
@@ -139,16 +141,13 @@ export function validationReducer(state = initialState, action) {
         case USERNAME_OR_EMAIL:
             return {
               ...state,
-              username: {
-                value: action.payload.usernameOrEmail,
-              }      
+              loginUsername: action.payload.usernameOrEmail   
             }
+
         case PASSWORD:
             return {
               ...state,
-              password: {
-                value: action.payload.password,
-              }
+              loginPassword: action.payload.password
             }            
 
         default:

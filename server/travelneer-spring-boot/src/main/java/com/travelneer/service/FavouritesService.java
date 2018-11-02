@@ -21,14 +21,6 @@ public class FavouritesService {
         this.validator = validator;
     }
 
-    public boolean isFavourites(int postId) throws Exception {
-        Favourites favourites = new Favourites();
-        favourites.setUserId(validator.getUserId());
-        favourites.setPostId(postId);
-
-        return favouritesRepository.exists(favourites);
-    }
-
     public void favouritePost(int postId)  throws Exception {
         Favourites favourites = new Favourites();
         favourites.setCreatedAt(new Timestamp(System.currentTimeMillis()));

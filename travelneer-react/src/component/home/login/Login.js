@@ -20,11 +20,11 @@ class Login extends Component {
                 <input className={styles.input} placeholder="username or email" 
                     onChange={e => this.props.changeUsernameOrEmail(e.target.value)} />
                 <input className={styles.input} placeholder="password" 
-                onChange={e =>  this.props.changePassword(e.target.value)} type="password" />
+                onChange={e => this.props.changePassword(e.target.value)} type="password" />
                 <LoginButton
                     style={styles.LoginButton}
-                    usernameOrEmail={this.props.usernameOrEmail.value}
-                    password={this.props.password.value}
+                    usernameOrEmail={this.props.usernameOrEmail}
+                    password={this.props.password}
                     login={this.props.login.bind(this)}
                     loading={this.props.loginLoading}
                     successful={this.props.loginSuccessful}
@@ -39,8 +39,8 @@ const mapStateToProps = (state) => {
     return {
       loginLoading: state.login.login.loading,    
       loginSuccessful: state.login.login.successful,
-      usernameOrEmail: state.user.username,
-      password: state.user.password
+      usernameOrEmail: state.user.loginUsername,
+      password: state.user.loginPassword
     }
   }
   

@@ -32,7 +32,8 @@ export default class InputPassword extends Component {
     const message = this.getMessage();
     return (
       <div>
-        <input type="password" className={styles.input} placeholder="password" onChange={ e => {this.props.validate(e.target.value)} }/>
+        <input type="password" className={styles.input} placeholder="password" 
+            onChange={ e => this.props.validate(e.target.value) }/>
         <br />
         {this.props.data === null? <br/> : message}
       </div>

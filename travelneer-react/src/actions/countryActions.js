@@ -2,7 +2,6 @@ export const FETCH_COUNTRIES_BEGIN = 'FETCH_COUNTRIES_BEGIN'
 export const FETCH_COUNTRIES_SUCCESS = 'FETCH_COUNTRIES_SUCCESS'
 export const FETCH_COUNTRIES_FAILURE = 'FETCH_COUNTRIES_FAILURE'
 
-export const SEARCH_COUNTRIES_FAILURE = 'SEARCH_COUNTRIES_FAILURE'
 export const SEARCH_COUNTRIES_SUCCESS = 'SEARCH_COUNTRIES_SUCCESS'
 export const FETCH_FOLLOWED_COUNTRIES_SUCCESS = 'FETCH_FOLLOWED_COUNTRIES_SUCCESS'
 
@@ -41,18 +40,17 @@ export const fetchCountries = () => {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,
-              'Content-Type': 'application/hal+json'
+              'Content-Type': 'application/json'
           }
       })
           .then(handleErrors)
           .then((response) => response.json())
           .then((data) => {
               dispatch(fetchCountriesSuccess(data.countries, data._links))
-              localStorage.setItem('logged_in', 'true')
               return data
           })
           .catch((error) => { 
-              dispatch(fetchCountriesFailure())                              
+              dispatch(fetchCountriesFailure(error))                              
           })
   }
 }
@@ -63,18 +61,17 @@ export const searchCountries = (resource, searchParam) => {
 
   return (dispatch) => {
       dispatch(fetchCountriesBegin())
-      fetch(resource+searchParam, {
+      fetch(resource + searchParam, {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,
-              'Content-Type': 'application/hal+json'
+              'Content-Type': 'application/json'
           }
       })
           .then(handleErrors)
           .then((response) => response.json())
           .then((data) => {
               dispatch(searchCountriesSuccess(data.countries))
-              localStorage.setItem('logged_in', 'true')
               return data
           })
           .catch((error) => { 
@@ -92,14 +89,13 @@ export const fetchFollowedCountries = (resource) => {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,
-              'Content-Type': 'application/hal+json'
+              'Content-Type': 'application/json'
           }
       })
           .then(handleErrors)
           .then((response) => response.json())
           .then((data) => {
               dispatch(fetchFollowedCountriesSuccess(data.countries))
-              localStorage.setItem('logged_in', 'true')
               return data
           })
           .catch((error) => { 

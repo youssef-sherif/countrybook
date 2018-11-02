@@ -25,7 +25,6 @@ public class Post {
         String    content,
         Integer   authorId,
         Short     countryId,
-        Integer   favouritesCount,
         Timestamp createdAt
     ) {
         this.id = id;

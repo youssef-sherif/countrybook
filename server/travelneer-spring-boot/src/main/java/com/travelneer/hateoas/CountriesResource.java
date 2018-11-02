@@ -30,7 +30,7 @@ public class CountriesResource extends ResourceSupport {
 
         this.add(linkTo(methodOn(CountriesController.class).countries()).withSelfRel());
         this.add(linkTo(methodOn(CountryFollowsController.class).getFollowedCountries()).withRel("followedCountries"));
-        this.add(linkTo(methodOn(SearchCountriesController.class).searchCountries(null)).withRel("search"));
+        this.add(linkTo(methodOn(SearchCountriesController.class).searchCountries("")).withRel("searchCountries"));
     }
 
     public List<CountryResource> getCountries() {

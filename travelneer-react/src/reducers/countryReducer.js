@@ -46,7 +46,6 @@ export function fetchCountriesReducer(state = getCountriesState,
       return {
         ...state,
         loading: false,
-        successful: false,
         error: action.payload.error
       }
 

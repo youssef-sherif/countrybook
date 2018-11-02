@@ -13,9 +13,8 @@ const handleErrors = (response) =>{
     type: LOGIN_BEGIN
   })
   
-  const loginSuccess = (userId) => ({
-    type: LOGIN_SUCCESS,
-    payload: { userId }
+  const loginSuccess = () => ({
+    type: LOGIN_SUCCESS
   })
   
   const loginFailure = () => ({
@@ -32,7 +31,7 @@ const handleErrors = (response) =>{
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {
-          dispatch(loginSuccess(data.userId))        
+          dispatch(loginSuccess())        
           localStorage.setItem('token', data.token)      
           localStorage.setItem('logged_in', true)  
           return data

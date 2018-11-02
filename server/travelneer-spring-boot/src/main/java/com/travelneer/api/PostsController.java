@@ -41,7 +41,8 @@ public class PostsController {
 
 		try {
 			List<PostResource> postResources = postService.getFeed();
-			FeedResource feedResource = new FeedResource(postResources);
+			var feedResource = new FeedResource(postResources);
+
 			return new ResponseEntity<>(feedResource, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

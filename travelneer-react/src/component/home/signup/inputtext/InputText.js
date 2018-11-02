@@ -29,7 +29,8 @@ export default class InputText extends Component {
     const message = this.getMessage()
     return (
       <div>
-        <input className={styles.input} placeholder={this.props.type} onChange={e => this.props.validate(e.target.value)} />
+        <input className={styles.input} placeholder={this.props.type} 
+            onChange={e => this.props.validate(e.target.value)} />
         <br />
         {this.props.data === null? <br/> : message}
       </div>

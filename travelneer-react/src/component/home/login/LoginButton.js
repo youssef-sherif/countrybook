@@ -18,9 +18,9 @@ export default class LoginButton extends Component {
                 <button className={`btn ${this.props.style}`}
                     type='submit'
                     onClick={(e) => {
+                        e.preventDefault();
                         this.props.login(this.props.usernameOrEmail, this.props.usernameOrEmail, this.props.password)
-                        this.redirect(); 
-
+                        this.redirect();
                     }}>
                         Login
                     </button>
