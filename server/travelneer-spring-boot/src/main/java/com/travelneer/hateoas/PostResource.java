@@ -5,6 +5,8 @@
  */
 package com.travelneer.hateoas;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.api.PostsController;
 import com.travelneer.api.v1.FavouritesController;
 import com.travelneer.dto.Post;
@@ -20,9 +22,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class PostResource extends ResourceSupport {
 
     private final Post post;
-    private boolean isFavourite;
 
-    public PostResource(Post post) {
+
+    @JsonCreator
+    public PostResource(@JsonProperty("post") Post post) {
         this.post = post;
 
         this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
@@ -32,9 +35,5 @@ public class PostResource extends ResourceSupport {
 
     public Post getPost() {
         return post;
-    }
-
-    public void setFavourite(boolean favourite) {
-        isFavourite = favourite;
     }
 }

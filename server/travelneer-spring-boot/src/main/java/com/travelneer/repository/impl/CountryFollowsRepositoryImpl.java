@@ -55,7 +55,8 @@ public class CountryFollowsRepositoryImpl implements com.travelneer.repository.C
 
     @Override
     public List<Country> getCountriesByUserId(int userId) throws SQLException {
-        List<Country> countries = create.select().from(COUNTRY)
+        List<Country> countries = create.select()
+                .from(COUNTRY)
                 .innerJoin(COUNTRY_FOLLOWS)
                 .on(COUNTRY_FOLLOWS.COUNTRY_ID
                         .eq(COUNTRY.ID))

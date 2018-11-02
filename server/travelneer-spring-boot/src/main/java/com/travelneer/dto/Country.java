@@ -6,8 +6,6 @@ public class Country {
     private String  code;
     private String  name;
     private String  profileImageUrl;
-    private Integer followersCount;
-    private Integer postsCount;
     private String  flagUrl;
 
     public Country() {}
@@ -17,8 +15,6 @@ public class Country {
         this.code = value.code;
         this.name = value.name;
         this.profileImageUrl = value.profileImageUrl;
-        this.followersCount = value.followersCount;
-        this.postsCount = value.postsCount;
         this.flagUrl = value.flagUrl;
     }
 
@@ -27,16 +23,12 @@ public class Country {
         String  code,
         String  name,
         String  profileImageUrl,
-        Integer followersCount,
-        Integer postsCount,
         String  flagUrl
     ) {
         this.id = id;
         this.code = code;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
-        this.followersCount = followersCount;
-        this.postsCount = postsCount;
         this.flagUrl = flagUrl;
     }
 
@@ -72,22 +64,6 @@ public class Country {
         this.profileImageUrl = profileImageUrl;
     }
 
-    public Integer getFollowersCount() {
-        return this.followersCount;
-    }
-
-    public void setFollowersCount(Integer followersCount) {
-        this.followersCount = followersCount;
-    }
-
-    public Integer getPostsCount() {
-        return this.postsCount;
-    }
-
-    public void setPostsCount(Integer postsCount) {
-        this.postsCount = postsCount;
-    }
-
     public String getFlagUrl() {
         return this.flagUrl;
     }
@@ -104,8 +80,6 @@ public class Country {
         sb.append(", ").append(code);
         sb.append(", ").append(name);
         sb.append(", ").append(profileImageUrl);
-        sb.append(", ").append(followersCount);
-        sb.append(", ").append(postsCount);
         sb.append(", ").append(flagUrl);
 
         sb.append(")");

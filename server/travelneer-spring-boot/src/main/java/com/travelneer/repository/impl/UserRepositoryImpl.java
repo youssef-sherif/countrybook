@@ -12,6 +12,7 @@ import java.sql.*;
 import java.util.List;
 
 import com.travelneer.jooq.tables.records.UserRecord;
+import com.travelneer.jwt.JwtUserDetails;
 import org.jooq.DSLContext;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -51,6 +52,15 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 		return create.fetchExists(USER,
 				USER.EMAIL.eq(user.getEmail().getValue())
 						.or(USER.NAME.eq(user.getName().getValue())));
+	}
+
+	@Override
+	public UserEntity getOneById(int userId) {
+
+		UserRecord record = create.fetchOne(USER,
+				USER.ID.eq(userId));
+
+		return modelMapper.map(record, UserEntity.class);
 	}
 
 	@Override

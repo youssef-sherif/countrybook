@@ -1,11 +1,15 @@
 package com.travelneer.api;
 
+import com.travelneer.hateoas.FeedResource;
 import com.travelneer.hateoas.PostResource;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.travelneer.dto.Post;
 import com.travelneer.service.PostService;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,9 +40,9 @@ public class PostsController {
 	public ResponseEntity<?> getFeed() {
 
 		try {
-			List<PostResource> posts = postService.getFeed();
-
-			return new ResponseEntity<>(posts, HttpStatus.OK);
+			List<PostResource> postResources = postService.getFeed();
+			FeedResource feedResource = new FeedResource(postResources);
+			return new ResponseEntity<>(feedResource, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}

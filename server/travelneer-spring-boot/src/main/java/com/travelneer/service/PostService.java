@@ -5,12 +5,15 @@
  */
 package com.travelneer.service;
 
+import com.travelneer.hateoas.FeedResource;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.PostRepository;
 import com.travelneer.hateoas.PostResource;
 import com.travelneer.dto.Post;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +46,7 @@ public class PostService {
 
 
 	public List<PostResource> getFeed() throws Exception{
-		List<Post> posts = postRepository.getPostsByAuthorId(validator.getUserId());
-
+		List<Post> posts = postRepository.getFeedByUserId(validator.getUserId());
 		List<PostResource> postResources = posts.stream().map(PostResource::new)
 				.collect(Collectors.toList());
 

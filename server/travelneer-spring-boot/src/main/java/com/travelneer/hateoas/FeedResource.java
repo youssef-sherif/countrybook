@@ -8,8 +8,10 @@ package com.travelneer.hateoas;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.api.CountriesController;
+import com.travelneer.api.PostsController;
 import com.travelneer.api.v1.SearchCountriesController;
 import com.travelneer.api.v1.CountryFollowsController;
 import org.springframework.hateoas.ResourceSupport;
@@ -21,20 +23,18 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  *
  * @author Youssef
  */
-public class CountriesResource extends ResourceSupport {
+public class FeedResource extends ResourceSupport {
 
-    private  final List<CountryResource> countryResources;
+    private  final List<PostResource> postResources;
 
-    public CountriesResource(@JsonProperty("countries") List<CountryResource> countryResources) {
-        this.countryResources = countryResources;
+    public FeedResource(@JsonProperty("posts") List<PostResource> postResources) {
+        this.postResources = postResources;
 
-        this.add(linkTo(methodOn(CountriesController.class).countries()).withSelfRel());
-        this.add(linkTo(methodOn(CountryFollowsController.class).getFollowedCountries()).withRel("followedCountries"));
-        this.add(linkTo(methodOn(SearchCountriesController.class).searchCountries(null)).withRel("search"));
+        this.add(linkTo(methodOn(PostsController.class).getFeed()).withSelfRel());
     }
 
-    public List<CountryResource> getCountries() {
-        return countryResources;
+    public List<PostResource> getPosts() {
+        return postResources;
     }
 
 }

@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1")
-public class SearchCountriesController {
+public class    SearchCountriesController {
 
     private final CountryService countryService;
 

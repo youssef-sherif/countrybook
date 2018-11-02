@@ -28,7 +28,7 @@ public class JwtValidator {
                     .parseClaimsJws(token)
                     .getBody();            
             
-            this.userDetails = new JwtUserDetails(body.getSubject(), body.getExpiration());
+            this.userDetails = new JwtUserDetails(body.getSubject(), body.getExpiration(), Integer.parseInt(body.getId()));
             this.userId = Integer.parseInt(body.getId());
 
         } catch (MalformedJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException e) {

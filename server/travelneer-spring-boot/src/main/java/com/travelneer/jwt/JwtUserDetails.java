@@ -18,10 +18,16 @@ public class JwtUserDetails implements UserDetails {
 
     private final String username;
     private final Date expiration;
+    private final Integer userId;
 
-    public JwtUserDetails(String username, Date expiration) {
+    public JwtUserDetails(String username, Date expiration, Integer userId) {
         this.username = username;
         this.expiration = expiration;
+        this.userId = userId;
+    }
+
+    public Integer getUserId() {
+        return userId;
     }
 
     @Override

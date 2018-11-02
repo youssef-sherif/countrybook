@@ -39,6 +39,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180130</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
@@ -91,6 +97,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -177,6 +184,7 @@
 					<plugin>
 						<groupId>org.jooq</groupId>
 						<artifactId>jooq-codegen-maven</artifactId>
+						<version>3.10.8</version>
 						<executions>
 							<execution>
 								<goals>
@@ -189,6 +197,7 @@
 								<groupId>mysql</groupId>
 								<artifactId>mysql-connector-java</artifactId>
 								<scope>runtime</scope>
+								<version>5.1.46</version>
 							</dependency>
 
 							<dependency>

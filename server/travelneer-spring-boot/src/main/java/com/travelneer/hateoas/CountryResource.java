@@ -5,6 +5,7 @@
  */
 package com.travelneer.hateoas;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.api.CountriesController;
 import com.travelneer.api.v1.CountryFollowsController;
 import com.travelneer.api.v1.CountryPostsController;
@@ -25,7 +26,7 @@ public class CountryResource extends ResourceSupport {
     private final Country country;
     private boolean isFollowed;
 
-    public CountryResource(Country country) {
+    public CountryResource(@JsonProperty("country") Country country) {
         this.country = country;
 
         this.add(linkTo(methodOn(CountriesController.class).getCountry(country.getId())).withSelfRel());

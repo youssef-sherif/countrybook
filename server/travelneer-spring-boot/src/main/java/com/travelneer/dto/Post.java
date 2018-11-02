@@ -8,7 +8,6 @@ public class Post {
     private String    content;
     private Integer   authorId;
     private Short     countryId;
-    private Integer   favouritesCount;
     private Timestamp createdAt;
 
     public Post() {}
@@ -18,7 +17,6 @@ public class Post {
         this.content = value.content;
         this.authorId = value.authorId;
         this.countryId = value.countryId;
-        this.favouritesCount = value.favouritesCount;
         this.createdAt = value.createdAt;
     }
 
@@ -34,7 +32,6 @@ public class Post {
         this.content = content;
         this.authorId = authorId;
         this.countryId = countryId;
-        this.favouritesCount = favouritesCount;
         this.createdAt = createdAt;
     }
 
@@ -70,14 +67,6 @@ public class Post {
         this.countryId = countryId;
     }
 
-    public Integer getFavouritesCount() {
-        return this.favouritesCount;
-    }
-
-    public void setFavouritesCount(Integer favouritesCount) {
-        this.favouritesCount = favouritesCount;
-    }
-
     public Timestamp getCreatedAt() {
         return this.createdAt;
     }
@@ -94,7 +83,6 @@ public class Post {
         sb.append(", ").append(content);
         sb.append(", ").append(authorId);
         sb.append(", ").append(countryId);
-        sb.append(", ").append(favouritesCount);
         sb.append(", ").append(createdAt);
 
         sb.append(")");

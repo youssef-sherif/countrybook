@@ -8,29 +8,37 @@ package com.travelneer.repository.impl;
 import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.USER;
 import static com.travelneer.jooq.Tables.POST;
+import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
+import static org.jooq.impl.DSL.inline;
+
 
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import com.travelneer.dto.Post;
 import com.travelneer.jooq.tables.records.PostRecord;
-import com.travelneer.repository.PostRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+
+import javax.sql.DataSource;
+
 
 /**
  *
  * @author Youssef
  */
 @Repository
-public class PostRepositoryImpl implements com.travelneer.repository.PostRepository {
+public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer.repository.PostRepository {
 
 	private final DSLContext create;
 
 	@Autowired
-	public PostRepositoryImpl(DSLContext create) {
+	public PostRepositoryImpl(DSLContext create, DataSource dataSource) {
 		this.create = create;
+		this.setDataSource(dataSource);
 	}
 
 	@Override
@@ -52,7 +60,8 @@ public class PostRepositoryImpl implements com.travelneer.repository.PostReposit
 	public List<Post> getPostsByAuthorId(Integer authorId) throws SQLException{
 
 		List<Post> posts =
-				create.select(POST.AUTHOR_ID, POST.CONTENT, POST.CREATED_AT).from(POST)
+				create.select()
+						.from(POST)
 				.innerJoin(USER).on(USER.ID
 						.eq(POST.AUTHOR_ID))
 				.where(USER.ID
@@ -68,7 +77,7 @@ public class PostRepositoryImpl implements com.travelneer.repository.PostReposit
 	public List<Post> getPostsByCountryId(Short countryId) throws SQLException{
 
 		List<Post> posts =
-				create.select(POST.AUTHOR_ID, POST.CONTENT, POST.CREATED_AT)
+				create.select()
                         .from(POST)
 				.innerJoin(COUNTRY).on(COUNTRY.ID
 						.eq(POST.COUNTRY_ID))
@@ -79,6 +88,24 @@ public class PostRepositoryImpl implements com.travelneer.repository.PostReposit
 				.fetch().into(Post.class);
 
 		return posts;
+	}
+
+	@Override
+	public List<Post> getFeedByUserId(int userId) throws SQLException{
+
+		List<Post> posts =
+				create.select()
+						.from(POST)
+				.innerJoin(COUNTRY_FOLLOWS).on(COUNTRY_FOLLOWS.COUNTRY_ID
+						.eq(POST.COUNTRY_ID))
+				.where(COUNTRY_FOLLOWS.USER_ID
+						.eq(userId))
+				.orderBy(POST.CREATED_AT
+						.desc())
+				.fetch().into(Post.class);
+
+		return posts;
+
 	}
 
 	@Override

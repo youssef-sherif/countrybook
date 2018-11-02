@@ -40,14 +40,14 @@ public class CountryRepositoryImpl implements CountryRepository {
 
     @Override
     public List<Country> search(String searchParam) throws SQLException {
-        List<Country> countries = create.select(COUNTRY.NAME, COUNTRY.FLAG_URL, COUNTRY.CODE).from(COUNTRY)
+        List<Country> countries = create.select().from(COUNTRY)
                 .where(COUNTRY.NAME.like(searchParam)).fetchInto(Country.class);
         return countries;
     }
 
     @Override
     public List<Country> getAll() throws SQLException {
-        List<Country> countries = create.select(COUNTRY.NAME, COUNTRY.FLAG_URL, COUNTRY.CODE).from(COUNTRY)
+        List<Country> countries = create.select().from(COUNTRY)
                 .fetchInto(Country.class);
 
         return countries;

@@ -3,7 +3,6 @@ CREATE TABLE post (
     content VARCHAR(500) NOT NULL,
     author_id INT NOT NULL,
     country_id SMALLINT NOT NULL,
-    favourites_count INT DEFAULT 0,
     created_at TIMESTAMP,
     PRIMARY KEY (id),
 	FOREIGN KEY (author_id) REFERENCES user (id)

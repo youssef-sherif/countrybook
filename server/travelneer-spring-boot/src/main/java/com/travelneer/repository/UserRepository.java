@@ -6,6 +6,8 @@
 package com.travelneer.repository;
 
 import com.travelneer.domain.user.UserEntity;
+import com.travelneer.jwt.JwtUserDetails;
+
 import java.sql.SQLException;
 
 /**
@@ -22,4 +24,5 @@ public interface UserRepository extends IRepository<UserEntity> {
 
     boolean exists(UserEntity user) throws SQLException;
 
+    UserEntity getOneById(int userId);
 }

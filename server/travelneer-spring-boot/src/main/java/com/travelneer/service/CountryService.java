@@ -38,7 +38,6 @@ public class CountryService {
 	public CountryResource getCountry(short countryId) throws Exception{
 
 		var countryResource = new CountryResource(countryRepository.getOneById(countryId));
-		countryResource.setFollowed(followsService.isCountryFollowed(countryId));
 
 		return countryResource;
 	}
