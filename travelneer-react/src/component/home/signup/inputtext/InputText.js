@@ -3,7 +3,7 @@ import ValidMessage from '../validation/ValidMessage/ValidMessage'
 import InvalidMessage from '../validation/InvalidMessage/InvalidMessage'
 
 import styles from './InputText.scss'
-import loading from '../loading.gif'
+import loading from '../../../loading.gif'
 
 export default class InputText extends Component {
 

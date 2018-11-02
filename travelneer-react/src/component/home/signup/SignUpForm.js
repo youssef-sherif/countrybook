@@ -7,11 +7,10 @@ import InputPassword from './inputpassword/InputPassword'
 import SignUpButton from './SignUpButton'
 
 import {
-  validateUserName,
+  validateUsername,
   validateEmail,
   validatePassword
 } from '../../../actions/validationActions'
-import { authorizeUser } from '../../../actions/authActions'
 import { createUser } from '../../../actions/signUpActions'
 import styles from './SignUpForm.scss'
 
@@ -25,11 +24,11 @@ class SignUpForm extends Component {
           <br />
           <InputText
             type='username'
-            data={this.props.userName}
-            className={styles.userName}
-            isLoading={this.props.isLoadingUserName}
-            isValid={this.props.isValidUserName}
-            validate={this.props.validateUserName.bind(this)} />
+            data={this.props.username}
+            className={styles.username}
+            isLoading={this.props.isLoadingUsername}
+            isValid={this.props.isValidUsername}
+            validate={this.props.validateUsername.bind(this)} />
           <br />
           <InputText
             type='email'
@@ -48,7 +47,7 @@ class SignUpForm extends Component {
           <br />
           <SignUpButton className={styles.SignUpButton}
             createUser={this.props.createUser.bind(this)}
-            userName={this.props.userName}
+            username={this.props.username}
             email={this.props.email}
             password={this.props.password}
             loading={this.props.signUpLoading}
@@ -62,8 +61,8 @@ class SignUpForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isValidUserName: state.user.userName.isValid,
-    isLoadingUserName: state.user.userName.loading,
+    isValidUsername: state.user.username.isValid,
+    isLoadingUsername: state.user.username.loading,
 
     isValidEmail: state.user.email.isValid,
     isLoadingEmail: state.user.email.loading,
@@ -71,7 +70,7 @@ const mapStateToProps = (state) => {
     passwordStrength: state.user.password.passwordStrength,
     isLoadingPassword: state.user.password.loading,
 
-    userName: state.user.userName.value,
+    username: state.user.username.value,
     email: state.user.email.value,
     password: state.user.password.value,
 
@@ -81,11 +80,10 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  validateUserName: (e) => dispatch(validateUserName(e)),
+  validateUsername: (e) => dispatch(validateUsername(e)),
   validateEmail: (e) => dispatch(validateEmail(e)),
   validatePassword: (e) => dispatch(validatePassword(e)),
-  authorizeUser: () => dispatch(authorizeUser()),
-  createUser: (userName, email, password) => dispatch(createUser(userName, email, password)),
+  createUser: (username, email, password) => dispatch(createUser(username, email, password)),
   navigateTo: (e) => dispatch(push(e))
 })
 

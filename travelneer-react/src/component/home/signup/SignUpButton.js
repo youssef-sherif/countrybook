@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { loading } from './loading.gif'
+import { loading } from '../../loading.gif'
 
 export default class SignupButton extends Component {
 
@@ -14,18 +14,16 @@ export default class SignupButton extends Component {
     }
 
     render() {
-        const redirect = this.redirect();
         return (
             <div>
                 <button className={'btn btn-block'}
                     type='submit'
                     onClick={(e) => {
-                        e.preventDefault();
-                        this.props.createUser(this.props.userName, this.props.email, this.props.password)
+                        this.props.createUser(this.props.username, this.props.email, this.props.password)
+                        this.redirect();
                     }}>
                     Sign Up
                 </button>
-                {redirect}
             </div>
         )
     }
