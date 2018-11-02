@@ -10,11 +10,14 @@ import {
     VALIDATE_PASSWORD_BEGIN,
     VALIDATE_PASSWORD_SUCCESS,
     VALIDATE_PASSWORD_FAILURE,
+
+    USERNAME_OR_EMAIL,
+    PASSWORD
 } from '../actions/validationActions'
 
 
 const initialState = {
-    userName: {
+    username: {
         value: null,
         loading: false,
         errorMessage: null,
@@ -45,7 +48,7 @@ export function validationReducer(state = initialState, action) {
         case VALIDATE_USER_NAME_BEGIN:
             return {
                 ...state,
-                userName: {
+                username: {
                     loading: true,
                     isEmpty: false
                 }
@@ -53,8 +56,8 @@ export function validationReducer(state = initialState, action) {
         case VALIDATE_USER_NAME_SUCCESS:
             return {
                 ...state,
-                userName: {
-                    value: action.payload.userName,
+                username: {
+                    value: action.payload.username,
                     loading: false,
                     isValid: action.payload.isValid,
                     isEmpty: false
@@ -64,7 +67,7 @@ export function validationReducer(state = initialState, action) {
         case VALIDATE_USER_NAME_FAILURE:
             return {
                 ...state,
-                userName: {
+                username: {
                     errorMessage: action.payload.error,
                     error: action.payload.error,
                     isValid: false,
@@ -132,6 +135,21 @@ export function validationReducer(state = initialState, action) {
                     isEmpty: false
                 }
             }
+
+        case USERNAME_OR_EMAIL:
+            return {
+              ...state,
+              username: {
+                value: action.payload.usernameOrEmail,
+              }      
+            }
+        case PASSWORD:
+            return {
+              ...state,
+              password: {
+                value: action.payload.password,
+              }
+            }            
 
         default:
             return {

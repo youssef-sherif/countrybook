@@ -9,18 +9,17 @@ const handleErrors = (response) =>{
     return response
   }
   
-  
   const loginBegin = () => ({
-    type: CREATE_USER_BEGIN
+    type: LOGIN_BEGIN
   })
   
   const loginSuccess = (userId) => ({
-    type: CREATE_USER_SUCCESS,
+    type: LOGIN_SUCCESS,
     payload: { userId }
   })
   
   const loginFailure = () => ({
-    type: CREATE_USER_FAILURE
+    type: LOGIN_FAILURE
   })
   
   export const login = (username, email, password) => {

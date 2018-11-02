@@ -1,6 +1,6 @@
-export const CREATE_USER_BEGIN = 'POST_USER_CREDENTIALS_BEGIN'
-export const CREATE_USER_SUCCESS = 'POST_USER_CREDENTIALS_SUCCESS'
-export const CREATE_USER_FAILURE = 'POST_USER_CREDENTIALS_FAILURE'
+export const CREATE_USER_BEGIN = 'CREATE_USER_BEGIN'
+export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS'
+export const CREATE_USER_FAILURE = 'CREATE_USER_FAILURE'
 
 const handleErrors = (response) => {
   if (!response.ok) {
@@ -24,14 +24,14 @@ const createUserFailure = (error) => ({
 })
 
 
-export const createUser = (userName, email, password) => {
+export const createUser = (username, email, password) => {
   return (dispatch) => {
     dispatch(createUserBegin())
     fetch('http://localhost:8080/users', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: userName,
+        name: username,
         email: email,
         password: password
       })

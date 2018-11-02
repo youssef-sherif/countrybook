@@ -1,4 +1,5 @@
 @import '../../variables.scss';
+
 .input {
     margin: 10px;
     background-color: #FFF;
@@ -8,8 +9,8 @@
     width: auto;
   }
 
-  .button {
-      margin: 10px;
-      background-color: lightgray;      
-      color: #000;
-  }
+.LoginButton {
+    margin: 10px;
+    background-color: lightgray;      
+    color: #000;
+}

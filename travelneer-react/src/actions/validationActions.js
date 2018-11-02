@@ -10,38 +10,41 @@ export const VALIDATE_PASSWORD_BEGIN = 'VALIDATE_PASSWORD_BEGIN'
 export const VALIDATE_PASSWORD_SUCCESS = 'VALIDATE_PASSWORD_SUCCESS'
 export const VALIDATE_PASSWORD_FAILURE = 'VALIDATE_PASSWORD_FAILURE'
 
+export const USERNAME_OR_EMAIL = 'USERNAME_OR_EMAIL'
+export const PASSWORD = 'PASSWORD'
+
 const handleErrors = (response) =>{
-    if (!response.ok && !response.created) {
+    if (!response.ok || !response.created) {
       throw Error(response.statusText)
     }
     return response
   }
   
-  const validateUserNameBegin = () => ({
+  const validateUsernameBegin = () => ({
     type: VALIDATE_USER_NAME_BEGIN
   })
   
-  const validateUserNameSuccess = (isValid, userName) => ({
+  const validateUsernameSuccess = (isValid, username) => ({
     type: VALIDATE_USER_NAME_SUCCESS,
-    payload: {isValid, userName}
+    payload: {isValid, username}
   })
   
-  const validateUserNameFailure = (error) => ({
+  const validateUsernameFailure = (error) => ({
     type: VALIDATE_USER_NAME_FAILURE,
     payload: {error}
   })
   
-  export const validateUserName = (username) => {
+  export const validateUsername = (username) => {
     return (dispatch) => {      
-      dispatch(validateUserNameBegin())
+      dispatch(validateUsernameBegin())
       return fetch(`http://localhost:8080/validations?username=${encodeURIComponent(username)}`, {
       method: 'get'})
       .then( handleErrors)
       .then( (response) => {return response.json()})
       .then( (data) => {
-        dispatch(validateUserNameSuccess(data.isValid, username))
+        dispatch(validateUsernameSuccess(data.isValid, username))
         return data})
-      .catch(error => dispatch(validateUserNameFailure(error)))
+      .catch(error => dispatch(validateUsernameFailure(error)))
     }
   }
 
@@ -101,3 +104,13 @@ const handleErrors = (response) =>{
       .catch(error => dispatch(validatePasswordFailure(error)))
     }
   }
+
+  export const changeUsernameOrEmail = (usernameOrEmail) => ({
+    type: USERNAME_OR_EMAIL,
+    payload : {usernameOrEmail}
+  })
+
+  export const changePassword = (password) => ({
+    type: PASSWORD,
+    payload : {password}
+  })
