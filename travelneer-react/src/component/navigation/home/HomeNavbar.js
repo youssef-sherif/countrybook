@@ -5,7 +5,7 @@ import logo from '../logo.png'
 import styles from './HomeNavbar.scss'
 
 
-export default class HomeNavbar extends Component {
+class HomeNavbar extends Component {
 
     render() {
 
@@ -28,3 +28,5 @@ export default class HomeNavbar extends Component {
         )
     }
 }
+
+export default HomeNavbar

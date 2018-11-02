@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import globe from './globe.png'
 import notifications from './notifications.png'
@@ -36,3 +38,8 @@ class AppNavbar extends Component {
         )
     }
 }
+const mapDispatchToProps = (dispatch) => ({
+    navigateTo: (e) => dispatch(push(e))
+  })
+  
+  export default connect(null, mapDispatchToProps)(AppNavbar)
