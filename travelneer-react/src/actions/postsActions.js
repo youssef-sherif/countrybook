@@ -44,7 +44,7 @@ export const fetchPosts = () => {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/hal+json'
+                'Content-Type': 'application/json'
             }
         })
             .then(handleErrors)
@@ -67,7 +67,7 @@ export const fetchCountryPosts = (resource) => {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/hal+json'
+                'Content-Type': 'application/json'
             }
         })
             .then(handleErrors)
@@ -104,7 +104,7 @@ export const newPost = (countryId, content) => {
             method: 'post',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/hal+json'
+                'Content-Type': 'application/json'
             },
             body: {
                 countryId: countryId,
