@@ -3,11 +3,10 @@ import logger from 'redux-logger'
 import { createStore,  combineReducers, applyMiddleware } from 'redux'
 import { routerMiddleware, routerReducer } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
-// import { persistReducer } from 'redux-persist'
-// import storage from 'redux-persist/lib/storage'
 
 import {fetchCountriesReducer} from './reducers/countryReducer'
 import {validationReducer} from './reducers/validationReducer'
+import {loginReducer} from './reducers/loginReducer'
 import {signUpReducer} from './reducers/signUpReducer'
 import {authReducer} from './reducers/authReducer'
 import {postsReducer} from './reducers/postsReducer'
@@ -23,6 +22,7 @@ const reducers = combineReducers({
     countries: fetchCountriesReducer,    
     signUp: signUpReducer,
     user: validationReducer,
+    login: loginReducer,
     countryProfile: countryProfileReducer,
     followCountry: followCountryReducer,
     router: routerReducer,    
