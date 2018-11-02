@@ -23,7 +23,7 @@ public class UserRepositoryTest {
 	public void creation() {
 
 		for(int i = 0; i < 10; i++) {
-			UserEntity userEntity = userFactory.createUser("name" + i, "name" + i + "@mail.com", "SastocDykak8");
+			UserEntity userEntity = userFactory.createUser("name" + i, "name" + i + "@mail.com", "Password3");
 			try {
 				userRepository.save(userEntity);
 			} catch (Exception e) {
@@ -34,7 +34,7 @@ public class UserRepositoryTest {
 		for(int i = 0; i < 10; i++) {
 			try {
 				UserEntity userEntity = userRepository.getOneByName("name" + i);
-				userEntity.login("SastocDykak8");
+				userEntity.login("Password3");
 				Assertions.assertThat(userEntity.getEmail().getValue()).isEqualTo("name" + i + "@mail.com");
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
