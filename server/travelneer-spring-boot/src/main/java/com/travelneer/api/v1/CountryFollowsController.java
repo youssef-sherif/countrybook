@@ -1,5 +1,6 @@
 package com.travelneer.api.v1;
 
+import com.travelneer.hateoas.CountriesResource;
 import com.travelneer.hateoas.CountryResource;
 import com.travelneer.service.CountryFollowsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping(value = "/api/v1")
 public class CountryFollowsController {
 
@@ -26,14 +28,16 @@ public class CountryFollowsController {
     public ResponseEntity<?> getFollowedCountries() {
 
         try {
-            List<CountryResource> resource = followsService.getFollowedCountries();
+            List<CountryResource> countryResources = followsService.getCountriesFollowed();
+            var countriesResource = new CountriesResource(countryResources);
 
-            return new ResponseEntity<>(resource, HttpStatus.OK);
+            return new ResponseEntity<>(countriesResource, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping(value = "/countries/follows/{countryId}", method = RequestMethod.PUT)
     public ResponseEntity<?> followCountry(@PathVariable("countryId") short countryId) {
 
@@ -50,6 +54,7 @@ public class CountryFollowsController {
         }
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping(value = "/countries/follows/{countryId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> unFollowCountry(@PathVariable("countryId") short countryId) {
 

@@ -9,7 +9,7 @@ export default class SignupButton extends Component {
             return <img src={loading} alt='loading' />
         }
         if (this.props.successful) {
-            this.props.navigateTo('/feed')
+            setTimeout(()=>this.props.navigateTo('/feed'), 1500);
         }
     }
 
@@ -18,8 +18,7 @@ export default class SignupButton extends Component {
             <div>
                 <button className={'btn btn-block'}
                     type='submit'
-                    onClick={(e) => {
-                        e.preventDefault();
+                    onClick={(e) => {                    
                         this.props.createUser(this.props.username, this.props.email, this.props.password)
                         this.redirect();
                     }}>

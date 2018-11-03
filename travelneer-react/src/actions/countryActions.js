@@ -61,7 +61,7 @@ export const searchCountries = (resource, searchParam) => {
 
   return (dispatch) => {
       dispatch(fetchCountriesBegin())
-      fetch(resource + searchParam, {
+      fetch(`${resource}${searchParam}`, {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,

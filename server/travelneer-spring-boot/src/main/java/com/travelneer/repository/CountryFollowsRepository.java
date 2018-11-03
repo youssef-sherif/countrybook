@@ -10,7 +10,7 @@ public interface CountryFollowsRepository extends IRepository<CountryFollows> {
 
     boolean exists(Integer userId, Short countryId) throws SQLException;
 
-    List<Country> getCountriesByUserId(int userId) throws SQLException;
+    List<Country> getCountriesFollowed(int userId) throws SQLException;
 
     Integer getFollowersCount(Short countryId) throws SQLException;
 }

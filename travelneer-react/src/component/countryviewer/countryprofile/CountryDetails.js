@@ -20,6 +20,7 @@ class CountryDetails extends Component {
 
 
     render() {
+        const postsCount = this.getPostsCount()
         return (
             <div className={styles.div} >
                 <p>
@@ -28,7 +29,7 @@ class CountryDetails extends Component {
                 <p>
                     {/* {this.props.followersCount} followers */}
                 </p>
-                    {this.getPostsCount()}
+                    {postsCount}
 
             </div>
         )

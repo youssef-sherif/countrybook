@@ -52,8 +52,8 @@ public class CountryService {
 		return countryResource;
 	}
 	
-	public List<CountryResource> searchCountries(String searchParam) throws Exception{
-		List<Country> countries = countryRepository.search(searchParam);
+	public List<CountryResource> searchCountries(String searchValue) throws Exception{
+		List<Country> countries = countryRepository.search(searchValue);
 		countries.stream().forEach(e -> {
 			e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
 			e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));

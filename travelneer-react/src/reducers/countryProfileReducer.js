@@ -4,7 +4,8 @@ import {
     FETCH_COUNTRY_INFO_FAILURE,
     FETCH_POSTS_COUNT_BEGIN,
     FETCH_POSTS_COUNT_SUCCESS,
-    FETCH_POSTS_COUNT_FAILURE
+    FETCH_POSTS_COUNT_FAILURE,
+    TOGGLE_FOLLOWED
 } from '../actions/countryProfileActions'
 
 
@@ -82,7 +83,14 @@ export function countryProfileReducer(state = initialState,
                 ...state,
                 loading: false,
                 error: action.payload.error
-            }            
+            }          
+            
+        case TOGGLE_FOLLOWED:
+
+            return {
+                ...state,
+                followed: action.payload.followed
+            }              
 
         default:
             return { ...state }

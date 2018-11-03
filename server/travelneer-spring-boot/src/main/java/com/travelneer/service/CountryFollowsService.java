@@ -27,8 +27,8 @@ public class CountryFollowsService {
         this.validator = validator;
     }
 
-    public List<CountryResource> getFollowedCountries() throws Exception {
-        List<Country> countries = countryFollowsRepository.getCountriesByUserId(validator.getUserId());
+    public List<CountryResource> getCountriesFollowed() throws Exception {
+        List<Country> countries = countryFollowsRepository.getCountriesFollowed(validator.getUserId());
         countries.stream().forEach(e -> {
             e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
             e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));

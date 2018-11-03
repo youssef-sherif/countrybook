@@ -2,7 +2,6 @@ export const FOLLOW_COUNTRY_BEGIN = 'FOLLOW_COUNTRY_BEGIN'
 export const FOLLOW_COUNTRY_SUCCESS = 'FOLLOW_COUNTRY_SUCCESS'
 export const FOLLOW_COUNTRY_FAILURE = 'FOLLOW_COUNTRY_FAILURE'
 
-
 const followCountryBegin = () => ({
     type: FOLLOW_COUNTRY_BEGIN
 })
@@ -17,12 +16,12 @@ const followCountryFailure = (error) => ({
     payload: { error }
 })
 
-export const followCountry = (resource) => {
+export const followCountry = (resource, method) => {
     let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
     return (dispatch) => {
         dispatch(followCountryBegin())
         return fetch(resource, {
-            method: 'put',
+            method: method,
             headers: {
                 'Authorization': tokenBearer,
                 'Content-Type': 'application/json'
@@ -38,7 +37,6 @@ export const followCountry = (resource) => {
             })
             .catch(error => {
                 dispatch(followCountryFailure(error));
-                console.log(error)
             })
     }
 }

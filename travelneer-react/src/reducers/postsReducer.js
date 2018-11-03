@@ -2,10 +2,6 @@ import {
   FETCH_POSTS_BEGIN,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE,
-  NEW_POST_BEGIN,
-  NEW_POST_SUCCESS,
-  NEW_POST_FAILURE,
-  WRITE_POST,  
 } from '../actions/postsActions'
 
 const initialState = {
@@ -44,39 +40,6 @@ export function postsReducer(state = initialState, action) {
         successful: false,
         error: action.payload.error
       }
-
-    case NEW_POST_BEGIN:
-      return {
-        ...state,        
-        newPost: {
-          loading: true
-        }
-      }
-    case NEW_POST_SUCCESS:
-      return {
-        ...state,
-        newPost: {
-          loading: false,
-          successful: true
-        }
-      }
-    case NEW_POST_FAILURE:
-      return {
-        ...state,
-        newPost: {
-          loading: false,
-          successful: false,
-          error: action.payload.error
-        }
-      }
-
-    case WRITE_POST:
-      return {
-        ...state,
-        newPost: {
-          content: action.payload.content,          
-        }
-      }  
 
     default:
       return {

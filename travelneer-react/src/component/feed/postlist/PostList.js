@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import Post from '../post/Post'
 import LoadingScreen from '../../loadingscreen/LoadingScreen'
+import { fetchCountryPosts } from '../../../actions/postsActions'
+import { connect } from 'react-redux'
 
 import styles from './PostList.scss'
 
-export default class PostList extends Component {
+ class PostList extends Component {
+
+    componentDidMount() {
+        if(this.props.countryPosts) {
+            setTimeout(() => this.props.fetchCountryPosts(this.props.countryPostsResource), 1500)
+        }
+    }
 
     render() {     
         if (this.props.loading) {
@@ -23,3 +31,16 @@ export default class PostList extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+    posts: state.posts.posts,
+    successful: state.posts.successful,
+    loading: state.posts.loading,
+
+    countryPostsResource: state.countryProfile.postsResource
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+    fetchCountryPosts: (postsResource) => dispatch(fetchCountryPosts(postsResource)),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(PostList)

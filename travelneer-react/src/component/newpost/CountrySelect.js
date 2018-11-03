@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
-export default class PostArea extends Component {
+import { connect } from 'react-redux'
+import { //fetchFollowedCountries,
+    fetchCountries } from '../../actions/countryActions'
+
+class CountrySelect extends Component {
+
+
+    componentDidMount() {
+        this.props.fetchCountries()
+    }
 
     render() {        
         return (
@@ -16,3 +25,17 @@ export default class PostArea extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => ({      
+    resource: state.countries.followedCountriesResource,
+    followedCountries: state.countries.countries,
+    countries: state.countries.countries
+})
+
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchCountries: () => dispatch(fetchCountries())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CountrySelect)

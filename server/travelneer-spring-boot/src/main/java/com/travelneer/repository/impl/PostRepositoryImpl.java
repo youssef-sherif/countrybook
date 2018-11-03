@@ -9,6 +9,7 @@ import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.USER;
 import static com.travelneer.jooq.Tables.POST;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
+import static org.jooq.impl.DSL.count;
 import static org.jooq.impl.DSL.inline;
 
 
@@ -110,8 +111,9 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 
 	@Override
 	public Integer getPostsCountByCountryId(Short id) {
-		return create.selectCount().from(POST)
-				.where(POST.COUNTRY_ID.eq(id)).execute();
+		return create.select(count()).from(POST)
+				.where(POST.COUNTRY_ID.eq(id))
+				.fetchOne(0, Integer.class);
 	}
 
 	@Override

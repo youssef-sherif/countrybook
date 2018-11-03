@@ -13,6 +13,8 @@ import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
+import static com.travelneer.jooq.Tables.POST;
+import static org.jooq.impl.DSL.count;
 
 @Repository
 public class CountryFollowsRepositoryImpl implements com.travelneer.repository.CountryFollowsRepository {
@@ -37,7 +39,7 @@ public class CountryFollowsRepositoryImpl implements com.travelneer.repository.C
     public void delete(CountryFollows countryFollows) throws SQLException {
         create.deleteFrom(COUNTRY_FOLLOWS)
                 .where(COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryFollows.getCountryId())
-                        .and(COUNTRY_FOLLOWS.USER_ID.eq(countryFollows.getUserId())));
+                        .and(COUNTRY_FOLLOWS.USER_ID.eq(countryFollows.getUserId()))).execute();
     }
 
     @Override
@@ -55,12 +57,11 @@ public class CountryFollowsRepositoryImpl implements com.travelneer.repository.C
 
     @Override
     public Integer getFollowersCount(Short countryId) throws SQLException {
-        return create.selectCount().from(COUNTRY_FOLLOWS)
-                .where(COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId)).execute();
+        return 1;
     }
 
     @Override
-    public List<Country> getCountriesByUserId(int userId) throws SQLException {
+    public List<Country> getCountriesFollowed(int userId) throws SQLException {
         List<Country> countries = create.select()
                 .from(COUNTRY)
                 .innerJoin(COUNTRY_FOLLOWS)

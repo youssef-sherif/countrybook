@@ -1,7 +1,7 @@
 import {
     FOLLOW_COUNTRY_BEGIN,
     FOLLOW_COUNTRY_SUCCESS,    
-    FOLLOW_COUNTRY_FAILURE
+    FOLLOW_COUNTRY_FAILURE,
 } from '../actions/followCountryActions'
 
 
@@ -11,8 +11,7 @@ const initialState = {
     error: ""
 }
 
-export function followCountryReducer(state = initialState,
-    action) {
+export function followCountryReducer(state = initialState, action) {
     switch (action.type) {
 
         case FOLLOW_COUNTRY_BEGIN:

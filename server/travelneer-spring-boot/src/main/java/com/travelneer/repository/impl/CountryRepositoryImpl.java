@@ -40,9 +40,9 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public List<Country> search(String searchParam) throws SQLException {
+    public List<Country> search(String searchValue) throws SQLException {
         List<Country> countries = create.select().from(COUNTRY)
-                .where(COUNTRY.NAME.like(searchParam)).fetchInto(Country.class);
+                .where(COUNTRY.NAME.like(searchValue + "%")).fetchInto(Country.class);
         return countries;
     }
 

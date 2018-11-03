@@ -18,8 +18,8 @@ export default class Routes extends Component {
                 <Route path="/new" exact component={NewPost} />                
                 <Route path="/my_countries" render={(props) => <Countries {...props} search={false} />} />
                 <Route path="/search_countries" render={(props) => <Countries {...props} search={true} />} />                                
-                <Route path="/countries/:countryId" exact render={(props) => <CountryViewer {...props} compose={false} />} />
-                <Route path="/countries/:countryId/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />                
+                <Route path="/countries/:countryId/posts" render={(props) => <CountryViewer {...props} compose={false} />} />
+                <Route path="/countries/:countryId/new" render={(props) => <CountryViewer {...props} compose={true} />} />                
             </div>
         )
     }

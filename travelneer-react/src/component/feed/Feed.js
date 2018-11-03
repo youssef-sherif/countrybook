@@ -21,7 +21,7 @@ class Feed extends Component {
             return <LoadingScreen />
         }
         if (this.props.successful) {
-            return <PostList posts={this.props.posts} />
+            return <PostList fetch={false} posts={this.props.posts} />
         }
     }
 

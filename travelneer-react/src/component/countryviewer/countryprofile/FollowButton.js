@@ -6,15 +6,15 @@ export default class FollowButton extends Component {
 
     render() {
 
-        if (this.props.isLoading)
+        if (this.props.loading)
             return (<img alt='loading' src={loading} />)
 
             
-        if (this.props.isFollowed)
+        if (this.props.followed)
             return (
                 <button className={`btn ${this.props.style}`} type="submit" onClick={(e) => {
-                    e.preventDefault();
-                    //this.props.unFollowCountry(this.props.resource,  this.props.countryId);
+                    this.props.followCountry(this.props.resource,  'delete');
+                    this.props.toggleFollowed(false);
                 }}>
                     unfollow
                 </button>
@@ -22,8 +22,8 @@ export default class FollowButton extends Component {
         else
             return (
                 <button className={`btn ${this.props.style}`} type="submit" onClick={(e) => {
-                    e.preventDefault();
-                    this.props.followCountry(this.props.resource, this.props.countryId);
+                    this.props.followCountry(this.props.resource, 'put');
+                    this.props.toggleFollowed(true);
                 }}>
                     follow
                 </button>

@@ -5,6 +5,13 @@ export const FETCH_COUNTRY_INFO_FAILURE = 'FETCH_COUNTRY_INFO_FAILURE'
 export const FETCH_POSTS_COUNT_BEGIN = 'FETCH_POSTS_COUNT_BEGIN'
 export const FETCH_POSTS_COUNT_SUCCESS = 'FETCH_POSTS_COUNT_SUCCESS'
 export const FETCH_POSTS_COUNT_FAILURE = 'FETCH_POSTS_COUNT_FAILURE'
+export const TOGGLE_FOLLOWED = 'TOGGLE_FOLLOWED'
+
+
+export const toggleFollowed = (followed) => ({
+    type: TOGGLE_FOLLOWED,
+    payload: {followed}
+})
 
 
 

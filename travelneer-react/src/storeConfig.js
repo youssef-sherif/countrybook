@@ -10,6 +10,7 @@ import {loginReducer} from './reducers/loginReducer'
 import {signUpReducer} from './reducers/signUpReducer'
 import {authReducer} from './reducers/authReducer'
 import {postsReducer} from './reducers/postsReducer'
+import {newPostReducer} from './reducers/newPostReducer'
 import {countryProfileReducer} from './reducers/countryProfileReducer'
 import { followCountryReducer } from './reducers/followCountryReducer'
 
@@ -25,7 +26,8 @@ const reducers = combineReducers({
     login: loginReducer,
     countryProfile: countryProfileReducer,
     followCountry: followCountryReducer,
-    router: routerReducer,    
+    router: routerReducer,  
+    newPost: newPostReducer,  
     auth: authReducer
   })
 

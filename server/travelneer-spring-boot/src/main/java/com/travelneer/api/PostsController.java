@@ -3,6 +3,7 @@ package com.travelneer.api;
 import com.travelneer.hateoas.FeedResource;
 import com.travelneer.hateoas.PostResource;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.travelneer.dto.Post;
@@ -47,16 +48,20 @@ public class PostsController {
 
 	}
 
-	@RequestMapping(value = "/feed", method = RequestMethod.POST,
-			headers = {"Content-type=application/json"})
+	@RequestMapping(value = "/feed",
+			method = RequestMethod.POST, headers = {"Content-type=application/json"})
 	public ResponseEntity<?> newPost(@RequestBody Post post) {
 
+		var body = new HashMap<>();
 		try {
 			postService.create(post);
+			body.put("created", true);
 
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(body, HttpStatus.OK);
 		} catch(Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+			body.put("error", e.getMessage());
+			body.put("created", false);
+			return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
 		}
 	}
 
