@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import styles from './ValidMessage.scss'
-import valid from './valid.png'
+import valid from '../../../../../images/valid.png'
 
 export default class ValidMessage extends Component {
 

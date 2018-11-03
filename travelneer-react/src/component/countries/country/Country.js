@@ -10,7 +10,7 @@ export default class Country extends Component {
                 <img alt='country' className={`btn`}
                     onClick={() => {
                         this.props.navigateTo({
-                            pathname: `/countries/${this.props.country.countryId}`,
+                            pathname: `/countries/${this.props.country.id}`,
                             fetch: true 
                             })}}
                     src={this.props.flagURL} />

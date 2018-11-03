@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './StrongPassword.scss'
-import strongPassword from './strong-password.png'
+import strongPassword from '../../../../../images/strong-password.png'
 
 export default class StrongPassword extends React.Component {
 

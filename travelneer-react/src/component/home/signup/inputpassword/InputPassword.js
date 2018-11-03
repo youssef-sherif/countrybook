@@ -5,7 +5,7 @@ import StrongPassword from '../validation/StrongPassword/StrongPassword'
 import InvalidMessage from '../validation/InvalidMessage/InvalidMessage'
 
 import styles from './InputPassword.scss'
-import loading from '../../../loading.gif'
+import loading from '../../../../images/loading.gif'
 
 const STRONG_PASSWORD = 1
 const MEDIUM_PASSWORD = 2

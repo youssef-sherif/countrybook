@@ -11,12 +11,11 @@ export default class PostList extends Component {
             return <LoadingScreen />
         }   
         return (
-            <div className={`${styles.div}`}>
+            <div className={`container ${styles.div}`}>
                 {this.props.posts.map((post) => {                    
-                    return <Post key={post.post.postId}
+                    return <Post key={post.post.id}
                         content={post.post.content}
-                        authorName={post.post.authorName}
-                        authorEmail={post.post.authorEmail}
+                        authorName={post.post.authorName}                    
                         timeStamp={post.post.date} />
                 })}
             </div>

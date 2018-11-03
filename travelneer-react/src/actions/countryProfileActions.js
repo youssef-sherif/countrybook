@@ -2,14 +2,62 @@ export const FETCH_COUNTRY_INFO_BEGIN = 'FETCH_COUNTRY_INFO_BEGIN'
 export const FETCH_COUNTRY_INFO_SUCCESS = 'FETCH_COUNTRY_INFO_SUCCESS'
 export const FETCH_COUNTRY_INFO_FAILURE = 'FETCH_COUNTRY_INFO_FAILURE'
 
+export const FETCH_POSTS_COUNT_BEGIN = 'FETCH_POSTS_COUNT_BEGIN'
+export const FETCH_POSTS_COUNT_SUCCESS = 'FETCH_POSTS_COUNT_SUCCESS'
+export const FETCH_POSTS_COUNT_FAILURE = 'FETCH_POSTS_COUNT_FAILURE'
+
+
+
+const fetchPostsCountBegin = () => ({
+  type: FETCH_POSTS_COUNT_BEGIN
+})
+
+const fetchPostsCountSuccess = (count) => ({
+  type: FETCH_POSTS_COUNT_SUCCESS,
+  payload: { count }
+})
+
+const fetchPostsCountFailure = (error) => ({
+  type: FETCH_POSTS_COUNT_FAILURE,
+  payload: { error }
+})
+
+export const fetchPostsCount = (resource) => {
+  console.log(resource)
+  let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
+  return (dispatch) => {
+    dispatch(fetchPostsCountBegin())
+    return fetch(resource, {
+      headers: {
+        'Authorization': tokenBearer,        
+      }
+    })
+      .then(handleErrors)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        dispatch(fetchPostsCountSuccess(data.postsCount))
+        return data
+      })
+      .catch(error => dispatch(fetchPostsCountFailure(error)))
+  }
+}
+
+
+
+export const fetchFollowersCount = (resource) => ({
+
+})
+
 
 const fetchCountryInfoBegin = () => ({
   type: FETCH_COUNTRY_INFO_BEGIN
 })
 
-const fetchCountryInfoSuccess = (country, countryDetails, _links) => ({
+const fetchCountryInfoSuccess = (country, followed, _links) => ({
   type: FETCH_COUNTRY_INFO_SUCCESS,
-  payload: { country, countryDetails, _links }
+  payload: { country, followed, _links }
 })
 
 const fetchCountryInfoFailure = (error) => ({
@@ -31,7 +79,8 @@ export const fetchCountryInfo = (countryId) => {
         return response.json()
       })
       .then((data) => {
-        dispatch(fetchCountryInfoSuccess(data.country, data.countryDetails, data._links))
+        
+        dispatch(fetchCountryInfoSuccess(data.country, data.followed, data._links))
         return data
       })
       .catch(error => dispatch(fetchCountryInfoFailure(error)))

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SignUpForm from './signup/SignUpForm'
 import HomeNavbar from '../navigation/home/HomeNavbar'
 import styles from './Home.scss'
-import img from './home.jpg'
+import img from '../../images/home.jpg'
 
 export default class Home extends Component {
 

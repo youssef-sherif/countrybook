@@ -1,5 +1,5 @@
 import React, { Component } from 'react'    
-import blue_paper_plane from '../blue_paper_plane.png'
+import loading from '../../images/loading-screen.png'
 import styles from './LoadingScreen.scss'
 
 export default class LoadingScreen extends Component {
@@ -9,7 +9,7 @@ export default class LoadingScreen extends Component {
 
         return (
             <div>                
-                <img alt='loading' className={styles.img} src={blue_paper_plane}/>               
+                <img alt='loading' className={styles.img} src={loading}/>               
             </div>
         )
     }

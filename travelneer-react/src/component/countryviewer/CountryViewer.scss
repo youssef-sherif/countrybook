@@ -1,16 +1,56 @@
 @import "../variables.scss";
 
-.button {
+
+.postsButton {
+    margin-right: 10px;
     float: left;
+    width: 50px;
+    height: 25px;   
+    font-size: 14px;
+    color: white;
+    padding: 3px;     
+    background-color: $travelneer-dark;
 }
 
-.div {
+.newPostButton {
+    margin-right: 10px;
+    float: left;
+    width: 50px;
+    height: 25px;  
+    font-size: 14px;
+    padding: 3px;     
+    background-color: $travelneer-green;
+}
+
+.buttonsDiv {
     position: relative;
     left: 40%;    
 }
 
 @media only screen and (min-width: $xl-screen-min) {
+
     .postsDiv {
-        width: 50%;
-    }    
+        width: 60%;
+    } 
+
+    .postsButton {
+        margin-right: 10px;
+        float: left;
+        width: 80px;
+        height: 35px;   
+        font-size: 14px;
+        color: white;
+        padding: 3px;     
+        background-color: $travelneer-dark;
+    }
+    
+    .newPostButton {
+        margin-right: 10px;
+        float: left;
+        width: 80px;
+        height: 35px;   
+        font-size: 14px;
+        padding: 3px;     
+        background-color: $travelneer-green;
+    }
 }

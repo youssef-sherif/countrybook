@@ -15,7 +15,7 @@ export default class CountryList extends Component {
                 {this.props.countries.map((country) => {
                     return <Country flagURL={country.country.flagURL}
                         country={country.country}
-                        key={country.country.countryId}
+                        key={country.country.id}
                         navigateTo={this.props.navigateTo} />
                 })}
             </div>

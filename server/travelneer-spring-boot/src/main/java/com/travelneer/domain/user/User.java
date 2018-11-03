@@ -104,4 +104,8 @@ public class UserEntity {
         }
     }
 
+    public void validate() throws Exception {
+        this.validateEmail(this.email.getValue());
+        this.validateUsername(this.name.getValue());
+    }
 }

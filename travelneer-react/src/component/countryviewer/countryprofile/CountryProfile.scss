@@ -1,9 +1,5 @@
 @import "../../variables.scss";
 
-.FollowButton {
-    float: right
-}
-
 @media only screen and (min-width: $xl-screen-min) {
     .div {        
         margin-top: 100px;
@@ -14,6 +10,10 @@
         float: left;
         width: 40%;
         height: auto;
+    }
+    .FollowButton {
+        float: left;
+        background-color: $travelneer-green;
     }
 }
 
@@ -28,6 +28,11 @@
         width: 50%;
         height: auto;
     }
+    .FollowButton {
+        float: left;
+        background-color: $travelneer-green;
+
+    }
 }
 
 @media only screen and (min-width: $s-screen-min) and (max-width: $s-screen-max) {
@@ -41,6 +46,11 @@
         width: 50%;
         height: auto;
     }
+    .FollowButton {
+        float: left;
+        background-color: $travelneer-green;
+
+    }
 }
 
 @media only screen and (max-width: $xs-screen-max) {
@@ -53,5 +63,13 @@
         float: left;
         width: 50%;
         height: auto;
+    }
+    .FollowButton {
+        float: left;
+        width: 50px;
+        height: 25px;   
+        font-size: 10px;
+        padding: 3px;     
+        background-color: $travelneer-green;
     }
 }

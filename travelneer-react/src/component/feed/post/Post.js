@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import styles from './Post.scss'
-import traveler from './traveler.png'
+import traveler from '../../../images/traveler.png'
 
 export default class Post extends Component {
 

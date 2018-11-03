@@ -1,26 +1,26 @@
 import {
     FETCH_COUNTRY_INFO_BEGIN,
     FETCH_COUNTRY_INFO_SUCCESS,
-    FETCH_COUNTRY_INFO_FAILURE
+    FETCH_COUNTRY_INFO_FAILURE,
+    FETCH_POSTS_COUNT_BEGIN,
+    FETCH_POSTS_COUNT_SUCCESS,
+    FETCH_POSTS_COUNT_FAILURE
 } from '../actions/countryProfileActions'
-
-import {
-    FOLLOW_COUNTRY_SUCCESS
-} from '../actions/followCountryActions'
 
 
 const initialState = {
     loading: false,
     successful: false,
     followed: false,
-    followersCount: "",
-    postsCount: "",
+    followersCountResource: "",
+    postsCountResource: "",
     profileURL: "",
     countryName: "",    
     countryId: null,
     error: "",
     postsResource: "",
-    followResource: ""    
+    followResource: "", 
+    postsCount: 0
 }
 
 export function countryProfileReducer(state = initialState,
@@ -35,27 +35,20 @@ export function countryProfileReducer(state = initialState,
                 error: null
             }
 
-
-        case FOLLOW_COUNTRY_SUCCESS:
-            return {
-                ...state,
-                followed: true
-            }
-
         case FETCH_COUNTRY_INFO_SUCCESS:
 
             return {
                 ...state,
                 successful: true,
                 loading: false,
-                followersCount: action.payload.countryDetails.followersCount,
-                postsCount: action.payload.countryDetails.postsCount,
-                profileURL: action.payload.countryDetails.profileURL,
-                followed: action.payload.countryDetails.followed,
-                countryName: action.payload.country.countryName,
-                countryId: action.payload.country.countryId,
+                profileURL: action.payload.country.profileImageURL,
+                followed: action.payload.followed,
+                countryName: action.payload.country.name,
+                countryId: action.payload.country.id,
+                postsCountResource: action.payload._links.postsCount.href,
+                followersCountResource: action.payload._links.followersCount.href,
                 postsResource: action.payload._links.countryPosts.href,
-                followResource: action.payload._links.followOrUnfollow.href,                
+                followResource: action.payload._links.follow.href,                
 
             }
 
@@ -66,6 +59,30 @@ export function countryProfileReducer(state = initialState,
                 loading: false,
                 error: action.payload.error
             }
+
+        case FETCH_POSTS_COUNT_BEGIN:
+
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+
+        case FETCH_POSTS_COUNT_SUCCESS:
+
+            return {
+                ...state,             
+                successful: true,
+                postsCount: action.payload.count
+            }
+
+        case FETCH_POSTS_COUNT_FAILURE:
+
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }            
 
         default:
             return { ...state }

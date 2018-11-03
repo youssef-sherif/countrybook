@@ -1,6 +1,6 @@
 import React from 'react'
 
-import mediumPassword from './medium-password.png'
+import mediumPassword from '../../../../../images/medium-password.png'
 import styles from './MediumPassword.scss'
 
 export default class MediumPassword extends React.Component {

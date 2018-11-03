@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Login from '../../home/login/Login'
 
-import logo from '../logo.png'
+import logo from '../../../images/logo.png'
 import styles from './HomeNavbar.scss'
 
 

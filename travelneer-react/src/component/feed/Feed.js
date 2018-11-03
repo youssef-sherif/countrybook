@@ -6,7 +6,7 @@ import PostList from './postlist/PostList'
 import LoadingScreen from '../loadingscreen/LoadingScreen'
 import AppNavbar from '../navigation/app/AppNavbar'
 
-import new_post from '../new_post.png'
+import new_post from '../../images/new_post.png'
 import styles from './Feed.scss'
 
 

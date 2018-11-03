@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import invalid from './invalid.png'
+import invalid from '../../../../../images/invalid.png'
 
 import styles from './InvalidMessage.scss'
 

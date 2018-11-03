@@ -7,8 +7,8 @@ export default class PostArea extends Component {
             <div>
                 <select>
                     {this.props.countries.map((country) => 
-                        <option value={country.countryId}>
-                            {country.countryName}
+                        <option value={country.country.id}>
+                            {country.country.name}
                         </option>
                     )}
                 </select>

@@ -1,8 +1,23 @@
 import React, { Component } from 'react'
 import styles from './CountryDetails.scss'
+import loading from '../../../images/loading.gif'
 
 
-export default class CountryDetails extends Component {
+class CountryDetails extends Component {
+
+    getPostsCount() {
+        if (this.props.isLoading)
+            return (<img alt='loading' src={loading} />)
+
+            
+        if (this.props.successful)
+            return (
+                <p>
+                    {this.props.postsCount} posts
+                </p>
+            )
+    }
+
 
     render() {
         return (
@@ -11,12 +26,13 @@ export default class CountryDetails extends Component {
                     {this.props.countryName}
                 </p>
                 <p>
-                    {this.props.followersCount} followers
+                    {/* {this.props.followersCount} followers */}
                 </p>
-                <p>
-                    {this.props.postsCount} posts
-                </p>
+                    {this.getPostsCount()}
+
             </div>
         )
     }
 }
+
+export default CountryDetails

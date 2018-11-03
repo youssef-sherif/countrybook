@@ -14,8 +14,7 @@ class Countries extends Component {
         this.props.fetchCountries()
     }
 
-
-    searchCountries() {
+    searchCountries = () => {
         return (
             <div>
                 <input onChange={(e) =>
@@ -28,8 +27,7 @@ class Countries extends Component {
             </div>)
     }
 
-
-    followingCountries() {
+    followingCountries = () => {
         return (
             <div>
                 <p>Countries you are following</p>
@@ -43,7 +41,7 @@ class Countries extends Component {
 
     render() {
         const followingCountries = this.followingCountries()
-        const searchCountries = this.searchCountries();
+        const searchCountries = this.searchCountries()
         return (
             <div>
                 <AppNavbar />

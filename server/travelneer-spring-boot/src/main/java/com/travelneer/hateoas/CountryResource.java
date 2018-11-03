@@ -33,6 +33,8 @@ public class CountryResource extends ResourceSupport {
         this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getId())).withRel("follow"));
         this.add(linkTo(methodOn(CountryFollowsController.class).unFollowCountry(country.getId())).withRel("unFollow"));
         this.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(country.getId())).withRel("countryPosts"));
+        this.add(linkTo(methodOn(CountryFollowsController.class).getFollowersCount(country.getId())).withRel("followersCount"));
+        this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getId())).withRel("postsCount"));
     }
 
     public Country getCountry() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import loading from '../../loading.gif'
+import loading from '../../../images/loading.gif'
 
 export default class FollowButton extends Component {
 
@@ -12,18 +12,18 @@ export default class FollowButton extends Component {
             
         if (this.props.isFollowed)
             return (
-                <button type="submit" onClick={(e) => {
+                <button className={`btn ${this.props.style}`} type="submit" onClick={(e) => {
                     e.preventDefault();
-                    this.props.followCountry(this.props.resource, 'unfollow', this.props.countryId);
+                    //this.props.unFollowCountry(this.props.resource,  this.props.countryId);
                 }}>
                     unfollow
                 </button>
             )
         else
             return (
-                <button type="submit" onClick={(e) => {
+                <button className={`btn ${this.props.style}`} type="submit" onClick={(e) => {
                     e.preventDefault();
-                    this.props.followCountry(this.props.resource, 'follow', this.props.countryId);
+                    this.props.followCountry(this.props.resource, this.props.countryId);
                 }}>
                     follow
                 </button>
