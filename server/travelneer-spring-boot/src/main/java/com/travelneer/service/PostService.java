@@ -5,15 +5,12 @@
  */
 package com.travelneer.service;
 
-import com.travelneer.hateoas.FeedResource;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.PostRepository;
 import com.travelneer.hateoas.PostResource;
 import com.travelneer.dto.Post;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,4 +66,9 @@ public class PostService {
 		return postRepository.getOneById(postId);
 	}
 
+
+	public Integer getCountryPostsCount(Short id) {
+
+		return postRepository.getPostsCountByCountryId(id);
+	}
 }

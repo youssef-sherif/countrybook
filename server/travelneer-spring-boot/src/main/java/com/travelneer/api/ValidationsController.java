@@ -6,7 +6,7 @@
 package com.travelneer.api;
 
 import com.travelneer.domain.user.Password;
-import com.travelneer.domain.user.UserEntity;
+import com.travelneer.domain.user.User;
 import com.travelneer.domain.user.UserFactory;
 
 import java.util.HashMap;
@@ -15,7 +15,6 @@ import com.travelneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class ValidationsController {
 
-    private final UserEntity userEntity;
+    private final User userEntity;
     private final UserRepository userRepository;
 
     @Autowired

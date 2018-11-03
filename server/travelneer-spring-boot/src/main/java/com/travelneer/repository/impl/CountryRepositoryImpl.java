@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
+import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
 import com.travelneer.dto.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;

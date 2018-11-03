@@ -8,6 +8,7 @@ import com.travelneer.repository.CountryFollowsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,15 +40,6 @@ public class CountryFollowsService {
         return countryResources;
     }
 
-    public boolean isCountryFollowed(short countryId) throws Exception {
-        CountryFollows countryFollows = new CountryFollows();
-        countryFollows.setCountryId(countryId);
-        countryFollows.setUserId(validator.getUserId());
-        countryFollows.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-
-        return countryFollowsRepository.exists(countryFollows);
-    }
-
     public void unFollowCountry(short countryId) throws Exception{
         CountryFollows countryFollows = new CountryFollows();
         countryFollows.setCountryId(countryId);
@@ -63,5 +55,10 @@ public class CountryFollowsService {
         countryFollows.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
         countryFollowsRepository.save(countryFollows);
+    }
+
+    public Integer getFollowersCount(Short id) throws SQLException {
+
+        return countryFollowsRepository.getFollowersCount(id);
     }
 }

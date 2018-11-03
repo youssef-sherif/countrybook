@@ -5,8 +5,7 @@
  */
 package com.travelneer.repository;
 
-import com.travelneer.domain.user.UserEntity;
-import com.travelneer.jwt.JwtUserDetails;
+import com.travelneer.domain.user.User;
 
 import java.sql.SQLException;
 
@@ -14,15 +13,15 @@ import java.sql.SQLException;
  *
  * @author Youssef
  */
-public interface UserRepository extends IRepository<UserEntity> {
+public interface UserRepository extends IRepository<User> {
 
-    UserEntity getOneByName(String name) throws SQLException;
+    User getOneByName(String name) throws SQLException;
 
     boolean nameExists(String name) throws SQLException;
 
     boolean emailExists(String email) throws SQLException;
 
-    boolean exists(UserEntity user) throws SQLException;
+    boolean exists(User user) throws SQLException;
 
-    UserEntity getOneById(int userId);
+    User getOneById(int userId);
 }

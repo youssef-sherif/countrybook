@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 
-public class UserEntity {
+public class User {
 
     private Integer id;
     private Username name;
@@ -15,7 +15,7 @@ public class UserEntity {
     private PasswordEncoder passwordEncoder;
 
 
-    public UserEntity() {
+    public User() {
         this.name = new Username();
         this.email = new Email();
         this.password = new Password();
@@ -23,7 +23,7 @@ public class UserEntity {
 
     }
 
-    public UserEntity(String username, String email, String password) {
+    public User(String username, String email, String password) {
         this.name = new Username(username);
         this.email = new Email(email);
         this.passwordEncoder = new BCryptPasswordEncoder();
@@ -33,7 +33,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "UserEntity{" +
+        return "User{" +
                 "id=" + id +
                 ", username=" + name.getValue() +
                 ", password=" + password.getEncoded() +

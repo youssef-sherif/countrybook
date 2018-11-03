@@ -21,11 +21,11 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class PostResource extends ResourceSupport {
 
-    private final Post post;
+    private final @JsonProperty("post")  Post post;
 
 
     @JsonCreator
-    public PostResource(@JsonProperty("post") Post post) {
+    public PostResource(Post post) {
         this.post = post;
 
         this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());

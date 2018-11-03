@@ -5,7 +5,7 @@
  */
 package com.travelneer.jwt;
 
-import com.travelneer.domain.user.UserEntity;
+import com.travelneer.domain.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,7 +20,7 @@ import java.util.Date;
 @Service
 public class JwtGenerator {
 
-    public String generate(UserEntity userEntity) {
+    public String generate(User userEntity) {
         Claims claims = Jwts.claims()
                 .setId(Integer.toString(userEntity.getId()))
                 .setSubject(userEntity.getName().getValue())

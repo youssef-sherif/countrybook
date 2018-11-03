@@ -1,10 +1,10 @@
 package com.travelneer.api.v1;
 
+import com.travelneer.hateoas.FeedResource;
 import com.travelneer.hateoas.PostResource;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.travelneer.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +33,27 @@ public class CountryPostsController {
     public ResponseEntity<?> getCountryPosts(@PathVariable("countryId") short countryId) {
 
         try {
-            List<PostResource> posts = postService.getCountryPosts(countryId);
+            List<PostResource> postResources = postService.getCountryPosts(countryId);
+            var feedResource = new FeedResource(postResources);
 
-            return new ResponseEntity<>(posts, HttpStatus.OK);
+            return new ResponseEntity<>(feedResource, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
+    @RequestMapping(value = "/countries/{countryId}/posts-count", method = RequestMethod.GET)
+    public ResponseEntity<?> getPostsCount(@PathVariable("countryId") Short countryId) {
+        var responseBody = new HashMap<String, Object>();
+        try {
+            Integer postsCount = postService.getCountryPostsCount(countryId);
+
+            responseBody.put("postsCount", postsCount);
+            return new ResponseEntity<>(responseBody, HttpStatus.OK);
+        } catch (Exception e) {
+            responseBody.put("successful", false);
+            responseBody.put("errorMessage", e.getMessage());
+            return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

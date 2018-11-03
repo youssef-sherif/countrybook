@@ -37,30 +37,32 @@ public class S3Service {
 	}
 
 	public String getImage(String location) {
-		URL url = null;
+//		URL url = null;
+//
+//		try {
+//			System.out.println("Generating pre-signed URL.");
+//			java.util.Date expiration = new java.util.Date();
+//			long milliSeconds = expiration.getTime();
+//			milliSeconds += 1000 * 60 * 60; // Add 1 hour.
+//			expiration.setTime(milliSeconds);
+//
+//			GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName,
+//					location);
+//			generatePresignedUrlRequest.setMethod(com.amazonaws.HttpMethod.GET);
+//			generatePresignedUrlRequest.setExpiration(expiration);
+//
+//			url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
+//
+//			return url.toString();
+//
+//		} catch (AmazonServiceException exception) {
+//			System.out.println(exception.getMessage());
+//			throw exception;
+//		} catch (AmazonClientException ace) {
+//			System.out.println(ace.getMessage());
+//			throw ace;
+//		}
 
-		try {
-			System.out.println("Generating pre-signed URL.");
-			java.util.Date expiration = new java.util.Date();
-			long milliSeconds = expiration.getTime();
-			milliSeconds += 1000 * 60 * 60; // Add 1 hour.
-			expiration.setTime(milliSeconds);
-
-			GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(bucketName,
-					location);
-			generatePresignedUrlRequest.setMethod(com.amazonaws.HttpMethod.GET);
-			generatePresignedUrlRequest.setExpiration(expiration);
-
-			url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-			
-			return url.toString();
-
-		} catch (AmazonServiceException exception) {
-			System.out.println(exception.getMessage());
-			throw exception;
-		} catch (AmazonClientException ace) {
-			System.out.println(ace.getMessage());
-			throw ace;
-		}
+		return "fake url";
 	}
 }

@@ -109,6 +109,12 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 	}
 
 	@Override
+	public Integer getPostsCountByCountryId(Short id) {
+		return create.selectCount().from(POST)
+				.where(POST.COUNTRY_ID.eq(id)).execute();
+	}
+
+	@Override
 	public void delete(Post entity) throws SQLException {
 		create.deleteFrom(POST).where(POST.ID.eq(entity.getId()));
 	}

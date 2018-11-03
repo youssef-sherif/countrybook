@@ -5,14 +5,13 @@
  */
 package com.travelneer.repository.impl;
 
-import com.travelneer.domain.user.UserEntity;
+import com.travelneer.domain.user.User;
 
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.List;
 
 import com.travelneer.jooq.tables.records.UserRecord;
-import com.travelneer.jwt.JwtUserDetails;
 import org.jooq.DSLContext;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -47,7 +46,7 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	}
 
 	@Override
-	public boolean exists(UserEntity user) throws SQLException {
+	public boolean exists(User user) throws SQLException {
 
 		return create.fetchExists(USER,
 				USER.EMAIL.eq(user.getEmail().getValue())
@@ -55,12 +54,12 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	}
 
 	@Override
-	public UserEntity getOneById(int userId) {
+	public User getOneById(int userId) {
 
 		UserRecord record = create.fetchOne(USER,
 				USER.ID.eq(userId));
 
-		return modelMapper.map(record, UserEntity.class);
+		return modelMapper.map(record, User.class);
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	}
 
 	@Override
-	public void save(UserEntity user) throws SQLException{
+	public void save(User user) throws SQLException{
 
 		Integer userId = create.insertInto(USER,
 				USER.NAME, USER.EMAIL, USER.PASSWORD, USER.CREATED_AT)
@@ -83,26 +82,26 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 	}
 
 	@Override
-	public UserEntity getOneByName(String name) throws SQLException {
+	public User getOneByName(String name) throws SQLException {
 
 		UserRecord userRecord = create.fetchOne(USER,
 				USER.NAME.eq(name));
 
-		return modelMapper.map(userRecord, UserEntity.class);
+		return modelMapper.map(userRecord, User.class);
 	}
 
 	@Override
-	public List<UserEntity> getAll() throws SQLException {
+	public List<User> getAll() throws SQLException {
 		List<UserRecord> userRecords = create.fetch(USER);
 
-		Type userEntityListType = new TypeToken<List<UserEntity>>() {}.getType();
+		Type userEntityListType = new TypeToken<List<User>>() {}.getType();
 
 		return modelMapper.map(userRecords, userEntityListType);
 
 	}
 
 	@Override
-	public void delete(UserEntity user)  throws SQLException{
+	public void delete(User user)  throws SQLException{
 		create.deleteFrom(USER).where(USER.ID.eq(user.getId()));
 	}
 }

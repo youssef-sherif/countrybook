@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface CountryFollowsRepository extends IRepository<CountryFollows> {
 
-    boolean exists(CountryFollows countryFollows) throws SQLException;
+    boolean exists(Integer userId, Short countryId) throws SQLException;
 
     List<Country> getCountriesByUserId(int userId) throws SQLException;
+
+    Integer getFollowersCount(Short countryId) throws SQLException;
 }

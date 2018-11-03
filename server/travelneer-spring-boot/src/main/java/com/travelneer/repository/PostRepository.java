@@ -23,4 +23,5 @@ public interface PostRepository extends IRepository<Post> {
 
     List<Post> getFeedByUserId(int userId) throws SQLException;
 
+    Integer getPostsCountByCountryId(Short id);
 }

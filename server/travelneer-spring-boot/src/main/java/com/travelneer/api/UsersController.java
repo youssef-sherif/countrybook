@@ -5,8 +5,7 @@
  */
 package com.travelneer.api;
 
-import com.travelneer.domain.user.UserEntity;
-import com.travelneer.jwt.JwtUserDetails;
+import com.travelneer.domain.user.User;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class UsersController {
 
         try {
             var body = new HashMap<String, String>();
-            UserEntity userEntity = repository.getOneById(validator.getUserId());
+            User userEntity = repository.getOneById(validator.getUserId());
             body.put("name", userEntity.getName().getValue());
 
             return new ResponseEntity<>(body, HttpStatus.OK);

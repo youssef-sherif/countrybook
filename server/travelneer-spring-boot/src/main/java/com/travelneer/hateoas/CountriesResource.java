@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.api.CountriesController;
-import com.travelneer.api.v1.SearchCountriesController;
 import com.travelneer.api.v1.CountryFollowsController;
 import org.springframework.hateoas.ResourceSupport;
 
@@ -30,7 +29,7 @@ public class CountriesResource extends ResourceSupport {
 
         this.add(linkTo(methodOn(CountriesController.class).countries()).withSelfRel());
         this.add(linkTo(methodOn(CountryFollowsController.class).getFollowedCountries()).withRel("followedCountries"));
-        this.add(linkTo(methodOn(SearchCountriesController.class).searchCountries("")).withRel("searchCountries"));
+        this.add(linkTo(methodOn(CountriesController.class).searchCountries("")).withRel("searchCountries"));
     }
 
     public List<CountryResource> getCountries() {

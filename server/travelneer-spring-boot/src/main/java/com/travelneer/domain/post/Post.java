@@ -1,6 +1,6 @@
 package com.travelneer.domain.post;
 
-import com.travelneer.domain.user.UserEntity;
+import com.travelneer.domain.user.User;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -10,13 +10,13 @@ public class Post {
 
     private Integer id;
     private String content;
-    private UserEntity userEntity;
+    private User userEntity;
     private Integer favouritesCount;
     private Timestamp createdAt;
 
     private List<Post> comments;
 
-    public Post(Integer id, String content, UserEntity userEntity) {
+    public Post(Integer id, String content, User userEntity) {
         this.id = id;
         this.content = content;
         this.userEntity = userEntity;
@@ -33,7 +33,7 @@ public class Post {
         return content;
     }
 
-    public UserEntity getUserEntity() {
+    public User getUserEntity() {
         return userEntity;
     }
 

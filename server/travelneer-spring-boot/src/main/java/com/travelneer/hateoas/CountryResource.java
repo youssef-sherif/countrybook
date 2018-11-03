@@ -23,29 +23,15 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class CountryResource extends ResourceSupport {
 
-    private final Country country;
-    private boolean isFollowed;
+    private final @JsonProperty("country")  Country country;
 
-    public CountryResource(@JsonProperty("country") Country country) {
+    public CountryResource(Country country) {
         this.country = country;
 
-        this.add(linkTo(methodOn(CountriesController.class).getCountry(country.getId())).withSelfRel());
-        this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getId())).withRel("follow"));
-        this.add(linkTo(methodOn(CountryFollowsController.class).unFollowCountry(country.getId())).withRel("unFollow"));
-        this.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(country.getId())).withRel("countryPosts"));
-        this.add(linkTo(methodOn(CountryFollowsController.class).getFollowersCount(country.getId())).withRel("followersCount"));
-        this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getId())).withRel("postsCount"));
+        this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withRel("countryDetails"));
     }
 
     public Country getCountry() {
         return country;
-    }
-
-    public boolean isFollowed() {
-        return isFollowed;
-    }
-
-    public void setFollowed(boolean followed) {
-        isFollowed = followed;
     }
 }

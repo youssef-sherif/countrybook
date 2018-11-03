@@ -3,13 +3,10 @@ package com.travelneer.api;
 import com.travelneer.hateoas.FeedResource;
 import com.travelneer.hateoas.PostResource;
 
-import java.util.Collection;
 import java.util.List;
 
 import com.travelneer.dto.Post;
 import com.travelneer.service.PostService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

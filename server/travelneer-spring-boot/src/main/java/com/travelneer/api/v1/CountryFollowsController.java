@@ -66,4 +66,18 @@ public class CountryFollowsController {
         }
     }
 
+    @RequestMapping(value = "/countries/{countryId}/followers-count", method = RequestMethod.GET)
+    public ResponseEntity<?> getFollowersCount(@PathVariable("countryId") Short countryId) {
+        var responseBody = new HashMap<String, Object>();
+        try {
+            Integer count = followsService.getFollowersCount(countryId);
+
+            responseBody.put("followersCount", count);
+            return new ResponseEntity<>(responseBody, HttpStatus.OK);
+        } catch (Exception e) {
+            responseBody.put("successful", false);
+            responseBody.put("errorMessage", e.getMessage());
+            return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

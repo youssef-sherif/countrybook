@@ -5,14 +5,13 @@
  */
 package com.travelneer.api;
 
-import com.travelneer.domain.user.UserEntity;
+import com.travelneer.domain.user.User;
 import com.travelneer.domain.user.UserFactory;
 import com.travelneer.dto.UserSignUpDto;
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.repository.UserRepository;
 import java.util.HashMap;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,8 +44,8 @@ public class TokensController {
         var body = new HashMap<String, String>();
 
         try {
-            UserEntity userEntity  = userFactory.createUser(user.getName(), user.getEmail(), user.getPassword());
-
+            User userEntity  = userFactory.createUser(user.getName(), user.getEmail(), user.getPassword());
+            userEntity.validate();
             if(userRepository.exists(userEntity)) {
                 throw new Exception("User already exists");
             }
@@ -73,7 +72,7 @@ public class TokensController {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            UserEntity userEntity = userRepository.getOneByName(username);
+            User userEntity = userRepository.getOneByName(username);
             userEntity.login(password);
 
             var token = jwtGenerator.generate(userEntity);

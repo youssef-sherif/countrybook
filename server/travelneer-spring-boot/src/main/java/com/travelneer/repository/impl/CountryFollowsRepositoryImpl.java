@@ -46,11 +46,17 @@ public class CountryFollowsRepositoryImpl implements com.travelneer.repository.C
     }
 
     @Override
-    public boolean exists(CountryFollows countryFollows) throws SQLException {
+    public boolean exists(Integer userId, Short countryId) throws SQLException {
 
         return create.fetchExists(COUNTRY_FOLLOWS,
-                COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryFollows.getCountryId())
-                        .and(COUNTRY_FOLLOWS.USER_ID.eq(countryFollows.getUserId())));
+                COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId)
+                        .and(COUNTRY_FOLLOWS.USER_ID.eq(userId)));
+    }
+
+    @Override
+    public Integer getFollowersCount(Short countryId) throws SQLException {
+        return create.selectCount().from(COUNTRY_FOLLOWS)
+                .where(COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId)).execute();
     }
 
     @Override

@@ -5,11 +5,6 @@
  */
 package com.travelneer.config;
 
-import com.travelneer.domain.user.Email;
-import com.travelneer.domain.user.Password;
-import com.travelneer.domain.user.UserEntity;
-import com.travelneer.domain.user.Username;
-import com.travelneer.jooq.tables.records.UserRecord;
 import com.travelneer.jwt.JwtAuthenticationProvider;
 import com.travelneer.jwt.JwtAuthenticationTokenFilter;
 import com.travelneer.jwt.JwtAuthenticationFailureHandler;
@@ -32,8 +27,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import javax.sql.DataSource;
 
 /**
  *

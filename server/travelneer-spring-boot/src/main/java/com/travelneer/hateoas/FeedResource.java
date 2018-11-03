@@ -8,12 +8,8 @@ package com.travelneer.hateoas;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.travelneer.api.CountriesController;
 import com.travelneer.api.PostsController;
-import com.travelneer.api.v1.SearchCountriesController;
-import com.travelneer.api.v1.CountryFollowsController;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -25,9 +21,9 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class FeedResource extends ResourceSupport {
 
-    private  final List<PostResource> postResources;
+    private  final @JsonProperty("posts") List<PostResource> postResources;
 
-    public FeedResource(@JsonProperty("posts") List<PostResource> postResources) {
+    public FeedResource(List<PostResource> postResources) {
         this.postResources = postResources;
 
         this.add(linkTo(methodOn(PostsController.class).getFeed()).withSelfRel());

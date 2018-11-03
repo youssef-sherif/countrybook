@@ -6,6 +6,7 @@
 package com.travelneer.api;
 
 import com.travelneer.hateoas.CountriesResource;
+import com.travelneer.hateoas.CountryDetailsResource;
 import com.travelneer.hateoas.CountryResource;
 import com.travelneer.service.CountryService;
 
@@ -14,11 +15,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -50,17 +47,29 @@ public class CountriesController {
 		}
 	}
 
-	@RequestMapping(value = "/countries/{countryId}", method = RequestMethod.GET)
-	public ResponseEntity<?> getCountry(@PathVariable("countryId") short countryId) {
+
+    @RequestMapping(value = "/countries/{countryId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getCountryDetails(@PathVariable("countryId") short countryId) {
 
 
+        try {
+            CountryDetailsResource countryDetailsResource = countryService.getCountryDetails(countryId);
+
+            return new ResponseEntity<>(countryDetailsResource, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+	@RequestMapping(value = "/countries-search", method = RequestMethod.GET, params = "name")
+	public ResponseEntity<?> searchCountries(@RequestParam(name = "name", defaultValue = "") String searchParam) {
 		try {
-			CountryResource countryResource = countryService.getCountry(countryId);
+			List<CountryResource> countryResources = countryService.searchCountries(searchParam);
+			var countriesResource = new CountriesResource(countryResources);
 
-			return new ResponseEntity<>(countryResource, HttpStatus.OK);
+			return new ResponseEntity<>(countriesResource, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-
 }

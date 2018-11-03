@@ -20,5 +20,4 @@ public interface CountryRepository extends IRepository<Country> {
     List<Country> search(String searchParam) throws SQLException;
 
     Country getOneById(Short countryId) throws SQLException;
-
 }
