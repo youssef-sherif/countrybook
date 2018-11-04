@@ -47,11 +47,11 @@ class Countries extends Component {
                 <AppNavbar />
                 <br /><br /><br />
                 <div className={styles.div}>
-                    <button className={styles.button}
+                    <button className={`btn ${styles.button}`}
                         onClick={() => this.props.navigateTo('/my_countries')}>
                         following
                     </button>
-                    <button className={styles.button}
+                    <button className={`btn ${styles.button}`}
                         onClick={() => this.props.navigateTo('/search_countries')}>
                         search
                     </button>

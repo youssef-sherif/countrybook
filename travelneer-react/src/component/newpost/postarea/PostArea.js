@@ -33,10 +33,10 @@ class PostArea extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    content: state.posts.newPost.content,
-    newPostSuccessful: state.posts.newPost.successful,
-    newPostLoading: state.posts.newPost.loading,
-    newPostContent: state.posts.newPost.content,
+    content: state.newPost.content,
+    newPostSuccessful: state.newPost.successful,
+    newPostLoading: state.newPost.loading,
+    newPostContent: state.newPost.content,
 
 })
 

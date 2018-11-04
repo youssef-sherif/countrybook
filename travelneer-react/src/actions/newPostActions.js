@@ -31,27 +31,31 @@ const newPostFailure = (error) => ({
 
 
 export const newPost = (countryId, content) => {
-    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newPostBegin())
-        fetch('localhost:8080/api/feed', {
+        fetch('http://localhost:8080/api/feed', {
             method: 'post',
+            mode: 'cors',
             headers: {
-                'Authorization': tokenBearer,
-                'Content-Type': 'application/json'
-            },
+                'Authorization': tokenBearer, 
+                'Content-Type': 'application/json; charset=utf-8'
+              },             
             body: JSON.stringify({
-                countryId: countryId,
                 content: content,                
+                countryId: countryId
             })
         })
             .then(handleErrors)
-            .then((response) => {return response.json();})
+            .then((response) => {
+                return response.json();
+            })
             .then((data) => {
                 dispatch(newPostSuccess());                
                 return data
             })
             .catch((error) => { 
+                console.log("error", error);
                 dispatch(newPostFailure(error))                                
             })
     }

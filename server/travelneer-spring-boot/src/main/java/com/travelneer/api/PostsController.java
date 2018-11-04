@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  * @author Youssef
  */
-@RestController
-@CrossOrigin(origins = { "http://localhost:3000" })
+@CrossOrigin("http://localhost:3000")
 @RequestMapping(value = "/api")
+@RestController
 public class PostsController {
 
 	private final PostService postService;

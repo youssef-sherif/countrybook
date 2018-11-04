@@ -9,20 +9,21 @@ export default class LoginButton extends Component {
             return <img src={loading} alt='loading' />
         }
         if (this.props.successful) {
-            setTimeout(()=>this.props.navigateTo('/feed'), 1500);
+            setTimeout(() => this.props.navigateTo('/feed'), 500);
         }
     }
 
     render() {
+        this.redirect();
         return (
                 <button className={`btn ${this.props.style}`}
                     type='submit'
-                    onClick={(e) => {                        
-                        this.props.login(this.props.usernameOrEmail, this.props.usernameOrEmail, this.props.password)
-                        this.redirect();
+                    onClick={(e) => {         
+                        e.preventDefault();               
+                        this.props.login(this.props.usernameOrEmail, this.props.usernameOrEmail, this.props.password);                       
                     }}>
                         Login
-                    </button>
+                </button>
                 )
     }
 }

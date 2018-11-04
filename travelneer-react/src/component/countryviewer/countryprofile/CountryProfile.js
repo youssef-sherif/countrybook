@@ -15,7 +15,7 @@ class CountryProfile extends Component {
 
 
     componentDidMount() {
-        setTimeout(() => this.props.fetchPostsCount(this.props.postsCountResource), 1500)        
+        setTimeout(() => this.props.fetchPostsCount(this.props.postsCountResource), 500)        
     }
 
     render() {

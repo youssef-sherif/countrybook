@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Youssef
  */
+@CrossOrigin( "http://localhost:3000")
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"})
 public class TokensController {
 
     private final JwtGenerator jwtGenerator;

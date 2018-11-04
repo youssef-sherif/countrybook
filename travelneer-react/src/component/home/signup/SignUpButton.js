@@ -9,22 +9,21 @@ export default class SignupButton extends Component {
             return <img src={loading} alt='loading' />
         }
         if (this.props.successful) {
-            setTimeout(()=>this.props.navigateTo('/feed'), 1500);
+            setTimeout(() => this.props.navigateTo('/feed'), 500);
         }
     }
 
     render() {
+        this.redirect();
         return (
-            <div>
                 <button className={'btn btn-block'}
                     type='submit'
-                    onClick={(e) => {                    
-                        this.props.createUser(this.props.username, this.props.email, this.props.password)
-                        this.redirect();
+                    onClick={(e) => {     
+                        e.preventDefault();               
+                        this.props.createUser(this.props.username, this.props.email, this.props.password);
                     }}>
                     Sign Up
                 </button>
-            </div>
         )
     }
 }

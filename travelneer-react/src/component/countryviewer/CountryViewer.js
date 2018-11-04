@@ -17,6 +17,7 @@ class CountryViewer extends Component {
     }
 
     getPostsDiv = (countryId) => {
+
         return (
             <div className={`container ${styles.postsDiv}`}  >
                 {this.props.compose ?
@@ -25,6 +26,7 @@ class CountryViewer extends Component {
                 :
                 <PostList countryPosts={true} />
                 }
+                
             </div>)
     }
 
@@ -39,13 +41,13 @@ class CountryViewer extends Component {
                 <br />
                 <br />
                 <div className={styles.buttonsDiv}>
-                    <button className={`btn ${styles.postsButton}`}
+                    <button className={`btn ${styles.btn} ${styles.postsButton}`}
                         onClick={(e) => {                            
-                            this.props.navigateTo({ pathname: `/countries/${countryId}/posts` });
+                            this.props.navigateTo({ pathname: `/countries/${countryId}` });
                         }}>
                         Posts
                     </button>            
-                    <button className={`btn ${styles.newPostButton}`}
+                    <button className={`btn ${styles.btn} ${styles.newPostButton}`}
                         onClick={(e) => {      
                             this.props.navigateTo({ pathname: `/countries/${countryId}/new`});
                         }}>
@@ -64,11 +66,12 @@ class CountryViewer extends Component {
 
 const mapStateToProps = (state) => ({
     countryName: state.countryProfile.countryName,
+    loading: state.posts.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
     navigateTo: (e) => dispatch(push(e)),
-    fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)),
+    fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryViewer)

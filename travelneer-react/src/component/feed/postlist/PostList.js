@@ -10,7 +10,7 @@ import styles from './PostList.scss'
 
     componentDidMount() {
         if(this.props.countryPosts) {
-            setTimeout(() => this.props.fetchCountryPosts(this.props.countryPostsResource), 1500)
+            setTimeout(() => this.props.fetchCountryPosts(this.props.countryPostsResource), 500)
         }
     }
 
