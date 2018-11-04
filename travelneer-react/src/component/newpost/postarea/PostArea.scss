@@ -1,7 +1,6 @@
 @import "../../variables.scss";
 
 
-
 @media only screen and (min-width: $xl-screen-min) {
     .buttonsDiv {
         position: relative;
@@ -63,4 +62,5 @@
 
 .button {
     float: right;
+    background-color: $travelneer-green;
 }
