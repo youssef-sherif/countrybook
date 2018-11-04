@@ -16,8 +16,21 @@ class CountryViewer extends Component {
         this.props.fetchCountryInfo(countryId)
     }
 
+    getPostsDiv(countryId) {
+        return (
+            <div className={`container ${styles.postsDiv}`}  >
+                {this.props.compose ?
+                <PostArea  countryId={countryId}
+                    countryName={this.props.countryName}/> 
+                :
+                <PostList countryPosts={true} />
+                }
+            </div>)
+    }
+
     render() {
         const countryId = this.props.match.params.countryId
+        const postsDiv = this.getPostsDiv(countryId);
         return (
             <div>
                 <AppNavbar />
@@ -41,14 +54,7 @@ class CountryViewer extends Component {
                 </div>
                 <br />
                 <br />
-                <div className={`container ${styles.postsDiv}`}  >
-                    {this.props.compose ?
-                            <PostArea  countryId={countryId}
-                             countryName={this.props.countryName}/> 
-                        :
-                            <PostList countryPosts={true} />
-                        }
-                </div>
+                {postsDiv}
             </div>
         )
     }
