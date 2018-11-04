@@ -16,7 +16,7 @@ class CountryViewer extends Component {
         this.props.fetchCountryInfo(countryId)
     }
 
-    getPostsDiv(countryId) {
+    getPostsDiv = (countryId) => {
         return (
             <div className={`container ${styles.postsDiv}`}  >
                 {this.props.compose ?

@@ -5,7 +5,7 @@ import loading from '../../../images/loading.gif'
 
 class CountryDetails extends Component {
 
-    getPostsCount() {
+    getPostsCount = () => {
         if (this.props.isLoading)
             return (<img alt='loading' src={loading} />)
 
