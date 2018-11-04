@@ -27,10 +27,10 @@ class Countries extends Component {
             </div>)
     }
 
-    getFollowedCountries = () => {
+    getCountries = () => {
         return (
             <div>
-                <p>Countries you are following</p>
+                <p>Countries</p>
                 <br />
                 <CountryList countries={this.props.countries}
                     navigateTo={this.props.navigateTo}
@@ -40,7 +40,7 @@ class Countries extends Component {
     }
 
     render() {
-        const followedCountries = this.getFollowedCountries()
+        const countries = this.getCountries()
         const searchedCountries = this.getSearchedCountries()
         return (
             <div>
@@ -60,7 +60,7 @@ class Countries extends Component {
                 <br />
                 <div className={`container`}>
                     {this.props.search ?
-                       searchedCountries : followedCountries}
+                       searchedCountries : countries}
                 </div>
             </div>
         )
