@@ -5,7 +5,7 @@
  */
 package com.travelneer.repository.impl;
 
-import com.travelneer.domain.user.User;
+import com.travelneer.user.User;
 
 import java.lang.reflect.Type;
 import java.sql.*;

@@ -43,7 +43,7 @@ public class PostService {
 
 
 	public List<PostResource> getFeed() throws Exception{
-		List<Post> posts = postRepository.getFeedByUserId(validator.getUserId());
+		List<Post> posts = postRepository.getFeed(validator.getUserId());
 		List<PostResource> postResources = posts.stream().map(PostResource::new)
 				.collect(Collectors.toList());
 

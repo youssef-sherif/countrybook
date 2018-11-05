@@ -92,7 +92,7 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 	}
 
 	@Override
-	public List<Post> getFeedByUserId(int userId) throws SQLException{
+	public List<Post> getFeed(int userId) throws SQLException{
 
 		List<Post> posts =
 				create.select()

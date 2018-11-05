@@ -5,7 +5,7 @@
  */
 package com.travelneer.repository;
 
-import com.travelneer.domain.user.User;
+import com.travelneer.user.User;
 
 import java.sql.SQLException;
 

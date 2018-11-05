@@ -1,4 +1,4 @@
-package com.travelneer.domain.user;
+package com.travelneer.user;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;

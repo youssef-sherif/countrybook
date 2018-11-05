@@ -5,7 +5,7 @@
  */
 package com.travelneer.api;
 
-import com.travelneer.domain.user.User;
+import com.travelneer.user.User;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -5,7 +5,7 @@
  */
 package com.travelneer.jwt;
 
-import com.travelneer.domain.user.User;
+import com.travelneer.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

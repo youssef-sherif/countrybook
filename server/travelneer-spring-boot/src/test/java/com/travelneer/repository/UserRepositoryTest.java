@@ -1,7 +1,7 @@
 package com.travelneer.repository;
 
-import com.travelneer.domain.user.User;
-import com.travelneer.domain.user.UserFactory;
+import com.travelneer.user.User;
+import com.travelneer.user.UserFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;

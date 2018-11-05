@@ -5,9 +5,9 @@
  */
 package com.travelneer.api;
 
-import com.travelneer.domain.user.Password;
-import com.travelneer.domain.user.User;
-import com.travelneer.domain.user.UserFactory;
+import com.travelneer.user.Password;
+import com.travelneer.user.User;
+import com.travelneer.user.UserFactory;
 
 import java.util.HashMap;
 

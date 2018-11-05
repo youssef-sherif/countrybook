@@ -1,4 +1,4 @@
-package com.travelneer.domain.user;
+package com.travelneer.user;
 
 import java.util.regex.Pattern;
 

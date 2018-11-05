@@ -1,7 +1,4 @@
-package com.travelneer.domain.user;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+package com.travelneer.user;
 
 import java.util.regex.Pattern;
 
