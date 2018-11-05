@@ -10,7 +10,7 @@ class PostArea extends Component {
         return (
             <div>
                 <textarea className={styles.textarea}
-                    placeholder={`What's happening in ${this.props.countryName}`}
+                    placeholder={this.props.text != null? this.props.text : `What's happening in ${this.props.countryName}`}
                     id="" cols="20"
                     rows="10"
                     maxLength='500'

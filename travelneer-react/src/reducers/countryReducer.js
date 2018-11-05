@@ -15,7 +15,7 @@ const getCountriesState = {
   countries: [],
   searchCountriesResource: "",
   followedCountriesResource: "",
-  selectedCountry: {name: "select", id: 0}
+  selectedCountryId: 0
 }
 
 export function fetchCountriesReducer(state = getCountriesState,
@@ -71,10 +71,7 @@ export function fetchCountriesReducer(state = getCountriesState,
     case SELECT_COUNTRY:
       return {
           ...state,          
-          selectedCountry: {
-            name: action.payload.country.name,
-            id: action.payload.country.id
-          }
+          selectedCountryId: action.payload.countryId
       }
 
     default:

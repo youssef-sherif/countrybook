@@ -14,8 +14,7 @@ class NewPost extends Component {
                 <br /><br /><br />
                 <div className={`container ${styles.div}`}  >
                     <CountrySelect />
-                    <PostArea countryId={this.props.country.id} 
-                        countryName={this.props.country.name} />                        
+                    <PostArea countryId={this.props.countryId} text={"What's hapenning?"} />                        
                 </div>
             </div>
         )
@@ -23,7 +22,7 @@ class NewPost extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    country: state.countries.selectedCountry
+    countryId: state.countries.selectedCountryId
 })
 
 

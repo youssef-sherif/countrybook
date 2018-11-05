@@ -9,16 +9,16 @@ class CountrySelect extends Component {
     componentDidMount() {
         this.props.fetchCountries()
     }
-        
+
 
     render() {        
         return (
             <div>
-                <select onChange={(e) => {                    
+                <select onChange={(e) => {         
                     this.props.selectCountry(e.target.value);
                         }}>
                     {this.props.countries.map((country) => 
-                        <option  key={country.country.id} value={country.country}>
+                        <option  key={country.country.id} value={country.country.id}>
                             {country.country.name}
                         </option>                    
                     )}
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchCountries: () => dispatch(fetchCountries()),
-    selectCountry: (country) => dispatch(selectCountry(country))
+    selectCountry: (countryId) => dispatch(selectCountry(countryId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountrySelect)
