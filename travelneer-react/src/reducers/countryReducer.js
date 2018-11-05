@@ -2,7 +2,7 @@ import {
   FETCH_COUNTRIES_BEGIN,
   FETCH_COUNTRIES_SUCCESS,
   FETCH_COUNTRIES_FAILURE,
-
+  SELECT_COUNTRY,
   FETCH_FOLLOWED_COUNTRIES_SUCCESS,
   SEARCH_COUNTRIES_SUCCESS,  
 } from '../actions/countryActions'
@@ -14,7 +14,8 @@ const getCountriesState = {
   successful: false,
   countries: [],
   searchCountriesResource: "",
-  followedCountriesResource: ""
+  followedCountriesResource: "",
+  selectedCountry: {name: "select", id: 0}
 }
 
 export function fetchCountriesReducer(state = getCountriesState,
@@ -67,6 +68,14 @@ export function fetchCountriesReducer(state = getCountriesState,
         countries: action.payload.countries
       }
       
+    case SELECT_COUNTRY:
+      return {
+          ...state,          
+          selectedCountry: {
+            name: action.payload.country.name,
+            id: action.payload.country.id
+          }
+      }
 
     default:
       return { ...state }

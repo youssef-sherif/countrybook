@@ -4,6 +4,7 @@ export const FETCH_COUNTRIES_FAILURE = 'FETCH_COUNTRIES_FAILURE'
 
 export const SEARCH_COUNTRIES_SUCCESS = 'SEARCH_COUNTRIES_SUCCESS'
 export const FETCH_FOLLOWED_COUNTRIES_SUCCESS = 'FETCH_FOLLOWED_COUNTRIES_SUCCESS'
+export const SELECT_COUNTRY = 'SELECT_COUNTRY'
 
 
 const fetchCountriesBegin = () => ({
@@ -104,6 +105,11 @@ export const fetchFollowedCountries = (resource) => {
   }
 }
 
+
+export const selectCountry = (country) => ({
+  type: SELECT_COUNTRY,
+  payload: {country}  
+})
 
 // Handle HTTP errors since fetch won't.
 const handleErrors = (response) => {
