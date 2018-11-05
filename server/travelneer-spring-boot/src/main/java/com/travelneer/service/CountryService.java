@@ -40,23 +40,18 @@ public class CountryService {
 	}
 
 	public CountryDetailsResource getCountryDetails(short countryId) throws Exception {
-		var countryDetailsResource = new CountryDetailsResource(countryRepository.getOneById(countryId));
+		var country = countryRepository.getOneById(countryId);
+		country.setProfileImageUrl(s3Service.getImage(country.getProfileImageUrl()));
+		var countryDetailsResource = new CountryDetailsResource(country);
 		countryDetailsResource.setFollowed(countryFollowsRepository.exists(validator.getUserId(), countryId));
 
 		return countryDetailsResource;
-	}
-
-	public CountryResource getCountry(short countryId) throws Exception {
-		var countryResource = new CountryResource(countryRepository.getOneById(countryId));
-
-		return countryResource;
 	}
 	
 	public List<CountryResource> searchCountries(String searchValue) throws Exception{
 		List<Country> countries = countryRepository.search(searchValue);
 		countries.stream().forEach(e -> {
 			e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
-			e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));
 		});
 
 		List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
@@ -65,12 +60,10 @@ public class CountryService {
 		return countryResources;
 	}
 
-	public List<CountryResource> getCountries() throws SQLException {
-
+	public List<CountryResource> getCountries() throws Exception {
 		List<Country> countries = countryRepository.getAll();
 		countries.stream().forEach(e -> {
 			e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
-			e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));
 		});
 
 		List<CountryResource> countryResources = countries.stream().map(CountryResource::new)

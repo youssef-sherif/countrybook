@@ -23,7 +23,7 @@ class CountryProfile extends Component {
             <div className={`container ${styles.div}`}>
                 <img className={styles.img}
                     alt='country flag'
-                    src={this.props.profileURL} />
+                    src={this.props.profileImageUrl} />
 
                 <CountryDetails countryName={this.props.countryName}
                     countryId={this.props.countryId}
@@ -45,7 +45,7 @@ class CountryProfile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    profileURL: state.countryProfile.profileURL,
+    profileImageUrl: state.countryProfile.profileImageUrl,
 
     postsCountResource: state.countryProfile.postsCountResource,
     followersCountResource: state.countryProfile.followersCountResource,

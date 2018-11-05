@@ -51,7 +51,6 @@ public class CountriesController {
     @RequestMapping(value = "/countries/{countryId}", method = RequestMethod.GET)
     public ResponseEntity<?> getCountryDetails(@PathVariable("countryId") short countryId) {
 
-
         try {
             CountryDetailsResource countryDetailsResource = countryService.getCountryDetails(countryId);
 
@@ -63,6 +62,7 @@ public class CountriesController {
 
 	@RequestMapping(value = "/countries-search", method = RequestMethod.GET, params = "name")
 	public ResponseEntity<?> searchCountries(@RequestParam(name = "name") String searchParam) {
+
 		try {
 			List<CountryResource> countryResources = countryService.searchCountries(searchParam);
 			var countriesResource = new CountriesResource(countryResources);

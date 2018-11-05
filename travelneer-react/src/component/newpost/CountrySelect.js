@@ -14,8 +14,7 @@ class CountrySelect extends Component {
     render() {        
         return (
             <div>
-                <select onChange={(e) => {
-                    console.log(e);
+                <select onChange={(e) => {                    
                     this.props.selectCountry(e.target.value);
                         }}>
                     {this.props.countries.map((country) => 

@@ -37,7 +37,6 @@ public class CountryFollowsController {
         }
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping(value = "/countries/follows/{countryId}", method = RequestMethod.PUT)
     public ResponseEntity<?> followCountry(@PathVariable("countryId") short countryId) {
 
@@ -54,7 +53,6 @@ public class CountryFollowsController {
         }
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping(value = "/countries/follows/{countryId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> unFollowCountry(@PathVariable("countryId") short countryId) {
 
@@ -73,6 +71,7 @@ public class CountryFollowsController {
 
     @RequestMapping(value = "/countries/{countryId}/followers-count", method = RequestMethod.GET)
     public ResponseEntity<?> getFollowersCount(@PathVariable("countryId") Short countryId) {
+
         var responseBody = new HashMap<String, Object>();
         try {
             Integer count = followsService.getFollowersCount(countryId);
