@@ -30,8 +30,6 @@ class CountrySelect extends Component {
 
 
 const mapStateToProps = (state) => ({      
-    resource: state.countries.followedCountriesResource,
-    followedCountries: state.countries.countries,
     countries: state.countries.countries,
     selectedCountry: state.countries.selectedCountry
 })
