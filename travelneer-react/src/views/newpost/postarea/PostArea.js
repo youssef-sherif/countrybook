@@ -35,9 +35,7 @@ class PostArea extends Component {
 const mapStateToProps = (state) => ({
     content: state.newPost.content,
     newPostSuccessful: state.newPost.successful,
-    newPostLoading: state.newPost.loading,
-    newPostContent: state.newPost.content,
-
+    newPostLoading: state.newPost.loading
 })
 
 const mapDispatchToProps = (dispatch) => ({
