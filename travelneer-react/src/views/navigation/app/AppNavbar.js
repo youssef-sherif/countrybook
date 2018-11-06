@@ -26,7 +26,7 @@ class AppNavbar extends Component {
                         <img className={styles.img} alt='bags' src={notifications} />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}
-                        onClick={() => { this.props.navigateTo('/my_countries') }}>
+                        onClick={() => { this.props.navigateTo('/countries') }}>
                         <img className={styles.img} alt='globe' src={globe} />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}

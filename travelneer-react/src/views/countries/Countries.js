@@ -48,8 +48,8 @@ class Countries extends Component {
                 <br /><br /><br />
                 <div className={styles.div}>
                     <button className={`btn ${styles.button}`}
-                        onClick={() => this.props.navigateTo('/my_countries')}>
-                        following
+                        onClick={() => this.props.navigateTo('/countries')}>
+                        countries
                     </button>
                     <button className={`btn ${styles.button}`}
                         onClick={() => this.props.navigateTo('/search_countries')}>
