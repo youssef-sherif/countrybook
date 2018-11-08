@@ -3,7 +3,6 @@ package com.travelneer.repository.impl;
 import com.travelneer.dto.Country;
 import com.travelneer.dto.CountryFollows;
 import com.travelneer.jooq.tables.records.CountryFollowsRecord;
-import com.travelneer.repository.CountryFollowsRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +12,6 @@ import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
-import static com.travelneer.jooq.Tables.POST;
 import static org.jooq.impl.DSL.count;
 
 @Repository
@@ -40,11 +38,6 @@ public class CountryFollowsRepositoryImpl implements com.travelneer.repository.C
         create.deleteFrom(COUNTRY_FOLLOWS)
                 .where(COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryFollows.getCountryId())
                         .and(COUNTRY_FOLLOWS.USER_ID.eq(countryFollows.getUserId()))).execute();
-    }
-
-    @Override
-    public List<CountryFollows> getAll() throws SQLException {
-        return create.fetch(COUNTRY_FOLLOWS).into(CountryFollows.class);
     }
 
     @Override

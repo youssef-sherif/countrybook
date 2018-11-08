@@ -8,9 +8,6 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLException;
-import java.util.List;
-
 @Repository
 public class FavouritesRepositoryImpl implements com.travelneer.repository.FavouritesRepository {
 
@@ -34,11 +31,6 @@ public class FavouritesRepositoryImpl implements com.travelneer.repository.Favou
         create.deleteFrom(FAVOURITES)
                 .where(FAVOURITES.POST_ID.eq(favourites.getPostId())
                         .and(FAVOURITES.USER_ID.eq(favourites.getUserId())));
-    }
-
-    @Override
-    public List<Favourites> getAll() throws SQLException {
-        return create.fetch(FAVOURITES).into(Favourites.class);
     }
 
     @Override

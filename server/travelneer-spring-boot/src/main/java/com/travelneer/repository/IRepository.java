@@ -9,5 +9,4 @@ public interface IRepository<T> {
 
     void delete(T entity) throws SQLException;
 
-    List<T> getAll() throws SQLException;
 }

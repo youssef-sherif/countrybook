@@ -14,7 +14,6 @@ import static org.jooq.impl.DSL.inline;
 
 
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 import com.travelneer.dto.Post;
@@ -119,11 +118,6 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 	@Override
 	public void delete(Post entity) throws SQLException {
 		create.deleteFrom(POST).where(POST.ID.eq(entity.getId()));
-	}
-
-	@Override
-	public List<Post> getAll() throws SQLException {
-		return create.fetch(POST).into(Post.class);
 	}
 
 }

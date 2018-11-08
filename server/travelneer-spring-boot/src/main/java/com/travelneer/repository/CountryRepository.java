@@ -6,7 +6,6 @@
 package com.travelneer.repository;
 
 import com.travelneer.dto.Country;
-import com.travelneer.repository.IRepository;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -20,4 +19,7 @@ public interface CountryRepository extends IRepository<Country> {
     List<Country> search(String searchParam) throws SQLException;
 
     Country getOneById(Short countryId) throws SQLException;
+
+    List<Country> getAll() throws SQLException;
+
 }

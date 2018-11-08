@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
-import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
 import com.travelneer.dto.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;
@@ -33,6 +32,14 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
+    public List<Country> getAll() throws SQLException {
+        List<Country> countries = create.select().from(COUNTRY)
+                .fetchInto(Country.class);
+
+        return countries;
+    }
+
+    @Override
     public Country getOneById(Short countryId) throws SQLException {
         CountryRecord countriesRecord = create.fetchOne(COUNTRY, COUNTRY.ID.eq(countryId));
 
@@ -43,14 +50,6 @@ public class CountryRepositoryImpl implements CountryRepository {
     public List<Country> search(String searchValue) throws SQLException {
         List<Country> countries = create.select().from(COUNTRY)
                 .where(COUNTRY.NAME.like(searchValue + "%")).fetchInto(Country.class);
-        return countries;
-    }
-
-    @Override
-    public List<Country> getAll() throws SQLException {
-        List<Country> countries = create.select().from(COUNTRY)
-                .fetchInto(Country.class);
-
         return countries;
     }
 

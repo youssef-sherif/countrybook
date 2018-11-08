@@ -7,14 +7,11 @@ package com.travelneer.repository.impl;
 
 import com.travelneer.user.User;
 
-import java.lang.reflect.Type;
 import java.sql.*;
-import java.util.List;
 
 import com.travelneer.jooq.tables.records.UserRecord;
 import org.jooq.DSLContext;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -90,17 +87,7 @@ public class UserRepositoryImpl implements com.travelneer.repository.UserReposit
 		return modelMapper.map(userRecord, User.class);
 	}
 
-	@Override
-	public List<User> getAll() throws SQLException {
-		List<UserRecord> userRecords = create.fetch(USER);
-
-		Type userEntityListType = new TypeToken<List<User>>() {}.getType();
-
-		return modelMapper.map(userRecords, userEntityListType);
-
-	}
-
-	@Override
+    @Override
 	public void delete(User user)  throws SQLException{
 		create.deleteFrom(USER).where(USER.ID.eq(user.getId()));
 	}
