@@ -4,6 +4,7 @@
 package com.travelneer.jooq;
 
 
+import com.travelneer.jooq.tables.Comment;
 import com.travelneer.jooq.tables.Country;
 import com.travelneer.jooq.tables.CountryFollows;
 import com.travelneer.jooq.tables.Favourites;
@@ -36,6 +37,9 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index COMMENT_AUTHOR_ID = Indexes0.COMMENT_AUTHOR_ID;
+    public static final Index COMMENT_PARENT_POST_ID = Indexes0.COMMENT_PARENT_POST_ID;
+    public static final Index COMMENT_PRIMARY = Indexes0.COMMENT_PRIMARY;
     public static final Index COUNTRY_PRIMARY = Indexes0.COUNTRY_PRIMARY;
     public static final Index COUNTRY_FOLLOWS_COUNTRY_ID = Indexes0.COUNTRY_FOLLOWS_COUNTRY_ID;
     public static final Index COUNTRY_FOLLOWS_PRIMARY = Indexes0.COUNTRY_FOLLOWS_PRIMARY;
@@ -57,6 +61,9 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index COMMENT_AUTHOR_ID = Internal.createIndex("author_id", Comment.COMMENT, new OrderField[] { Comment.COMMENT.AUTHOR_ID }, false);
+        public static Index COMMENT_PARENT_POST_ID = Internal.createIndex("parent_post_id", Comment.COMMENT, new OrderField[] { Comment.COMMENT.PARENT_POST_ID }, false);
+        public static Index COMMENT_PRIMARY = Internal.createIndex("PRIMARY", Comment.COMMENT, new OrderField[] { Comment.COMMENT.ID }, true);
         public static Index COUNTRY_PRIMARY = Internal.createIndex("PRIMARY", Country.COUNTRY, new OrderField[] { Country.COUNTRY.ID }, true);
         public static Index COUNTRY_FOLLOWS_COUNTRY_ID = Internal.createIndex("country_id", CountryFollows.COUNTRY_FOLLOWS, new OrderField[] { CountryFollows.COUNTRY_FOLLOWS.COUNTRY_ID }, false);
         public static Index COUNTRY_FOLLOWS_PRIMARY = Internal.createIndex("PRIMARY", CountryFollows.COUNTRY_FOLLOWS, new OrderField[] { CountryFollows.COUNTRY_FOLLOWS.USER_ID, CountryFollows.COUNTRY_FOLLOWS.COUNTRY_ID }, true);

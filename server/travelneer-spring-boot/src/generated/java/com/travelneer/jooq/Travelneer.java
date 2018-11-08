@@ -4,6 +4,7 @@
 package com.travelneer.jooq;
 
 
+import com.travelneer.jooq.tables.Comment;
 import com.travelneer.jooq.tables.Country;
 import com.travelneer.jooq.tables.CountryFollows;
 import com.travelneer.jooq.tables.Favourites;
@@ -36,12 +37,17 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Travelneer extends SchemaImpl {
 
-    private static final long serialVersionUID = -1295121812;
+    private static final long serialVersionUID = -1429051203;
 
     /**
      * The reference instance of <code>travelneer</code>
      */
     public static final Travelneer TRAVELNEER = new Travelneer();
+
+    /**
+     * The table <code>travelneer.comment</code>.
+     */
+    public final Comment COMMENT = com.travelneer.jooq.tables.Comment.COMMENT;
 
     /**
      * The table <code>travelneer.country</code>.
@@ -103,6 +109,7 @@ public class Travelneer extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Comment.COMMENT,
             Country.COUNTRY,
             CountryFollows.COUNTRY_FOLLOWS,
             Favourites.FAVOURITES,

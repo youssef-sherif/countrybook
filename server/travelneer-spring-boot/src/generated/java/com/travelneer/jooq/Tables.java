@@ -4,6 +4,7 @@
 package com.travelneer.jooq;
 
 
+import com.travelneer.jooq.tables.Comment;
 import com.travelneer.jooq.tables.Country;
 import com.travelneer.jooq.tables.CountryFollows;
 import com.travelneer.jooq.tables.Favourites;
@@ -27,6 +28,11 @@ import javax.annotation.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>travelneer.comment</code>.
+     */
+    public static final Comment COMMENT = com.travelneer.jooq.tables.Comment.COMMENT;
 
     /**
      * The table <code>travelneer.country</code>.
