@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-import { fetchCountries, selectCountry } from '../../actions/countryActions'
+import { fetchCountries, selectCountry } from '../../../actions/countryActions'
+
+import styles from './CountrySelect.scss'
 
 class CountrySelect extends Component {
 
@@ -13,10 +15,13 @@ class CountrySelect extends Component {
 
     render() {        
         return (
-            <div>
+            <div className={`container ${styles.div}`}>
                 <select onChange={(e) => {         
                     this.props.selectCountry(e.target.value);
                         }}>
+                        <option  key={0} value={0}>
+                            Select a Country
+                        </option>  
                     {this.props.countries.map((country) => 
                         <option  key={country.country.id} value={country.country.id}>
                             {country.country.name}

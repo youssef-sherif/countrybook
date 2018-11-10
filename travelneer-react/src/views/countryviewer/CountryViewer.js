@@ -19,7 +19,7 @@ class CountryViewer extends Component {
     getPostsDiv = (countryId) => {
 
         return (
-            <div className={`container ${styles.postsDiv}`}  >
+            <div>
                 {this.props.compose ?
                 <PostArea  countryId={countryId}
                     countryName={this.props.countryName}/> 

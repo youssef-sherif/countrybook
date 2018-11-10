@@ -8,6 +8,7 @@ import AppNavbar from '../navigation/app/AppNavbar'
 
 import new_post from '../../images/new_post.png'
 import styles from './Feed.scss'
+import NewPost from '../newpost/NewPost';
 
 
 class Feed extends Component {
@@ -32,6 +33,8 @@ class Feed extends Component {
                 <AppNavbar />
                 <br /><br /><br />
                 <div className={styles.div}>
+                    <NewPost />
+                    <br />
                     {listPosts}
                 </div>
                 <img className={`btn ${styles.img}`}

@@ -8,8 +8,8 @@ class PostArea extends Component {
 
     render() {
         return (
-            <div>
-                <textarea className={styles.textarea}
+            <div className={`container ${styles.div}`}>
+                <textarea className={`${styles.textarea}`}
                     placeholder={this.props.text != null? this.props.text : `What's happening in ${this.props.countryName}`}
                     id="" cols="20"
                     rows="10"
