@@ -6,10 +6,7 @@
 package com.travelneer.hateoas;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.travelneer.api.CountriesController;
-import com.travelneer.api.v1.CountryFollowsController;
-import com.travelneer.api.v1.CountryPostsController;
-import com.travelneer.api.v1.FavouritesController;
+import com.travelneer.controller.api.CountriesController;
 
 import com.travelneer.dto.Country;
 import org.springframework.hateoas.ResourceSupport;

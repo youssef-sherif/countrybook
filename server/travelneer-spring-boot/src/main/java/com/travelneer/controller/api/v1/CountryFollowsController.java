@@ -1,4 +1,4 @@
-package com.travelneer.api.v1;
+package com.travelneer.controller.api.v1;
 
 import com.travelneer.hateoas.CountriesResource;
 import com.travelneer.hateoas.CountryResource;

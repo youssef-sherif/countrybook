@@ -9,8 +9,8 @@ package com.travelneer.hateoas;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.travelneer.api.CountriesController;
-import com.travelneer.api.v1.CountryFollowsController;
+import com.travelneer.controller.api.CountriesController;
+import com.travelneer.controller.api.v1.CountryFollowsController;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

@@ -1,4 +1,4 @@
-package com.travelneer.api;
+package com.travelneer.controller.api;
 
 import com.travelneer.hateoas.FeedResource;
 import com.travelneer.hateoas.PostResource;

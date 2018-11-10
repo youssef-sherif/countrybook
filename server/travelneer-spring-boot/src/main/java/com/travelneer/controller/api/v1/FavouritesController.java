@@ -1,10 +1,9 @@
-package com.travelneer.api.v1;
+package com.travelneer.controller.api.v1;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.travelneer.service.FavouritesService;
-import com.travelneer.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

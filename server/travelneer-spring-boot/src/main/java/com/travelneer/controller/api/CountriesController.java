@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.api;
+package com.travelneer.controller.api;
 
 import com.travelneer.hateoas.CountriesResource;
 import com.travelneer.hateoas.CountryDetailsResource;

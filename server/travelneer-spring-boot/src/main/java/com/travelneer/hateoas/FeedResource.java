@@ -9,7 +9,7 @@ package com.travelneer.hateoas;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.travelneer.api.PostsController;
+import com.travelneer.controller.api.PostsController;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

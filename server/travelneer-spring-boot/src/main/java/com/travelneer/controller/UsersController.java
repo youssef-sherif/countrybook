@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.api;
+package com.travelneer.controller;
 
 import com.travelneer.user.User;
 import com.travelneer.jwt.JwtValidator;
@@ -24,7 +24,7 @@ import java.util.HashMap;
  */
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/controller")
 public class UsersController {
 
     private final JwtValidator validator;
