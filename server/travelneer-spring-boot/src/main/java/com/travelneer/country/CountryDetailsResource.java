@@ -22,7 +22,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class CountryDetailsResource extends ResourceSupport {
 
-    private final @JsonProperty("country") Country country;
+    private final Country country;
     private Boolean isFollowed;
 
     public CountryDetailsResource(Country country) {
@@ -36,6 +36,7 @@ public class CountryDetailsResource extends ResourceSupport {
         this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getId())).withRel("postsCount"));
     }
 
+    @JsonProperty("country")
     public Country getCountry() {
         return country;
     }

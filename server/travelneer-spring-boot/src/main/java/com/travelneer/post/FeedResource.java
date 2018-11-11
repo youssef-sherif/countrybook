@@ -21,7 +21,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class FeedResource extends ResourceSupport {
 
-    private  final @JsonProperty("posts") List<PostResource> postResources;
+    private  final List<PostResource> postResources;
 
     public FeedResource(List<PostResource> postResources) {
         this.postResources = postResources;
@@ -29,6 +29,7 @@ public class FeedResource extends ResourceSupport {
         this.add(linkTo(methodOn(PostsController.class).getFeed()).withSelfRel());
     }
 
+    @JsonProperty("posts")
     public List<PostResource> getPosts() {
         return postResources;
     }

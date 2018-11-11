@@ -24,7 +24,7 @@ public class CountriesResource extends ResourceSupport {
 
     private  final List<CountryResource> countryResources;
 
-    public CountriesResource(@JsonProperty("countries") List<CountryResource> countryResources) {
+    public CountriesResource(List<CountryResource> countryResources) {
         this.countryResources = countryResources;
 
         this.add(linkTo(methodOn(CountriesController.class).countries()).withSelfRel());
@@ -32,6 +32,7 @@ public class CountriesResource extends ResourceSupport {
         this.add(linkTo(methodOn(CountriesController.class).searchCountries("")).withRel("searchCountries"));
     }
 
+    @JsonProperty("countries")
     public List<CountryResource> getCountries() {
         return countryResources;
     }

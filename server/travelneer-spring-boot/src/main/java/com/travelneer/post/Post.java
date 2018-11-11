@@ -12,29 +12,6 @@ public class Post {
     private Short     countryId;
     private Timestamp createdAt;
 
-    public Post() {}
-
-    public Post(Post value) {
-        this.id = value.id;
-        this.content = value.content;
-        this.authorId = value.authorId;
-        this.countryId = value.countryId;
-        this.createdAt = value.createdAt;
-    }
-
-    public Post(
-        Integer   id,
-        String    content,
-        Integer   authorId,
-        Short     countryId,
-        Timestamp createdAt
-    ) {
-        this.id = id;
-        this.content = content;
-        this.authorId = authorId;
-        this.countryId = countryId;
-        this.createdAt = createdAt;
-    }
 
     public Integer getId() {
         return this.id;
