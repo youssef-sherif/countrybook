@@ -7,6 +7,8 @@ public class Post {
     private Integer   id;
     private String    content;
     private Integer   authorId;
+    private String    name;
+    private String    email;
     private Short     countryId;
     private Timestamp createdAt;
 
@@ -72,6 +74,22 @@ public class Post {
 
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String userName) {
+        this.name = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

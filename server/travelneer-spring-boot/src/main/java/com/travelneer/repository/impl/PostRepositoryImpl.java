@@ -96,6 +96,7 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 		List<Post> posts =
 				create.select()
 						.from(POST)
+				.innerJoin(USER).on(POST.AUTHOR_ID.eq(USER.ID))
 				.innerJoin(COUNTRY_FOLLOWS).on(COUNTRY_FOLLOWS.COUNTRY_ID
 						.eq(POST.COUNTRY_ID))
 				.where(COUNTRY_FOLLOWS.USER_ID

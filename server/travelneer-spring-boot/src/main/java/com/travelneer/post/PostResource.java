@@ -21,6 +21,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class PostResource extends ResourceSupport {
 
     private final @JsonProperty("post")  Post post;
+    private Boolean isFavourite;
 
 
     @JsonCreator
@@ -35,4 +36,13 @@ public class PostResource extends ResourceSupport {
     public Post getPost() {
         return post;
     }
+
+    public Boolean getFavourite() {
+        return isFavourite;
+    }
+
+    public void setFavourite(Boolean favourite) {
+        isFavourite = favourite;
+    }
+
 }
