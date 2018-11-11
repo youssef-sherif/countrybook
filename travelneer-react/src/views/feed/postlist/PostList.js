@@ -23,7 +23,8 @@ import styles from './PostList.scss'
                 {this.props.posts.map((post) => {                    
                     return <Post key={post.post.id}
                         content={post.post.content}
-                        authorName={post.post.authorName}                    
+                        name={post.post.name}                    
+                        email={post.post.email}                    
                         timeStamp={post.post.date} />
                 })}
             </div>

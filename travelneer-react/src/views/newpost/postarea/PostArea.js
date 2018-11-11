@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import { newPost, writePost } from '../../../actions/newPostActions'
 import styles from './PostArea.scss'
 
@@ -19,7 +20,8 @@ class PostArea extends Component {
                 </textarea>
                 <div className={styles.buttonsDiv}>
                     <button className={`btn ${styles.button}`} onClick={(e) => {
-                            this.props.newPost(this.props.countryId, this.props.content)
+                            this.props.newPost(this.props.countryId, this.props.content);
+                            this.props.navigateTo(this.props.location);
                         }}>
                         post
                     </button>
@@ -40,7 +42,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     newPost: (countryId, content) => dispatch(newPost(countryId, content)),
-    writePost: (content) => dispatch(writePost(content)),
+    writePost: (content) => dispatch(writePost(content)),   
+    navigateTo: (path) => dispatch(push(path))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostArea)

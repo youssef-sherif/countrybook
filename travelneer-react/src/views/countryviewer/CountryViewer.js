@@ -22,7 +22,8 @@ class CountryViewer extends Component {
             <div>
                 {this.props.compose ?
                 <PostArea  countryId={countryId}
-                    countryName={this.props.countryName}/> 
+                    countryName={this.props.countryName}
+                    location={`/countries/${countryId}`}/> 
                 :
                 <PostList countryPosts={true} />
                 }

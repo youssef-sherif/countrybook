@@ -11,7 +11,7 @@ export default class Post extends Component {
                 <div className={styles.user}>
                     <img className={styles.avatar} src={traveler} alt='user' />
                     <div className={styles.details}>
-                        {this.props.authorName} <span>{this.props.authorEmail}</span>
+                        {this.props.name} <span>{this.props.email}</span>
                     </div>
                 </div>
                 <div className={styles.timeStamp}>
