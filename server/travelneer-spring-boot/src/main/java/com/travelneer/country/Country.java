@@ -1,4 +1,4 @@
-package com.travelneer.dto;
+package com.travelneer.country;
 
 public class Country {
 
@@ -16,6 +16,7 @@ public class Country {
         this.name = value.name;
         this.profileImageUrl = value.profileImageUrl;
         this.flagUrl = value.flagUrl;
+
     }
 
     public Country(

@@ -1,4 +1,4 @@
-package com.travelneer.hateoas;
+package com.travelneer.post;
 
 public class PostDetailsResource {
 }

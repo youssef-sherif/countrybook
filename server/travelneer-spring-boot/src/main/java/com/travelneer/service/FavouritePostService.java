@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 
 @Service
-public class FavouritesService {
+public class FavouritePostService {
 
     private final FavouritesRepository favouritesRepository;
     private final JwtValidator validator;
 
     @Autowired
-    public FavouritesService(FavouritesRepository favouritesRepository, JwtValidator validator) {
+    public FavouritePostService(FavouritesRepository favouritesRepository, JwtValidator validator) {
 
         this.favouritesRepository = favouritesRepository;
         this.validator = validator;

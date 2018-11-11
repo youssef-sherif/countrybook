@@ -1,6 +1,6 @@
 package com.travelneer.repository;
 
-import com.travelneer.dto.Country;
+import com.travelneer.country.Country;
 import com.travelneer.dto.CountryFollows;
 
 import java.sql.SQLException;

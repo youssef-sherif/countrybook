@@ -1,8 +1,12 @@
 package com.travelneer.controller.api.v1;
 
-import com.travelneer.hateoas.CountriesResource;
-import com.travelneer.hateoas.CountryResource;
-import com.travelneer.service.CountryFollowsService;
+import com.travelneer.country.CountriesResource;
+import com.travelneer.country.Country;
+import com.travelneer.country.CountryResource;
+import com.travelneer.jwt.JwtValidator;
+import com.travelneer.repository.CountryFollowsRepository;
+import com.travelneer.service.FollowCountryService;
+import com.travelneer.service.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,17 +14,24 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping(value = "/api/v1")
 public class CountryFollowsController {
 
-    private final CountryFollowsService followsService;
+    private final FollowCountryService followsService;
+    private final CountryFollowsRepository countryFollowsRepository;
+    private final S3Service s3Service;
+    private final JwtValidator validator;
 
     @Autowired
-    public CountryFollowsController(CountryFollowsService countryFollowsService) {
-        this.followsService = countryFollowsService;
+    public CountryFollowsController(FollowCountryService followCountryService, CountryFollowsRepository countryFollowsRepository, S3Service s3Service, JwtValidator validator) {
+        this.followsService = followCountryService;
+        this.countryFollowsRepository = countryFollowsRepository;
+        this.s3Service = s3Service;
+        this.validator = validator;
     }
 
 
@@ -28,7 +39,14 @@ public class CountryFollowsController {
     public ResponseEntity<?> getFollowedCountries() {
 
         try {
-            List<CountryResource> countryResources = followsService.getCountriesFollowed();
+            List<Country> countries = countryFollowsRepository.getCountriesFollowed(validator.getUserId());
+            countries.stream().forEach(e -> {
+                e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
+                e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));
+            });
+
+            List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
+                    .collect(Collectors.toList());
             var countriesResource = new CountriesResource(countryResources);
 
             return new ResponseEntity<>(countriesResource, HttpStatus.OK);
@@ -74,7 +92,7 @@ public class CountryFollowsController {
 
         var responseBody = new HashMap<String, Object>();
         try {
-            Integer count = followsService.getFollowersCount(countryId);
+            Integer count = countryFollowsRepository.getFollowersCount(countryId);
 
             responseBody.put("followersCount", count);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);

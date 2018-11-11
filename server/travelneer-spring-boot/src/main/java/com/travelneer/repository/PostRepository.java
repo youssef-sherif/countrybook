@@ -5,7 +5,7 @@
  */
 package com.travelneer.repository;
 
-import com.travelneer.dto.Post;
+import com.travelneer.post.Post;
 import java.sql.SQLException;
 import java.util.List;
 

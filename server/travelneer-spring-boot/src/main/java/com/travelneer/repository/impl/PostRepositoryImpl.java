@@ -16,7 +16,7 @@ import static org.jooq.impl.DSL.inline;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.travelneer.dto.Post;
+import com.travelneer.post.Post;
 import com.travelneer.jooq.tables.records.PostRecord;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;

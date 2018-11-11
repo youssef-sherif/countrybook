@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.hateoas;
+package com.travelneer.country;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.controller.api.CountriesController;
 
-import com.travelneer.dto.Country;
+import com.travelneer.country.Country;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.hateoas;
+package com.travelneer.country;
 
 import java.util.List;
 

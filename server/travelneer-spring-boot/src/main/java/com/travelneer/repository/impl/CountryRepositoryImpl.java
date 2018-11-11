@@ -10,7 +10,7 @@ import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
 
-import com.travelneer.dto.Country;
+import com.travelneer.country.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;
 import com.travelneer.repository.CountryRepository;
 import org.jooq.DSLContext;

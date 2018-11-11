@@ -1,4 +1,4 @@
-package com.travelneer.dto;
+package com.travelneer.post;
 
 import java.sql.Timestamp;
 

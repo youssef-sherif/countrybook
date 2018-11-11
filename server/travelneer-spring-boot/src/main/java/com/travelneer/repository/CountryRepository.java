@@ -5,7 +5,7 @@
  */
 package com.travelneer.repository;
 
-import com.travelneer.dto.Country;
+import com.travelneer.country.Country;
 
 import java.sql.SQLException;
 import java.util.List;

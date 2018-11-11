@@ -1,6 +1,6 @@
 package com.travelneer.repository.impl;
 
-import com.travelneer.dto.Country;
+import com.travelneer.country.Country;
 import com.travelneer.dto.CountryFollows;
 import com.travelneer.jooq.tables.records.CountryFollowsRecord;
 import org.jooq.DSLContext;

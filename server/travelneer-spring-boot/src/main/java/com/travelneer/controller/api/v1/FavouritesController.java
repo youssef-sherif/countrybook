@@ -3,7 +3,7 @@ package com.travelneer.controller.api.v1;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.travelneer.service.FavouritesService;
+import com.travelneer.service.FavouritePostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1")
 public class FavouritesController {
 
-    private final FavouritesService favouritesService;
+    private final FavouritePostService favouritePostService;
 
     @Autowired
-    public FavouritesController(FavouritesService favouritesService) {
+    public FavouritesController(FavouritePostService favouritePostService) {
 
-        this.favouritesService = favouritesService;
+        this.favouritePostService = favouritePostService;
     }
 
 
@@ -31,7 +31,7 @@ public class FavouritesController {
     public ResponseEntity<?> favouritePost(@PathVariable("postId") int postId) {
         Map<String, Object> response = new HashMap<>();
         try {
-            favouritesService.favouritePost(postId);
+            favouritePostService.favouritePost(postId);
             response.put("successful", "true");
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch(Exception e) {
@@ -44,7 +44,7 @@ public class FavouritesController {
     public ResponseEntity<?> unFavouritePost(@PathVariable("postId") int postId) {
         Map<String, Object> response = new HashMap<>();
         try {
-            favouritesService.unFavouritePost(postId);
+            favouritePostService.unFavouritePost(postId);
             response.put("successful", "true");
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch(Exception e) {

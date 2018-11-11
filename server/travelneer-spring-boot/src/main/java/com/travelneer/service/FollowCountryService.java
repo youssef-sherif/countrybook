@@ -1,7 +1,7 @@
 package com.travelneer.service;
 
-import com.travelneer.hateoas.CountryResource;
-import com.travelneer.dto.Country;
+import com.travelneer.country.CountryResource;
+import com.travelneer.country.Country;
 import com.travelneer.dto.CountryFollows;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryFollowsRepository;
@@ -14,30 +14,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CountryFollowsService {
+public class FollowCountryService {
 
     private final CountryFollowsRepository countryFollowsRepository;
-    private final S3Service s3Service;
     private final JwtValidator validator;
 
     @Autowired
-    public CountryFollowsService(CountryFollowsRepository countryFollowsRepository, S3Service s3Service, JwtValidator validator) {
+    public FollowCountryService(CountryFollowsRepository countryFollowsRepository, JwtValidator validator) {
         this.countryFollowsRepository = countryFollowsRepository;
-        this.s3Service = s3Service;
         this.validator = validator;
-    }
-
-    public List<CountryResource> getCountriesFollowed() throws Exception {
-        List<Country> countries = countryFollowsRepository.getCountriesFollowed(validator.getUserId());
-        countries.stream().forEach(e -> {
-            e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
-            e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));
-        });
-
-        List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
-                .collect(Collectors.toList());
-
-        return countryResources;
     }
 
     public void unFollowCountry(short countryId) throws Exception{
@@ -57,8 +42,4 @@ public class CountryFollowsService {
         countryFollowsRepository.save(countryFollows);
     }
 
-    public Integer getFollowersCount(Short id) throws SQLException {
-
-        return countryFollowsRepository.getFollowersCount(id);
-    }
 }

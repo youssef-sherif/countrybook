@@ -1,13 +1,16 @@
 package com.travelneer.controller.api;
 
-import com.travelneer.hateoas.FeedResource;
-import com.travelneer.hateoas.PostResource;
+import com.travelneer.jwt.JwtValidator;
+import com.travelneer.post.FeedResource;
+import com.travelneer.post.PostResource;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.travelneer.dto.Post;
-import com.travelneer.service.PostService;
+import com.travelneer.post.Post;
+import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,18 +30,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 public class PostsController {
 
-	private final PostService postService;
+	private final PostRepository postRepository;
+	private final JwtValidator validator;
 
 	@Autowired
-	public PostsController(PostService postService) {
-		this.postService = postService;
-	}
+	public PostsController(PostRepository postRepository, JwtValidator validator) {
+        this.postRepository = postRepository;
+        this.validator = validator;
+    }
 
 	@RequestMapping(value = "/feed", method = RequestMethod.GET)
 	public ResponseEntity<?> getFeed() {
 
 		try {
-			List<PostResource> postResources = postService.getFeed();
+            List<Post> posts = postRepository.getFeed(validator.getUserId());
+            List<PostResource> postResources = posts.stream().map(PostResource::new)
+                    .collect(Collectors.toList());
 			var feedResource = new FeedResource(postResources);
 
 			return new ResponseEntity<>(feedResource, HttpStatus.OK);
@@ -54,8 +61,12 @@ public class PostsController {
 
 		var body = new HashMap<>();
 		try {
-			postService.create(post);
-			body.put("created", true);
+            post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            post.setAuthorId(validator.getUserId());
+
+            postRepository.save(post);
+
+            body.put("created", true);
 
             return new ResponseEntity<>(body, HttpStatus.OK);
 		} catch(Exception e) {
@@ -69,7 +80,7 @@ public class PostsController {
 	public ResponseEntity<?> getPost(@PathVariable("postId") int postId) {
 
 		try {
-			var postResource = new PostResource(postService.getPost(postId));
+            var postResource = new PostResource(postRepository.getOneById(postId));
 
 			return new ResponseEntity<>(postResource, HttpStatus.OK);
 		} catch(Exception e) {
