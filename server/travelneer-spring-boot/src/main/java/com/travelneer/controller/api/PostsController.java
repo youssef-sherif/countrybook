@@ -44,6 +44,7 @@ public class PostsController {
 
 		try {
             List<Post> posts = postRepository.getFeed(validator.getUserId());
+            posts.forEach(Post::calculateTimeDifference);
             List<PostResource> postResources = posts.stream().map(PostResource::new)
                     .collect(Collectors.toList());
 			var feedResource = new FeedResource(postResources);

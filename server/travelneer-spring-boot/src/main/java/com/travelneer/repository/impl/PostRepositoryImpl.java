@@ -94,7 +94,8 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 	public List<Post> getFeed(int userId) throws SQLException{
 
 		List<Post> posts =
-				create.select()
+				create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
+						POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
 						.from(POST)
 				.innerJoin(USER).on(POST.AUTHOR_ID.eq(USER.ID))
 				.innerJoin(COUNTRY_FOLLOWS).on(COUNTRY_FOLLOWS.COUNTRY_ID

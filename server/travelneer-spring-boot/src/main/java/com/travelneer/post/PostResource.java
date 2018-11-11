@@ -23,7 +23,6 @@ public class PostResource extends ResourceSupport {
     private final Post post;
     private Boolean isFavourite;
 
-
     @JsonCreator
     public PostResource(Post post) {
         this.post = post;

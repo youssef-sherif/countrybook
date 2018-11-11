@@ -1,29 +1,23 @@
 package com.travelneer.dto;
 
-import java.sql.Timestamp;
-
 public class CountryFollows {
 
     private Integer   userId;
     private Short     countryId;
-    private Timestamp createdAt;
 
     public CountryFollows() {}
 
     public CountryFollows(CountryFollows value) {
         this.userId = value.userId;
         this.countryId = value.countryId;
-        this.createdAt = value.createdAt;
     }
 
     public CountryFollows(
         Integer   userId,
-        Short     countryId,
-        Timestamp createdAt
+        Short     countryId
     ) {
         this.userId = userId;
         this.countryId = countryId;
-        this.createdAt = createdAt;
     }
 
     public Integer getUserId() {
@@ -42,13 +36,6 @@ public class CountryFollows {
         this.countryId = countryId;
     }
 
-    public Timestamp getCreatedAt() {
-        return this.createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
 
     @Override
     public String toString() {
@@ -56,8 +43,6 @@ public class CountryFollows {
 
         sb.append(userId);
         sb.append(", ").append(countryId);
-        sb.append(", ").append(createdAt);
-
         sb.append(")");
         return sb.toString();
     }

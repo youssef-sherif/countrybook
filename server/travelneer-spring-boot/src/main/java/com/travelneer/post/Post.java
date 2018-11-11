@@ -1,16 +1,47 @@
 package com.travelneer.post;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Post {
 
-    private Integer   id;
-    private String    content;
-    private Integer   authorId;
-    private String    name;
-    private String    email;
-    private Short     countryId;
+    private Integer id;
+    private String content;
+    private Integer authorId;
+    private Short countryId;
     private Timestamp createdAt;
+
+    private String name;
+    private String email;
+
+    private Map<Long, String> timeDiff;
+
+
+    public Post() {}
+
+    public Post(Post value) {
+        this.id = value.id;
+        this.countryId = value.countryId;
+        this.createdAt = value.createdAt;
+        this.authorId = value.authorId;
+        this.content = value.content;
+    }
+
+    public Post(
+            Integer   id,
+            Integer   authorId,
+            Short     countryId,
+            String content,
+            Timestamp createdAt
+
+    ) {
+        this.id = id;
+        this.countryId = countryId;
+        this.authorId = authorId;
+        this.content = content;
+        this.createdAt = createdAt;
+    }
 
 
     public Integer getId() {
@@ -67,6 +98,31 @@ public class Post {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Map<Long, String> getTimeDiff() {
+        return timeDiff;
+    }
+
+    public void calculateTimeDifference() {
+        long timeDifference = System.currentTimeMillis() - this.getCreatedAt().getTime();
+
+        long inSeconds = timeDifference / 1000;
+        long inMinutes = inSeconds / 60;
+        long inHours = inMinutes / 60;
+        long inDays = inHours / 24;
+
+        timeDiff = new HashMap<>();
+
+        if(inSeconds <= 60) {
+            timeDiff.put(inSeconds, "Seconds");
+        } else if(inMinutes <= 60) {
+            timeDiff.put(inMinutes, "Minutes");
+        } else if(inHours <= 24) {
+            timeDiff.put(inHours, "Hours");
+        } else {
+            timeDiff.put(inDays, "Days");
+        }
     }
 
     @Override

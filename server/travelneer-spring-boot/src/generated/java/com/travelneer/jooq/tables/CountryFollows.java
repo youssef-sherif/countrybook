@@ -9,7 +9,6 @@ import com.travelneer.jooq.Keys;
 import com.travelneer.jooq.Travelneer;
 import com.travelneer.jooq.tables.records.CountryFollowsRecord;
 
-import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CountryFollows extends TableImpl<CountryFollowsRecord> {
 
-    private static final long serialVersionUID = -1990342114;
+    private static final long serialVersionUID = 1640939803;
 
     /**
      * The reference instance of <code>travelneer.country_follows</code>
@@ -64,11 +63,6 @@ public class CountryFollows extends TableImpl<CountryFollowsRecord> {
      * The column <code>travelneer.country_follows.country_id</code>.
      */
     public final TableField<CountryFollowsRecord, Short> COUNTRY_ID = createField("country_id", org.jooq.impl.SQLDataType.SMALLINT.nullable(false), this, "");
-
-    /**
-     * The column <code>travelneer.country_follows.created_at</code>.
-     */
-    public final TableField<CountryFollowsRecord, Timestamp> CREATED_AT = createField("created_at", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * Create a <code>travelneer.country_follows</code> table reference
