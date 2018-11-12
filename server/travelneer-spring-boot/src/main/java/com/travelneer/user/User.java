@@ -12,22 +12,18 @@ public class User {
     private Email email;
     private Password password;
     private Timestamp createdAt;
-    private PasswordEncoder passwordEncoder;
 
 
     public User() {
         this.name = new Username();
         this.email = new Email();
         this.password = new Password();
-        this.passwordEncoder = new BCryptPasswordEncoder();
-
     }
 
-    public User(String username, String email, String password) {
-        this.name = new Username(username);
-        this.email = new Email(email);
-        this.passwordEncoder = new BCryptPasswordEncoder();
-        this.password = new Password(this.passwordEncoder.encode(password));
+    public User(Username username, Email email, Password password) {
+        this.name = username;
+        this.email = email;
+        this.password = password;
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
@@ -99,7 +95,7 @@ public class User {
     }
 
     public void login(String password) throws Exception {
-        if(!passwordEncoder.matches(password, this.password.getEncoded())) {
+        if(!this.password.getPasswordEncoder().matches(password, this.password.getEncoded())) {
             throw new Exception("Invalid Username or Password");
         }
     }

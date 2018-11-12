@@ -5,8 +5,7 @@
  */
 package com.travelneer.controller;
 
-import com.travelneer.user.User;
-import com.travelneer.user.UserFactory;
+import com.travelneer.user.*;
 import com.travelneer.dto.UserSignUpDto;
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.repository.UserRepository;
@@ -40,18 +39,19 @@ public class TokensController {
 
     @RequestMapping(value = "/users",
             method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> signUp(@RequestBody UserSignUpDto user) {
+    public ResponseEntity<?> signUp(@RequestBody UserSignUpDto signUpDto) {
         var body = new HashMap<String, String>();
 
         try {
-            User userEntity  = userFactory.createUser(user.getName(), user.getEmail(), user.getPassword());
-            userEntity.validate();
-            if(userRepository.exists(userEntity)) {
+            User user  = userFactory.createUser(new Username(signUpDto.getName()),
+                            new Email(signUpDto.getEmail()),
+                            new Password(signUpDto.getPassword()));
+            if(userRepository.exists(user)) {
                 throw new Exception("User already exists");
             }
-            userRepository.save(userEntity);
+            userRepository.save(user);
 
-            var token = jwtGenerator.generate(userEntity);
+            var token = jwtGenerator.generate(user);
 
             body.put("token", token);
 
@@ -72,10 +72,10 @@ public class TokensController {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            User userEntity = userRepository.getOneByName(username);
-            userEntity.login(password);
+            User user = userRepository.getOneByName(username);
+            user.login(password);
 
-            var token = jwtGenerator.generate(userEntity);
+            var token = jwtGenerator.generate(user);
 
             body.put("token", token);
 

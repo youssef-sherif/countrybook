@@ -9,7 +9,7 @@ export default class SignupButton extends Component {
             return <img src={loading} alt='loading' />
         }
         if (this.props.successful) {
-            setTimeout(() => this.props.navigateTo('/feed'), 500);
+            setTimeout(() => this.props.navigateTo('/welcome'), 500);
         }
     }
 

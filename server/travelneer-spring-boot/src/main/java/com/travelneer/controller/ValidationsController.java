@@ -28,12 +28,12 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin(origins = {"http://localhost:3000"})
 public class ValidationsController {
 
-    private final User userEntity;
+    private final User user;
     private final UserRepository userRepository;
 
     @Autowired
     public ValidationsController(UserFactory userFactory, UserRepository userRepository) {
-        this.userEntity = userFactory.createUser("", "", "");
+        this.user = userFactory.createUser();
         this.userRepository = userRepository;
     }
 
@@ -47,7 +47,7 @@ public class ValidationsController {
             if(userRepository.nameExists(username)) {
                 throw new Exception("Username Exists");
             }
-            userEntity.validateUsername(username);
+            user.validateUsername(username);
 
             body.put("isValid", true);
             body.put("username", username);
@@ -70,7 +70,7 @@ public class ValidationsController {
             if(userRepository.emailExists(email)) {
                 throw new Exception("Email exists");
             }
-            userEntity.validateEmail(email);
+            user.validateEmail(email);
 
             body.put("isValid", true);
             body.put("email", email);

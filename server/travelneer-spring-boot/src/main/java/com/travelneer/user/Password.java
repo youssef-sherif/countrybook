@@ -1,10 +1,16 @@
 package com.travelneer.user;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import java.util.regex.Pattern;
 
 public class Password {
 
     private String encodedPassword;
+
+    private PasswordEncoder passwordEncoder;
+
 
     public static final int STRONG_PASSWORD = 1;
     public static final int MEDIUM_PASSWORD = 2;
@@ -26,11 +32,15 @@ public class Password {
             + "{6,15}"
             + "$";
 
-    public Password() {}
-
-    public Password(String encodedPassword) {
-        this.encodedPassword = encodedPassword;
+    public Password(String password) {
+        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.encodedPassword = this.passwordEncoder.encode(password);
     }
+
+    public Password() {
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
+
 
     public static int getStrength(String value) {
 
@@ -52,4 +62,13 @@ public class Password {
     public void setEncoded(String password) {
         this.encodedPassword = password;
     }
+
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
 }
