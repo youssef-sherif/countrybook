@@ -11,6 +11,8 @@ import com.travelneer.controller.api.PostsController;
 import com.travelneer.controller.api.v1.FavouritesController;
 import org.springframework.hateoas.ResourceSupport;
 
+import java.util.Map;
+
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
@@ -20,21 +22,52 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class PostResource extends ResourceSupport {
 
-    private final Post post;
+
+    private final Integer postId;
+    private final String content;
+    private final String name;
+    private final String email;
+    private final Short countryId;
+    private final Map<Long, String> timeDiff;
+
     private Boolean isFavourite;
 
     @JsonCreator
     public PostResource(Post post) {
-        this.post = post;
+        this.postId = post.getId();
+        this.content = post.getContent();
+        this.name = post.getName();
+        this.email = post.getEmail();
+        this.countryId = post.getCountryId();
+        this.timeDiff = post.getTimeDiff();
 
         this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
         this.add(linkTo(methodOn(FavouritesController.class).favouritePost(post.getId())).withRel("favourite"));
         this.add(linkTo(methodOn(FavouritesController.class).unFavouritePost(post.getId())).withRel("unFavourite"));
     }
 
-    @JsonProperty("post")
-    public Post getPost() {
-        return post;
+    public Integer getPostId() {
+        return postId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Short getCountryId() {
+        return countryId;
+    }
+
+    public Map<Long, String> getTimeDiff() {
+        return timeDiff;
     }
 
     public Boolean getFavourite() {

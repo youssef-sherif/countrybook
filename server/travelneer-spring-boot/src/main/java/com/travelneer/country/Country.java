@@ -49,6 +49,18 @@ public class Country {
         this.flagUrl = flagUrl;
     }
 
+    public CountryResource toCountryResource() {
+        var countryResource = new CountryResource(this);
+
+        return countryResource;
+    }
+
+    public CountryDetailsResource toCountryDetailsResource() {
+        var countryDetailsResource = new CountryDetailsResource(this);
+
+        return countryDetailsResource;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Country (");

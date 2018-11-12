@@ -5,7 +5,9 @@
  */
 package com.travelneer.country;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.travelneer.controller.api.CountriesController;
 import com.travelneer.controller.api.v1.CountryFollowsController;
 import com.travelneer.controller.api.v1.CountryPostsController;
@@ -22,11 +24,18 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class CountryDetailsResource extends ResourceSupport {
 
-    private final Country country;
+    private final Short  countryId;
+    private final String  code;
+    private final String  name;
+    private final String  profileImageUrl;
     private Boolean isFollowed;
 
+    @JsonCreator
     public CountryDetailsResource(Country country) {
-        this.country = country;
+        this.countryId = country.getId();
+        this.code = country.getCode();
+        this.name = country.getName();
+        this.profileImageUrl = country.getProfileImageUrl();
 
         this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withSelfRel());
         this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getId())).withRel("follow"));
@@ -36,9 +45,20 @@ public class CountryDetailsResource extends ResourceSupport {
         this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getId())).withRel("postsCount"));
     }
 
-    @JsonProperty("country")
-    public Country getCountry() {
-        return country;
+    public Short getCountryId() {
+        return countryId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
     }
 
     public Boolean getFollowed() {

@@ -23,8 +23,8 @@ class CountrySelect extends Component {
                             Select a Country
                         </option>  
                     {this.props.countries.map((country) => 
-                        <option  key={country.country.id} value={country.country.id}>
-                            {country.country.name}
+                        <option  key={country.countryId} value={country.countryId}>
+                            {country.name}
                         </option>                    
                     )}
                 </select>

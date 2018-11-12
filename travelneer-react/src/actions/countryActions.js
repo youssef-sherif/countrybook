@@ -11,9 +11,9 @@ const fetchCountriesBegin = () => ({
   type: FETCH_COUNTRIES_BEGIN
 })
 
-const fetchCountriesSuccess = (countries, _links) => ({
+const fetchCountriesSuccess = (data) => ({
   type: FETCH_COUNTRIES_SUCCESS,
-  payload: { countries, _links }
+  payload: { data }
 })
 
 const fetchCountriesFailure = (error) => ({
@@ -22,14 +22,14 @@ const fetchCountriesFailure = (error) => ({
 })
 
 
-const searchCountriesSuccess = (countries) => ({
+const searchCountriesSuccess = (data) => ({
   type: SEARCH_COUNTRIES_SUCCESS,
-  payload: { countries }
+  payload: { data }
 })
 
-const fetchFollowedCountriesSuccess = (countries) => ({
+const fetchFollowedCountriesSuccess = (data) => ({
   type: FETCH_FOLLOWED_COUNTRIES_SUCCESS,
-  payload: { countries }
+  payload: { data }
 })
 
 export const fetchCountries = () => {
@@ -47,7 +47,7 @@ export const fetchCountries = () => {
           .then(handleErrors)
           .then((response) => response.json())
           .then((data) => {
-              dispatch(fetchCountriesSuccess(data.countries, data._links))
+              dispatch(fetchCountriesSuccess(data))
               return data
           })
           .catch((error) => { 
@@ -72,7 +72,7 @@ export const searchCountries = (resource, searchParam) => {
           .then(handleErrors)
           .then((response) => response.json())
           .then((data) => {
-              dispatch(searchCountriesSuccess(data.countries))
+              dispatch(searchCountriesSuccess(data))
               return data
           })
           .catch((error) => { 
@@ -96,7 +96,7 @@ export const fetchFollowedCountries = (resource) => {
           .then(handleErrors)
           .then((response) => response.json())
           .then((data) => {
-              dispatch(fetchFollowedCountriesSuccess(data.countries))
+              dispatch(fetchFollowedCountriesSuccess(data))
               return data
           })
           .catch((error) => { 

@@ -125,6 +125,12 @@ public class Post {
         }
     }
 
+    public PostResource toResource() {
+        var postResource = new PostResource(this);
+
+        return postResource;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Post (");

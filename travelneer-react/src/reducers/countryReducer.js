@@ -37,9 +37,9 @@ export function fetchCountriesReducer(state = getCountriesState,
         ...state,
         loading: false,
         successful: true,
-        countries: action.payload.countries,
-        searchCountriesResource: action.payload._links.searchCountries.href,
-        followedCountriesResource: action.payload._links.followedCountries.href
+        countries: action.payload.data.countries,
+        searchCountriesResource: action.payload.data._links.searchCountries.href,
+        followedCountriesResource: action.payload.data._links.followedCountries.href
       }
 
     case FETCH_COUNTRIES_FAILURE:
@@ -56,7 +56,7 @@ export function fetchCountriesReducer(state = getCountriesState,
         ...state,
         loading: false,
         successful: true,                
-        countries: action.payload.countries                 
+        countries: action.payload.data.countries                 
       }
 
     case FETCH_FOLLOWED_COUNTRIES_SUCCESS:
@@ -65,7 +65,7 @@ export function fetchCountriesReducer(state = getCountriesState,
         ...state,
         loading: false,
         successful: true,
-        countries: action.payload.countries
+        countries: action.payload.data.countries
       }
       
     case SELECT_COUNTRY:

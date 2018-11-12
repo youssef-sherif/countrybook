@@ -1,5 +1,6 @@
 package com.travelneer.controller.api;
 
+import com.travelneer.dto.Favourites;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.post.FeedResource;
 import com.travelneer.post.PostResource;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.travelneer.post.Post;
+import com.travelneer.repository.FavouritesRepository;
 import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +33,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PostsController {
 
 	private final PostRepository postRepository;
+	private final FavouritesRepository favouritesRepository;
 	private final JwtValidator validator;
 
 	@Autowired
-	public PostsController(PostRepository postRepository, JwtValidator validator) {
+	public PostsController(PostRepository postRepository, FavouritesRepository favouritesRepository, JwtValidator validator) {
         this.postRepository = postRepository;
-        this.validator = validator;
+		this.favouritesRepository = favouritesRepository;
+		this.validator = validator;
     }
 
 	@RequestMapping(value = "/feed", method = RequestMethod.GET)
@@ -45,7 +49,7 @@ public class PostsController {
 		try {
             List<Post> posts = postRepository.getFeed(validator.getUserId());
             posts.forEach(Post::calculateTimeDifference);
-            List<PostResource> postResources = posts.stream().map(PostResource::new)
+            List<PostResource> postResources = posts.stream().map(Post::toResource)
                     .collect(Collectors.toList());
 			var feedResource = new FeedResource(postResources);
 
@@ -81,7 +85,10 @@ public class PostsController {
 	public ResponseEntity<?> getPost(@PathVariable("postId") int postId) {
 
 		try {
-            var postResource = new PostResource(postRepository.getOneById(postId));
+            Post post =  postRepository.getOneById(postId);
+            post.calculateTimeDifference();
+            var postResource = post.toResource();
+            postResource.setFavourite(favouritesRepository.isPostFavouriteByUser(postId, validator.getUserId()));
 
 			return new ResponseEntity<>(postResource, HttpStatus.OK);
 		} catch(Exception e) {

@@ -36,8 +36,8 @@ public class CountryPostsController {
 
         try {
             List<Post> posts = postRepository.getPostsByCountryId(countryId);
-
-            List<PostResource> postResources = posts.stream().map(PostResource::new)
+            posts.forEach(Post::calculateTimeDifference);
+            List<PostResource> postResources = posts.stream().map(Post::toResource)
                     .collect(Collectors.toList());
 
             var feedResource = new FeedResource(postResources);

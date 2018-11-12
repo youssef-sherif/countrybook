@@ -52,7 +52,7 @@ public class CountriesController {
             List<Country> countries = countryRepository.getAll();
             countries.stream().forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
-            List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
+            List<CountryResource> countryResources = countries.stream().map(Country::toCountryResource)
                     .collect(Collectors.toList());
 
             var resource = new CountriesResource(countryResources);
@@ -71,7 +71,7 @@ public class CountriesController {
             var country = countryRepository.getOneById(countryId);
             country.setProfileImageUrl(s3Service.getImage(country.getProfileImageUrl()));
 
-            var countryDetailsResource = new CountryDetailsResource(country);
+            var countryDetailsResource = country.toCountryDetailsResource();
             countryDetailsResource.setFollowed(countryFollowsRepository.exists(validator.getUserId(), countryId));
 
             return new ResponseEntity<>(countryDetailsResource, HttpStatus.OK);
@@ -87,7 +87,7 @@ public class CountriesController {
             List<Country> countries = countryRepository.search(searchParam);
             countries.stream().forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
-            List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
+            List<CountryResource> countryResources = countries.stream().map(Country::toCountryResource)
                     .collect(Collectors.toList());
 
             var countriesResource = new CountriesResource(countryResources);

@@ -21,11 +21,11 @@ import styles from './PostList.scss'
         return (
             <div className={`container ${styles.div}`}>
                 {this.props.posts.map((post) => {                    
-                    return <Post key={post.post.id}
-                        content={post.post.content}
-                        name={post.post.name}                    
-                        email={post.post.email}                    
-                        timeStamp={post.post.date} />
+                    return <Post key={post.postId}
+                        content={post.content}
+                        name={post.name}                    
+                        email={post.email}                    
+                        timeStamp={post.date} />
                 })}
             </div>
         )

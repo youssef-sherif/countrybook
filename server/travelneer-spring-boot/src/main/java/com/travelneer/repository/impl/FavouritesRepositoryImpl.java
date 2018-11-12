@@ -34,9 +34,9 @@ public class FavouritesRepositoryImpl implements com.travelneer.repository.Favou
     }
 
     @Override
-    public boolean exists(Favourites favourites) {
+    public Boolean isPostFavouriteByUser(Integer postId, Integer userId) {
         return create.fetchExists(FAVOURITES,
-                FAVOURITES.POST_ID.eq(favourites.getPostId())
-                .and(FAVOURITES.USER_ID.eq(favourites.getUserId())));
+                FAVOURITES.POST_ID.eq(postId)
+                .and(FAVOURITES.USER_ID.eq(userId)));
     }
 }

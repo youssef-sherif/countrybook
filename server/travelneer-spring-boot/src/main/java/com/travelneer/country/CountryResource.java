@@ -5,6 +5,7 @@
  */
 package com.travelneer.country;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.controller.api.CountriesController;
 
@@ -20,16 +21,34 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 public class CountryResource extends ResourceSupport {
 
-    private final Country country;
+    private final Short  countryId;
+    private final String  code;
+    private final String  name;
+    private final String  flagUrl;
 
+    @JsonCreator
     public CountryResource(Country country) {
-        this.country = country;
+        this.countryId = country.getId();
+        this.code = country.getCode();
+        this.name = country.getName();
+        this.flagUrl = country.getFlagUrl();
 
         this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withRel("countryDetails"));
     }
 
-    @JsonProperty("country")
-    public Country getCountry() {
-        return country;
+    public Short getCountryId() {
+        return countryId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFlagUrl() {
+        return flagUrl;
     }
 }

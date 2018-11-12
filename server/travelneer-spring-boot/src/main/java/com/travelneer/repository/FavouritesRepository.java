@@ -5,5 +5,5 @@ import com.travelneer.dto.Favourites;
 
 public interface FavouritesRepository extends IRepository<Favourites> {
 
-    boolean exists(Favourites favourites);
+    Boolean isPostFavouriteByUser(Integer postId, Integer userId);
 }

@@ -27,7 +27,7 @@ public class FavouritesController {
     }
 
 
-    @RequestMapping(value = "/posts/favourites/{postId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/posts/{postId}/favourites", method = RequestMethod.PUT)
     public ResponseEntity<?> favouritePost(@PathVariable("postId") int postId) {
         Map<String, Object> response = new HashMap<>();
         try {
@@ -40,7 +40,7 @@ public class FavouritesController {
         }
     }
 
-    @RequestMapping(value = "/posts/favourites/{postId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/posts/{postId}/favourites", method = RequestMethod.DELETE)
     public ResponseEntity<?> unFavouritePost(@PathVariable("postId") int postId) {
         Map<String, Object> response = new HashMap<>();
         try {

@@ -62,9 +62,9 @@ const fetchCountryInfoBegin = () => ({
   type: FETCH_COUNTRY_INFO_BEGIN
 })
 
-const fetchCountryInfoSuccess = (country, followed, _links) => ({
+const fetchCountryInfoSuccess = (data) => ({
   type: FETCH_COUNTRY_INFO_SUCCESS,
-  payload: { country, followed, _links }
+  payload: { data }
 })
 
 const fetchCountryInfoFailure = (error) => ({
@@ -87,7 +87,7 @@ export const fetchCountryInfo = (countryId) => {
       })
       .then((data) => {
         
-        dispatch(fetchCountryInfoSuccess(data.country, data.followed, data._links))
+        dispatch(fetchCountryInfoSuccess(data))
         return data
       })
       .catch(error => dispatch(fetchCountryInfoFailure(error)))
