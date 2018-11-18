@@ -51,6 +51,8 @@ public class PostsController {
             posts.forEach(Post::calculateTimeDifference);
             List<PostResource> postResources = posts.stream().map(Post::toResource)
                     .collect(Collectors.toList());
+            postResources.forEach(e ->
+					e.setFavourite(favouritesRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 			var feedResource = new FeedResource(postResources);
 
 			return new ResponseEntity<>(feedResource, HttpStatus.OK);

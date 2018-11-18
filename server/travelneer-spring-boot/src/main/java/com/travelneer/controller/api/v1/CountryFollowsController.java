@@ -40,10 +40,7 @@ public class CountryFollowsController {
 
         try {
             List<Country> countries = countryFollowsRepository.getCountriesFollowed(validator.getUserId());
-            countries.stream().forEach(e -> {
-                e.setFlagUrl(s3Service.getImage(e.getFlagUrl()));
-                e.setProfileImageUrl(s3Service.getImage(e.getProfileImageUrl()));
-            });
+            countries.forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
             List<CountryResource> countryResources = countries.stream().map(CountryResource::new)
                     .collect(Collectors.toList());

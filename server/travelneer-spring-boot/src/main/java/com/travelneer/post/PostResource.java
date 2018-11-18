@@ -66,8 +66,10 @@ public class PostResource extends ResourceSupport {
         return countryId;
     }
 
-    public Map<Long, String> getTimeDiff() {
-        return timeDiff;
+    public String getTimeDiff() {
+        Long time = (Long) timeDiff.keySet().toArray()[0];
+
+        return  time + " " + timeDiff.get(time);
     }
 
     public Boolean getFavourite() {

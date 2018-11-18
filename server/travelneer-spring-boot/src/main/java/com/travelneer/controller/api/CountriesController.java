@@ -50,7 +50,7 @@ public class CountriesController {
 
 		try {
             List<Country> countries = countryRepository.getAll();
-            countries.stream().forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
+            countries.forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
             List<CountryResource> countryResources = countries.stream().map(Country::toCountryResource)
                     .collect(Collectors.toList());
@@ -85,7 +85,7 @@ public class CountriesController {
 
 		try {
             List<Country> countries = countryRepository.search(searchParam);
-            countries.stream().forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
+            countries.forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
             List<CountryResource> countryResources = countries.stream().map(Country::toCountryResource)
                     .collect(Collectors.toList());
