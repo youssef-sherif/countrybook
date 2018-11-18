@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Post from '../post/Post'
 import LoadingScreen from '../../loadingscreen/LoadingScreen'
-import { fetchCountryPosts } from '../../../actions/postsActions'
+import { fetchCountryPosts, fetchPosts } from '../../../actions/postsActions'
 import { connect } from 'react-redux'
 
 import styles from './PostList.scss'
@@ -11,6 +11,8 @@ import styles from './PostList.scss'
     componentDidMount() {
         if(this.props.countryPosts) {
             setTimeout(() => this.props.fetchCountryPosts(this.props.countryPostsResource), 500)
+        } else if(this.props.feed){
+            this.props.fetchPosts()
         }
     }
 
@@ -24,8 +26,9 @@ import styles from './PostList.scss'
                     return <Post key={post.postId}
                         content={post.content}
                         name={post.name}                    
-                        email={post.email}                    
-                        timeStamp={post.date} />
+                        email={post.email} 
+                        timeDiff={post.timeDiff}
+                        favourite={post.favourite}/>
                 })}
             </div>
         )
@@ -41,7 +44,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+    fetchPosts: () => dispatch(fetchPosts()),
     fetchCountryPosts: (postsResource) => dispatch(fetchCountryPosts(postsResource)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)

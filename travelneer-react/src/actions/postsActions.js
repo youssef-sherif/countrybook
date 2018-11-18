@@ -14,9 +14,9 @@ const fetchPostsBegin = () => ({
     type: FETCH_POSTS_BEGIN
 })
 
-const fetchPostsSuccess = (posts) => ({
+const fetchPostsSuccess = (posts, _links) => ({
     type: FETCH_POSTS_SUCCESS,    
-    payload: {posts}
+    payload: {posts, _links}
 })
 
 const fetchPostsFailure = (error) => ({
