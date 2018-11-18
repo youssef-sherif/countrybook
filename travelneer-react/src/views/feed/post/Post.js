@@ -15,14 +15,18 @@ export default class Post extends Component {
                     </div>
                 </div>
                 <div className={styles.timeStamp}>
-                        {this.props.timeStamp}
-                    </div>
+                        {`${this.props.timeDiff} ago`}
+                </div>
                 <blockquote className={styles.content}>
                     {this.props.content}
                 </blockquote>
                 <div className={`container ${styles.actions}`}>
                     <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.icon}`}></i>
-                    <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-star ${styles.icon}`}></i>
+                    {this.props.favourite === true ? 
+                        <p>I like this</p>
+                        :
+                        <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-star ${styles.icon}`}></i> 
+                    }
                 </div>
             </div>
         )
