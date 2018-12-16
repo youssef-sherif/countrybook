@@ -30,8 +30,7 @@ export function postsReducer(state = initialState, action) {
         ...state,
         loading: false,
         successful: true,
-        posts: action.payload.posts
-
+        posts: action.payload.posts,
       }
     case FETCH_POSTS_FAILURE:
       return {

@@ -11,7 +11,7 @@ class NewPost extends Component {
         return (
             <div className={`container ${styles.div}`}  >
                     <CountrySelect />
-                    <PostArea location='/feed' countryId={this.props.countryId} text={"What's hapenning?"} />                        
+                    <PostArea countryId={this.props.countryId} text={"What's hapenning?"} />                        
             </div>
         )
     }

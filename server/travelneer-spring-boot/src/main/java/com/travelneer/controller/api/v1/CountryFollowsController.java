@@ -35,7 +35,7 @@ public class CountryFollowsController {
     }
 
 
-    @RequestMapping(value = "/countries/follows", method = RequestMethod.GET)
+    @RequestMapping(value = "/followed-countries", method = RequestMethod.GET)
     public ResponseEntity<?> getFollowedCountries() {
 
         try {
@@ -52,7 +52,7 @@ public class CountryFollowsController {
         }
     }
 
-    @RequestMapping(value = "/countries/follows/{countryId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/followed-countries/{countryId}", method = RequestMethod.PUT)
     public ResponseEntity<?> followCountry(@PathVariable("countryId") short countryId) {
 
         var responseBody = new HashMap<String, Object>();
@@ -68,7 +68,7 @@ public class CountryFollowsController {
         }
     }
 
-    @RequestMapping(value = "/countries/follows/{countryId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/followed-countries/{countryId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> unFollowCountry(@PathVariable("countryId") short countryId) {
 
         var responseBody = new HashMap<String, Object>();

@@ -24,11 +24,13 @@ import styles from './PostList.scss'
             <div className={`container ${styles.div}`}>
                 {this.props.posts.map((post) => {                    
                     return <Post key={post.postId}
-                        content={post.content}
-                        name={post.name}                    
-                        email={post.email} 
-                        timeDiff={post.timeDiff}
-                        favourite={post.favourite}/>
+                                content={post.content}
+                                name={post.name}                    
+                                email={post.email} 
+                                timeDiff={post.timeDiff}
+                                isFavourite={post.favourite}
+                                favouritesResource={post._links.favourite.href}
+                            />
                 })}
             </div>
         )
@@ -39,7 +41,7 @@ const mapStateToProps = (state) => ({
     posts: state.posts.posts,
     successful: state.posts.successful,
     loading: state.posts.loading,
-
+    favouritesResource: state.posts.favouritesResource,
     countryPostsResource: state.countryProfile.postsResource
 })
 

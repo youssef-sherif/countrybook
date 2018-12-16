@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { newPost, writePost } from '../../../actions/newPostActions'
+import {fetchPosts} from '../../../actions/postsActions'
 import styles from './PostArea.scss'
 
 
@@ -21,7 +22,10 @@ class PostArea extends Component {
                 <div className={styles.buttonsDiv}>
                     <button className={`btn ${styles.button}`} onClick={(e) => {
                             this.props.newPost(this.props.countryId, this.props.content);
-                            this.props.navigateTo(this.props.location);
+                            this.props.location != null? 
+                                this.props.navigateTo(this.props.location)
+                                :
+                                setTimeout(() => this.props.fetchPosts(), 500)
                         }}>
                         post
                     </button>
@@ -43,6 +47,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     newPost: (countryId, content) => dispatch(newPost(countryId, content)),
     writePost: (content) => dispatch(writePost(content)),   
+    fetchPosts: () => dispatch(fetchPosts()),
     navigateTo: (path) => dispatch(push(path))
 })
 

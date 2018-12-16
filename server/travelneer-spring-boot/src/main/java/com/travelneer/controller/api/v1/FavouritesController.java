@@ -3,6 +3,8 @@ package com.travelneer.controller.api.v1;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.travelneer.jwt.JwtValidator;
+import com.travelneer.repository.FavouritesRepository;
 import com.travelneer.service.FavouritePostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,6 @@ public class FavouritesController {
 
     @Autowired
     public FavouritesController(FavouritePostService favouritePostService) {
-
         this.favouritePostService = favouritePostService;
     }
 

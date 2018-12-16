@@ -1,8 +1,5 @@
 @import "../../variables.scss";
 
-.gold {
-    color: gold;
-}
 
 .user {
     &:after {
@@ -36,6 +33,13 @@
         margin-right: 20px;
         width: 5px;
         height: 5px;
+    }
+
+    .goldIcon {
+        color: yellow;
+        margin-right: 20px;
+        width: 5px;
+        height: 5px;     
     }
 }
 

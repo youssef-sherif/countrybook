@@ -14,9 +14,9 @@ const fetchPostsBegin = () => ({
     type: FETCH_POSTS_BEGIN
 })
 
-const fetchPostsSuccess = (posts, _links) => ({
+const fetchPostsSuccess = (posts) => ({
     type: FETCH_POSTS_SUCCESS,    
-    payload: {posts, _links}
+    payload: {posts}
 })
 
 const fetchPostsFailure = (error) => ({
@@ -39,7 +39,7 @@ export const fetchPosts = () => {
             .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
-                dispatch(fetchPostsSuccess(data.posts, data._links))                
+                dispatch(fetchPostsSuccess(data.posts))                
                 return data
             })
             .catch((error) => { 

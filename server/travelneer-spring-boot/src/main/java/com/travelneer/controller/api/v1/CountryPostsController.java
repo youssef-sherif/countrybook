@@ -1,5 +1,6 @@
 package com.travelneer.controller.api.v1;
 
+import com.travelneer.jwt.JwtValidator;
 import com.travelneer.post.FeedResource;
 import com.travelneer.post.Post;
 import com.travelneer.post.PostResource;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.travelneer.repository.FavouritesRepository;
 import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,10 +26,14 @@ import org.springframework.web.bind.annotation.*;
 public class CountryPostsController {
 
     private final PostRepository postRepository;
+    private final FavouritesRepository favouritesRepository;
+    private final JwtValidator validator;
 
     @Autowired
-    public CountryPostsController(PostRepository postRepository) {
+    public CountryPostsController(PostRepository postRepository, FavouritesRepository favouritesRepository, JwtValidator validator) {
         this.postRepository = postRepository;
+        this.favouritesRepository = favouritesRepository;
+        this.validator = validator;
     }
 
 
@@ -39,6 +45,8 @@ public class CountryPostsController {
             posts.forEach(Post::calculateTimeDifference);
             List<PostResource> postResources = posts.stream().map(Post::toResource)
                     .collect(Collectors.toList());
+            postResources.forEach(e ->
+                    e.setFavourite(favouritesRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
             var feedResource = new FeedResource(postResources);
 
