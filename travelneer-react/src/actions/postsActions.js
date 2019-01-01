@@ -1,6 +1,62 @@
 export const FETCH_POSTS_BEGIN = 'FETCH_POSTS_BEGIN'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE'
+export const FAVOURITE_POST_BEGIN = 'FAVOURITE_POST_BEGIN'
+export const FAVOURITE_POST = 'FAVOURITE_POST'
+export const UNFAVOURITE_POST = 'UNFAVOURITE_POST'
+export const FAVOURITE_POST_FAILURE = 'FAVOURITE_POST_FAILURE'
+
+const favouritePostBegin = () => ({
+    type: FAVOURITE_POST_BEGIN
+})
+
+const favouritePostSuccess = (data) => ({
+    type: FAVOURITE_POST,
+    payload:  {
+        data
+    }
+})
+
+const unFavouritePostSuccess = (data) => ({
+    type: UNFAVOURITE_POST,
+    payload:  {
+        data
+    }
+})
+
+
+const favouritePostFailure = (error) => ({
+    type: FAVOURITE_POST_FAILURE,
+    payload: { error }
+})
+
+export const favouritePost = (resource, method) => {
+    let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
+    return (dispatch) => {
+        dispatch(favouritePostBegin())
+        return fetch(resource, {
+            method: method,
+            headers: {
+                'Authorization': tokenBearer,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(handleErrors)
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                if(method === 'put')                
+                    dispatch(favouritePostSuccess(data.post))
+                else
+                    dispatch(unFavouritePostSuccess(data.post))
+                return data
+            })
+            .catch(error => {
+                dispatch(favouritePostFailure(error));
+            })
+    }
+}
 
 const handleErrors = (response) => {
     if (!response.ok) {

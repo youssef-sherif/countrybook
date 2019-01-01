@@ -30,7 +30,8 @@ public class FavouritesRepositoryImpl implements com.travelneer.repository.Favou
     public void delete(Favourites favourites) {
         create.deleteFrom(FAVOURITES)
                 .where(FAVOURITES.POST_ID.eq(favourites.getPostId())
-                        .and(FAVOURITES.USER_ID.eq(favourites.getUserId())));
+                        .and(FAVOURITES.USER_ID.eq(favourites.getUserId())))
+                .execute();
     }
 
     @Override

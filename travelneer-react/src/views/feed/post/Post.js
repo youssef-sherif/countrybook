@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import styles from './Post.scss'
-import { favouritePost } from '../../../actions/favouritesActions'
+import { favouritePost } from '../../../actions/postsActions'
 import { connect } from 'react-redux'
 import traveler from '../../../images/traveler.png'
 import FavouritesButton from './FavouritesButton';
@@ -27,7 +27,6 @@ class Post extends Component {
                     <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.icon}`}></i>
                     <FavouritesButton
                         styles={styles}
-                        successful={this.props.favouritePostSuccessful}
                         isFavourite={this.props.isFavourite}
                         favourite={this.props.favouritePost.bind(this)}    
                         resource={this.props.favouritesResource}
@@ -40,8 +39,8 @@ class Post extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    favouritePostLoading: state.favourites.loading,
-    favouritePostSuccessful: state.favourites.successful,
+    favouritePostLoading: state.posts.favouriteLoading,
+    favouritePostSuccessful: state.posts.favouriteSuccessful
 })
 
 const mapDispatchToProps = (dispatch) => ({
