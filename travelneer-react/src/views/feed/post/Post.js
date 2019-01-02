@@ -4,7 +4,7 @@ import styles from './Post.scss'
 import { favouritePost } from '../../../actions/postsActions'
 import { connect } from 'react-redux'
 import traveler from '../../../images/traveler.png'
-import FavouritesButton from './FavouritesButton';
+import FavouritesButton from './FavouritesButton'
 
 class Post extends Component {
 

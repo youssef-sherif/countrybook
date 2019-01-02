@@ -5,7 +5,7 @@ import {
   SELECT_COUNTRY,
   FETCH_FOLLOWED_COUNTRIES_SUCCESS,
   SEARCH_COUNTRIES_SUCCESS,  
-} from '../actions/countryActions'
+} from '../actions/countriesActions'
 
 
 const getCountriesState = {    

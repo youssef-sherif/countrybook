@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { fetchCountries, fetchFollowedCountries, searchCountries } from '../../actions/countryActions'
+import { fetchCountries, fetchFollowedCountries, searchCountries } from '../../actions/countriesActions'
 
 import AppNavbar from '../navigation/app/AppNavbar'
 import CountryList from './countrylist/CountryList'

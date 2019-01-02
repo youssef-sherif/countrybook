@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-import { fetchCountries, selectCountry } from '../../../actions/countryActions'
+import { fetchCountries, selectCountry } from '../../../actions/countriesActions'
 
 import styles from './CountrySelect.scss'
 

@@ -4,7 +4,7 @@ import { createStore,  combineReducers, applyMiddleware } from 'redux'
 import { routerMiddleware, routerReducer } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import {fetchCountriesReducer} from './reducers/countryReducer'
+import {fetchCountriesReducer} from './reducers/countriesReducer'
 import {validationReducer} from './reducers/validationReducer'
 import {loginReducer} from './reducers/loginReducer'
 import {signUpReducer} from './reducers/signUpReducer'
