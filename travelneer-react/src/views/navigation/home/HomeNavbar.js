@@ -4,8 +4,25 @@ import Login from '../../home/login/Login'
 import logo from '../../../images/logo.png'
 import styles from './HomeNavbar.scss'
 
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
+import { authorizeUser } from '../../../actions/authActions'
+
+
 
 class HomeNavbar extends Component {
+
+    componentDidMount() {
+        authorizeUser()
+        setTimeout(() => {
+            if(localStorage.getItem('logged_in') === 'true') {
+                this.props.navigateTo('/feed');
+            } else {
+                this.props.navigateTo('/');
+            }
+        }, 500);
+
+    }
 
     render() {
 
@@ -29,4 +46,16 @@ class HomeNavbar extends Component {
     }
 }
 
-export default HomeNavbar
+const mapDispatchToProps = (dispatch) => ({
+    navigateTo: (e) => dispatch(push(e)),
+    authorizeUser: () => dispatch(authorizeUser())
+  })
+  
+
+  const mapStateToProps = (state) => {
+    return {
+        authSuccessful: state.auth.successful
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeNavbar)

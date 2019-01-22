@@ -24,7 +24,6 @@ import java.util.HashMap;
  */
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000"})
-@RequestMapping(value = "/controller")
 public class UsersController {
 
     private final JwtValidator validator;
@@ -44,6 +43,7 @@ public class UsersController {
             var body = new HashMap<String, String>();
             User userEntity = repository.getOneById(validator.getUserId());
             body.put("name", userEntity.getName().getValue());
+            body.put("userId", Integer.toString(validator.getUserId()));
 
             return new ResponseEntity<>(body, HttpStatus.OK);
         } catch (Exception e) {

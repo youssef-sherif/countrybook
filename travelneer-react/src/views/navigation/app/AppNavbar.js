@@ -8,9 +8,22 @@ import profile from '../../../images/profile.png'
 import posts from '../../../images/posts.png'
 import styles from './AppNavbar.scss'
 import logo from '../../../images/logo.png'
+import { authorizeUser } from '../../../actions/authActions'
 
 
 class AppNavbar extends Component {
+
+    componentDidMount() {
+        authorizeUser()
+        setTimeout(() => {
+            if(localStorage.getItem('logged_in') === 'true') {
+                this.props.navigateTo('/feed');
+            } else {
+                this.props.navigateTo('/');
+            }
+        }, 500);
+
+    }
 
     render() {
         return (
@@ -39,7 +52,15 @@ class AppNavbar extends Component {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    navigateTo: (e) => dispatch(push(e))
+    navigateTo: (e) => dispatch(push(e)),
+    authorizeUser: () => dispatch(authorizeUser())
   })
   
-  export default connect(null, mapDispatchToProps)(AppNavbar)
+
+  const mapStateToProps = (state) => {
+    return {
+        authSuccessful: state.auth.successful
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppNavbar)

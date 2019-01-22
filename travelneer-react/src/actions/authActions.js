@@ -27,7 +27,7 @@ export const authorizeUser = () => {
     let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
     return (dispatch) => {
         dispatch(authorizeUserBegin())
-        fetch('http://localhost:8080/api/v1/user', {
+        fetch('http://localhost:8080/api/me', {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,

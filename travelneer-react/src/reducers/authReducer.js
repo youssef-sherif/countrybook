@@ -5,7 +5,8 @@ import {
 } from '../actions/authActions'
 
 const authState = {
-  userId: null
+  userId: null,
+  successful: false
 }
 
 export function authReducer(state = authState, action) {
@@ -18,12 +19,13 @@ export function authReducer(state = authState, action) {
     case AUTHORIZE_USER_SUCCESS:
       return {
         ...state,
-        userId: action.payload
-
+        userId: action.payload.userId,
+        successful: true
       }
     case AUTHORIZE_USER_FAILURE:
       return {
-        ...state
+        ...state,
+        successful: false
       }
 
     default:
