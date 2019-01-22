@@ -6,7 +6,7 @@
 package com.travelneer.controller;
 
 import com.travelneer.user.*;
-import com.travelneer.dto.UserSignUpDto;
+import com.travelneer.dto.UserSignUpDTO;
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.repository.UserRepository;
 import java.util.HashMap;
@@ -39,17 +39,13 @@ public class TokensController {
 
     @RequestMapping(value = "/users",
             method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> signUp(@RequestBody UserSignUpDto signUpDto) {
+    public ResponseEntity<?> signUp(@RequestBody UserSignUpDTO signUpDto) {
         var body = new HashMap<String, String>();
 
         try {
             User user  = userFactory.createUser(new Username(signUpDto.getName()),
                             new Email(signUpDto.getEmail()),
                             new Password(signUpDto.getPassword()));
-            if(userRepository.exists(user)) {
-                throw new Exception("User already exists");
-            }
-            userRepository.save(user);
 
             var token = jwtGenerator.generate(user);
 

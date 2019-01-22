@@ -2,7 +2,7 @@ package com.travelneer.dto;
 
 
 
-public class UserSignUpDto {
+public class UserSignUpDTO {
 
     private String    name;
     private String    email;
