@@ -9,7 +9,7 @@ import {
 import {
     login
 } from '../../../actions/loginActions' 
-import styles from  './Login.scss'
+import styles from  './LoginForm.scss'
 import LoginButton from './LoginButton';
 
 class Login extends Component {
@@ -17,6 +17,7 @@ class Login extends Component {
     render() {
         return (
             <div className="nav navbar-nav navbar-right">
+                <form>
                 <input className={styles.input} placeholder="username or email" 
                     onChange={e => this.props.changeUsernameOrEmail(e.target.value)} />
                 <input className={styles.input} placeholder="password" 
@@ -30,6 +31,7 @@ class Login extends Component {
                     successful={this.props.loginSuccessful}
                     navigateTo={this.props.navigateTo}
                />
+               </form>
             </div>
         )
     }
