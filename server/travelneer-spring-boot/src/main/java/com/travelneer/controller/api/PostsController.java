@@ -68,6 +68,14 @@ public class PostsController {
 
 		var body = new HashMap<>();
 		try {
+			if(post.getContent().isEmpty()) {
+				throw new Exception("Empty post");
+			}
+
+			if(post.getCountryId() == null) {
+				throw new Exception("No country selected");
+			}
+			
             post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
             post.setAuthorId(validator.getUserId());
 
