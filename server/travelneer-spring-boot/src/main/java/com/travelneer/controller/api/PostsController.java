@@ -75,7 +75,7 @@ public class PostsController {
 			if(post.getCountryId() == null) {
 				throw new Exception("No country selected");
 			}
-			
+
             post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
             post.setAuthorId(validator.getUserId());
 

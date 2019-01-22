@@ -22,8 +22,10 @@ import java.util.HashMap;
  *
  * @author Youssef
  */
-@RestController
+
 @CrossOrigin(origins = {"http://localhost:3000"})
+@RequestMapping(value = "/api")
+@RestController
 public class UsersController {
 
     private final JwtValidator validator;
@@ -35,8 +37,7 @@ public class UsersController {
         this.repository = repository;
     }
 
-    @RequestMapping(value = "/me",
-            method = RequestMethod.GET, headers = {"Content-type=application/json"})
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
     public ResponseEntity<?> getUserDetails() {
 
         try {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Login from '../../home/login/Login'
+import LoginForm from '../../home/login/LoginForm'
 
 import logo from '../../../images/logo.png'
 import styles from './HomeNavbar.scss'
@@ -13,7 +13,7 @@ import { authorizeUser } from '../../../actions/authActions'
 class HomeNavbar extends Component {
 
     componentDidMount() {
-        authorizeUser()
+        this.props.authorizeUser()
         setTimeout(() => {
             if(localStorage.getItem('logged_in') === 'true') {
                 this.props.navigateTo('/feed');
@@ -38,7 +38,7 @@ class HomeNavbar extends Component {
                         <li><a id={`${styles.loginBtn}`} href="/">Login</a></li>
                     </ul>
                     <div className={styles.input} >
-                        <Login />
+                        <LoginForm />
                     </div>
                 </div>
             </nav>

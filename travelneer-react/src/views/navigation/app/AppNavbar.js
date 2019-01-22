@@ -14,11 +14,9 @@ import { authorizeUser } from '../../../actions/authActions'
 class AppNavbar extends Component {
 
     componentDidMount() {
-        authorizeUser()
+        this.props.authorizeUser()
         setTimeout(() => {
-            if(localStorage.getItem('logged_in') === 'true') {
-                this.props.navigateTo('/feed');
-            } else {
+            if(localStorage.getItem('logged_in') === 'false') {
                 this.props.navigateTo('/');
             }
         }, 500);
