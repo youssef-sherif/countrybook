@@ -28,7 +28,9 @@ import {
           ...state,
           login: {
             loading: false,
-            successful: true
+            successful: true,
+            usernameOrEmail: "",
+            password: ""
           }        
         }
       case LOGIN_FAILURE:
