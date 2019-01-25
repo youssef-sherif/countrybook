@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.message {
+    color: $travelneer-blue;
+    position: relative;
+    font-size: 25px;
+    left: 40%;
+}
+
+
+.div {
+    position: absolute;
+    left: 20%;
+    top: 20%;
+}
