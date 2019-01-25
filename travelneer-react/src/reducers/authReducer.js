@@ -6,7 +6,8 @@ import {
 
 const authState = {
   userId: null,
-  successful: false
+  successful: false,
+  loading: false
 }
 
 export function authReducer(state = authState, action) {
@@ -14,13 +15,15 @@ export function authReducer(state = authState, action) {
 
     case AUTHORIZE_USER_BEGIN:
       return {
-        ...state
+        ...state,
+        loading: true
       }
     case AUTHORIZE_USER_SUCCESS:
       return {
         ...state,
         userId: action.payload.userId,
-        successful: true
+        successful: true,
+        loading: false
       }
     case AUTHORIZE_USER_FAILURE:
       return {
