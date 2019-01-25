@@ -6,7 +6,7 @@ import Countries from './views/countries/Countries'
 import CountryViewer from './views/countryviewer/CountryViewer'
 import NewPost from './views/newpost/NewPost'
 import { Route } from 'react-router-dom'
-
+import LoggedOut from './views/loggedout/LoggedOut'
 
 export default class Routes extends Component {
 
@@ -15,6 +15,7 @@ export default class Routes extends Component {
             <div>
                 <Route path="/" exact component={Home} />
                 <Route path="/feed" exact component={Feed} />
+                <Route path="/logout" exact component={LoggedOut} />
                 <Route path="/new" exact component={NewPost} />                
                 <Route path="/countries" exact render={(props) => <Countries {...props} search={false} />} />
                 <Route path="/search_countries" render={(props) => <Countries {...props} search={true} />} />                                
