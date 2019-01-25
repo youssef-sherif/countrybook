@@ -12,6 +12,7 @@ import {
   validatePassword
 } from '../../../actions/validationActions'
 import { createUser } from '../../../actions/signUpActions'
+import { login } from '../../../actions/loginActions' 
 import styles from './SignUpForm.scss'
 
 class SignUpForm extends Component {
@@ -47,6 +48,7 @@ class SignUpForm extends Component {
           <br />
           <SignUpButton className={styles.SignUpButton}
             createUser={this.props.createUser.bind(this)}
+            login={this.props.login.bind(this)}
             username={this.props.username}
             email={this.props.email}
             password={this.props.password}
@@ -84,6 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
   validateEmail: (e) => dispatch(validateEmail(e)),
   validatePassword: (e) => dispatch(validatePassword(e)),
   createUser: (username, email, password) => dispatch(createUser(username, email, password)),
+  login: (username, email, password) => dispatch(login(username, email, password)),
   navigateTo: (e) => dispatch(push(e))
 })
 
