@@ -31,7 +31,13 @@ class AppNavbar extends Component {
                         <img alt='logo' src={logo} />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
-                        <img className={styles.img} alt='profile' src={profile} />
+                        <img className={styles.img} alt='profile' src={profile} onClick={() => {
+                            localStorage.removeItem('token');
+                            this.props.authorizeUser();                    
+                            setTimeout(() => {
+                                this.props.navigateTo('/logout')
+                            }, 500);
+                        }} />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
                         <img className={styles.img} alt='bags' src={notifications} />
@@ -57,7 +63,8 @@ const mapDispatchToProps = (dispatch) => ({
 
   const mapStateToProps = (state) => {
     return {
-        authSuccessful: state.auth.successful
+        authSuccessful: state.auth.successful,
+        authLoading: state.auth.loading
     }
   }
 

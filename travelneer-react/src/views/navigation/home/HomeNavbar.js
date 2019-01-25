@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LoginForm from '../../home/login/LoginForm'
+import LoginNavbar from './login/LoginNavbar'
 
 import logo from '../../../images/logo.png'
 import styles from './HomeNavbar.scss'
@@ -9,17 +9,14 @@ import { push } from 'react-router-redux'
 import { authorizeUser } from '../../../actions/authActions'
 
 
-
 class HomeNavbar extends Component {
 
     componentDidMount() {
         this.props.authorizeUser()
         setTimeout(() => {
-            if(localStorage.getItem('logged_in') === 'true') {
+            if(localStorage.getItem('logged_in')  === 'true') {
                 this.props.navigateTo('/feed');
-            } else {
-                this.props.navigateTo('/');
-            }
+            } 
         }, 500);
 
     }
@@ -35,10 +32,10 @@ class HomeNavbar extends Component {
                         </a>
                     </div>
                     <ul className={`nav navbar-nav navbar-right`}>
-                        <li><a id={`${styles.loginBtn}`} href="/">Login</a></li>
+                        <li><a id={`${styles.loginBtn}`} href="/login">Login</a></li>
                     </ul>
                     <div className={styles.input} >
-                        <LoginForm />
+                        <LoginNavbar />
                     </div>
                 </div>
             </nav>
@@ -54,7 +51,8 @@ const mapDispatchToProps = (dispatch) => ({
 
   const mapStateToProps = (state) => {
     return {
-        authSuccessful: state.auth.successful
+        authSuccessful: state.auth.successful,
+        authLoading: state.auth.loading
     }
   }
 
