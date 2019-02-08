@@ -5,6 +5,7 @@
  */
 package com.travelneer.controller;
 
+import com.travelneer.jwt.JwtValidator;
 import com.travelneer.user.*;
 import com.travelneer.dto.UserSignUpDTO;
 import com.travelneer.jwt.JwtGenerator;
@@ -24,17 +25,19 @@ import javax.servlet.http.HttpServletRequest;
  */
 @CrossOrigin( "http://localhost:3000")
 @RestController
-public class TokensController {
+public class AuthenticationController {
 
     private final JwtGenerator jwtGenerator;
     private final UserRepository userRepository;
     private final UserFactory userFactory;
+    private final JwtValidator validator;
 
     @Autowired
-    public TokensController(JwtGenerator jwtGenerator, UserRepository userRepository, UserFactory userFactory) {
+    public AuthenticationController(JwtGenerator jwtGenerator, UserRepository userRepository, UserFactory userFactory, JwtValidator validator) {
         this.jwtGenerator = jwtGenerator;
         this.userRepository = userRepository;
         this.userFactory = userFactory;
+        this.validator = validator;
     }
 
     @RequestMapping(value = "/users",
@@ -80,6 +83,21 @@ public class TokensController {
             body.put("loginError", e.getMessage());
             
             return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/api/me", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserDetails() {
+
+        try {
+            var body = new HashMap<String, String>();
+            User userEntity = userRepository.getOneById(validator.getUserId());
+            body.put("name", userEntity.getName().getValue());
+            body.put("userId", Integer.toString(validator.getUserId()));
+
+            return new ResponseEntity<>(body, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
