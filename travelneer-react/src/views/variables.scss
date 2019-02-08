@@ -12,9 +12,11 @@ $travelneer-green: #00ff66;
 $menu-background: #2d3138;
 $travelneer-dark: #2d3138;
 $travelneer-blue: #01a2aa; //#68b7ba;
+$travelneer-background: #F0F0F0;
+
 
 :global {
     body {
-        background-color: #F0F0F0
+        background-color: $travelneer-background
     }
   }

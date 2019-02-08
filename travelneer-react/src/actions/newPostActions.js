@@ -4,6 +4,13 @@ export const NEW_POST_FAILURE = 'NEW_POST_FAILURE'
 
 export const WRITE_POST = 'WRITE_POST'
 
+export const SHOW_NEW = 'SHOW_NEW'
+
+export const showNew = (showNew) => ({
+    type: SHOW_NEW,
+    payload: {showNew}
+})
+
 const handleErrors = (response) => {
     if (!response.ok) {
         throw Error(response.statusText)
