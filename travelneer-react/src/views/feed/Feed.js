@@ -23,51 +23,74 @@ class Feed extends Component {
         this.props.showNew(false);    
     }    
 
+    getCollapsablePostArea = () => {
+        return (
+            <div className={`container ${this.props.showNewState? styles.NewPostShow : styles.NewPostHide}`}>                    
+                <CountrySelect />
+                <PostArea refresh={false}
+                    countryId={this.props.countryId} 
+                    countryName={this.props.countryName === "" ? 
+                        "(choose a country)" : this.props.countryName}
+                    onPost={this.onPost.bind(this)}
+                    newPost={this.props.newPost.bind(this)} />                                            
+            </div>
+        )
+    }
+
+    getPostArea = () => {
+        return(
+            <div>
+                {this.props.showNewState?
+                    <div />
+                    :
+                    <div className={`container`}  >
+                        <CountrySelect />
+                        <PostArea refresh={true}
+                            countryId={this.props.countryId} 
+                            countryName={this.props.countryName === "" ? 
+                            "(choose a country)" : this.props.countryName}
+                            onPost={this.onPost.bind(this)}
+                            newPost={this.props.newPost.bind(this)} />                        
+                    </div>
+                }              
+                <br/>      
+                <PostList />
+            </div>)
+    }
+
+    getNewPostButton = () => {
+        return (
+            <img className={`btn ${styles.newPostImg}`}
+                alt='new post'
+                src={new_post}
+                onClick={() => {
+                    this.props.showNew(!this.props.showNewState)
+                }} />
+        )
+    }
+
     render() {
+
+        const collapsablePostArea = this.getCollapsablePostArea()
+        const postArea = this.getPostArea()
+        const newPostButton = this.getNewPostButton()
+
         return (
             <div>
                 <AppNavbar />
                 <br/><br/><br/>
-                <div className={`container ${this.props.showNewState? styles.NewPostShow : styles.NewPostHide}`}>                    
-                    <CountrySelect />
-                    <PostArea refresh={false}
-                        countryId={this.props.countryId} 
-                        countryName={this.props.countryName === "" ? 
-                                "(choose a country)" : this.props.countryName}
-                        onPost={this.onPost.bind(this)}
-                        newPost={this.props.newPost.bind(this)} />                                            
-                </div>
+            
+                {collapsablePostArea}
 
-                <div>
-                    {this.props.showNewState?
-                        <div />
-                            :
-                        <div className={`container`}  >
-                            <CountrySelect />
-                            <PostArea refresh={true}
-                                countryId={this.props.countryId} 
-                                countryName={this.props.countryName === "" ? 
-                                    "(choose a country)" : this.props.countryName}
-                                onPost={this.onPost.bind(this)}
-                                newPost={this.props.newPost.bind(this)} />                        
-                        </div>
-                    }              
-                    <br/>      
-                    <PostList />
-                </div>
+                {postArea}
 
-                <img className={`btn ${styles.newPostImg}`}
-                    alt='new post'
-                    src={new_post}
-                    onClick={() => {
-                        this.props.showNew(!this.props.showNewState)
-                    }} />
+                {newPostButton}
 
-                    <NewPostIndicator
-                        successful={this.props.newPostSuccessful}
-                        loading={this.props.newPostLoading} 
-                        error={this.props.newPostError}
-                        errorMessage={this.props.newPostErrorMessage}/>
+                <NewPostIndicator
+                    successful={this.props.newPostSuccessful}
+                    loading={this.props.newPostLoading} 
+                    error={this.props.newPostError}
+                    errorMessage={this.props.newPostErrorMessage}/>
             </div>
         )
     }

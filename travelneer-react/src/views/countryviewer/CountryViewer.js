@@ -22,7 +22,6 @@ class CountryViewer extends Component {
     }
 
     getPostsDiv = () => {
-
         return (
             <div>
                 {this.props.compose ?
@@ -37,32 +36,40 @@ class CountryViewer extends Component {
             </div>)
     }
 
+    getButtons = () => {
+        return(
+            <div className={styles.buttonsDiv}>
+                <button className={`btn ${styles.btn} ${styles.postsButton}`}
+                    onClick={(e) => {                            
+                        this.props.navigateTo({ pathname: `/countries/${this.props.match.params.countryId}` });
+                    }}>
+                    Posts
+                </button>            
+                <button className={`btn ${styles.btn} ${styles.newPostButton}`}
+                    onClick={(e) => {      
+                        this.props.navigateTo({ pathname: `/countries/${this.props.match.params.countryId}/new`});
+                    }}>
+                    New
+                </button>
+            </div>)
+    }
+
     render() {
-        const countryId = this.props.match.params.countryId
-        const postsDiv = this.getPostsDiv();
+        const postsDiv = this.getPostsDiv()
+        const buttons = this.getButtons()
+
         return (
             <div>
                 <AppNavbar />
                 <br /><br /><br />
-                <CountryProfile countryId={countryId} />
-                <br />
-                <br />
-                <div className={styles.buttonsDiv}>
-                    <button className={`btn ${styles.btn} ${styles.postsButton}`}
-                        onClick={(e) => {                            
-                            this.props.navigateTo({ pathname: `/countries/${countryId}` });
-                        }}>
-                        Posts
-                    </button>            
-                    <button className={`btn ${styles.btn} ${styles.newPostButton}`}
-                        onClick={(e) => {      
-                            this.props.navigateTo({ pathname: `/countries/${countryId}/new`});
-                        }}>
-                        New
-                    </button>
-                </div>
-                <br />
-                <br />
+                
+                <CountryProfile countryId={this.props.match.params.countryId} />
+
+                <br /><br />
+
+                {buttons}
+
+                <br /><br />
                 
                 {postsDiv}
 
