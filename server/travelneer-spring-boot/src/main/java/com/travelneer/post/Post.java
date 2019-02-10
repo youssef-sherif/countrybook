@@ -125,6 +125,17 @@ public class Post {
         }
     }
 
+    public void validate() throws Exception {
+
+        if(content.isEmpty()) {
+            throw new Exception("Empty post");
+        }
+
+        if(countryId == null) {
+            throw new Exception("No country selected");
+        }
+    }
+
     public PostResource toResource() {
         var postResource = new PostResource(this);
 
