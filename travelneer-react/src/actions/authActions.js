@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux'
+
 export const AUTHORIZE_USER_BEGIN = 'AUTHORIZE_USER_BEGIN'
 export const AUTHORIZE_USER_SUCCESS = 'AUTHORIZE_USER_SUCCESS'
 export const AUTHORIZE_USER_FAILURE = 'AUTHORIZE_USER_FAILURE'
@@ -38,12 +40,13 @@ export const authorizeUser = () => {
             .then((response) => response.json())
             .then((data) => {
                 dispatch(authorizeUserSuccess(data.userId))
-                localStorage.setItem('logged_in', 'true')
+                localStorage.setItem('logged_in', 'true')                
                 return data
             })
             .catch((error) => { 
                 dispatch(authorizeUserFailure())                
-                localStorage.setItem('logged_in', 'false')                                                
+                localStorage.setItem('logged_in', 'false')   
+                dispatch(push('/'))
             })
     }
 }
