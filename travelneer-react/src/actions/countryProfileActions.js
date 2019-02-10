@@ -1,3 +1,5 @@
+import { fetchCountryPosts, fetchPostsBegin } from "./postsActions";
+
 export const FETCH_COUNTRY_INFO_BEGIN = 'FETCH_COUNTRY_INFO_BEGIN'
 export const FETCH_COUNTRY_INFO_SUCCESS = 'FETCH_COUNTRY_INFO_SUCCESS'
 export const FETCH_COUNTRY_INFO_FAILURE = 'FETCH_COUNTRY_INFO_FAILURE'
@@ -52,12 +54,6 @@ export const fetchPostsCount = (resource) => {
 }
 
 
-
-export const fetchFollowersCount = (resource) => ({
-
-})
-
-
 const fetchCountryInfoBegin = () => ({
   type: FETCH_COUNTRY_INFO_BEGIN
 })
@@ -75,7 +71,8 @@ const fetchCountryInfoFailure = (error) => ({
 export const fetchCountryInfo = (countryId) => {
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
   return (dispatch) => {
-    dispatch(fetchCountryInfoBegin())
+    dispatch(fetchCountryInfoBegin());
+    dispatch(fetchPostsBegin());
     return fetch(`http://localhost:8080/api/countries/${countryId}`, {
       headers: {
         'Authorization': tokenBearer,        
@@ -85,9 +82,11 @@ export const fetchCountryInfo = (countryId) => {
       .then((response) => {
         return response.json()
       })
-      .then((data) => {
-        
-        dispatch(fetchCountryInfoSuccess(data))
+      .then((data) => {        
+        dispatch(fetchCountryInfoSuccess(data));
+        dispatch(fetchCountryPosts(data._links.countryPosts.href));
+        dispatch(fetchPostsCount(data._links.postsCount.href));
+
         return data
       })
       .catch(error => dispatch(fetchCountryInfoFailure(error)))

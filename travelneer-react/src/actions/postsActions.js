@@ -66,7 +66,7 @@ const handleErrors = (response) => {
 }
 
 
-const fetchPostsBegin = () => ({
+export const fetchPostsBegin = () => ({
     type: FETCH_POSTS_BEGIN
 })
 
