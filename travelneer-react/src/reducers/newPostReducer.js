@@ -9,7 +9,8 @@ import {
 const initialState = {
       successful: false,
       loading: false,
-      error: "",
+      error: false,
+      errorMessage: "aa",
       content: "",
       showNew: false
   }
@@ -34,6 +35,8 @@ export function newPostReducer(state = initialState, action) {
           ...state,
            loading: false,
            successful: false,
+           error: true,
+           errorMessage: action.payload.error
         }
   
       case WRITE_POST:
