@@ -1,11 +1,23 @@
 @import '../variables.scss';
 
 
-.div { 
-    position: relative;    
-    width: 100%;
+.newPostSuccessDiv {
+    position: fixed;
+    bottom: 5%;
+    right: 50%;
+    font-size: 20px;
+    color: $travelneer-green;
 }
- 
+
+.newPostErrorDiv {
+    position: fixed;
+    bottom: 5%;
+    right: 50%;
+    font-size: 20px;
+    color: red;
+}
+
+
 .newPostImg {
     position: fixed;
     bottom: 10%;

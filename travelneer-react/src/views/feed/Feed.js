@@ -8,33 +8,27 @@ import new_post from '../../images/new_post.png'
 import styles from './Feed.scss'
 import NewPost from '../newpost/NewPost';
 import { showNew } from '../../actions/newPostActions';
+import NewPostIndicator from './NewPostIndicator';
 
 
 class Feed extends Component {
 
     render() {
-
         return (
             <div>
                 <AppNavbar />
-                <br />
+                <br/><br/><br/>
                 <div className={this.props.showNewState? styles.NewPostShow : styles.NewPostHide}>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <NewPost />
+                    <NewPost refresh={false}/>
                 </div>
 
-                <div className={styles.div}>
-                    <br/>
-                    <br/> 
-                    <br/> 
+                <div>
                     {this.props.showNewState?
                         <div />
                             :
                         <NewPost />
-                    }
-                    <br />
+                    }              
+                    <br/>      
                     <PostList feed={true}/>
                 </div>
 
@@ -44,13 +38,23 @@ class Feed extends Component {
                     onClick={() => {
                         this.props.showNew(!this.props.showNewState)
                     }} />
+
+                    <NewPostIndicator
+                        successful={this.props.newPostSuccessful}
+                        loading={this.props.newPostLoading} 
+                        error={this.props.newPostError}
+                        errorMessage={this.props.newPostErrorMessage}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    showNewState: state.newPost.showNew
+    showNewState: state.newPost.showNew,
+    newPostSuccessful: state.newPost.successful,
+    newPostLoading: state.newPost.loading,
+    newPostError: state.newPost.error,
+    newPostErrorMessage: state.newPost.errorMessage
 })
 
 

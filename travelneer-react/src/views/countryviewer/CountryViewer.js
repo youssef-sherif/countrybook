@@ -8,6 +8,7 @@ import { fetchCountryInfo} from '../../actions/countryProfileActions'
 import PostArea from '../newpost/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
+import NewPostIndicator from '../feed/NewPostIndicator';
 
 class CountryViewer extends Component {
 
@@ -57,7 +58,14 @@ class CountryViewer extends Component {
                 </div>
                 <br />
                 <br />
+                
                 {postsDiv}
+
+                <NewPostIndicator
+                        successful={this.props.newPostSuccessful}
+                        loading={this.props.newPostLoading} 
+                        error={this.props.newPostError}
+                        errorMessage={this.props.newPostErrorMessage}/>
             </div>
         )
     }
@@ -67,7 +75,11 @@ class CountryViewer extends Component {
 
 const mapStateToProps = (state) => ({
     countryName: state.countryProfile.countryName,
-    loading: state.posts.loading
+    loading: state.posts.loading,
+    newPostSuccessful: state.newPost.successful,
+    newPostLoading: state.newPost.loading,
+    newPostError: state.newPost.error,
+    newPostErrorMessage: state.newPost.errorMessage
 })
 
 const mapDispatchToProps = (dispatch) => ({

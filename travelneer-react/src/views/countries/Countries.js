@@ -20,6 +20,7 @@ class Countries extends Component {
                 <input onChange={(e) =>
                     this.props.searchCountries(this.props.searchResource, e.target.value)}
                     rows='1' placeholder='Search for a country' />
+                <br/><br/>
                 <CountryList countries={this.props.countries}
                     navigateTo={this.props.navigateTo}
                     loading={this.props.loading}
