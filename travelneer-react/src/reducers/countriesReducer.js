@@ -12,10 +12,11 @@ const getCountriesState = {
   error: "",
   loading: false,
   successful: false,
-  countries: [],
+  countries: [{name: "", id: 0}],
   searchCountriesResource: "",
   followedCountriesResource: "",
-  selectedCountryId: 0
+  selectedCountryId: 0,
+  selectedCountryName: ""
 }
 
 export function fetchCountriesReducer(state = getCountriesState,
@@ -68,10 +69,15 @@ export function fetchCountriesReducer(state = getCountriesState,
         countries: action.payload.data.countries
       }
       
-    case SELECT_COUNTRY:
+    case SELECT_COUNTRY:            
+
+      let country = state.countries.find( country => country.countryId  === parseInt(action.payload.countryId, 10))
+      let name = country != null ? country.name : "(choose a country)"
+
       return {
           ...state,          
-          selectedCountryId: action.payload.countryId
+          selectedCountryId: action.payload.countryId,
+          selectedCountryName: name
       }
 
     default:
