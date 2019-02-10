@@ -31,12 +31,11 @@ class AppNavbar extends Component {
                         <img alt='logo' src={logo} />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
-                        <img className={styles.img} alt='profile' src={profile} onClick={() => {
-                            localStorage.removeItem('token');
-                            this.props.authorizeUser();                    
-                            setTimeout(() => {
-                                this.props.navigateTo('/logout')
-                            }, 500);
+                        <img className={styles.img} alt='profile' src={profile} 
+                            onClick={() => {
+                                localStorage.removeItem('token');
+                                localStorage.setItem('logged_in', 'false');
+                                window.location.reload();                                            
                         }} />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
