@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import { newPost, writePost } from '../../../actions/newPostActions'
+import { newPost, writePost, showNew } from '../../../actions/newPostActions'
 import {fetchPosts} from '../../../actions/postsActions'
 import styles from './PostArea.scss'
 
@@ -25,7 +25,13 @@ class PostArea extends Component {
                             this.props.location != null? 
                                 this.props.navigateTo(this.props.location)
                                 :
-                                setTimeout(() => this.props.fetchPosts(), 500)
+                                setTimeout(() => {
+                                    if(this.props.refresh) {
+                                        this.props.fetchPosts();
+                                    } else {
+                                        this.props.showNew(false);
+                                    }
+                                }, 500)
                         }}>
                         post
                     </button>
@@ -40,15 +46,16 @@ class PostArea extends Component {
 
 const mapStateToProps = (state) => ({
     content: state.newPost.content,
-    newPostSuccessful: state.newPost.successful,
-    newPostLoading: state.newPost.loading
+    showNewState: state.newPost.showNew,
+    selectedCountry: state.countries.selectedCountry
 })
 
 const mapDispatchToProps = (dispatch) => ({
     newPost: (countryId, content) => dispatch(newPost(countryId, content)),
     writePost: (content) => dispatch(writePost(content)),   
     fetchPosts: () => dispatch(fetchPosts()),
-    navigateTo: (path) => dispatch(push(path))
+    navigateTo: (path) => dispatch(push(path)),
+    showNew: (showNewState) => dispatch(showNew(showNewState))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostArea)

@@ -11,14 +11,19 @@ class NewPost extends Component {
         return (
             <div className={`container ${styles.div}`}  >
                     <CountrySelect />
-                    <PostArea countryId={this.props.countryId} text={"What's hapenning?"} />                        
+                    <PostArea refresh={this.props.refresh === false? false : true} 
+                        countryId={this.props.countryId} 
+                        text={`What's hapenning in ${this.props.countryName === "" ? 
+                            "(choose a country)" : this.props.countryName}?`} />                        
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    countryId: state.countries.selectedCountryId
+    countryId: state.countries.selectedCountryId,
+    countryName: state.countries.selectedCountryName,
+    countries: state.countries.countries
 })
 
 
