@@ -1,21 +1,9 @@
 
 import React, { Component } from 'react'
-import { loading } from '../../../images/loading.gif'
 
 export default class SignupButton extends Component {
 
-    redirect() {
-        if (this.props.loading) {
-            return <img src={loading} alt='loading' />
-        }
-        if (this.props.successful) {
-            this.props.login(this.props.username, this.props.username, this.props.password);                       
-            setTimeout(() => this.props.navigateTo('/feed'), 500);
-        }
-    }
-
-    render() {
-        this.redirect();
+    render() {        
         return (
                 <button className={'btn btn-block'}
                     type='submit'

@@ -1,3 +1,5 @@
+import { login } from './loginActions'
+
 export const CREATE_USER_BEGIN = 'CREATE_USER_BEGIN'
 export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS'
 export const CREATE_USER_FAILURE = 'CREATE_USER_FAILURE'
@@ -42,6 +44,7 @@ export const createUser = (username, email, password) => {
         dispatch(createUserSuccess())
         localStorage.setItem('token', data.token)
         localStorage.setItem('logged_in', true)
+        dispatch(login(username, email, password))
         return data
       })
       .catch((error) => dispatch(createUserFailure(error)))

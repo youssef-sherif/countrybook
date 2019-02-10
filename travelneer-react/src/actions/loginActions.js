@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux'
+
 export const LOGIN_BEGIN = 'LOGIN_BEGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -34,6 +36,7 @@ const handleErrors = (response) =>{
           dispatch(loginSuccess())        
           localStorage.setItem('token', data.token)      
           localStorage.setItem('logged_in', true)  
+          dispatch(push('/feed'))
           return data
         })
         .catch((error) => dispatch(loginFailure()) )
