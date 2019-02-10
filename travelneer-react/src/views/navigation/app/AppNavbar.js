@@ -15,12 +15,6 @@ class AppNavbar extends Component {
 
     componentDidMount() {
         this.props.authorizeUser()
-        setTimeout(() => {
-            if(localStorage.getItem('logged_in') === 'false') {
-                this.props.navigateTo('/');
-            }
-        }, 500);
-
     }
 
     render() {
@@ -55,9 +49,9 @@ class AppNavbar extends Component {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    navigateTo: (e) => dispatch(push(e)),
-    authorizeUser: () => dispatch(authorizeUser())
-  })
+    authorizeUser: () => dispatch(authorizeUser()),
+    navigateTo: (location) => dispatch(push(location))
+})
   
 
   const mapStateToProps = (state) => {
