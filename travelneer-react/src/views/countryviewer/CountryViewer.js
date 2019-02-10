@@ -5,6 +5,7 @@ import CountryProfile from './countryprofile/CountryProfile'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { fetchCountryInfo} from '../../actions/countryProfileActions'
+import { newPost2 } from '../../actions/newPostActions'
 import PostArea from '../newpost/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
@@ -12,21 +13,25 @@ import NewPostIndicator from '../feed/NewPostIndicator';
 
 class CountryViewer extends Component {
 
-    componentDidMount() {  
-        const countryId = this.props.match.params.countryId         
-        this.props.fetchCountryInfo(countryId)
+    componentDidMount() {        
+        this.props.fetchCountryInfo(this.props.match.params.countryId)
     }
 
-    getPostsDiv = (countryId) => {
+    onPost = () => {
+        console.log("success")
+    }
+
+    getPostsDiv = () => {
 
         return (
             <div>
                 {this.props.compose ?
-                <PostArea  countryId={countryId}
+                <PostArea  countryId={this.props.match.params.countryId}
                     countryName={this.props.countryName}
-                    location={`/countries/${countryId}`}/> 
+                    onPost={this.onPost.bind(this)}
+                    newPost={this.props.newPost2.bind(this)}/> 
                 :
-                <PostList countryPosts={true} />
+                <PostList />
                 }
                 
             </div>)
@@ -34,7 +39,7 @@ class CountryViewer extends Component {
 
     render() {
         const countryId = this.props.match.params.countryId
-        const postsDiv = this.getPostsDiv(countryId);
+        const postsDiv = this.getPostsDiv();
         return (
             <div>
                 <AppNavbar />
@@ -84,7 +89,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     navigateTo: (e) => dispatch(push(e)),
-    fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId))
+    fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)).countryProfile,
+    newPost2: (countryId, content) =>  dispatch(newPost2(countryId, content)),
+
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryViewer)

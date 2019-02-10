@@ -1,26 +1,18 @@
 import React, { Component } from 'react'
 import Post from '../post/Post'
 import LoadingScreen from '../../loadingscreen/LoadingScreen'
-import { fetchCountryPosts, fetchPosts } from '../../../actions/postsActions'
 import { connect } from 'react-redux'
 
 import styles from './PostList.scss'
 
  class PostList extends Component {
 
-    componentDidMount() {
-        if(this.props.countryPosts) {
-            setTimeout(() => this.props.fetchCountryPosts(this.props.countryPostsResource), 500)
-        } else if(this.props.feed){
-            this.props.fetchPosts()
-        }
-    }
-
     render() {     
-        if (this.props.loading) {
-            return <LoadingScreen />
-        }   
-        return (
+        if (this.props.loading)
+            return ( <LoadingScreen /> )
+
+        else if(this.props.successful)
+            return (
             <div className={`container ${styles.div}`}>
                 {this.props.posts.map((post) => {                    
                     return <Post key={post.postId}
@@ -34,6 +26,8 @@ import styles from './PostList.scss'
                 })}
             </div>
         )
+        else   
+            return (<div/>)
     }
 }
 
@@ -45,8 +39,4 @@ const mapStateToProps = (state) => ({
     countryPostsResource: state.countryProfile.postsResource
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchPosts: () => dispatch(fetchPosts()),
-    fetchCountryPosts: (postsResource) => dispatch(fetchCountryPosts(postsResource)),
-})
-export default connect(mapStateToProps, mapDispatchToProps)(PostList)
+export default connect(mapStateToProps, null)(PostList)

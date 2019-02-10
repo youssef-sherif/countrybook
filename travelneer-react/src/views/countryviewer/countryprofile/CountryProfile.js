@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import FollowButton from './FollowButton'
 import CountryDetails from './CountryDetails'
 
-import { fetchCountryInfo,
-    fetchFollowersCount, 
+import { fetchCountryInfo, 
     fetchPostsCount,
     toggleFollowed } from '../../../actions/countryProfileActions'
 import { followCountry } from '../../../actions/followCountryActions'
@@ -12,11 +11,6 @@ import styles from './CountryProfile.scss'
 
 
 class CountryProfile extends Component {
-
-
-    componentDidMount() {
-        setTimeout(() => this.props.fetchPostsCount(this.props.postsCountResource), 500)        
-    }
 
     render() {
         return (
@@ -64,7 +58,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)),
     followCountry: (resource, method) => dispatch(followCountry(resource, method)),
-    fetchFollowersCount: (resource) => dispatch(fetchFollowersCount(resource)),
     fetchPostsCount: (resource) => dispatch(fetchPostsCount(resource)),
     toggleFollowed: (bool) => dispatch(toggleFollowed(bool))
     
