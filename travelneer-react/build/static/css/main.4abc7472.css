@@ -1,0 +1,734 @@
+.ValidMessage__div___30PUW {
+  position: relative; }
+
+.ValidMessage__img___3HNEG {
+  width: 25px;
+  height: 25px; }
+
+.ValidMessage__greenMessage___HZ-06 {
+  font-size: 10px;
+  color: green; }
+.InvalidMessage__div___3yQx_ {
+  position: relative; }
+
+.InvalidMessage__img___123RY {
+  width: 25px;
+  height: 25px; }
+
+.InvalidMessage__redMessage___3ixU_ {
+  font-size: 10px;
+  color: red; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .InputText__input___F6J3Z {
+    margin-right: 10px;
+    text-align: center;
+    height: 40px;
+    width: 100%; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .InputText__input___F6J3Z {
+    margin-right: 10px;
+    text-align: center;
+    height: 40px;
+    width: 100%; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .InputText__input___F6J3Z {
+    margin-right: 10px;
+    text-align: center;
+    height: 30px;
+    width: 100%; } }
+
+@media only screen and (max-width: 370px) {
+  .InputText__input___F6J3Z {
+    margin-right: 10px;
+    text-align: center;
+    height: 25px;
+    width: 100%; } }
+.MediumPassword__div___1Llm- {
+  position: relative; }
+
+.MediumPassword__img___ZavqL {
+  width: 25px;
+  height: 25px; }
+
+.MediumPassword__yellowMessage___26mno {
+  font-size: 10px;
+  color: orange; }
+.StrongPassword__div___2dfMy {
+  position: relative; }
+
+.StrongPassword__img___2pN2f {
+  width: 25px;
+  height: 25px; }
+
+.StrongPassword__greenMessage___2Kxqi {
+  font-size: 10px;
+  color: green; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .InputPassword__input___28jL0 {
+    margin-right: 10px;
+    text-align: center;
+    height: 40px;
+    width: 100%; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .InputPassword__input___28jL0 {
+    margin-right: 10px;
+    text-align: center;
+    height: 40px;
+    width: 100%; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .InputPassword__input___28jL0 {
+    margin-right: 10px;
+    text-align: center;
+    height: 30px;
+    width: 100%; } }
+
+@media only screen and (max-width: 370px) {
+  .InputPassword__input___28jL0 {
+    margin-right: 10px;
+    text-align: center;
+    height: 25px;
+    width: 100%; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.SignUpForm__div___pPJPF {
+  padding: 20px;
+  align-content: center !important; }
+
+@media only screen and (min-width: 768px) {
+  .SignUpForm__div___pPJPF {
+    position: absolute;
+    top: 15%;
+    right: 5%;
+    width: auto;
+    height: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: #FFF;
+    border-radius: 20px; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .SignUpForm__div___pPJPF {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+    text-align: center; }
+    .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 {
+      text-align: center;
+      width: 100%; }
+      .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 .SignUpForm__SignUpButton___rvbcc {
+        height: 40px;
+        width: 100%; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .SignUpForm__div___pPJPF {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+    text-align: center; }
+    .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 {
+      text-align: center;
+      width: 100%; }
+      .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 .SignUpForm__SignUpButton___rvbcc {
+        height: 30px;
+        width: 100%; } }
+
+@media only screen and (max-width: 370px) {
+  .SignUpForm__div___pPJPF {
+    position: relative;
+    width: 100%;
+    height: auto;
+    background-color: #FFF;
+    text-align: center; }
+    .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 {
+      text-align: center;
+      width: 100%; }
+      .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 .SignUpForm__SignUpButton___rvbcc {
+        height: 25px;
+        width: 100%; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.LoginNavbar__input___4C1QU {
+  margin: 10px;
+  background-color: #FFF;
+  font: 1em sans-serif;
+  color: #000;
+  height: 30px;
+  width: auto; }
+
+.LoginNavbar__LoginButton___-7zS4 {
+  margin: 10px;
+  background-color: lightgray;
+  color: #000; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  nav {
+    height: auto;
+    margin-bottom: 0px;
+    border-radius: 0;
+    background-color: #2d3138;
+    color: #FFF;
+    width: 100%;
+    margin: 0;
+    font-size: 1em;
+    border: 0;
+    padding: 0px; }
+    nav div div a {
+      position: relative;
+      margin: 10px;
+      float: left; }
+    nav div ul li #HomeNavbar__loginBtn___2iIrZ {
+      display: none; } }
+
+@media only screen and (max-width: 767px) {
+  nav {
+    height: auto;
+    margin-bottom: 0px;
+    border-radius: 0;
+    background-color: #2d3138;
+    color: #FFF;
+    width: 100%;
+    margin: 0;
+    font-size: 1em;
+    border: 0;
+    padding: 0px; }
+    nav div div a {
+      position: relative;
+      margin: 10px;
+      float: left; }
+      nav div div a img {
+        width: 75%;
+        height: auto; }
+    nav div ul li #HomeNavbar__loginBtn___2iIrZ {
+      float: right; }
+      nav div ul li #HomeNavbar__loginBtn___2iIrZ:hover {
+        background-color: lightgrey; }
+    nav div .HomeNavbar__input___2O6nN {
+      display: none; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .Home__header___287TU {
+    position: relative;
+    text-align: center;
+    width: 100%; }
+    .Home__header___287TU .Home__img___2y2_8 {
+      width: 100%;
+      height: auto; }
+    .Home__header___287TU .Home__introduction___9y0k- {
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      width: 30%; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+        font-size: 36px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+        font-size: 24px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+        font-size: 18px;
+        color: white; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .Home__header___287TU {
+    position: relative;
+    text-align: center;
+    width: 100%; }
+    .Home__header___287TU .Home__img___2y2_8 {
+      width: 100%;
+      height: auto; }
+    .Home__header___287TU .Home__introduction___9y0k- {
+      position: absolute;
+      text-align: center;
+      top: 30px;
+      width: 100%; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+        font-size: 26px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+        font-size: 22px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+        font-size: 15px;
+        color: white; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .Home__header___287TU {
+    position: relative;
+    text-align: center;
+    width: 100%; }
+    .Home__header___287TU .Home__img___2y2_8 {
+      width: 100%;
+      height: auto; }
+    .Home__header___287TU .Home__introduction___9y0k- {
+      position: absolute;
+      text-align: center;
+      top: 30px;
+      height: 100%;
+      width: 100%; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+        font-size: 25px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+        font-size: 20px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+        font-size: 16px;
+        color: white; } }
+
+@media only screen and (max-width: 370px) {
+  .Home__header___287TU {
+    position: relative;
+    text-align: center;
+    width: 100%; }
+    .Home__header___287TU .Home__img___2y2_8 {
+      width: 100%;
+      height: auto; }
+    .Home__header___287TU .Home__introduction___9y0k- {
+      position: absolute;
+      text-align: center;
+      top: 30px;
+      height: 100%;
+      width: 100%; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+        font-size: 20px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+        font-size: 16px;
+        color: white; }
+      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+        font-size: 12px;
+        color: white; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.Post__user___a0PZw:after {
+  display: block;
+  float: left; }
+
+.Post__user___a0PZw .Post__avatar___3vIjg {
+  border-radius: 5px;
+  height: 30px;
+  width: auto;
+  float: left;
+  margin-right: 10px; }
+
+.Post__user___a0PZw .Post__details___3iNpe {
+  font-weight: bold; }
+
+.Post__timeStamp___3Cl1X {
+  float: right; }
+
+.Post__actions___1B0Ly {
+  position: relative;
+  margin-bottom: 10px; }
+  .Post__actions___1B0Ly .Post__icon___1umsI {
+    color: #999;
+    margin-right: 20px;
+    width: 5px;
+    height: 5px; }
+  .Post__actions___1B0Ly .Post__goldIcon___1JmxV {
+    color: yellow;
+    margin-right: 20px;
+    width: 5px;
+    height: 5px; }
+
+@media only screen and (min-width: 768px) {
+  .Post__story___1OWcy {
+    border: 1px solid #ccc;
+    padding: 25px 50px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF; }
+  .Post__content___UVTg1 {
+    margin: 30px 0;
+    font-family: georgin;
+    font-size: 1.1em;
+    width: 100%; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .Post__story___1OWcy {
+    border: 1px solid #ccc;
+    padding: 15px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF; }
+  .Post__content___UVTg1 {
+    margin: 30px 0;
+    font-family: georgin;
+    font-size: 1em;
+    width: 100%; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .Post__story___1OWcy {
+    border: 1px solid #ccc;
+    padding: 15px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF; }
+  .Post__content___UVTg1 {
+    margin: 30px 0;
+    font-family: georgin;
+    font-size: 1em;
+    width: 100%; } }
+
+@media only screen and (max-width: 370px) {
+  .Post__story___1OWcy {
+    border: 1px solid #ccc;
+    padding: 15px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF; }
+  .Post__content___UVTg1 {
+    margin: 30px 0;
+    font-family: georgin;
+    font-size: 1em;
+    width: 100%; } }
+.LoadingScreen__img___1UV-R {
+  position: relative;
+  left: 50%; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .PostList__div___ZqkO6 {
+    position: relative;
+    width: 60%; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .PostList__div___ZqkO6 {
+    position: relative;
+    width: 90%; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .PostList__div___ZqkO6 {
+    position: relative;
+    width: 90%; } }
+
+@media only screen and (max-width: 370px) {
+  .PostList__div___ZqkO6 {
+    width: 100%; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.AppNavbar__navbar___1YoG_ {
+  background-color: #2d3138;
+  border-radius: 0; }
+
+.AppNavbar__img___14vSl {
+  margin-top: 10px;
+  margin-right: 20px;
+  margin-left: 20px; }
+
+@media only screen and (min-width: 768px) {
+  .AppNavbar__logo___391z_ {
+    position: relative;
+    float: left; } }
+
+@media only screen and (max-width: 767px) {
+  .AppNavbar__logo___391z_ {
+    display: none; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.Feed__newPostSuccessDiv___8aPfX {
+  position: fixed;
+  bottom: 5%;
+  right: 50%;
+  font-size: 20px;
+  color: #00ff66; }
+
+.Feed__newPostErrorDiv___2dy5O {
+  position: fixed;
+  bottom: 5%;
+  right: 50%;
+  font-size: 20px;
+  color: red; }
+
+.Feed__newPostImg___3B72S {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  z-index: 1; }
+
+.Feed__NewPostShow___paceV {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%; }
+
+.Feed__NewPostHide___1iPR6 {
+  position: fixed;
+  top: 100%;
+  width: 100%;
+  z-index: -1; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .CountrySelect__div___2Hb3T {
+    width: 50%; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .PostArea__buttonsDiv___1ZWGn {
+    position: relative;
+    left: 20%;
+    width: 60%; }
+  .PostArea__div___1MFYj {
+    width: 50%; }
+  .PostArea__textarea___L2JOS {
+    position: relative;
+    width: 80%;
+    height: 150px;
+    resize: none; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .PostArea__buttonsDiv___1ZWGn {
+    position: relative;
+    left: 5%;
+    width: 90%; }
+  .PostArea__textarea___L2JOS {
+    position: relative;
+    width: 90%;
+    height: 150px;
+    resize: none; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .PostArea__buttonsDiv___1ZWGn {
+    position: relative;
+    left: 5%;
+    width: 90%; }
+  .PostArea__textarea___L2JOS {
+    position: relative;
+    width: 90%;
+    height: 150px;
+    resize: none; } }
+
+@media only screen and (max-width: 370px) {
+  .PostArea__buttonsDiv___1ZWGn {
+    width: 100%; }
+  .PostArea__textarea___L2JOS {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    resize: none; } }
+
+.PostArea__button___1uC4l {
+  float: right;
+  height: 30px;
+  margin-right: 5px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #00ff66; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .NewPost__div___1q_rt {
+    width: 100%; } }
+.Country__div___3lMRK {
+  height: 150px;
+  width: 200px;
+  position: relative;
+  float: left; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.Countries__button___36OA3 {
+  background-color: #00ff66;
+  margin-right: 5px;
+  float: left;
+  font-size: 9px;
+  width: 50px;
+  height: 25px; }
+
+@media only screen and (min-width: 768px) {
+  .Countries__button___36OA3 {
+    background-color: #00ff66;
+    margin-right: 5px;
+    font-size: 14px;
+    width: 80px;
+    height: 35px;
+    float: left; } }
+
+.Countries__div___3VCDC {
+  position: relative;
+  left: 40%; }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .CountryDetails__div___2ueBG {
+    position: relative;
+    float: right;
+    font-size: 1.2em; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .CountryDetails__div___2ueBG {
+    position: relative;
+    float: right;
+    font-size: 1.2em; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .CountryDetails__div___2ueBG {
+    position: relative;
+    float: right;
+    font-size: 1.2em; } }
+
+@media only screen and (max-width: 370px) {
+  .CountryDetails__div___2ueBG {
+    position: relative;
+    float: right;
+    font-size: 0.9em; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+@media only screen and (min-width: 768px) {
+  .CountryProfile__div___1T1iR {
+    margin-top: 100px;
+    width: 60%; }
+  .CountryProfile__img___3I0ED {
+    position: relative;
+    float: left;
+    width: 40%;
+    height: auto; }
+  .CountryProfile__FollowButton___3fOAN {
+    float: left;
+    background-color: #00ff66; } }
+
+@media only screen and (min-width: 478px) and (max-width: 767px) {
+  .CountryProfile__div___1T1iR {
+    margin-top: 100px;
+    width: 80%; }
+  .CountryProfile__img___3I0ED {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: auto; }
+  .CountryProfile__FollowButton___3fOAN {
+    float: left;
+    background-color: #00ff66; } }
+
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .CountryProfile__div___1T1iR {
+    margin-top: 10px;
+    width: 100%; }
+  .CountryProfile__img___3I0ED {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: auto; }
+  .CountryProfile__FollowButton___3fOAN {
+    float: left;
+    background-color: #00ff66; } }
+
+@media only screen and (max-width: 370px) {
+  .CountryProfile__div___1T1iR {
+    margin-top: 10px;
+    width: 100%; }
+  .CountryProfile__img___3I0ED {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: auto; }
+  .CountryProfile__FollowButton___3fOAN {
+    float: left;
+    width: 50px;
+    height: 25px;
+    font-size: 10px;
+    padding: 3px;
+    background-color: #00ff66; } }
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.CountryViewer__btn___3iIiB {
+  background-color: #01a2aa; }
+
+.CountryViewer__postsButton___JhK9i {
+  margin-right: 10px;
+  float: left;
+  width: 50px;
+  height: 25px;
+  font-size: 14px;
+  color: white;
+  padding: 3px; }
+
+.CountryViewer__newPostButton___3nOmj {
+  margin-right: 10px;
+  float: left;
+  width: 50px;
+  height: 25px;
+  font-size: 14px;
+  background-color: #2d3138;
+  padding: 3px;
+  color: white; }
+
+.CountryViewer__buttonsDiv___2tf21 {
+  position: relative;
+  left: 40%; }
+
+@media only screen and (min-width: 768px) {
+  .CountryViewer__postsDiv___iex6T {
+    width: 100%; }
+  .CountryViewer__postsButton___JhK9i {
+    margin-right: 10px;
+    float: left;
+    width: 80px;
+    height: 35px;
+    font-size: 14px;
+    color: white;
+    padding: 3px; }
+  .CountryViewer__newPostButton___3nOmj {
+    margin-right: 10px;
+    float: left;
+    width: 80px;
+    height: 35px;
+    font-size: 14px;
+    padding: 3px;
+    color: white; } }
+
+/*# sourceMappingURL=main.4abc7472.css.map*/
