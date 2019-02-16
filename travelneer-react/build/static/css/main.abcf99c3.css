@@ -1,115 +1,121 @@
-.ValidMessage__div___30PUW {
+.ValidMessage_div__3Djze {
   position: relative; }
 
-.ValidMessage__img___3HNEG {
+.ValidMessage_img__dT_Vq {
   width: 25px;
   height: 25px; }
 
-.ValidMessage__greenMessage___HZ-06 {
+.ValidMessage_greenMessage__6FH6_ {
   font-size: 10px;
   color: green; }
-.InvalidMessage__div___3yQx_ {
+
+.InvalidMessage_div__39exW {
   position: relative; }
 
-.InvalidMessage__img___123RY {
+.InvalidMessage_img__3oQPq {
   width: 25px;
   height: 25px; }
 
-.InvalidMessage__redMessage___3ixU_ {
+.InvalidMessage_redMessage__2uJ9n {
   font-size: 10px;
   color: red; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .InputText__input___F6J3Z {
+  .InputText_input__2uH7g {
     margin-right: 10px;
     text-align: center;
     height: 40px;
     width: 100%; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .InputText__input___F6J3Z {
+  .InputText_input__2uH7g {
     margin-right: 10px;
     text-align: center;
     height: 40px;
     width: 100%; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .InputText__input___F6J3Z {
+  .InputText_input__2uH7g {
     margin-right: 10px;
     text-align: center;
     height: 30px;
     width: 100%; } }
 
 @media only screen and (max-width: 370px) {
-  .InputText__input___F6J3Z {
+  .InputText_input__2uH7g {
     margin-right: 10px;
     text-align: center;
     height: 25px;
     width: 100%; } }
-.MediumPassword__div___1Llm- {
+
+.MediumPassword_div__1NcIL {
   position: relative; }
 
-.MediumPassword__img___ZavqL {
+.MediumPassword_img__kFfgy {
   width: 25px;
   height: 25px; }
 
-.MediumPassword__yellowMessage___26mno {
+.MediumPassword_yellowMessage__11EKh {
   font-size: 10px;
   color: orange; }
-.StrongPassword__div___2dfMy {
+
+.StrongPassword_div__1GAlz {
   position: relative; }
 
-.StrongPassword__img___2pN2f {
+.StrongPassword_img__1bk1d {
   width: 25px;
   height: 25px; }
 
-.StrongPassword__greenMessage___2Kxqi {
+.StrongPassword_greenMessage__1fMjY {
   font-size: 10px;
   color: green; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .InputPassword__input___28jL0 {
+  .InputPassword_input__2ecHG {
     margin-right: 10px;
     text-align: center;
     height: 40px;
     width: 100%; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .InputPassword__input___28jL0 {
+  .InputPassword_input__2ecHG {
     margin-right: 10px;
     text-align: center;
     height: 40px;
     width: 100%; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .InputPassword__input___28jL0 {
+  .InputPassword_input__2ecHG {
     margin-right: 10px;
     text-align: center;
     height: 30px;
     width: 100%; } }
 
 @media only screen and (max-width: 370px) {
-  .InputPassword__input___28jL0 {
+  .InputPassword_input__2ecHG {
     margin-right: 10px;
     text-align: center;
     height: 25px;
     width: 100%; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.SignUpForm__div___pPJPF {
+.SignUpForm_div__3Pe-B {
   padding: 20px;
   align-content: center !important; }
 
 @media only screen and (min-width: 768px) {
-  .SignUpForm__div___pPJPF {
+  .SignUpForm_div__3Pe-B {
     position: absolute;
     top: 15%;
     right: 5%;
@@ -121,51 +127,52 @@ body {
     border-radius: 20px; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .SignUpForm__div___pPJPF {
+  .SignUpForm_div__3Pe-B {
     position: relative;
     width: 100%;
     height: auto;
     background-color: #FFF;
     text-align: center; }
-    .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 {
+    .SignUpForm_div__3Pe-B .SignUpForm_form__qdapd {
       text-align: center;
       width: 100%; }
-      .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 .SignUpForm__SignUpButton___rvbcc {
+      .SignUpForm_div__3Pe-B .SignUpForm_form__qdapd .SignUpForm_SignUpButton__Qu1je {
         height: 40px;
         width: 100%; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .SignUpForm__div___pPJPF {
+  .SignUpForm_div__3Pe-B {
     position: relative;
     width: 100%;
     height: auto;
     background-color: #FFF;
     text-align: center; }
-    .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 {
+    .SignUpForm_div__3Pe-B .SignUpForm_form__qdapd {
       text-align: center;
       width: 100%; }
-      .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 .SignUpForm__SignUpButton___rvbcc {
+      .SignUpForm_div__3Pe-B .SignUpForm_form__qdapd .SignUpForm_SignUpButton__Qu1je {
         height: 30px;
         width: 100%; } }
 
 @media only screen and (max-width: 370px) {
-  .SignUpForm__div___pPJPF {
+  .SignUpForm_div__3Pe-B {
     position: relative;
     width: 100%;
     height: auto;
     background-color: #FFF;
     text-align: center; }
-    .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 {
+    .SignUpForm_div__3Pe-B .SignUpForm_form__qdapd {
       text-align: center;
       width: 100%; }
-      .SignUpForm__div___pPJPF .SignUpForm__form___1niq1 .SignUpForm__SignUpButton___rvbcc {
+      .SignUpForm_div__3Pe-B .SignUpForm_form__qdapd .SignUpForm_SignUpButton__Qu1je {
         height: 25px;
         width: 100%; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.LoginNavbar__input___4C1QU {
+.LoginNavbar_input__3UX2- {
   margin: 10px;
   background-color: #FFF;
   font: 1em sans-serif;
@@ -173,10 +180,11 @@ body {
   height: 30px;
   width: auto; }
 
-.LoginNavbar__LoginButton___-7zS4 {
+.LoginNavbar_LoginButton__3BFZb {
   margin: 10px;
   background-color: lightgray;
   color: #000; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
@@ -197,7 +205,7 @@ body {
       position: relative;
       margin: 10px;
       float: left; }
-    nav div ul li #HomeNavbar__loginBtn___2iIrZ {
+    nav div ul li #HomeNavbar_loginBtn__LuPlW {
       display: none; } }
 
 @media only screen and (max-width: 767px) {
@@ -219,160 +227,162 @@ body {
       nav div div a img {
         width: 75%;
         height: auto; }
-    nav div ul li #HomeNavbar__loginBtn___2iIrZ {
+    nav div ul li #HomeNavbar_loginBtn__LuPlW {
       float: right; }
-      nav div ul li #HomeNavbar__loginBtn___2iIrZ:hover {
+      nav div ul li #HomeNavbar_loginBtn__LuPlW:hover {
         background-color: lightgrey; }
-    nav div .HomeNavbar__input___2O6nN {
+    nav div .HomeNavbar_input__29I8G {
       display: none; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .Home__header___287TU {
+  .Home_header__3bMHz {
     position: relative;
     text-align: center;
     width: 100%; }
-    .Home__header___287TU .Home__img___2y2_8 {
+    .Home_header__3bMHz .Home_img__M12Wo {
       width: 100%;
       height: auto; }
-    .Home__header___287TU .Home__introduction___9y0k- {
+    .Home_header__3bMHz .Home_introduction__3ZMjR {
       position: absolute;
       top: 15%;
       left: 15%;
       width: 30%; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_largeText__3_SCR {
         font-size: 36px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_mediumText__1uoUI {
         font-size: 24px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_smallText__3lPoc {
         font-size: 18px;
         color: white; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .Home__header___287TU {
+  .Home_header__3bMHz {
     position: relative;
     text-align: center;
     width: 100%; }
-    .Home__header___287TU .Home__img___2y2_8 {
+    .Home_header__3bMHz .Home_img__M12Wo {
       width: 100%;
       height: auto; }
-    .Home__header___287TU .Home__introduction___9y0k- {
+    .Home_header__3bMHz .Home_introduction__3ZMjR {
       position: absolute;
       text-align: center;
       top: 30px;
       width: 100%; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_largeText__3_SCR {
         font-size: 26px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_mediumText__1uoUI {
         font-size: 22px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_smallText__3lPoc {
         font-size: 15px;
         color: white; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .Home__header___287TU {
+  .Home_header__3bMHz {
     position: relative;
     text-align: center;
     width: 100%; }
-    .Home__header___287TU .Home__img___2y2_8 {
+    .Home_header__3bMHz .Home_img__M12Wo {
       width: 100%;
       height: auto; }
-    .Home__header___287TU .Home__introduction___9y0k- {
+    .Home_header__3bMHz .Home_introduction__3ZMjR {
       position: absolute;
       text-align: center;
       top: 30px;
       height: 100%;
       width: 100%; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_largeText__3_SCR {
         font-size: 25px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_mediumText__1uoUI {
         font-size: 20px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_smallText__3lPoc {
         font-size: 16px;
         color: white; } }
 
 @media only screen and (max-width: 370px) {
-  .Home__header___287TU {
+  .Home_header__3bMHz {
     position: relative;
     text-align: center;
     width: 100%; }
-    .Home__header___287TU .Home__img___2y2_8 {
+    .Home_header__3bMHz .Home_img__M12Wo {
       width: 100%;
       height: auto; }
-    .Home__header___287TU .Home__introduction___9y0k- {
+    .Home_header__3bMHz .Home_introduction__3ZMjR {
       position: absolute;
       text-align: center;
       top: 30px;
       height: 100%;
       width: 100%; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__largeText___3vzKG {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_largeText__3_SCR {
         font-size: 20px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__mediumText___aD1Hg {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_mediumText__1uoUI {
         font-size: 16px;
         color: white; }
-      .Home__header___287TU .Home__introduction___9y0k- .Home__smallText___1YYeY {
+      .Home_header__3bMHz .Home_introduction__3ZMjR .Home_smallText__3lPoc {
         font-size: 12px;
         color: white; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.Post__user___a0PZw:after {
+.Post_user__1koly:after {
   display: block;
   float: left; }
 
-.Post__user___a0PZw .Post__avatar___3vIjg {
+.Post_user__1koly .Post_avatar__1bv5J {
   border-radius: 5px;
   height: 30px;
   width: auto;
   float: left;
   margin-right: 10px; }
 
-.Post__user___a0PZw .Post__details___3iNpe {
+.Post_user__1koly .Post_details__2D9Uk {
   font-weight: bold; }
 
-.Post__timeStamp___3Cl1X {
+.Post_timeStamp__2KnT1 {
   float: right; }
 
-.Post__actions___1B0Ly {
+.Post_actions__3F5Y9 {
   position: relative;
   margin-bottom: 10px; }
-  .Post__actions___1B0Ly .Post__icon___1umsI {
+  .Post_actions__3F5Y9 .Post_icon__2Tijz {
     color: #999;
     margin-right: 20px;
     width: 5px;
     height: 5px; }
-  .Post__actions___1B0Ly .Post__goldIcon___1JmxV {
+  .Post_actions__3F5Y9 .Post_goldIcon__1dBLz {
     color: yellow;
     margin-right: 20px;
     width: 5px;
     height: 5px; }
 
 @media only screen and (min-width: 768px) {
-  .Post__story___1OWcy {
+  .Post_story___JK_G {
     border: 1px solid #ccc;
     padding: 25px 50px;
     border-radius: 5px;
     width: 100%;
     height: 100%;
     background-color: #FFF; }
-  .Post__content___UVTg1 {
+  .Post_content__3m-XJ {
     margin: 30px 0;
     font-family: georgin;
     font-size: 1.1em;
     width: 100%; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .Post__story___1OWcy {
+  .Post_story___JK_G {
     border: 1px solid #ccc;
     padding: 15px;
     padding-bottom: 5px;
@@ -380,14 +390,14 @@ body {
     width: 100%;
     height: 100%;
     background-color: #FFF; }
-  .Post__content___UVTg1 {
+  .Post_content__3m-XJ {
     margin: 30px 0;
     font-family: georgin;
     font-size: 1em;
     width: 100%; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .Post__story___1OWcy {
+  .Post_story___JK_G {
     border: 1px solid #ccc;
     padding: 15px;
     padding-bottom: 5px;
@@ -395,14 +405,14 @@ body {
     width: 100%;
     height: 100%;
     background-color: #FFF; }
-  .Post__content___UVTg1 {
+  .Post_content__3m-XJ {
     margin: 30px 0;
     font-family: georgin;
     font-size: 1em;
     width: 100%; } }
 
 @media only screen and (max-width: 370px) {
-  .Post__story___1OWcy {
+  .Post_story___JK_G {
     border: 1px solid #ccc;
     padding: 15px;
     padding-bottom: 5px;
@@ -410,172 +420,179 @@ body {
     width: 100%;
     height: 100%;
     background-color: #FFF; }
-  .Post__content___UVTg1 {
+  .Post_content__3m-XJ {
     margin: 30px 0;
     font-family: georgin;
     font-size: 1em;
     width: 100%; } }
-.LoadingScreen__img___1UV-R {
+
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.LoadingScreen_img__3Z8_o {
   position: relative;
   left: 50%; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .PostList__div___ZqkO6 {
+  .PostList_div__3YkVS {
     position: relative;
     width: 60%; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .PostList__div___ZqkO6 {
+  .PostList_div__3YkVS {
     position: relative;
     width: 90%; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .PostList__div___ZqkO6 {
+  .PostList_div__3YkVS {
     position: relative;
     width: 90%; } }
 
 @media only screen and (max-width: 370px) {
-  .PostList__div___ZqkO6 {
+  .PostList_div__3YkVS {
     width: 100%; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.AppNavbar__navbar___1YoG_ {
+.AppNavbar_navbar__2-XRy {
   background-color: #2d3138;
   border-radius: 0; }
 
-.AppNavbar__img___14vSl {
+.AppNavbar_img__1Ld8W {
   margin-top: 10px;
   margin-right: 20px;
   margin-left: 20px; }
 
 @media only screen and (min-width: 768px) {
-  .AppNavbar__logo___391z_ {
+  .AppNavbar_logo__1gOq4 {
     position: relative;
     float: left; } }
 
 @media only screen and (max-width: 767px) {
-  .AppNavbar__logo___391z_ {
+  .AppNavbar_logo__1gOq4 {
     display: none; } }
-body {
-  background-color: #F0F0F0;
-  overflow-x: hidden; }
 
-.Feed__newPostSuccessDiv___8aPfX {
-  position: fixed;
-  bottom: 5%;
-  right: 50%;
-  font-size: 20px;
-  color: #00ff66; }
-
-.Feed__newPostErrorDiv___2dy5O {
-  position: fixed;
-  bottom: 5%;
-  right: 50%;
-  font-size: 20px;
-  color: red; }
-
-.Feed__newPostImg___3B72S {
-  position: fixed;
-  bottom: 10%;
-  right: 10%;
-  z-index: 1; }
-
-.Feed__NewPostShow___paceV {
-  position: fixed;
-  width: 100%;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 100%; }
-
-.Feed__NewPostHide___1iPR6 {
-  position: fixed;
-  top: 100%;
-  width: 100%;
-  z-index: -1; }
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .CountrySelect__div___2Hb3T {
+  .CountrySelect_div__1KXYm {
     width: 50%; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .PostArea__buttonsDiv___1ZWGn {
+  .PostArea_buttonsDiv__1ljw1 {
     position: relative;
     left: 20%;
     width: 60%; }
-  .PostArea__div___1MFYj {
+  .PostArea_div__3oYD8 {
     width: 50%; }
-  .PostArea__textarea___L2JOS {
+  .PostArea_textarea__ID5xb {
     position: relative;
     width: 80%;
     height: 150px;
     resize: none; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .PostArea__buttonsDiv___1ZWGn {
+  .PostArea_buttonsDiv__1ljw1 {
     position: relative;
-    left: 5%;
-    width: 90%; }
-  .PostArea__textarea___L2JOS {
-    position: relative;
-    width: 90%;
-    height: 150px;
-    resize: none; } }
-
-@media only screen and (min-width: 371px) and (max-width: 477px) {
-  .PostArea__buttonsDiv___1ZWGn {
-    position: relative;
-    left: 5%;
-    width: 90%; }
-  .PostArea__textarea___L2JOS {
-    position: relative;
-    width: 90%;
-    height: 150px;
-    resize: none; } }
-
-@media only screen and (max-width: 370px) {
-  .PostArea__buttonsDiv___1ZWGn {
     width: 100%; }
-  .PostArea__textarea___L2JOS {
+  .PostArea_textarea__ID5xb {
     position: relative;
     width: 100%;
     height: 150px;
     resize: none; } }
 
-.PostArea__button___1uC4l {
+@media only screen and (min-width: 371px) and (max-width: 477px) {
+  .PostArea_buttonsDiv__1ljw1 {
+    position: relative;
+    width: 100%; }
+  .PostArea_textarea__ID5xb {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    resize: none; } }
+
+@media only screen and (max-width: 370px) {
+  .PostArea_buttonsDiv__1ljw1 {
+    width: 100%; }
+  .PostArea_textarea__ID5xb {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    resize: none; } }
+
+.PostArea_button__3wGZW {
   float: right;
   height: 30px;
   margin-right: 5px;
   font-size: 12px;
   text-align: center;
   background-color: #00ff66; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-@media only screen and (min-width: 768px) {
-  .NewPost__div___1q_rt {
-    width: 100%; } }
-.Country__div___3lMRK {
+.Feed_newPostSuccessDiv__184e2 {
+  position: fixed;
+  bottom: 5%;
+  right: 50%;
+  font-size: 20px;
+  color: #00ff66; }
+
+.Feed_newPostErrorDiv__3JkkP {
+  position: fixed;
+  bottom: 5%;
+  right: 50%;
+  font-size: 20px;
+  color: red; }
+
+.Feed_newPostImg__6YBoQ {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  z-index: 1; }
+
+.Feed_NewPostShow__24_hS {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%; }
+
+.Feed_NewPostHide__tEj7m {
+  position: fixed;
+  top: 100%;
+  width: 100%;
+  z-index: -1; }
+
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.Country_div__37YKL {
   height: 150px;
   width: 200px;
   position: relative;
   float: left; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.Countries__button___36OA3 {
+.Countries_button__21_nV {
   background-color: #00ff66;
   margin-right: 5px;
   float: left;
@@ -584,7 +601,7 @@ body {
   height: 25px; }
 
 @media only screen and (min-width: 768px) {
-  .Countries__button___36OA3 {
+  .Countries_button__21_nV {
     background-color: #00ff66;
     margin-right: 5px;
     font-size: 14px;
@@ -592,103 +609,106 @@ body {
     height: 35px;
     float: left; } }
 
-.Countries__div___3VCDC {
+.Countries_div__3SC3r {
   position: relative;
   left: 40%; }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .CountryDetails__div___2ueBG {
+  .CountryDetails_div__2EiOq {
     position: relative;
     float: right;
     font-size: 1.2em; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .CountryDetails__div___2ueBG {
+  .CountryDetails_div__2EiOq {
     position: relative;
     float: right;
     font-size: 1.2em; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .CountryDetails__div___2ueBG {
+  .CountryDetails_div__2EiOq {
     position: relative;
     float: right;
     font-size: 1.2em; } }
 
 @media only screen and (max-width: 370px) {
-  .CountryDetails__div___2ueBG {
+  .CountryDetails_div__2EiOq {
     position: relative;
     float: right;
     font-size: 0.9em; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
 @media only screen and (min-width: 768px) {
-  .CountryProfile__div___1T1iR {
+  .CountryProfile_div__3167p {
     margin-top: 100px;
     width: 60%; }
-  .CountryProfile__img___3I0ED {
+  .CountryProfile_img__1K_oT {
     position: relative;
     float: left;
     width: 40%;
     height: auto; }
-  .CountryProfile__FollowButton___3fOAN {
+  .CountryProfile_FollowButton__3XUp- {
     float: left;
     background-color: #00ff66; } }
 
 @media only screen and (min-width: 478px) and (max-width: 767px) {
-  .CountryProfile__div___1T1iR {
+  .CountryProfile_div__3167p {
     margin-top: 100px;
     width: 80%; }
-  .CountryProfile__img___3I0ED {
+  .CountryProfile_img__1K_oT {
     position: relative;
     float: left;
     width: 50%;
     height: auto; }
-  .CountryProfile__FollowButton___3fOAN {
+  .CountryProfile_FollowButton__3XUp- {
     float: left;
     background-color: #00ff66; } }
 
 @media only screen and (min-width: 371px) and (max-width: 477px) {
-  .CountryProfile__div___1T1iR {
+  .CountryProfile_div__3167p {
     margin-top: 10px;
     width: 100%; }
-  .CountryProfile__img___3I0ED {
+  .CountryProfile_img__1K_oT {
     position: relative;
     float: left;
     width: 50%;
     height: auto; }
-  .CountryProfile__FollowButton___3fOAN {
+  .CountryProfile_FollowButton__3XUp- {
     float: left;
     background-color: #00ff66; } }
 
 @media only screen and (max-width: 370px) {
-  .CountryProfile__div___1T1iR {
+  .CountryProfile_div__3167p {
     margin-top: 10px;
     width: 100%; }
-  .CountryProfile__img___3I0ED {
+  .CountryProfile_img__1K_oT {
     position: relative;
     float: left;
     width: 50%;
     height: auto; }
-  .CountryProfile__FollowButton___3fOAN {
+  .CountryProfile_FollowButton__3XUp- {
     float: left;
     width: 50px;
     height: 25px;
     font-size: 10px;
     padding: 3px;
     background-color: #00ff66; } }
+
 body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.CountryViewer__btn___3iIiB {
+.CountryViewer_btn__1Awbs {
   background-color: #01a2aa; }
 
-.CountryViewer__postsButton___JhK9i {
+.CountryViewer_postsButton__2kO9y {
   margin-right: 10px;
   float: left;
   width: 50px;
@@ -697,7 +717,7 @@ body {
   color: white;
   padding: 3px; }
 
-.CountryViewer__newPostButton___3nOmj {
+.CountryViewer_newPostButton__3N9sp {
   margin-right: 10px;
   float: left;
   width: 50px;
@@ -707,14 +727,14 @@ body {
   padding: 3px;
   color: white; }
 
-.CountryViewer__buttonsDiv___2tf21 {
+.CountryViewer_buttonsDiv__1mVVW {
   position: relative;
   left: 40%; }
 
 @media only screen and (min-width: 768px) {
-  .CountryViewer__postsDiv___iex6T {
+  .CountryViewer_postsDiv__2Pa-E {
     width: 100%; }
-  .CountryViewer__postsButton___JhK9i {
+  .CountryViewer_postsButton__2kO9y {
     margin-right: 10px;
     float: left;
     width: 80px;
@@ -722,7 +742,7 @@ body {
     font-size: 14px;
     color: white;
     padding: 3px; }
-  .CountryViewer__newPostButton___3nOmj {
+  .CountryViewer_newPostButton__3N9sp {
     margin-right: 10px;
     float: left;
     width: 80px;
@@ -731,4 +751,5 @@ body {
     padding: 3px;
     color: white; } }
 
-/*# sourceMappingURL=main.4abc7472.css.map*/
+
+/*# sourceMappingURL=main.abcf99c3.css.map*/
