@@ -19,6 +19,7 @@ import java.util.List;
 import com.travelneer.post.Post;
 import com.travelneer.jooq.tables.records.PostRecord;
 import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -74,7 +75,7 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 	}
 
 	@Override
-	public List<Post> getPostsByCountryId(Short countryId) throws SQLException{
+	public List<Post> getPostsByCountryId(short countryId, int offset) throws SQLException{
 
 		List<Post> posts =
 				create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
@@ -85,15 +86,16 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 						.eq(POST.COUNTRY_ID))
 				.where(COUNTRY.ID
 						.eq(countryId))
-				.orderBy(POST.CREATED_AT
-						.desc())
+				.orderBy(POST.CREATED_AT.desc())
+				.offset(offset)
+				.limit(10)
 				.fetch().into(Post.class);
 
 		return posts;
 	}
 
 	@Override
-	public List<Post> getFeed(int userId) throws SQLException{
+	public List<Post> getFeed(int userId, int offset) throws SQLException{
 
 		List<Post> posts =
 				create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
@@ -104,8 +106,9 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 						.eq(POST.COUNTRY_ID))
 				.where(COUNTRY_FOLLOWS.USER_ID
 						.eq(userId))
-				.orderBy(POST.CREATED_AT
-						.desc())
+				.orderBy(POST.CREATED_AT.desc())
+				.offset(offset)
+				.limit(10)
 				.fetch().into(Post.class);
 
 		return posts;
@@ -113,7 +116,7 @@ public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer
 	}
 
 	@Override
-	public Integer getPostsCountByCountryId(Short id) {
+	public Integer getPostsCountByCountryId(short id) {
 		return create.select(count()).from(POST)
 				.where(POST.COUNTRY_ID.eq(id))
 				.fetchOne(0, Integer.class);

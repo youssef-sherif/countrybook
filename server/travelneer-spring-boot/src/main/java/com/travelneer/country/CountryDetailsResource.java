@@ -29,18 +29,20 @@ public class CountryDetailsResource extends ResourceSupport {
     private final String  name;
     private final String  profileImageUrl;
     private Boolean isFollowed;
+    private int currentPage;
 
     @JsonCreator
-    public CountryDetailsResource(Country country) {
+    public CountryDetailsResource(Country country, int currentPage) {
         this.countryId = country.getId();
         this.code = country.getCode();
         this.name = country.getName();
         this.profileImageUrl = country.getProfileImageUrl();
+        this.currentPage = currentPage;
 
         this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withSelfRel());
         this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getId())).withRel("follow"));
         this.add(linkTo(methodOn(CountryFollowsController.class).unFollowCountry(country.getId())).withRel("unFollow"));
-        this.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(country.getId())).withRel("countryPosts"));
+        this.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(country.getId(), currentPage)).withRel("countryPosts"));
         this.add(linkTo(methodOn(CountryFollowsController.class).getFollowersCount(country.getId())).withRel("followersCount"));
         this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getId())).withRel("postsCount"));
     }

@@ -1,26 +1,18 @@
 package com.travelneer.controller.api;
 
 import com.travelneer.dto.NewPostDTO;
-import com.travelneer.jwt.JwtValidator;
 import com.travelneer.post.FeedResource;
 import com.travelneer.post.PostFactory;
 
 import java.util.HashMap;
-import java.util.List;
 
-import com.travelneer.post.Post;
 import com.travelneer.post.PostResource;
-import com.travelneer.repository.FavouritesRepository;
-import com.travelneer.repository.PostRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  *
@@ -39,10 +31,10 @@ public class PostsController {
 	}
 
 	@RequestMapping(value = "/feed", method = RequestMethod.GET)
-	public ResponseEntity<?> getFeed() {
-
+	public ResponseEntity<?> getFeed(@RequestParam(name = "next", defaultValue = "0") int next) {
 		try {
-			FeedResource feedResource = postFactory.getFeed();
+
+			FeedResource feedResource = postFactory.getFeed(next);
 			return new ResponseEntity<>(feedResource, HttpStatus.OK);
 		}catch(Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -57,7 +49,7 @@ public class PostsController {
 		var body = new HashMap<>();
 		try {
 
-			Post post = postFactory.createPost(postDTO.getContent(), postDTO.getCountryId());
+			postFactory.createPost(postDTO.getContent(), postDTO.getCountryId());
 
             body.put("created", true);
 

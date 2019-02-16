@@ -1,5 +1,8 @@
 package com.travelneer.post;
 
+import com.travelneer.controller.api.PostsController;
+import com.travelneer.controller.api.v1.CountryPostsController;
+import com.travelneer.country.CountryFeedResource;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryFollowsRepository;
 import com.travelneer.repository.FavouritesRepository;
@@ -7,9 +10,13 @@ import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @Component
 public class PostFactory {
@@ -47,9 +54,9 @@ public class PostFactory {
         return post;
     }
 
-    public FeedResource getFeed() throws Exception {
+    public FeedResource getFeed(int page) throws Exception {
 
-        List<Post> posts = postRepository.getFeed(validator.getUserId());
+        List<Post> posts = postRepository.getFeed(validator.getUserId(), page);
 
         posts.forEach(Post::calculateTimeDifference);
         List<PostResource> postResources = posts.stream().map(Post::toResource)
@@ -57,7 +64,11 @@ public class PostFactory {
         postResources.forEach(e ->
                 e.setFavourite(favouritesRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
-        return new FeedResource(postResources);
+        FeedResource feedResource = new FeedResource(postResources, page);
+
+        feedResource.add(linkTo(methodOn(PostsController.class).getFeed(page+10)).withRel("next"));
+
+        return feedResource;
 
     }
 
@@ -71,4 +82,19 @@ public class PostFactory {
         return postResource;
     }
 
+    public CountryFeedResource getCountryPosts(short countryId, int page) throws Exception {
+        List<Post> posts = postRepository.getPostsByCountryId(countryId, page);
+
+        posts.forEach(Post::calculateTimeDifference);
+        List<PostResource> postResources = posts.stream().map(Post::toResource)
+                .collect(Collectors.toList());
+        postResources.forEach(e ->
+                e.setFavourite(favouritesRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
+
+        CountryFeedResource feedResource = new CountryFeedResource(postResources, countryId, page);
+
+        feedResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryId, page+10)).withRel("next"));
+
+        return feedResource;
+    }
 }

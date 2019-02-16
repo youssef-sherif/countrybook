@@ -23,10 +23,10 @@ public class FeedResource extends ResourceSupport {
 
     private  final List<PostResource> postResources;
 
-    public FeedResource(List<PostResource> postResources) {
+    public FeedResource(List<PostResource> postResources, int currentPage) {
         this.postResources = postResources;
 
-        this.add(linkTo(methodOn(PostsController.class).getFeed()).withSelfRel());
+        this.add(linkTo(methodOn(PostsController.class).getFeed( currentPage)).withSelfRel());
     }
 
     @JsonProperty("posts")
