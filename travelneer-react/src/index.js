@@ -10,9 +10,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
 	<Provider store={myStore}>
-			<ConnectedRouter history={myHistory}>
-				<App />
-			</ConnectedRouter>
+		<ConnectedRouter history={myHistory}>
+			<App />
+		</ConnectedRouter>
 	</Provider>,
 	document.getElementById('root'))
 

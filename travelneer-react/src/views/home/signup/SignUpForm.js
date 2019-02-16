@@ -76,7 +76,7 @@ const mapStateToProps = (state) => {
     email: state.user.email.value,
     password: state.user.password.value,
 
-    signUpLoading: state.signUp.signUp.loading,    
+    signUpLoading: state.signUp.signUp.loading | state.login.login.loading,    
     signUpSuccessful: state.signUp.signUp.successful
   }
 }

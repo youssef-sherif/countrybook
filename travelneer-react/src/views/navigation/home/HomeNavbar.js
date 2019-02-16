@@ -5,13 +5,13 @@ import logo from '../../../images/logo.png'
 import styles from './HomeNavbar.scss'
 
 import { connect } from 'react-redux'
-import { authorizeUser } from '../../../actions/authActions'
+import { authorizeUserHome } from '../../../actions/authActions'
 
 
 class HomeNavbar extends Component {
 
     componentDidMount() {
-        this.props.authorizeUser()
+        this.props.authorizeUserHome()
     }
 
     render() {
@@ -20,13 +20,10 @@ class HomeNavbar extends Component {
             <nav>
                 <div className={`container-fluid`}>
                     <div>
-                        <a>
+                        <a href="http://localhost:3000/">
                             <img alt="logo" src={logo} />
                         </a>
-                    </div>
-                    <ul className={`nav navbar-nav navbar-right`}>
-                        <li><a id={`${styles.loginBtn}`} href="/login">Login</a></li>
-                    </ul>
+                    </div>                    
                     <div className={styles.input} >
                         <LoginNavbar />
                     </div>
@@ -37,7 +34,7 @@ class HomeNavbar extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    authorizeUser: () => dispatch(authorizeUser())
+    authorizeUserHome: () => dispatch(authorizeUserHome())
   })
   
 

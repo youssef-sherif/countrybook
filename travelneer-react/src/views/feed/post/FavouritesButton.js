@@ -7,7 +7,7 @@ export default class FavouritesButton extends Component {
     render() {
 
         if (this.props.loading) 
-            return (<img alt='loading' src={loading} />)
+            return (<img className = {this.props.styles.loading} alt='loading' src={loading} />)
 
  
         if (this.props.isFavourite) 

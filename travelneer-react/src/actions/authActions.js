@@ -26,7 +26,7 @@ const authorizeUserFailure = () => ({
 
 
 export const authorizeUser = () => {
-    let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
     return (dispatch) => {
         dispatch(authorizeUserBegin())
         fetch('http://localhost:8080/api/me', {
@@ -40,13 +40,42 @@ export const authorizeUser = () => {
             .then((response) => response.json())
             .then((data) => {
                 dispatch(authorizeUserSuccess(data.userId))
-                localStorage.setItem('logged_in', 'true')                
+                localStorage.setItem('logged_in', 'true')   
+                
                 return data
             })
             .catch((error) => { 
                 dispatch(authorizeUserFailure())                
                 localStorage.setItem('logged_in', 'false')   
                 dispatch(push('/'))
+            })
+    }
+}
+
+
+export const authorizeUserHome = () => {
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+    return (dispatch) => {
+        dispatch(authorizeUserBegin())
+        fetch('http://localhost:8080/api/me', {
+            method: 'get',
+            headers: {
+                'Authorization': tokenBearer,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(handleErrors)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(authorizeUserSuccess(data.userId))
+                localStorage.setItem('logged_in', 'true')   
+                dispatch(push('/feed'))
+                
+                return data
+            })
+            .catch((error) => { 
+                dispatch(authorizeUserFailure())                
+                localStorage.setItem('logged_in', 'false')   
             })
     }
 }

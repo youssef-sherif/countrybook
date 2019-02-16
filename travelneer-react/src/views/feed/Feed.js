@@ -26,6 +26,7 @@ class Feed extends Component {
     getCollapsablePostArea = () => {
         return (
             <div className={`container ${this.props.showNewState? styles.NewPostShow : styles.NewPostHide}`}>                    
+                <br/><br/><br/>
                 <CountrySelect />
                 <PostArea refresh={false}
                     countryId={this.props.countryId} 
@@ -77,16 +78,18 @@ class Feed extends Component {
 
         return (
             <div>
-                <AppNavbar />
-                <br/><br/><br/>
+                <AppNavbar />                
             
                 {collapsablePostArea}
+
+                <br/><br/><br/>
 
                 {postArea}
 
                 {newPostButton}
 
                 <NewPostIndicator
+                    styles={styles}
                     successful={this.props.newPostSuccessful}
                     loading={this.props.newPostLoading} 
                     error={this.props.newPostError}
