@@ -1,7 +1,7 @@
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { createStore,  combineReducers, applyMiddleware } from 'redux'
-import { routerMiddleware, routerReducer } from 'react-router-redux'
+import { routerMiddleware, connectRouter } from 'connected-react-router'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import {fetchCountriesReducer} from './reducers/countriesReducer'
@@ -26,7 +26,7 @@ const reducers = combineReducers({
     login: loginReducer,
     countryProfile: countryProfileReducer,
     followCountry: followCountryReducer,
-    router: routerReducer,  
+    router: connectRouter(myHistory),
     newPost: newPostReducer,  
     auth: authReducer
   })

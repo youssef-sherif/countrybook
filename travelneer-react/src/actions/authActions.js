@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux'
+import { push } from 'connected-react-router'
 
 export const AUTHORIZE_USER_BEGIN = 'AUTHORIZE_USER_BEGIN'
 export const AUTHORIZE_USER_SUCCESS = 'AUTHORIZE_USER_SUCCESS'

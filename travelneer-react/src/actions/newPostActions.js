@@ -1,5 +1,5 @@
 import { fetchPosts } from './postsActions'
-import { push } from 'react-router-redux'
+import { push } from 'connected-react-router'
 
 export const NEW_POST_BEGIN = 'NEW_POST_BEGIN'
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS'
