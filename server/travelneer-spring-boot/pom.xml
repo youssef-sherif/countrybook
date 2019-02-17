@@ -28,8 +28,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jooq</artifactId>
+			<groupId>org.jooq</groupId>
+			<artifactId>jooq</artifactId>
+			<version>3.11.5</version>
 		</dependency>
 
 		<dependency>
@@ -63,18 +64,6 @@
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>2.3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-core</artifactId>
-			<version>2.3.0</version>
 		</dependency>
 
 		<dependency>
@@ -191,7 +180,7 @@
 					<plugin>
 						<groupId>org.jooq</groupId>
 						<artifactId>jooq-codegen-maven</artifactId>
-						<version>3.10.8</version>
+						<version>3.11.5</version>
 						<executions>
 							<execution>
 								<goals>
@@ -226,9 +215,9 @@
 								<password>${spring.datasource.password}</password>
 							</jdbc>
 							<generator>
-								<name>org.jooq.util.DefaultGenerator</name>
+								<name>org.jooq.codegen.DefaultGenerator</name>
 								<database>
-									<name>org.jooq.util.mysql.MySQLDatabase</name>
+									<name>org.jooq.meta.mysql.MySQLDatabase</name>
 									<inputSchema>travelneer</inputSchema>
 									<includes>.*</includes>
 									<excludes>flyway_schema_history</excludes>
