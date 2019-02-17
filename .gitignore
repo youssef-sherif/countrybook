@@ -1,4 +1,5 @@
 /travelneer-react/node_modules/**
+/travelneer-react/yarn-error.log
 /server/travelneer-spring-boot/mvnw.cmd
 /server/travelneer-spring-boot/bin
 /server/travelneer-spring-boot/target
