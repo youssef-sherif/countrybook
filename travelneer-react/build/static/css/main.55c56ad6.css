@@ -545,20 +545,6 @@ body {
   background-color: #F0F0F0;
   overflow-x: hidden; }
 
-.Feed_newPostSuccessDiv__184e2 {
-  position: fixed;
-  bottom: 5%;
-  right: 50%;
-  font-size: 20px;
-  color: #00ff66; }
-
-.Feed_newPostErrorDiv__3JkkP {
-  position: fixed;
-  bottom: 5%;
-  right: 50%;
-  font-size: 20px;
-  color: red; }
-
 .Feed_newPostImg__6YBoQ {
   position: fixed;
   bottom: 10%;
@@ -577,6 +563,24 @@ body {
   top: 100%;
   width: 100%;
   z-index: -1; }
+
+body {
+  background-color: #F0F0F0;
+  overflow-x: hidden; }
+
+.NewPostIndicator_newPostSuccessDiv__2IdN2 {
+  position: fixed;
+  bottom: 5%;
+  right: 50%;
+  font-size: 20px;
+  color: #00ff66; }
+
+.NewPostIndicator_newPostErrorDiv__2Jg5V {
+  position: fixed;
+  bottom: 5%;
+  right: 50%;
+  font-size: 20px;
+  color: red; }
 
 body {
   background-color: #F0F0F0;
@@ -752,4 +756,4 @@ body {
     color: white; } }
 
 
-/*# sourceMappingURL=main.6a18f5ee.css.map*/
+/*# sourceMappingURL=main.55c56ad6.css.map*/
