@@ -38,7 +38,8 @@ export const favouritePost = (resource, method) => {
             method: method,
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'           
             }
         })
             .then(handleErrors)
@@ -89,7 +90,8 @@ export const fetchPosts = () => {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
             }
         })
             .then(handleErrors)
@@ -112,7 +114,8 @@ export const fetchCountryPosts = (resource) => {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
             }
         })
             .then(handleErrors)

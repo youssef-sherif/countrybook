@@ -41,8 +41,9 @@ export const fetchCountries = () => {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,
-              'Content-Type': 'application/json'
-          }
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-origin': 'http://localhost:8080'
+            }
       })
           .then(handleErrors)
           .then((response) => response.json())
@@ -66,8 +67,9 @@ export const searchCountries = (resource, searchParam) => {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,
-              'Content-Type': 'application/json'
-          }
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-origin': 'http://localhost:8080'
+            }
       })
           .then(handleErrors)
           .then((response) => response.json())
@@ -90,7 +92,8 @@ export const fetchFollowedCountries = (resource) => {
           method: 'get',
           headers: {
               'Authorization': tokenBearer,
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-origin': 'http://localhost:8080'
           }
       })
           .then(handleErrors)

@@ -28,8 +28,11 @@ const handleErrors = (response) =>{
       dispatch(loginBegin())
       fetch(`http://localhost:8080/access-token?username=${encodeURIComponent(username)}&email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`, {
         method: 'get',
-        headers: {'Content-Type': 'application/json'}
-        })
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-origin': 'http://localhost:8080'
+        }
+      })
         .then(handleErrors)
         .then((response) => response.json())
         .then((data) => {

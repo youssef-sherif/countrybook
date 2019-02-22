@@ -33,7 +33,8 @@ export const authorizeUser = () => {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
             }
         })
             .then(handleErrors)
@@ -61,7 +62,8 @@ export const authorizeUserHome = () => {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
             }
         })
             .then(handleErrors)

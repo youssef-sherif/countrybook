@@ -38,7 +38,12 @@ const handleErrors = (response) =>{
     return (dispatch) => {      
       dispatch(validateUsernameBegin())
       return fetch(`http://localhost:8080/validations?username=${encodeURIComponent(username)}`, {
-      method: 'get'})
+      method: 'get',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-origin': 'http://localhost:8080'
+      },
+    })
       .then( handleErrors)
       .then( (response) => {return response.json()})
       .then( (data) => {
@@ -67,7 +72,12 @@ const handleErrors = (response) =>{
     return (dispatch) => {
       dispatch(validateEmailBegin())
       return fetch(`http://localhost:8080/validations?email=${encodeURIComponent(email)}`, {
-        method: 'get'})
+        method: 'get',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-origin': 'http://localhost:8080'
+        },  
+      })
       .then( handleErrors)
       .then( (response) => {return response.json()})
       .then( (data) => {
@@ -95,7 +105,12 @@ const handleErrors = (response) =>{
     return (dispatch) => {
       dispatch(validatePasswordBegin())
       return fetch(`http://localhost:8080/validations?password=${encodeURIComponent(password)}`, {
-        method: 'get'})
+        method: 'get',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-origin': 'http://localhost:8080'
+        },  
+      })
       .then( handleErrors)
       .then( (response) => {return response.json()})
       .then( (data) => {

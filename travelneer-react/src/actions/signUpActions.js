@@ -31,7 +31,10 @@ export const createUser = (username, email, password) => {
     dispatch(createUserBegin())
     fetch('http://localhost:8080/users', {
       method: 'post',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-origin': 'http://localhost:8080'
+      },
       body: JSON.stringify({
         name: username,
         email: email,

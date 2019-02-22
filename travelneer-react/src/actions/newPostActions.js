@@ -46,10 +46,10 @@ export const newPost = (countryId, content, refresh) => {
         dispatch(newPostBegin())
         fetch('http://localhost:8080/api/feed', {
             method: 'post',
-            mode: 'cors',
             headers: {
                 'Authorization': tokenBearer, 
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Access-Control-Allow-Origin': 'http://localhost:8080',  
               },             
             body: JSON.stringify({
                 content: content,                
@@ -78,11 +78,11 @@ export const newPost2 = (countryId, content) => {
     return (dispatch) => {
         dispatch(newPostBegin())
         fetch('http://localhost:8080/api/feed', {
-            method: 'post',
-            mode: 'cors',
+            method: 'post',            
             headers: {
                 'Authorization': tokenBearer, 
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
               },             
             body: JSON.stringify({
                 content: content,                
