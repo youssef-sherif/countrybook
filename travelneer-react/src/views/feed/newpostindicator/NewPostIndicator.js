@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import loading from '../../images/loading.gif'
+import loading from '../../../images/loading.gif'
 
+import styles from './NewPostIndicator.scss'
 
 class NewPostIndicator extends Component {
 
@@ -12,12 +13,12 @@ class NewPostIndicator extends Component {
         else
             if(this.props.successful) 
                 return (                  
-                    <div className={this.props.styles.newPostSuccessDiv}> 
+                    <div className={styles.newPostSuccessDiv}> 
                         <button className={`btn`}>posted</button>
                     </div>)
             else if(this.props.error)
                 return (
-                    <div className={this.props.styles.newPostErrorDiv}>
+                    <div className={styles.newPostErrorDiv}>
                         <button className={`btn`}>
                             {errorMessage.toString()}
                         </button>                  

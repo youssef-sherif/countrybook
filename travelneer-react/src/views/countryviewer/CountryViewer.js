@@ -9,7 +9,7 @@ import { newPost2 } from '../../actions/newPostActions'
 import PostArea from '../newpost/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
-import NewPostIndicator from '../feed/NewPostIndicator';
+import NewPostIndicator from '../feed/newpostindicator/NewPostIndicator';
 
 class CountryViewer extends Component {
 
