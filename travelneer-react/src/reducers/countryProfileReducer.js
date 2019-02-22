@@ -5,6 +5,9 @@ import {
     FETCH_POSTS_COUNT_BEGIN,
     FETCH_POSTS_COUNT_SUCCESS,
     FETCH_POSTS_COUNT_FAILURE,
+    FOLLOW_COUNTRY_BEGIN,
+    FOLLOW_COUNTRY_SUCCESS,    
+    FOLLOW_COUNTRY_FAILURE,
     TOGGLE_FOLLOWED
 } from '../actions/countryProfileActions'
 
@@ -43,6 +46,9 @@ export function countryProfileReducer(state = initialState,
                 successful: true,
                 loading: false,
                 profileImageUrl: action.payload.data.profileImageUrl,
+                followLoading: false,
+                followSuccessful: false,     
+                followError: "",
                 followed: action.payload.data.followed,
                 countryName: action.payload.data.name,
                 countryId: action.payload.data.countryId,
@@ -85,6 +91,29 @@ export function countryProfileReducer(state = initialState,
                 error: action.payload.error
             }          
             
+        case FOLLOW_COUNTRY_BEGIN:
+
+            return {
+                ...state,
+                followLoading: true                
+            }
+
+        case FOLLOW_COUNTRY_SUCCESS:
+
+            return {
+                ...state,
+                followSuccessful: true,
+                followLoading: false                
+            }
+
+        case FOLLOW_COUNTRY_FAILURE:
+
+            return {
+                ...state,
+                followLoading: false,
+                followError: action.payload.error                
+            }            
+
         case TOGGLE_FOLLOWED:
 
             return {

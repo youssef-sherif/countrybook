@@ -4,8 +4,8 @@ import CountryDetails from './CountryDetails'
 
 import { fetchCountryInfo, 
     fetchPostsCount,
+    followCountry,
     toggleFollowed } from '../../../actions/countryProfileActions'
-import { followCountry } from '../../../actions/followCountryActions'
 import { connect } from 'react-redux'
 import styles from './CountryProfile.scss'
 
@@ -50,9 +50,8 @@ const mapStateToProps = (state) => ({
     loading: state.countryProfile.loading,
     countryFollowed: state.countryProfile.followed,
     followResource: state.countryProfile.followResource,
-
-    followCountryLoading: state.followCountry.loading,
-    followCountrySuccessful: state.followCountry.followSuccessful,
+    followCountryLoading: state.countryProfile.followLoading,
+    followCountrySuccessful: state.countryProfile.followSuccessful,
 })
 
 const mapDispatchToProps = (dispatch) => ({

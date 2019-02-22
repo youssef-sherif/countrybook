@@ -12,7 +12,6 @@ import {authReducer} from './reducers/authReducer'
 import {postsReducer} from './reducers/postsReducer'
 import {newPostReducer} from './reducers/newPostReducer'
 import {countryProfileReducer} from './reducers/countryProfileReducer'
-import { followCountryReducer } from './reducers/followCountryReducer'
 
 import myHistory from './history'
 
@@ -25,7 +24,6 @@ const reducers = combineReducers({
     user: validationReducer,
     login: loginReducer,
     countryProfile: countryProfileReducer,
-    followCountry: followCountryReducer,
     router: connectRouter(myHistory),
     newPost: newPostReducer,  
     auth: authReducer
