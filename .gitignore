@@ -1,5 +1,5 @@
-/travelneer-react/node_modules/**
-/travelneer-react/yarn-error.log
+/client/travelneer-react/node_modules/**
+/client/travelneer-react/yarn-error.log
 /server/travelneer-spring-boot/mvnw.cmd
 /server/travelneer-spring-boot/bin
 /server/travelneer-spring-boot/target
@@ -16,5 +16,7 @@
 /server/travelneer-spring-boot/.settings
 /server/travelneer-spring-boot/.mvn
 /countries.sql
-/test.sql
+/mysql/**
+/server/travelneer-spring-boot/tmp/**
+
 
