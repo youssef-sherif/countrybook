@@ -2,16 +2,20 @@ version: '3'
 services:
 
   nginx:
-   container_name: travelneer-nginx
-   image: nginx:1.13
-   restart: always
-   ports:
-   - 80:80
-   - 443:443
-   volumes:
-   - ./nginx/conf.d:/etc/nginx/conf.d
-   depends_on:
+    container_name: travelneer-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+      - 80:80
+      - 443:443   
+    networks:
+      - external_network 
+    depends_on:
       - travelneer
+    links:
+      - travelneer:travelneer 
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d  
 
   travelneer:    
     container_name: travelneer-spring-boot
@@ -20,10 +24,10 @@ services:
     networks:
       - external_network
       - internal_network
-    ports:
-      - "8080:8080"
     links:
-      - db:mysql-container
+      - db:mysql-container 
+    ports:
+      - 8080:8080    
     depends_on:
       - db
 
@@ -38,8 +42,6 @@ services:
       MYSQL_PASS: '12345678'
     networks:      
       - internal_network  
-    ports:
-      - "3306:3306"    
     volumes: 
       - ./mysql/data:/var/lib/mysql
       - ./mysql/dump:/docker-entrypoint-initdb.d/
