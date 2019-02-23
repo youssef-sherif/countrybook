@@ -1,0 +1,25 @@
+@import '../variables.scss';
+
+
+.newPostImg {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    z-index: 1;
+}
+
+.NewPostShow {
+    position: fixed;
+    width: 100%;
+    z-index: 1;    
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+}
+
+
+.NewPostHide {
+    position: fixed;
+    top: 100%;
+    width: 100%;
+    z-index: -1;
+}

@@ -1,0 +1,144 @@
+@import "../variables.scss";
+
+@media only screen and (min-width: $xl-screen-min) {
+    .header {
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        .img {
+            width: 100%;
+            height: auto;
+        }
+
+        .introduction {
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 30%;
+    
+            .largeText {
+                font-size: 36px;
+                color: lighten(white, 20%);
+            }
+    
+            .mediumText {
+                font-size: 24px;
+                color: lighten(white, 20%);
+            }
+    
+            .smallText {
+                font-size: 18px;
+                color: lighten(white, 20%);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $l-screen-min) and (max-width: $l-screen-max) {
+    .header {
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        .img {
+            width: 100%;
+            height: auto;
+        }
+
+        .introduction {
+            position: absolute;
+            text-align: center;
+            top: 30px;
+            width: 100%;
+    
+            .largeText {
+                font-size: 26px;
+                color: lighten(white, 20%);
+            }
+    
+            .mediumText {
+                font-size: 22px;
+                color: lighten(white, 20%);
+            }
+    
+            .smallText {
+                font-size: 15px;
+                color: lighten(white, 20%);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $s-screen-min) and (max-width: $s-screen-max) {
+    .header {
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        .img {
+            width: 100%;
+            height: auto;
+        }
+
+        .introduction {
+            position: absolute;
+            text-align: center;
+            top: 30px;
+            height: 100%;
+            width: 100%;
+    
+            .largeText {
+                font-size: 25px;
+                color: lighten(white, 20%);
+            }
+    
+            .mediumText {
+                font-size: 20px;
+                color: lighten(white, 20%);
+            }
+    
+            .smallText {
+                font-size: 16px;
+                color: lighten(white, 20%);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $xs-screen-max) {
+
+    .header {
+        position: relative;
+        text-align: center;
+        width: 100%;
+
+        .img {
+            width: 100%;
+            height: auto;
+        }
+
+        .introduction {
+            position: absolute;
+            text-align: center;
+            top: 30px;
+            height: 100%;
+            width: 100%;
+    
+            .largeText {
+                font-size: 20px;
+                color: lighten(white, 20%);
+            }
+    
+            .mediumText {
+                font-size: 16px;
+                color: lighten(white, 20%);
+            }
+    
+            .smallText {
+                font-size: 12px;
+                color: lighten(white, 20%);
+            }
+        }
+    }
+}

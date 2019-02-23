@@ -1,0 +1,69 @@
+@import "../../variables.scss";
+
+@media only screen and (min-width: $xl-screen-min){
+    nav {
+        height: auto;
+        margin-bottom: 0px;
+        border-radius: 0;
+        background-color: $menu-background;
+        color: #FFF;
+        width: 100%;
+        margin: 0;
+        font-size: 1em;
+        border: 0;
+        padding: 0px;
+        
+        div {
+
+            div a {
+                position: relative;
+                margin: 10px;
+                float: left;                
+            }                
+        
+            ul li #loginBtn {
+                display: none;                  
+            }
+    
+        }
+    }
+}
+
+@media only screen and (max-width: $l-screen-max) {
+    nav {
+        height: auto;
+        margin-bottom: 0px;
+        border-radius: 0;
+        background-color: $menu-background;
+        color: #FFF;
+        width: 100%;
+        margin: 0;
+        font-size: 1em;
+        border: 0;
+        padding: 0px;
+        
+        div {
+
+            div a {
+                position: relative;
+                margin: 10px;
+                float: left;    
+                img {
+                    width: 75%;
+                    height: auto;
+                }                            
+            }
+        
+            ul li #loginBtn {                
+                float: right; 
+                &:hover {
+                    background-color: lightgrey
+                }                       
+            }
+        
+            .input {
+                display: none;
+            }
+        }
+    }
+}
