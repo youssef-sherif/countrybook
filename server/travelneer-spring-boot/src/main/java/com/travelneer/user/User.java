@@ -81,6 +81,12 @@ public class User {
     }
 
 
+    public void login(String password) throws Exception {
+        if(!this.password.getPasswordEncoder().matches(password, this.password.getEncoded())) {
+            throw new Exception("Invalid Username or Password");
+        }
+    }
+
     public void validateUsername(String username) throws Exception {
         if ( !this.name.isValid(username)) {
             throw new Exception("Invalid Username");
@@ -94,14 +100,18 @@ public class User {
         }
     }
 
-    public void login(String password) throws Exception {
-        if(!this.password.getPasswordEncoder().matches(password, this.password.getEncoded())) {
-            throw new Exception("Invalid Username or Password");
-        }
-    }
-
     public void validate() throws Exception {
-        this.validateEmail(this.email.getValue());
-        this.validateUsername(this.name.getValue());
+
+        if(!this.name.isValid()) {
+            throw new Exception("Invalid Username");
+        }
+
+        if(!this.email.isValid()) {
+            throw new Exception("Invalid Email");
+        }
+
+        if(password.getStrength() == Password.INVALID_PASSWORD) {
+            throw new Exception("Weak Password");
+        }
     }
 }

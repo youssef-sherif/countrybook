@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class Password {
 
     private String encodedPassword;
-
+    private String passsword;
     private PasswordEncoder passwordEncoder;
 
 
@@ -35,6 +35,7 @@ public class Password {
     public Password(String password) {
         this.passwordEncoder = new BCryptPasswordEncoder();
         this.encodedPassword = this.passwordEncoder.encode(password);
+        this.passsword = password;
     }
 
     public Password() {
@@ -49,6 +50,18 @@ public class Password {
         if (strPtr.matcher(value).matches()) {
             return STRONG_PASSWORD;
         } else if (mdmPtr.matcher(value).matches()) {
+            return MEDIUM_PASSWORD;
+        } else {
+            return INVALID_PASSWORD;
+        }
+    }
+
+    public int getStrength() {
+        Pattern strPtr = Pattern.compile(STRONG_PASSWORD_REGEX);
+        Pattern mdmPtr = Pattern.compile(MEDIUM_PASSWORD_REGEX);
+        if (strPtr.matcher(passsword).matches()) {
+            return STRONG_PASSWORD;
+        } else if (mdmPtr.matcher(passsword).matches()) {
             return MEDIUM_PASSWORD;
         } else {
             return INVALID_PASSWORD;
