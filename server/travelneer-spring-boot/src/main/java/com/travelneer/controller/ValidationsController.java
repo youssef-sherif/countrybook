@@ -10,14 +10,13 @@ import com.travelneer.user.User;
 import com.travelneer.user.UserFactory;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.travelneer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -38,12 +37,11 @@ public class ValidationsController {
     }
 
     @RequestMapping(value = "/validations", method = RequestMethod.GET, params = "username")
-    public ResponseEntity<?> validateUsername(HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> validateUsername(@RequestParam(name = "username") String username) {
 
         var body = new HashMap<String, Object>();
 
         try {
-            String username = request.getParameter("username");
             if(userRepository.nameExists(username)) {
                 throw new Exception("Username Exists");
             }
@@ -61,12 +59,11 @@ public class ValidationsController {
     }
 
     @RequestMapping(value = "/validations", method = RequestMethod.GET, params = "email")
-    public ResponseEntity<?> validateEmail(HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> validateEmail(@RequestParam(name = "email") String email) {
 
         var body = new HashMap<String, Object>();
 
         try {
-            String email = request.getParameter("email");
             if(userRepository.emailExists(email)) {
                 throw new Exception("Email exists");
             }
@@ -83,10 +80,9 @@ public class ValidationsController {
     }
 
     @RequestMapping(value = "/validations", method = RequestMethod.GET, params = "password")
-    public ResponseEntity<?> validatePassword(HttpServletRequest request) {
+    public ResponseEntity<Map<String, Object>> validatePassword(@RequestParam(name = "password") String password) {
 
         var body = new HashMap<String, Object>();
-        String password = request.getParameter("password");
 
         switch (Password.getStrength(password)) {
             case Password.STRONG_PASSWORD:

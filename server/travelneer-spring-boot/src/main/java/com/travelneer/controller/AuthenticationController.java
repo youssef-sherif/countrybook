@@ -11,13 +11,12 @@ import com.travelneer.dto.UserSignUpDTO;
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.repository.UserRepository;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -42,7 +41,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/users",
             method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> signUp(@RequestBody UserSignUpDTO signUpDto) {
+    public ResponseEntity<Map<String, String>> signUp(@RequestBody UserSignUpDTO signUpDto) {
         var body = new HashMap<String, String>();
 
         try {
@@ -64,12 +63,11 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/access-token",
             method = RequestMethod.GET, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> login(HttpServletRequest request) {
+    public ResponseEntity<Map<String, String>> login(@RequestParam(name = "username") String username,
+                                     @RequestParam(name = "password") String password) {
     	var body = new HashMap<String, String>();
 
         try {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
 
             User user = userRepository.getOneByName(username);
             user.login(password);
