@@ -33,7 +33,7 @@ services:
 
   db:
     container_name: db
-    image: mysql:8.0.13  
+    image: mariadb:latest 
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'whatever'
@@ -43,8 +43,8 @@ services:
     networks:      
       - internal_network  
     volumes: 
-      - ./mysql/data:/var/lib/mysql
-      - ./mysql/dump:/docker-entrypoint-initdb.d/
+      - ./mariadb/data:/var/lib/mariadb
+      - ./mariadb/dump:/docker-entrypoint-initdb.d/
 
 networks:
   external_network:
