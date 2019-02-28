@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.integration.controller.api;
+package com.travelneer.controller.api;
 
 import com.travelneer.country.CountriesResource;
 import com.travelneer.country.Country;

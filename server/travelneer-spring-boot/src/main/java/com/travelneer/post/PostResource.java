@@ -6,7 +6,6 @@
 package com.travelneer.post;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.controller.api.PostsController;
 import com.travelneer.controller.api.v1.FavouritesController;
 import org.springframework.hateoas.ResourceSupport;

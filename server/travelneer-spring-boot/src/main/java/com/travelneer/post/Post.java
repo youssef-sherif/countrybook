@@ -17,6 +17,8 @@ public class Post {
 
     private Map<Long, String> timeDiff;
 
+    private Boolean valid;
+
 
     public Post() {}
 
@@ -104,6 +106,10 @@ public class Post {
         return timeDiff;
     }
 
+    public Boolean isValid() {
+        return valid;
+    }
+
     public void calculateTimeDifference() {
         long timeDifference = System.currentTimeMillis() - this.getCreatedAt().getTime();
 
@@ -128,11 +134,19 @@ public class Post {
     public void validate() throws Exception {
 
         if(content.isEmpty()) {
-            throw new Exception("Empty post");
+            throw new Exception("Posts cannot be empty");
+        }
+
+        if(content.length() > 500) {
+            throw new Exception("Posts cannot exceed length of 500");
         }
 
         if(countryId == null) {
             throw new Exception("No country selected");
+        }
+
+        if(authorId == null) {
+            throw new Exception("No author selected");
         }
     }
 

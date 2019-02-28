@@ -1,4 +1,4 @@
-package com.travelneer.integration.controller.api;
+package com.travelneer.controller.api;
 
 import com.travelneer.dto.NewPostDTO;
 import com.travelneer.post.FeedResource;

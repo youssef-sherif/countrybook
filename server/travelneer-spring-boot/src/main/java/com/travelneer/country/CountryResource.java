@@ -6,10 +6,8 @@
 package com.travelneer.country;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.travelneer.controller.api.CountriesController;
 
-import com.travelneer.country.Country;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
