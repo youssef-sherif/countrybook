@@ -1,4 +1,4 @@
-package com.travelneer.controller.api.v1;
+package com.travelneer.integration.controller.api.v1;
 
 import com.travelneer.post.PostFactory;
 

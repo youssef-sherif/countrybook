@@ -1,15 +1,14 @@
-package com.travelneer.controller;
+package com.travelneer.integration.controller;
 
+import com.travelneer.controller.AuthenticationController;
 import com.travelneer.dto.UserSignUpDTO;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
@@ -19,11 +18,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@FixMethodOrder
-public class AuthenticationControllerTest{
+@TestPropertySource(locations="classpath:application-integration-test.properties")
+public class AuthenticationControllerTest {
 
     @Autowired
-    AuthenticationController authenticationController;
+    public AuthenticationController authenticationController;
 
     @Test
     public void withExistingNameOrEmail_UserCanNotSignUp() {
@@ -152,6 +151,5 @@ public class AuthenticationControllerTest{
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNull();
     }
-
 
 }
