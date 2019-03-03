@@ -18,9 +18,8 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d  
 
   travelneer:    
-    container_name: travelneer-spring-boot
-    restart: always
-    build: ./server/travelneer-spring-boot 
+    image: travelneer/spring-boot-main:0.0.1-SNAPSHOT
+    restart: always    
     networks:
       - external_network
       - internal_network
