@@ -33,15 +33,16 @@ public class ValidationsControllerTest {
     AuthenticationController authenticationController;
 
     @Test
-    public void withStrongPassword() {
+    public void withStrongPassword_ItShouldReturn1() {
         String password = "Yo^%4321";
 
         assertThat(validationsController.validatePassword(password).getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(Objects.requireNonNull(validationsController.validatePassword(password).getBody()).get("passwordStrength")).isEqualTo(1);
+        assertThat(Objects.requireNonNull(validationsController.validatePassword(password).getBody()).get("passwordStrength"))
+                .isEqualTo(1);
     }
 
     @Test
-    public void withMediumPassword() {
+    public void withMediumPassword_ItShouldReturn2() {
         String password = "Yo654321";
 
         assertThat(validationsController.validatePassword(password).getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -50,7 +51,7 @@ public class ValidationsControllerTest {
     }
 
     @Test
-    public void withInvalidPassword() {
+    public void withInvalidPassword_ItShouldReturn3() {
         String password = "password";
 
         assertThat(validationsController.validatePassword(password).getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -59,7 +60,7 @@ public class ValidationsControllerTest {
     }
 
     @Test
-    public void withTakenUsername() {
+    public void withTakenUsername_ItShouldNotValidate() {
         String username = "taken";
         String email = "taken@travelneer.com";
         String password = "Yo654321";
@@ -78,7 +79,7 @@ public class ValidationsControllerTest {
     }
 
     @Test
-    public void withValidUsername() {
+    public void withValidUsername_ItShouldValidate() {
         String username = "hima";
 
         assertThat(Objects.requireNonNull(validationsController.validateUsername(username).getBody()).get("isValid")).isEqualTo(true);
