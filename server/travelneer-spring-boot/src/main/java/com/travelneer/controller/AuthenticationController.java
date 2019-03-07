@@ -16,6 +16,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -68,9 +69,7 @@ public class AuthenticationController {
     	var body = new HashMap<String, String>();
 
         try {
-
-            User user = userRepository.getOneByName(username);
-            user.login(password);
+            User user = userFactory.getUser(username, password);
 
             var token = jwtGenerator.generate(user);
 

@@ -1,6 +1,5 @@
 package com.travelneer.user;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.regex.Pattern;
@@ -8,9 +7,7 @@ import java.util.regex.Pattern;
 public class Password {
 
     private String encodedPassword;
-    private String passsword;
-    private PasswordEncoder passwordEncoder;
-
+    private String value;
 
     public static final int STRONG_PASSWORD = 1;
     public static final int MEDIUM_PASSWORD = 2;
@@ -32,16 +29,11 @@ public class Password {
             + "{6,15}"
             + "$";
 
+    public Password() { }
+
     public Password(String password) {
-        this.passwordEncoder = new BCryptPasswordEncoder();
-        this.encodedPassword = this.passwordEncoder.encode(password);
-        this.passsword = password;
+        this.value = password;
     }
-
-    public Password() {
-        this.passwordEncoder = new BCryptPasswordEncoder();
-    }
-
 
     public static int getStrength(String value) {
 
@@ -59,9 +51,9 @@ public class Password {
     public int getStrength() {
         Pattern strPtr = Pattern.compile(STRONG_PASSWORD_REGEX);
         Pattern mdmPtr = Pattern.compile(MEDIUM_PASSWORD_REGEX);
-        if (strPtr.matcher(passsword).matches()) {
+        if (strPtr.matcher(value).matches()) {
             return STRONG_PASSWORD;
-        } else if (mdmPtr.matcher(passsword).matches()) {
+        } else if (mdmPtr.matcher(value).matches()) {
             return MEDIUM_PASSWORD;
         } else {
             return INVALID_PASSWORD;
@@ -76,12 +68,8 @@ public class Password {
         this.encodedPassword = password;
     }
 
-    public PasswordEncoder getPasswordEncoder() {
-        return passwordEncoder;
-    }
-
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public void encode(PasswordEncoder passwordEncoder) {
+        this.encodedPassword = passwordEncoder.encode(value);
     }
 
 }

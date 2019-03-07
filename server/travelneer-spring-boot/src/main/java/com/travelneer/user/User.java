@@ -1,6 +1,5 @@
 package com.travelneer.user;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
@@ -18,6 +17,7 @@ public class User {
         this.name = new Username();
         this.email = new Email();
         this.password = new Password();
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
     public User(Username username, Email email, Password password) {
@@ -58,11 +58,9 @@ public class User {
         this.createdAt = createdAt;
     }
 
-
     public Integer getId() {
         return id;
     }
-
 
     public Username getName() {
         return name;
@@ -81,8 +79,8 @@ public class User {
     }
 
 
-    public void login(String password) throws Exception {
-        if(!this.password.getPasswordEncoder().matches(password, this.password.getEncoded())) {
+    public void login(String username, String password, PasswordEncoder passwordEncoder) throws Exception {
+        if(!passwordEncoder.matches(password, this.password.getEncoded())) {
             throw new Exception("Invalid Username or Password");
         }
     }
