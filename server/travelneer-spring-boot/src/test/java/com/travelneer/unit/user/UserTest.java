@@ -30,7 +30,7 @@ public class UserTest {
                 new Email("youssef@travelneer.com"),
                 password);
 
-        assertThat(user.getPassword()).isNotEqualTo(passwordValue);
+        assertThat(user.getPassword().getEncoded()).isNotEqualTo(passwordValue);
         assertThat(passwordEncoder.matches(passwordValue, password.getEncoded())).isEqualTo(true);
 
     }
