@@ -3,6 +3,7 @@ package com.travelneer.repository.impl;
 import com.travelneer.country.Country;
 import com.travelneer.dto.CountryFollows;
 import com.travelneer.jooq.tables.records.CountryFollowsRecord;
+import com.travelneer.repository.CountryFollowsRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,7 +16,7 @@ import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 import static org.jooq.impl.DSL.count;
 
 @Repository
-public class CountryFollowsRepositoryImpl implements com.travelneer.repository.CountryFollowsRepository {
+public class CountryFollowsRepositoryImpl implements CountryFollowsRepository {
 
     private final DSLContext create;
 

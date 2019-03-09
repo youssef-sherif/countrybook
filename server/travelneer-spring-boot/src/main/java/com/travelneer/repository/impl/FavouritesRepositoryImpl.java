@@ -4,12 +4,14 @@ import com.travelneer.dto.Favourites;
 import com.travelneer.jooq.tables.records.FavouritesRecord;
 
 import static com.travelneer.jooq.tables.Favourites.FAVOURITES;
+
+import com.travelneer.repository.FavouritesRepository;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FavouritesRepositoryImpl implements com.travelneer.repository.FavouritesRepository {
+public class FavouritesRepositoryImpl implements FavouritesRepository {
 
     private final DSLContext create;
 

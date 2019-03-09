@@ -10,7 +10,6 @@ import static com.travelneer.jooq.Tables.USER;
 import static com.travelneer.jooq.Tables.POST;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 import static org.jooq.impl.DSL.count;
-import static org.jooq.impl.DSL.inline;
 
 
 import java.sql.SQLException;
@@ -18,13 +17,10 @@ import java.util.List;
 
 import com.travelneer.post.Post;
 import com.travelneer.jooq.tables.records.PostRecord;
+import com.travelneer.repository.PostRepository;
 import org.jooq.DSLContext;
-import org.jooq.impl.DSL;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
-
-import javax.sql.DataSource;
 
 
 /**
@@ -32,14 +28,13 @@ import javax.sql.DataSource;
  * @author Youssef
  */
 @Repository
-public class PostRepositoryImpl extends JdbcDaoSupport implements com.travelneer.repository.PostRepository {
+public class PostRepositoryImpl implements PostRepository {
 
 	private final DSLContext create;
 
 	@Autowired
-	public PostRepositoryImpl(DSLContext create, DataSource dataSource) {
+	public PostRepositoryImpl(DSLContext create) {
 		this.create = create;
-		this.setDataSource(dataSource);
 	}
 
 	@Override

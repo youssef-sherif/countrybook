@@ -5,6 +5,7 @@
  */
 package com.travelneer.repository.impl;
 
+import com.travelneer.repository.UserRepository;
 import com.travelneer.user.User;
 
 import java.sql.*;
@@ -22,7 +23,7 @@ import static com.travelneer.jooq.tables.User.USER;
  * @author Youssef
  */
 @Repository
-public class UserRepositoryImpl implements com.travelneer.repository.UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
 	private final DSLContext create;
 
