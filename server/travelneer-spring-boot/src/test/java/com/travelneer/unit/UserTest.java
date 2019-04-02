@@ -1,4 +1,4 @@
-package com.travelneer.unit.user;
+package com.travelneer.unit;
 
 import com.travelneer.user.Email;
 import com.travelneer.user.Password;

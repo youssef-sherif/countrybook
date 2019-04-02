@@ -1,4 +1,4 @@
-package com.travelneer.unit.post;
+package com.travelneer.unit;
 
 import com.travelneer.post.Post;
 import org.junit.Test;

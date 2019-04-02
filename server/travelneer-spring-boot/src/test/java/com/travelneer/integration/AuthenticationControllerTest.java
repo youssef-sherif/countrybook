@@ -1,4 +1,4 @@
-package com.travelneer.integration.controller;
+package com.travelneer.integration;
 
 import com.travelneer.controller.AuthenticationController;
 import com.travelneer.dto.UserSignUpDTO;
