@@ -17,8 +17,6 @@ public class Post {
 
     private Map<Long, String> timeDiff;
 
-    private Boolean valid;
-
 
     public Post() {}
 
@@ -104,10 +102,6 @@ public class Post {
 
     public Map<Long, String> getTimeDiff() {
         return timeDiff;
-    }
-
-    public Boolean isValid() {
-        return valid;
     }
 
     public void calculateTimeDifference() {
