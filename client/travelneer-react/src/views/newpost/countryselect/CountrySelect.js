@@ -16,7 +16,7 @@ class CountrySelect extends Component {
     render() {        
         return (
             <div className={`container ${styles.div}`}>
-                <select onChange={(e) => {         
+                <select className={`${styles.select}`} onChange={(e) => {         
                     this.props.selectCountry(e.target.value);
                         }}>
                         <option  key={0} value={0}>

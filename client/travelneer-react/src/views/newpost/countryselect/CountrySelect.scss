@@ -5,6 +5,18 @@
 
     .div {
         width: 50%;
+    }
+
+    .select {
+        width: 80%;        
     } 
+    
+}
+
+@media only screen and (max-width: $s-screen-min) {
+
+    .select {
+        width: 100%;
+    }
     
 }
