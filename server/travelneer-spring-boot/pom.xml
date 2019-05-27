@@ -6,7 +6,7 @@
 
 	<groupId>com.youssef</groupId>
 	<artifactId>travelneer</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>travelneer</name>
@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>org.jooq</groupId>
 			<artifactId>jooq</artifactId>
-			<version>3.11.5</version>
+			<version>3.11.11</version>
 		</dependency>
 
 		<dependency>
@@ -146,10 +146,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 			</plugin>
@@ -195,7 +191,7 @@
 								</goals>
 								<configuration>
 									<files>
-										<file>src/main/resources/application.properties</file>
+										<file>src/main/resources/application-dev.properties</file>
 									</files>
 								</configuration>
 							</execution>
@@ -204,7 +200,7 @@
 					<plugin>
 						<groupId>org.jooq</groupId>
 						<artifactId>jooq-codegen-maven</artifactId>
-						<version>3.11.5</version>
+						<version>3.11.11</version>
 						<executions>
 							<execution>
 								<goals>
@@ -213,24 +209,17 @@
 							</execution>
 						</executions>
 						<dependencies>
-
 							<dependency>
 								<groupId>org.mariadb.jdbc</groupId>
 								<artifactId>mariadb-java-client</artifactId>
 								<version>1.1.7</version>
-								<scope>runtime</scope>
 							</dependency>
-
 						</dependencies>
 						<configuration>
 							<jdbc>
-								<!--suppress UnresolvedMavenProperty -->
 								<driver>${spring.datasource.driver-class-name}</driver>
-								<!--suppress UnresolvedMavenProperty -->
 								<url>${spring.datasource.url}</url>
-								<!--suppress UnresolvedMavenProperty -->
 								<user>${spring.datasource.username}</user>
-								<!--suppress UnresolvedMavenProperty -->
 								<password>${spring.datasource.password}</password>
 							</jdbc>
 							<generator>
