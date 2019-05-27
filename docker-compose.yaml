@@ -18,7 +18,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d  
 
   travelneer:    
-    image: travelneer/spring-boot-main:0.0.1-SNAPSHOT
+    image: travelneer/spring-boot-main:1.0
     restart: always    
     networks:
       - external_network
