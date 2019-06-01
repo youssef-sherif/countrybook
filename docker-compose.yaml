@@ -11,13 +11,15 @@ services:
     networks:
       - external_network 
     depends_on:
-      - travelneer
+      - travelneer-server
+      - travelneer-client
     links:
-      - travelneer:travelneer 
+      - travelneer-server:travelneer 
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d  
 
-  travelneer:    
+  travelneer-server:    
+    build: server/travelneer-spring-boot
     image: travelneer/spring-boot-main:1.0
     restart: always    
     networks:
@@ -30,9 +32,18 @@ services:
     depends_on:
       - db
 
+  travelneer-client:
+    build: client/travelneer-react
+    image: travelneer/react-main:1.0
+    restart: always
+    networks:
+      - external_network
+    depends_on:
+      - travelneer-server
+
   db:
     container_name: db
-    image: mariadb:latest 
+    image: mariadb:10.3.12 
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'whatever'
