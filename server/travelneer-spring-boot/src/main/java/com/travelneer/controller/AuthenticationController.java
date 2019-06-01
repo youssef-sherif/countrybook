@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.*;
  *
  * @author Youssef
  */
-@CrossOrigin( "http://localhost:3000")
 @RestController
+@CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
 public class AuthenticationController {
 
     private final JwtGenerator jwtGenerator;

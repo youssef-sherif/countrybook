@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Youssef
  */
 @RestController
-@CrossOrigin(origins = { "http://localhost:3000" })
+@CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
 @RequestMapping(value = "/api/v1")
 public class FavouritesController {
 
