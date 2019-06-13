@@ -4,13 +4,14 @@ name: default
 steps:
   - name: backend
     image: maven:3.6.1-jdk-11   
-    commands:
-      - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-      - mvn test -B
+    # commands:
+    #   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+    #   - mvn test -B
 
   - name: frontend
     image: node:11.8.0
     commands:
+      - cd client/travelneer-react
       - yarn install
       - yarn test  
       - yarn audit
