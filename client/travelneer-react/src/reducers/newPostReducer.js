@@ -27,7 +27,8 @@ export function newPostReducer(state = initialState, action) {
         return {
           ...state,
             loading: false,
-            successful: true
+            successful: true,
+            content: ""
     
         }
       case NEW_POST_FAILURE:
