@@ -2,5 +2,15 @@ kind: pipeline
 name: default
 
 steps:
-  - name: test
-    image: openjdk:11.0.2    
+  - name: backend
+    image: maven:3.6.1-jdk-11   
+    commands:
+      - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - mvn test -B
+
+  - name: frontend
+    image: node:11.8.0
+    commands:
+      - yarn install
+      - yarn test  
+      - yarn audit
