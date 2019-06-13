@@ -1,0 +1,12 @@
+kind: pipeline
+name: default
+
+workspace:
+  base: /go
+  path: src/github.com/youssef-sherif/countrybook
+  
+steps:
+  - name: test
+    image: 3.6.1-jdk-12
+    commands:
+      - mvn clean install
