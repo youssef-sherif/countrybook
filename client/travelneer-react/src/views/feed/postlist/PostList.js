@@ -4,6 +4,7 @@ import LoadingScreen from '../../loadingscreen/LoadingScreen'
 import { connect } from 'react-redux'
 
 import styles from './PostList.scss'
+import LoadMoreButton from './LoadMoreButton';
 
  class PostList extends Component {
 
@@ -24,6 +25,8 @@ import styles from './PostList.scss'
                                 favouritesResource={post._links.favourite.href}
                             />
                 })}
+
+                <LoadMoreButton />
             </div>
         )
         else   
