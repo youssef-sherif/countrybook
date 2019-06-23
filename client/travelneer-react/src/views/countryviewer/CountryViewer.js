@@ -9,7 +9,7 @@ import { newPost2 } from '../../actions/newPostActions'
 import PostArea from '../newpost/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
-import NewPostIndicator from '../feed/newpostindicator/NewPostIndicator';
+import Indicator from '../indicator/Indicator'
 
 class CountryViewer extends Component {
 
@@ -73,7 +73,7 @@ class CountryViewer extends Component {
                 
                 {postsDiv}
 
-                <NewPostIndicator
+                <Indicator
                         successful={this.props.newPostSuccessful}
                         loading={this.props.newPostLoading} 
                         error={this.props.newPostError}
