@@ -1,4 +1,5 @@
 import { fetchPosts } from './postsActions'
+import { fetchCountryInfo } from './countryProfileActions'
 import { push } from 'connected-react-router'
 
 export const NEW_POST_BEGIN = 'NEW_POST_BEGIN'
@@ -95,6 +96,7 @@ export const newPost2 = (countryId, content) => {
             })
             .then((data) => {
                 dispatch(newPostSuccess());   
+                dispatch(fetchCountryInfo(countryId));
                 dispatch(push(`/countries/${countryId}`))
                 return data
             })
