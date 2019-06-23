@@ -9,7 +9,7 @@ import PostArea from '../newpost/postarea/PostArea'
 import new_post from '../../images/new_post.png'
 import styles from './Feed.scss'
 import { showNew, newPost } from '../../actions/newPostActions'
-import NewPostIndicator from './newpostindicator/NewPostIndicator'
+import Indicator from '../indicator/Indicator'
 
 import { fetchPosts } from '../../actions/postsActions'
 
@@ -88,7 +88,7 @@ class Feed extends Component {
 
                 {newPostButton}
 
-                <NewPostIndicator
+                <Indicator
                     successful={this.props.newPostSuccessful}
                     loading={this.props.newPostLoading} 
                     error={this.props.newPostError}
