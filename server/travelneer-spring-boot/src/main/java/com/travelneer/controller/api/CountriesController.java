@@ -23,31 +23,30 @@ import org.springframework.web.bind.annotation.*;
 
 
 /**
- *
  * @author Youssef
  */
 @RestController
-@CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5000"})
 @RequestMapping(value = "/api")
 public class CountriesController {
 
-	private final CountryRepository countryRepository;
-	private final CountryFollowsRepository countryFollowsRepository;
-	private final JwtValidator validator;
-	private final S3Service s3Service;
+    private final CountryRepository countryRepository;
+    private final CountryFollowsRepository countryFollowsRepository;
+    private final JwtValidator validator;
+    private final S3Service s3Service;
 
-	@Autowired
-	public CountriesController(CountryRepository countryRepository, CountryFollowsRepository countryFollowsRepository, JwtValidator validator, S3Service s3Service) {
+    @Autowired
+    public CountriesController(CountryRepository countryRepository, CountryFollowsRepository countryFollowsRepository, JwtValidator validator, S3Service s3Service) {
         this.countryRepository = countryRepository;
         this.countryFollowsRepository = countryFollowsRepository;
         this.validator = validator;
         this.s3Service = s3Service;
     }
 
-	@RequestMapping(value = "/countries", method = RequestMethod.GET)
-	public ResponseEntity<?> countries() {
+    @RequestMapping(value = "/countries", method = RequestMethod.GET)
+    public ResponseEntity<?> countries() {
 
-		try {
+        try {
             List<Country> countries = countryRepository.getAll();
             countries.forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
@@ -56,11 +55,11 @@ public class CountriesController {
 
             var resource = new CountriesResource(countryResources);
 
-			return new ResponseEntity<>(resource, HttpStatus.OK);
-		} catch(Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
+            return new ResponseEntity<>(resource, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
     @RequestMapping(value = "/countries/{countryId}", method = RequestMethod.GET)
@@ -79,10 +78,10 @@ public class CountriesController {
         }
     }
 
-	@RequestMapping(value = "/countries-search", method = RequestMethod.GET, params = "name")
-	public ResponseEntity<?> searchCountries(@RequestParam(name = "name") String searchParam) {
+    @RequestMapping(value = "/countries-search", method = RequestMethod.GET, params = "name")
+    public ResponseEntity<?> searchCountries(@RequestParam(name = "name") String searchParam) {
 
-		try {
+        try {
             List<Country> countries = countryRepository.search(searchParam);
             countries.forEach(e -> e.setFlagUrl(s3Service.getImage(e.getFlagUrl())));
 
@@ -91,9 +90,9 @@ public class CountriesController {
 
             var countriesResource = new CountriesResource(countryResources);
 
-			return new ResponseEntity<>(countriesResource, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
+            return new ResponseEntity<>(countriesResource, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }
