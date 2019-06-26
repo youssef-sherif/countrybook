@@ -9,6 +9,7 @@ import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.USER;
 import static com.travelneer.jooq.Tables.POST;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
+import static com.travelneer.jooq.tables.Favourites.FAVOURITES;
 import static org.jooq.impl.DSL.count;
 
 
@@ -119,6 +120,14 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public void delete(Post entity) throws SQLException {
         create.deleteFrom(POST).where(POST.ID.eq(entity.getId()));
+    }
+
+
+    @Override
+    public Boolean isPostFavouriteByUser(Integer postId, Integer userId) {
+        return create.fetchExists(FAVOURITES,
+                FAVOURITES.POST_ID.eq(postId)
+                        .and(FAVOURITES.USER_ID.eq(userId)));
     }
 
 }

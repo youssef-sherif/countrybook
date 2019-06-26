@@ -4,8 +4,7 @@ import com.travelneer.controller.api.PostsController;
 import com.travelneer.controller.api.v1.CountryPostsController;
 import com.travelneer.country.CountryFeedResource;
 import com.travelneer.jwt.JwtValidator;
-import com.travelneer.repository.CountryFollowsRepository;
-import com.travelneer.repository.FavouritesRepository;
+import com.travelneer.repository.CountryRepository;
 import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,17 +20,15 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 public class PostFactory {
 
     private final JwtValidator validator;
-    private final FavouritesRepository favouritesRepository;
     private final PostRepository postRepository;
-    private final CountryFollowsRepository countryFollowsRepository;
+    private final CountryRepository countryRepository;
 
 
     @Autowired
-    public PostFactory(JwtValidator validator, FavouritesRepository favouritesRepository, PostRepository postRepository, CountryFollowsRepository countryFollowsRepository) {
+    public PostFactory(JwtValidator validator, PostRepository postRepository, CountryRepository countryRepository) {
         this.validator = validator;
-        this.favouritesRepository = favouritesRepository;
         this.postRepository = postRepository;
-        this.countryFollowsRepository = countryFollowsRepository;
+        this.countryRepository = countryRepository;
     }
 
     public Post createPost(String content, Short countryId) throws Exception {
@@ -44,7 +41,7 @@ public class PostFactory {
 
         post.validate();
 
-        if(!countryFollowsRepository.exists(validator.getUserId(), countryId)){
+        if(!countryRepository.isCountryFollowedByUser(validator.getUserId(), countryId)){
             throw new Exception("You must be followed to post");
         }
 
@@ -61,7 +58,7 @@ public class PostFactory {
         List<PostResource> postResources = posts.stream().map(Post::toResource)
                 .collect(Collectors.toList());
         postResources.forEach(e ->
-                e.setFavourite(favouritesRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
+                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
         FeedResource feedResource = new FeedResource(postResources, page);
 
@@ -76,7 +73,7 @@ public class PostFactory {
         Post post =  postRepository.getOneById(postId);
         post.calculateTimeDifference();
         var postResource = post.toResource();
-        postResource.setFavourite(favouritesRepository.isPostFavouriteByUser(postId, validator.getUserId()));
+        postResource.setFavourite(postRepository.isPostFavouriteByUser(postId, validator.getUserId()));
 
         return postResource;
     }
@@ -88,7 +85,7 @@ public class PostFactory {
         List<PostResource> postResources = posts.stream().map(Post::toResource)
                 .collect(Collectors.toList());
         postResources.forEach(e ->
-                e.setFavourite(favouritesRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
+                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
         CountryFeedResource feedResource = new CountryFeedResource(postResources, countryId, page);
 

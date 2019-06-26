@@ -1,15 +1,20 @@
 package com.travelneer.controller.api.v1;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.travelneer.jooq.tables.records.FavouritesRecord;
+import com.travelneer.jwt.JwtValidator;
 import com.travelneer.post.Post;
 import com.travelneer.repository.PostRepository;
-import com.travelneer.service.FavouritePostService;
+import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static com.travelneer.jooq.Tables.FAVOURITES;
 
 /**
  *
@@ -20,13 +25,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1")
 public class FavouritesController {
 
-    private final FavouritePostService favouritePostService;
+    private final JwtValidator validator;
     private final PostRepository postRepository;
+    private final DSLContext create;
 
     @Autowired
-    public FavouritesController(FavouritePostService favouritePostService, PostRepository postRepository) {
-        this.favouritePostService = favouritePostService;
+    public FavouritesController(JwtValidator validator, PostRepository postRepository, DSLContext create) {
+        this.validator = validator;
         this.postRepository = postRepository;
+        this.create = create;
     }
 
 
@@ -34,12 +41,19 @@ public class FavouritesController {
     public ResponseEntity<?> favouritePost(@PathVariable("postId") int postId) {
         Map<String, Object> response = new HashMap<>();
         try {
-            favouritePostService.favouritePost(postId);
+            FavouritesRecord record = create.newRecord(FAVOURITES);
+            record.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+            record.setUserId(validator.getUserId());
+            record.setPostId(postId);
+            record.store();
+
             Post post =  postRepository.getOneById(postId);
             post.calculateTimeDifference();
+
             var postResource = post.toResource();
             postResource.setFavourite(true);
             response.put("post", postResource);
+
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch(Exception e) {
             response.put("errorMessage", e.getMessage());
@@ -51,12 +65,18 @@ public class FavouritesController {
     public ResponseEntity<?> unFavouritePost(@PathVariable("postId") int postId) {
         Map<String, Object> response = new HashMap<>();
         try {
-            favouritePostService.unFavouritePost(postId);
+            FavouritesRecord record = create.newRecord(FAVOURITES);
+            record.setUserId(validator.getUserId());
+            record.setPostId(postId);
+            record.delete();
+
             Post post =  postRepository.getOneById(postId);
             post.calculateTimeDifference();
+
             var postResource = post.toResource();
             postResource.setFavourite(false);
             response.put("post", postResource);
+
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch(Exception e) {
             response.put("errorMessage", e.getMessage());

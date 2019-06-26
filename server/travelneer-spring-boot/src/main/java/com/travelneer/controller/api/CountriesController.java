@@ -9,7 +9,6 @@ import com.travelneer.country.CountriesResource;
 import com.travelneer.country.Country;
 import com.travelneer.country.CountryResource;
 import com.travelneer.jwt.JwtValidator;
-import com.travelneer.repository.CountryFollowsRepository;
 import com.travelneer.repository.CountryRepository;
 
 import java.util.List;
@@ -31,14 +30,12 @@ import org.springframework.web.bind.annotation.*;
 public class CountriesController {
 
     private final CountryRepository countryRepository;
-    private final CountryFollowsRepository countryFollowsRepository;
     private final JwtValidator validator;
     private final S3Service s3Service;
 
     @Autowired
-    public CountriesController(CountryRepository countryRepository, CountryFollowsRepository countryFollowsRepository, JwtValidator validator, S3Service s3Service) {
+    public CountriesController(CountryRepository countryRepository, JwtValidator validator, S3Service s3Service) {
         this.countryRepository = countryRepository;
-        this.countryFollowsRepository = countryFollowsRepository;
         this.validator = validator;
         this.s3Service = s3Service;
     }
@@ -70,7 +67,7 @@ public class CountriesController {
             country.setProfileImageUrl(s3Service.getImage(country.getProfileImageUrl()));
 
             var countryDetailsResource = country.toCountryDetailsResource();
-            countryDetailsResource.setFollowed(countryFollowsRepository.exists(validator.getUserId(), countryId));
+            countryDetailsResource.setFollowed(countryRepository.isCountryFollowedByUser(validator.getUserId(), countryId));
 
             return new ResponseEntity<>(countryDetailsResource, HttpStatus.OK);
         } catch (Exception e) {

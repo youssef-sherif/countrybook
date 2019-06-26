@@ -24,4 +24,7 @@ public interface PostRepository extends IRepository<Post> {
     List<Post> getFeed(int userId, int offset) throws SQLException;
 
     Integer getPostsCountByCountryId(short id);
+
+    Boolean isPostFavouriteByUser(Integer postId, Integer userId);
+
 }

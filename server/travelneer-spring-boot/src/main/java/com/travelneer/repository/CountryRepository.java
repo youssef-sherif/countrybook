@@ -22,4 +22,10 @@ public interface CountryRepository extends IRepository<Country> {
 
     List<Country> getAll() throws SQLException;
 
+    List<Country> getCountriesFollowed(int userId) throws SQLException;
+
+    Integer getFollowersCount(Short countryId) throws SQLException;
+
+    boolean isCountryFollowedByUser(Integer userId, Short countryId) throws SQLException;
+
 }

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
+import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
 import com.travelneer.country.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;
@@ -50,6 +51,33 @@ public class CountryRepositoryImpl implements CountryRepository {
     public List<Country> search(String searchValue) throws SQLException {
         List<Country> countries = create.select().from(COUNTRY)
                 .where(COUNTRY.NAME.like(searchValue + "%")).fetchInto(Country.class);
+        return countries;
+    }
+
+    @Override
+    public boolean isCountryFollowedByUser(Integer userId, Short countryId) throws SQLException {
+
+        return create.fetchExists(COUNTRY_FOLLOWS,
+                COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId)
+                        .and(COUNTRY_FOLLOWS.USER_ID.eq(userId)));
+    }
+
+    @Override
+    public Integer getFollowersCount(Short countryId) throws SQLException {
+        return create.fetchCount(COUNTRY_FOLLOWS,
+                COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId));
+    }
+
+    @Override
+    public List<Country> getCountriesFollowed(int userId) throws SQLException {
+        List<Country> countries = create.select()
+                .from(COUNTRY)
+                .innerJoin(COUNTRY_FOLLOWS)
+                .on(COUNTRY_FOLLOWS.COUNTRY_ID
+                        .eq(COUNTRY.ID))
+                .where(COUNTRY_FOLLOWS.USER_ID.eq(userId))
+                .fetch().into(Country.class);
+
         return countries;
     }
 
