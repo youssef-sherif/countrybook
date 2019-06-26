@@ -1,0 +1,64 @@
+version: '3'
+services:
+
+  nginx:
+    container_name: travelneer-nginx
+    image: nginx:1.13
+    restart: always
+    ports:
+      - 80:80
+      - 443:443   
+    networks:
+      - external_network 
+    depends_on:
+      - travelneer-server
+      - travelneer-client
+    links:
+      - travelneer-server:travelneer 
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d  
+
+  travelneer-server:    
+    build: server/travelneer-spring-boot
+    image: travelneer/spring-boot-main:1.0
+    restart: always    
+    networks:
+      - external_network
+      - internal_network
+    links:
+      - db:mysql-container 
+    ports:
+      - 8080:8080    
+    depends_on:
+      - db
+
+  travelneer-client:
+    build: client/travelneer-react
+    image: travelneer/react-main:1.0
+    restart: always
+    networks:
+      - external_network
+    depends_on:
+      - travelneer-server
+    ports:
+      - 5000:5000
+
+  db:
+    container_name: db
+    image: mariadb:10.3.12 
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'whatever'
+      MYSQL_DATABASE: 'travelneer'
+      MYSQL_USER: 'travelneer'
+      MYSQL_PASS: '12345678'
+    networks:      
+      - internal_network  
+    volumes: 
+      - ./mariadb/data:/var/lib/mariadb
+      - ./mariadb/dump:/docker-entrypoint-initdb.d/
+
+networks:
+  external_network:
+  internal_network:
+    internal: true        
