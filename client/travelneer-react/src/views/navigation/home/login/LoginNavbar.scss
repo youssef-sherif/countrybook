@@ -1,6 +1,14 @@
 @import '../../../variables.scss';
 
-.input {
+
+@media only screen and (min-width: $xl-screen-min){
+ 
+  .form {
+    position: relative;    
+    padding-right: 10px;
+  }
+
+  .input {
     margin: 10px;
     background-color: #FFF;
     font: 1em sans-serif;
@@ -8,9 +16,67 @@
     height: 30px;
     width: auto;
   }
-
-.LoginButton {
+  
+  .LoginButton {
     margin: 10px;
     background-color: lightgray;      
     color: #000;
+  }
+
+}
+
+@media only screen and (min-width: $l-screen-min) and (max-width: $xl-screen-min){
+
+  .form {
+    position: relative;    
+    padding-right: 20px;
+    margin-right: 40%;
+  }
+
+  .input {
+    background-color: #FFF;
+    margin-bottom: 5px;
+    font: 1em sans-serif;
+    color: #000;
+    height: 20px;
+    width: 100%;
+  }
+  
+  .LoginButton {
+    background-color: lightgray;      
+    color: #000;
+    height: 20px;
+    width: 100%;
+    font-size: 70%;
+    padding: 4px;
+  }
+
+}
+
+@media only screen and (max-width: $l-screen-min) {
+
+  .form {
+    position: relative;    
+    padding-right: 20px;
+    margin-right: 20%;
+  }
+
+  .input {    
+    background-color: #FFF;
+    margin-bottom: 5px;
+    font: 1em sans-serif;
+    color: #000;
+    height: 20px;
+    width: 100%;
+  }
+  
+  .LoginButton {    
+    background-color: lightgray;      
+    color: #000;
+    height: 20px;
+    width: 100%;
+    font-size: 70%;
+    padding: 4px;
+  }
+
 }

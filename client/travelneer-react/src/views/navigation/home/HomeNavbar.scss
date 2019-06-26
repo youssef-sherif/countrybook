@@ -15,21 +15,17 @@
         
         div {
 
-            div a {
+            div img {
                 position: relative;
                 margin: 10px;
-                float: left;                
+                float: left;               
             }                
-        
-            ul li #loginBtn {
-                display: none;                  
-            }
     
         }
     }
 }
 
-@media only screen and (max-width: $l-screen-max) {
+@media only screen and (min-width: $l-screen-min) and (max-width: $xl-screen-min){
     nav {
         height: auto;
         margin-bottom: 0px;
@@ -44,9 +40,40 @@
         
         div {
 
-            div a {
+            div {
                 position: relative;
                 margin: 10px;
+                margin-left: 30%;
+                float: left;    
+                img {
+                    width: 75%;
+                    height: auto;
+                }                            
+            }             
+    
+        }
+    }
+}
+
+@media only screen and (max-width: $l-screen-min) {
+    nav {
+        height: auto;
+        margin-bottom: 0px;
+        border-radius: 0;
+        background-color: $menu-background;
+        color: #FFF;
+        width: 100%;
+        margin: 0;
+        font-size: 1em;
+        border: 0;
+        padding: 0px;
+        
+        div {
+
+            div {
+                position: relative;
+                margin: 10px;
+                margin-left: 30%;
                 float: left;    
                 img {
                     width: 75%;
@@ -54,15 +81,8 @@
                 }                            
             }
         
-            ul li #loginBtn {                
-                float: right; 
-                &:hover {
-                    background-color: lightgrey
-                }                       
-            }
-        
             .input {
-                display: none;
+                float: right;
             }
         }
     }

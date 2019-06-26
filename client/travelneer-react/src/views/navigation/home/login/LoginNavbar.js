@@ -17,7 +17,7 @@ class Login extends Component {
     render() {
         return (
             <div className="nav navbar-nav navbar-right">
-                <form>
+                <form className={styles.form}>
                 <input className={styles.input} placeholder="username or email" 
                     onChange={e => this.props.changeUsernameOrEmail(e.target.value)} />
                 <input className={styles.input} placeholder="password" 
