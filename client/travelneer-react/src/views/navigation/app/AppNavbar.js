@@ -26,12 +26,10 @@ class AppNavbar extends Component {
     render() {
         return (
             <div className={`navbar navbar-fixed-top ${styles.navbar}`}>
-                <div className="container">
-                    <a href="http://localhost:3000/feed">
-                        <div className={`btn col-md-2 col-l-2 col-xl-2 ${styles.logo}`}>
-                            <img alt='logo' src={logo} />
-                        </div>
-                    </a>
+                <div className="container">               
+                    <div className={`btn col-md-2 col-l-2 col-xl-2 ${styles.logo}`}>
+                        <img alt='logo' src={logo} />
+                    </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
                         <img className={styles.img} alt='profile' src={profile} 
                             onClick={() => this.logout() } />

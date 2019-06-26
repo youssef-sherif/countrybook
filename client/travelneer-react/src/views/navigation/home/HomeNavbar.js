@@ -19,10 +19,8 @@ class HomeNavbar extends Component {
         return (
             <nav>
                 <div className={`container-fluid`}>
-                    <div>
-                        <a href="http://localhost:3000/">
-                            <img alt="logo" src={logo} />
-                        </a>
+                    <div>                     
+                        <img alt="logo" src={logo} />                        
                     </div>                    
                     <div className={styles.input} >
                         <LoginNavbar />
