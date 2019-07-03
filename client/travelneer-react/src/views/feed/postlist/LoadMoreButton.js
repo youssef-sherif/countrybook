@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import loadMore from '../../../images/load_more.png'
+import loadMoreImg from '../../../images/load-more.png'
 import loading from '../../../images/loading.gif'
 
 
@@ -13,7 +13,7 @@ export default class LoadMoreButton extends Component {
         
     else
         return (<img 
-                alt='load more' src={loadMore}
+                alt='load more' src={loadMoreImg}
                 onClick={ (e) => {
                     e.preventDefault();
                     this.props.loadMore(this.props.nextPostsResource);

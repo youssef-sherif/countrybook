@@ -6,7 +6,7 @@ import AppNavbar from '../navigation/app/AppNavbar'
 import CountrySelect from '../newpost/countryselect/CountrySelect'
 import PostArea from '../newpost/postarea/PostArea'
 
-import new_post from '../../images/new_post.png'
+import newPostImg from '../../images/new-post.png'
 import styles from './Feed.scss'
 import { showNew, newPost } from '../../actions/newPostActions'
 import Indicator from '../indicator/Indicator'
@@ -63,7 +63,7 @@ class Feed extends Component {
         return (
             <img className={`btn ${styles.newPostImg}`}
                 alt='new post'
-                src={new_post}
+                src={newPostImg}
                 onClick={() => {
                     this.props.showNew(!this.props.showNewState)
                 }} />
