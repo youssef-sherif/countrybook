@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import PostList from './postlist/PostList'
+import PostList from '../postlist/PostList'
 import AppNavbar from '../navigation/app/AppNavbar'
 import CountrySelect from '../newpost/countryselect/CountrySelect'
 import PostArea from '../newpost/postarea/PostArea'

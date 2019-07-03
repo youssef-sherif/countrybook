@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import styles from './PostList.scss'
 import LoadMoreButton from './LoadMoreButton'
 
-import { fetchPosts, fetchCountryPosts } from '../../../actions/postsActions'
+import { fetchPosts, fetchCountryPosts } from '../../actions/postsActions'
 
  class PostList extends Component {
 

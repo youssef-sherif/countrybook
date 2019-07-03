@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import loading from '../../../images/loading.gif'
+import loading from '../../images/loading.gif'
 
 export default class FavouritesButton extends Component {
 

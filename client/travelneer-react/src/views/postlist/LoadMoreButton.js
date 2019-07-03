@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import loadMoreImg from '../../../images/load-more.png'
-import loading from '../../../images/loading.gif'
+import loadMoreImg from '../../images/load-more.png'
+import loading from '../../images/loading.gif'
 
 
 export default class LoadMoreButton extends Component {

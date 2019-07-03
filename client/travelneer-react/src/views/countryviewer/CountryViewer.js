@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AppNavbar from '../navigation/app/AppNavbar'
-import PostList from '../feed/postlist/PostList'
+import PostList from '../postlist/PostList'
 import CountryProfile from './countryprofile/CountryProfile'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
