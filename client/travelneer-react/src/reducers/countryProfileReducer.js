@@ -23,6 +23,7 @@ const initialState = {
     countryId: null,
     error: "",
     postsResource: "",
+    nextResource: "",
     followResource: "", 
     postsCount: 0
 }
@@ -55,8 +56,7 @@ export function countryProfileReducer(state = initialState,
                 postsCountResource: action.payload.data._links.postsCount.href,
                 followersCountResource: action.payload.data._links.followersCount.href,
                 postsResource: action.payload.data._links.countryPosts.href,
-                followResource: action.payload.data._links.follow.href,                
-
+                followResource: action.payload.data._links.follow.href                
             }
 
         case FETCH_COUNTRY_INFO_FAILURE:

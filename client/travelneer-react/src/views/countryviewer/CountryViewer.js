@@ -30,7 +30,7 @@ class CountryViewer extends Component {
                     onPost={this.onPost.bind(this)}
                     newPost={this.props.newPost2.bind(this)}/> 
                 :
-                <PostList />
+                <PostList fromCountryViewer={true}/>
                 }
                 
             </div>)
@@ -87,6 +87,7 @@ class CountryViewer extends Component {
 
 const mapStateToProps = (state) => ({
     countryName: state.countryProfile.countryName,
+    postsResource: state.countryProfile.postsResource,
     loading: state.posts.loading,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,

@@ -71,9 +71,9 @@ export const fetchPostsBegin = () => ({
     type: FETCH_POSTS_BEGIN
 })
 
-const fetchPostsSuccess = (posts) => ({
+const fetchPostsSuccess = (data, loadMore) => ({
     type: FETCH_POSTS_SUCCESS,    
-    payload: {posts}
+    payload: {data, loadMore}
 })
 
 const fetchPostsFailure = (error) => ({
@@ -82,31 +82,7 @@ const fetchPostsFailure = (error) => ({
 })
 
 
-export const fetchPosts = () => {
-    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
-    return (dispatch) => {
-        dispatch(fetchPostsBegin())
-        fetch('http://localhost:8080/api/feed', {
-            method: 'get',
-            headers: {
-                'Authorization': tokenBearer,
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-origin': 'http://localhost:8080'
-            }
-        })
-            .then(handleErrors)
-            .then((response) => response.json())
-            .then((data) => {
-                dispatch(fetchPostsSuccess(data.posts))                
-                return data
-            })
-            .catch((error) => { 
-                dispatch(fetchPostsFailure(error))                                                                             
-            })
-    }
-}
-
-export const fetchCountryPosts = (resource) => {
+export const fetchPosts = (resource='http://localhost:8080/api/feed', loadMore=false) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`
     return (dispatch) => {
         dispatch(fetchPostsBegin())
@@ -121,7 +97,31 @@ export const fetchCountryPosts = (resource) => {
             .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
-                dispatch(fetchPostsSuccess(data.posts, data._links))                
+                dispatch(fetchPostsSuccess(data, loadMore))                
+                return data
+            })
+            .catch((error) => { 
+                dispatch(fetchPostsFailure(error))                                                                             
+            })
+    }
+}
+
+export const fetchCountryPosts = (resource, loadMore=false) => {
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+    return (dispatch) => {
+        dispatch(fetchPostsBegin())
+        fetch(resource, {
+            method: 'get',
+            headers: {
+                'Authorization': tokenBearer,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
+            }
+        })
+            .then(handleErrors)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(fetchPostsSuccess(data, loadMore))                
                 return data
             })
             .catch((error) => { 

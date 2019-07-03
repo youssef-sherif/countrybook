@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import loadMore from '../../../images/load_more.png'
 import loading from '../../../images/loading.gif'
-import { connect } from 'react-redux'
 
 
-class LoadMoreButton extends Component {
+export default class LoadMoreButton extends Component {
 
     render() {
 
@@ -13,17 +12,12 @@ class LoadMoreButton extends Component {
 
         
     else
-        return (<img alt='load more' src={loadMore}/>)
+        return (<img 
+                alt='load more' src={loadMore}
+                onClick={ (e) => {
+                    e.preventDefault();
+                    this.props.loadMore(this.props.nextPostsResource);
+                }}/>)
     }
 }
-
-const mapStateToProps = (state) => ({
-})
-
-
-const mapDispatchToProps = (dispatch) => ({
-})
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoadMoreButton)
 

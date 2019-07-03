@@ -13,6 +13,7 @@ const initialState = {
   loading: false,
   favouriteLoading: false,
   favouriteSuccessful: false,
+  nextResource: "",
   error: "",
   posts: []
 }
@@ -30,7 +31,9 @@ export function postsReducer(state = initialState, action) {
         ...state,
         loading: false,
         successful: true,
-        posts: action.payload.posts,
+        posts: action.payload.loadMore === true? state.posts.concat(action.payload.data.posts) 
+          : action.payload.data.posts,
+        nextResource: action.payload.data._links.next.href
       }
     case FETCH_POSTS_FAILURE:
       return {
