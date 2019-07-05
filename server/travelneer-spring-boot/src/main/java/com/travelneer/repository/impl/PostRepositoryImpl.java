@@ -11,6 +11,7 @@ import static com.travelneer.jooq.Tables.POST;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 import static com.travelneer.jooq.tables.Favourites.FAVOURITES;
 import static org.jooq.impl.DSL.count;
+import static org.jooq.impl.DSL.user;
 
 
 import java.sql.SQLException;
@@ -38,7 +39,7 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Post getOneById(Integer id) throws SQLException {
+    public Post getOneById(int id) throws SQLException {
         PostRecord postRecord = create.fetchOne(POST, POST.ID.eq(id));
 
         return postRecord.into(Post.class);
@@ -53,17 +54,19 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public List<Post> getPostsByAuthorId(Integer authorId) throws SQLException {
+    public List<Post> getPostsByAuthorId(int authorId, int offset) throws SQLException {
 
         List<Post> posts =
-                create.select()
+                create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
+                        POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
                         .from(POST)
                         .innerJoin(USER).on(USER.ID
                         .eq(POST.AUTHOR_ID))
                         .where(USER.ID
                                 .eq(authorId))
-                        .orderBy(POST.CREATED_AT
-                                .desc())
+                        .orderBy(POST.CREATED_AT.desc())
+                        .offset(offset)
+                        .limit(10)
                         .fetch().into(Post.class);
 
         return posts;
@@ -124,10 +127,17 @@ public class PostRepositoryImpl implements PostRepository {
 
 
     @Override
-    public Boolean isPostFavouriteByUser(Integer postId, Integer userId) {
+    public Boolean isPostFavouriteByUser(int postId, int userId) {
         return create.fetchExists(FAVOURITES,
                 FAVOURITES.POST_ID.eq(postId)
                         .and(FAVOURITES.USER_ID.eq(userId)));
+    }
+
+    @Override
+    public Integer getPostsCountByUserId(int userId) {
+        return create.select(count()).from(POST)
+                .where(POST.AUTHOR_ID.eq(userId))
+                .fetchOne(0, Integer.class);
     }
 
 }

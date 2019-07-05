@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface PostRepository extends IRepository<Post> {
 
-	Post getOneById(Integer postId) throws SQLException;
+	Post getOneById(int postId) throws SQLException;
 
-	List<Post> getPostsByAuthorId(Integer authorId) throws SQLException;
+	List<Post> getPostsByAuthorId(int authorId, int offset) throws SQLException;
 
 	List<Post> getPostsByCountryId(short countryId, int offset) throws SQLException;
 
@@ -25,6 +25,7 @@ public interface PostRepository extends IRepository<Post> {
 
     Integer getPostsCountByCountryId(short id);
 
-    Boolean isPostFavouriteByUser(Integer postId, Integer userId);
+    Boolean isPostFavouriteByUser(int postId, int userId);
 
+    Integer getPostsCountByUserId(int userId);
 }
