@@ -17,12 +17,6 @@ class AppNavbar extends Component {
         this.props.authorizeUser()
     }
 
-    logout = () => {
-        localStorage.removeItem('token')
-        localStorage.setItem('logged_in', 'false')
-        window.location.reload()    
-    }
-
     render() {
         return (
             <div className={`navbar navbar-fixed-top ${styles.navbar}`}>
@@ -32,7 +26,7 @@ class AppNavbar extends Component {
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
                         <img className={styles.img} alt='profile' src={profile} 
-                            onClick={() => this.logout() } />
+                            onClick={() => this.props.navigateTo('/me') } />
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
                         <img className={styles.img} alt='bags' src={notifications} />
