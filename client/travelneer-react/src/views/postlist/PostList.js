@@ -5,22 +5,30 @@ import { connect } from 'react-redux'
 import styles from './PostList.scss'
 import LoadMoreButton from './LoadMoreButton'
 
-import { fetchPosts, fetchCountryPosts } from '../../actions/postsActions'
+import { fetchPosts, fetchCountryPosts, fetchMyPosts } from '../../actions/postsActions'
 
  class PostList extends Component {
 
     getLoadMorebutton = () => {
-
-        if (this.props.fromCountryViewer === false)
+        console.log(this.props.nextPostsResource)
+        if (this.props.fromCountryViewer) {
             return (                
                 <LoadMoreButton
-                    loadMore={this.props.loadMorePosts.bind(this)}
+                    loadMore={this.props.loadMoreCountryPosts.bind(this)}                
                     nextPostsResource={this.props.nextPostsResource} />                
             )
-        else {
+        }    
+        else if (this.props.fromProfile)  {  
             return (
                 <LoadMoreButton
-                    loadMore={this.props.loadMoreCountryPosts.bind(this)}
+                    loadMore={this.props.loadMoreMyPosts.bind(this)}                
+                    nextPostsResource={this.props.nextPostsResource} /> 
+            )               
+        }
+        else if (this.props.fromFeed) {
+            return (
+                <LoadMoreButton
+                    loadMore={this.props.loadMorePosts.bind(this)}
                     nextPostsResource={this.props.nextPostsResource} />
             )
         }
@@ -58,12 +66,13 @@ const mapStateToProps = (state) => ({
     loading: state.posts.loading,
     favouritesResource: state.posts.favouritesResource,
     countryPostsResource: state.countryProfile.postsResource,
-    nextPostsResource: state.posts.nextResource
+    nextPostsResource: state.posts.nextResource,    
 })
 
 const mapDispatchToProps = (dispatch) => ({
     loadMorePosts: (resource) => dispatch(fetchPosts(resource, true)),
-    loadMoreCountryPosts: (resource) => dispatch(fetchCountryPosts(resource, true))
+    loadMoreCountryPosts: (resource) => dispatch(fetchCountryPosts(resource, true)),
+    loadMoreMyPosts: (resource) => dispatch(fetchMyPosts(resource, true))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostList)
