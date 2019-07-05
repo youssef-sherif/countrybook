@@ -28,16 +28,13 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
 
     private final JwtGenerator jwtGenerator;
-    private final UserRepository userRepository;
     private final UserFactory userFactory;
-    private final JwtValidator validator;
+
 
     @Autowired
-    public AuthenticationController(JwtGenerator jwtGenerator, UserRepository userRepository, UserFactory userFactory, JwtValidator validator) {
+    public AuthenticationController(JwtGenerator jwtGenerator, UserFactory userFactory) {
         this.jwtGenerator = jwtGenerator;
-        this.userRepository = userRepository;
         this.userFactory = userFactory;
-        this.validator = validator;
     }
 
     @RequestMapping(value = "/users",
@@ -80,21 +77,6 @@ public class AuthenticationController {
             body.put("loginError", e.getMessage());
             
             return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @RequestMapping(value = "/api/me", method = RequestMethod.GET)
-    public ResponseEntity<?> getUserDetails() {
-
-        try {
-            var body = new HashMap<String, String>();
-            User userEntity = userRepository.getOneById(validator.getUserId());
-            body.put("name", userEntity.getName().getValue());
-            body.put("userId", Integer.toString(validator.getUserId()));
-
-            return new ResponseEntity<>(body, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
