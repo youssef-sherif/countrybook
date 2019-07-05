@@ -26,7 +26,6 @@ public class CountryDetailsResource extends ResourceSupport {
     private final String  name;
     private final String  profileImageUrl;
     private Boolean isFollowed;
-    private int currentPage;
 
     @JsonCreator
     public CountryDetailsResource(Country country, int currentPage) {
@@ -34,7 +33,6 @@ public class CountryDetailsResource extends ResourceSupport {
         this.code = country.getCode();
         this.name = country.getName();
         this.profileImageUrl = country.getProfileImageUrl();
-        this.currentPage = currentPage;
 
         this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withSelfRel());
         this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getId())).withRel("follow"));
