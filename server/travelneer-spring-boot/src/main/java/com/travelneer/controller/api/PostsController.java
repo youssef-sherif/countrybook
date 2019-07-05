@@ -73,4 +73,15 @@ public class PostsController {
         }
     }
 
+    @RequestMapping(value = "/myposts", method = RequestMethod.GET)
+    public ResponseEntity<?> getMyPosts(@RequestParam(name = "next", defaultValue = "0") int next) {
+        try {
+            FeedResource feedResource = postFactory.getMyPosts(next);
+
+            return new ResponseEntity<>(feedResource, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
