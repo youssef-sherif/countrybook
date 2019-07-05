@@ -129,3 +129,27 @@ export const fetchCountryPosts = (resource, loadMore=false) => {
             })
     }
 }
+
+export const fetchMyPosts = (resource, loadMore=false) => {
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+    return (dispatch) => {
+        dispatch(fetchPostsBegin())
+        fetch(resource, {
+            method: 'get',
+            headers: {
+                'Authorization': tokenBearer,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
+            }
+        })
+            .then(handleErrors)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(fetchPostsSuccess(data, loadMore))                
+                return data
+            })
+            .catch((error) => { 
+                dispatch(fetchPostsFailure(error))                                                                             
+            })
+    }
+}
