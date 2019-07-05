@@ -112,4 +112,8 @@ public class User {
             throw new Exception("Weak Password");
         }
     }
+
+    public UserDetailsResource toUserDetailsResource() {
+        return new UserDetailsResource(this, 0);
+    }
 }
