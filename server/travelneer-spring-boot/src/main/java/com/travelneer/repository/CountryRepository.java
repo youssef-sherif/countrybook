@@ -28,4 +28,5 @@ public interface CountryRepository extends IRepository<Country> {
 
     boolean isCountryFollowedByUser(Integer userId, Short countryId) throws SQLException;
 
+    Integer getCountriesFollowedCount(int userId) throws SQLException;
 }

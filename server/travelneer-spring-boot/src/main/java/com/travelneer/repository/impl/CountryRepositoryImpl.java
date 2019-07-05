@@ -10,6 +10,7 @@ import java.util.List;
 
 import static com.travelneer.jooq.Tables.COUNTRY;
 import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
+import static org.jooq.impl.DSL.count;
 
 import com.travelneer.country.Country;
 import com.travelneer.jooq.tables.records.CountryRecord;
@@ -60,6 +61,13 @@ public class CountryRepositoryImpl implements CountryRepository {
         return create.fetchExists(COUNTRY_FOLLOWS,
                 COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId)
                         .and(COUNTRY_FOLLOWS.USER_ID.eq(userId)));
+    }
+
+    @Override
+    public Integer getCountriesFollowedCount(int userId) throws SQLException {
+        return create.select(count()).from(COUNTRY_FOLLOWS)
+                .where(COUNTRY_FOLLOWS.USER_ID.eq(userId))
+                .fetchOne(0, Integer.class);
     }
 
     @Override
