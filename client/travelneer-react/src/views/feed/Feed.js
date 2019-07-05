@@ -55,7 +55,7 @@ class Feed extends Component {
                     </div>
                 }              
                 <br/>      
-                <PostList fromCountryViewer={false}/>
+                <PostList fromFeed={true}/>
             </div>)
     }
 
