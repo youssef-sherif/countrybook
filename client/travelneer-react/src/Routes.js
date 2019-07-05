@@ -4,6 +4,7 @@ import Home from './views/home/Home'
 import Feed from './views/feed/Feed'
 import Countries from './views/countries/Countries'
 import CountryViewer from './views/countryviewer/CountryViewer'
+import UserViewer from './views/userviewer/UserViewer'
 import { Route, Switch } from 'react-router-dom'
 
 export default class Routes extends Component {
@@ -17,6 +18,7 @@ export default class Routes extends Component {
                     <Route path="/search_countries" render={(props) => <Countries {...props} search={true} />} />                                
                     <Route path="/countries/:countryId" exact render={(props) => <CountryViewer {...props} compose={false} />} />
                     <Route path="/countries/:countryId/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />                
+                    <Route path="/me" exact render={(props) => <UserViewer {...props} />} />
                 </Switch>            
                 )
     }
