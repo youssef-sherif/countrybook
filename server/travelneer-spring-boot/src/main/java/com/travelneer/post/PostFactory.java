@@ -2,13 +2,13 @@ package com.travelneer.post;
 
 import com.travelneer.controller.api.PostsController;
 import com.travelneer.controller.api.v1.CountryPostsController;
-import com.travelneer.country.CountryFeedResource;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryRepository;
 import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,25 +50,6 @@ public class PostFactory {
         return post;
     }
 
-    public FeedResource getFeed(int page) throws Exception {
-
-        List<Post> posts = postRepository.getFeed(validator.getUserId(), page);
-
-        posts.forEach(Post::calculateTimeDifference);
-        List<PostResource> postResources = posts.stream().map(Post::toResource)
-                .collect(Collectors.toList());
-        postResources.forEach(e ->
-                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
-
-        FeedResource feedResource = new FeedResource(postResources, page);
-
-        feedResource.add(linkTo(methodOn(PostsController.class).getFeed(page+10)).withRel("next"));
-
-        return feedResource;
-
-    }
-
-
     public PostResource getPost(int postId) throws Exception {
         Post post =  postRepository.getOneById(postId);
         post.calculateTimeDifference();
@@ -78,19 +59,54 @@ public class PostFactory {
         return postResource;
     }
 
-    public CountryFeedResource getCountryPosts(short countryId, int page) throws Exception {
+    public FeedResource getFeed(int page) throws Exception {
+
+        List<Post> posts = postRepository.getFeed(validator.getUserId(), page);
+
+        List<PostResource> postResources = checkFavourites(posts);
+
+        FeedResource feedResource = new FeedResource(postResources, page);
+        feedResource.add(linkTo(methodOn(PostsController.class).getFeed(page)).withSelfRel());
+        feedResource.add(linkTo(methodOn(PostsController.class).getFeed(page+10)).withRel("next"));
+
+        return feedResource;
+    }
+
+    public FeedResource getCountryPosts(short countryId, int page) throws Exception {
         List<Post> posts = postRepository.getPostsByCountryId(countryId, page);
+
+        List<PostResource> postResources = checkFavourites(posts);
+
+        FeedResource feedResource = new FeedResource(postResources, page);
+        feedResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryId, page)).withSelfRel());;
+        feedResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryId, page+10)).withRel("next"));
+
+        return feedResource;
+    }
+
+    public FeedResource getMyPosts(int page) throws SQLException {
+
+        List<Post> posts = postRepository.getPostsByAuthorId(validator.getUserId(), page);
+
+        List<PostResource> postResources = checkFavourites(posts);
+
+        FeedResource feedResource = new FeedResource(postResources, page);
+        feedResource.add(linkTo(methodOn(PostsController.class).getMyPosts(page)).withSelfRel());
+        feedResource.add(linkTo(methodOn(PostsController.class).getMyPosts(page+10)).withRel("next"));
+
+        return feedResource;
+
+    }
+
+    public List<PostResource> checkFavourites(List<Post> posts) {
 
         posts.forEach(Post::calculateTimeDifference);
         List<PostResource> postResources = posts.stream().map(Post::toResource)
                 .collect(Collectors.toList());
+
         postResources.forEach(e ->
                 e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
-        CountryFeedResource feedResource = new CountryFeedResource(postResources, countryId, page);
-
-        feedResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryId, page+10)).withRel("next"));
-
-        return feedResource;
+        return postResources;
     }
 }
