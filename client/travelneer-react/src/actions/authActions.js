@@ -98,7 +98,7 @@ export const authorizeUserHome = () => {
             .then(handleErrors)
             .then((response) => response.json())
             .then((data) => {
-                dispatch(authorizeUserSuccess(data.userId))
+                dispatch(authorizeUserSuccess(data))
                 localStorage.setItem('logged_in', 'true')   
                 dispatch(push('/feed'))
                 
