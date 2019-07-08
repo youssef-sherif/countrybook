@@ -1,0 +1,56 @@
+import React, { Component } from 'react'
+
+import styles from './Post.scss'
+import { favouritePost } from '../../actions/postsActions'
+import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
+
+import traveler from '../../images/traveler.png'
+import FavouritesButton from './FavouritesButton'
+
+class Post extends Component {
+
+    render() {
+        return (
+            <div className={styles.story}>
+                <div className={styles.user}>
+                    <img className={styles.avatar} src={traveler} alt='user' />
+                    <div className={styles.details}>
+                        {this.props.name} <span>{this.props.email}</span>
+                    </div>
+                </div>
+                <div className={styles.timeStamp}>
+                        {`${this.props.timeDiff} ago`}
+                </div>
+                <blockquote className={styles.content} onClick={() => {
+                    this.props.navigateTo(`/post/${this.props.postId}`) 
+                }}>
+                    {this.props.content}
+                </blockquote>
+                <div className={`container ${styles.actions}`}>
+                    <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.icon}`}></i>
+                    <FavouritesButton
+                        styles={styles}
+                        isFavourite={this.props.isFavourite}
+                        favourite={this.props.favouritePost.bind(this)}    
+                        resource={this.props.favouritesResource}
+                        loading={this.props.favouritePostLoading}
+                        />
+                </div>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = (state) => ({
+    favouritePostLoading: state.posts.favouriteLoading,
+    favouritePostSuccessful: state.posts.favouriteSuccessful
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    favouritePost: (resource, method) => dispatch(favouritePost(resource, method)),
+    navigateTo: (location) => dispatch(push(location))
+
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
+

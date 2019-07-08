@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
-import Home from './views/home/Home'
-import Feed from './views/feed/Feed'
-import Countries from './views/countries/Countries'
-import CountryViewer from './views/countryviewer/CountryViewer'
-import UserViewer from './views/userviewer/UserViewer'
+import Home from './pages/home/Home'
+import Feed from './pages/feed/Feed'
+import Countries from './pages/countries/Countries'
+import CountryViewer from './pages/countryviewer/CountryViewer'
+import UserViewer from './pages/userviewer/UserViewer'
+import PostViewer from './pages/postviewer/PostViewer';
 import { Route, Switch } from 'react-router-dom'
 
 export default class Routes extends Component {
@@ -19,6 +20,7 @@ export default class Routes extends Component {
                     <Route path="/countries/:countryId" exact render={(props) => <CountryViewer {...props} compose={false} />} />
                     <Route path="/countries/:countryId/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />                
                     <Route path="/me" exact render={(props) => <UserViewer {...props} />} />
+                    <Route path="/post/:postId" exact render={(props) => <PostViewer {...props} />} />
                 </Switch>            
                 )
     }
