@@ -113,7 +113,7 @@ public class User {
         }
     }
 
-    public UserDetailsResource toUserDetailsResource() {
-        return new UserDetailsResource(this, 0);
+    public UserResource toResource() {
+        return new UserResource(this, 0);
     }
 }
