@@ -38,9 +38,9 @@ public class UserController {
 
         try {
             User user = userRepository.getOneById(validator.getUserId());
-            var userDetailsResource = user.toUserDetailsResource();
+            var userResource = user.toResource();
 
-            return new ResponseEntity<>(userDetailsResource, HttpStatus.OK);
+            return new ResponseEntity<>(userResource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -63,7 +63,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/api/me/countries-followed-count", method = RequestMethod.GET)
+        @RequestMapping(value = "/api/me/countries-followed-count", method = RequestMethod.GET)
     public ResponseEntity<?> getCountriesFollowedCount() {
 
         var responseBody = new HashMap<String, Object>();
