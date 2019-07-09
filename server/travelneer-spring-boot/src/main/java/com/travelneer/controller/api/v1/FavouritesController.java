@@ -84,4 +84,21 @@ public class FavouritesController {
         }
     }
 
+    @RequestMapping(value = "/posts/{postId}/favourites-count", method = RequestMethod.GET)
+    public ResponseEntity<?> getFavouritesCount(@PathVariable("postId") int postId) {
+        var response = new HashMap<String, Object>();
+        try {
+
+            Integer favouritesCount = postRepository.getFavouritesCountByPostId(postId);
+            response.put("favouritesCount", favouritesCount);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch(Exception e) {
+            response.put("successful", false);
+            response.put("errorMessage", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 }
