@@ -11,7 +11,8 @@ import {signUpReducer} from './reducers/signUpReducer'
 import {authReducer} from './reducers/authReducer'
 import {postsReducer} from './reducers/postsReducer'
 import {newPostReducer} from './reducers/newPostReducer'
-import {countryProfileReducer} from './reducers/countryProfileReducer'
+import {countryInfoReducer} from './reducers/countryInfoReducer'
+import {postInfoReducer} from './reducers/postInfoReducer'
 
 import myHistory from './history'
 
@@ -23,10 +24,11 @@ const reducers = combineReducers({
     signUp: signUpReducer,
     user: validationReducer,
     login: loginReducer,
-    countryProfile: countryProfileReducer,
+    countryInfo: countryInfoReducer,
     router: connectRouter(myHistory),
     newPost: newPostReducer,  
-    auth: authReducer
+    auth: authReducer,
+    postInfo: postInfoReducer 
   })
 
 const myStore = createStore(reducers,
