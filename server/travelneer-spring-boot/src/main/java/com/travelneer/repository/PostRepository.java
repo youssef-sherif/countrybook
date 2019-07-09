@@ -28,4 +28,6 @@ public interface PostRepository extends IRepository<Post> {
     Boolean isPostFavouriteByUser(int postId, int userId);
 
     Integer getPostsCountByUserId(int userId);
+
+    Integer getFavouritesCountByPostId(int postId);
 }

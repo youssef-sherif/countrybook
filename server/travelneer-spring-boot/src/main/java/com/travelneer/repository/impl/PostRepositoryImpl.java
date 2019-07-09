@@ -5,10 +5,7 @@
  */
 package com.travelneer.repository.impl;
 
-import static com.travelneer.jooq.Tables.COUNTRY;
-import static com.travelneer.jooq.Tables.USER;
-import static com.travelneer.jooq.Tables.POST;
-import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
+import static com.travelneer.jooq.Tables.*;
 import static com.travelneer.jooq.tables.Favourites.FAVOURITES;
 import static org.jooq.impl.DSL.count;
 import static org.jooq.impl.DSL.user;
@@ -40,16 +37,22 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public Post getOneById(int id) throws SQLException {
-        PostRecord postRecord = create.fetchOne(POST, POST.ID.eq(id));
+        Post post = create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
+                POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
+                .from(POST)
+                .innerJoin(USER).on(USER.ID
+                        .eq(POST.AUTHOR_ID))
+                .where(POST.ID
+                        .eq(id))
+                .fetchOne().into(Post.class);
 
-        return postRecord.into(Post.class);
+        return post;
     }
 
     @Override
     public void save(Post entity) throws SQLException {
         PostRecord postRecord = create.newRecord(POST);
         postRecord.from(entity);
-
         postRecord.store();
     }
 
@@ -137,6 +140,13 @@ public class PostRepositoryImpl implements PostRepository {
     public Integer getPostsCountByUserId(int userId) {
         return create.select(count()).from(POST)
                 .where(POST.AUTHOR_ID.eq(userId))
+                .fetchOne(0, Integer.class);
+    }
+
+    @Override
+    public Integer getFavouritesCountByPostId(int postId) {
+        return create.select(count()).from(FAVOURITES)
+                .where(FAVOURITES.POST_ID.eq(postId))
                 .fetchOne(0, Integer.class);
     }
 
