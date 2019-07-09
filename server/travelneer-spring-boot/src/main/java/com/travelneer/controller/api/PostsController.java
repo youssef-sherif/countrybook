@@ -1,7 +1,7 @@
 package com.travelneer.controller.api;
 
 import com.travelneer.dto.NewPostDTO;
-import com.travelneer.post.FeedResource;
+import com.travelneer.post.PostListResource;
 import com.travelneer.post.PostFactory;
 
 import java.util.HashMap;
@@ -33,8 +33,8 @@ public class PostsController {
     public ResponseEntity<?> getFeed(@RequestParam(name = "next", defaultValue = "0") int next) {
         try {
 
-            FeedResource feedResource = postFactory.getFeed(next);
-            return new ResponseEntity<>(feedResource, HttpStatus.OK);
+            PostListResource postListResource = postFactory.getFeed(next);
+            return new ResponseEntity<>(postListResource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -76,9 +76,9 @@ public class PostsController {
     @RequestMapping(value = "/myposts", method = RequestMethod.GET)
     public ResponseEntity<?> getMyPosts(@RequestParam(name = "next", defaultValue = "0") int next) {
         try {
-            FeedResource feedResource = postFactory.getMyPosts(next);
+            PostListResource postListResource = postFactory.getMyPosts(next);
 
-            return new ResponseEntity<>(feedResource, HttpStatus.OK);
+            return new ResponseEntity<>(postListResource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
