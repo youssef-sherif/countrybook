@@ -1,4 +1,4 @@
-import { fetchCountryPosts, fetchPostsBegin } from "./postsActions";
+import { fetchCountryPosts, fetchPostsBegin } from "./postsActions"
 
 export const FETCH_COUNTRY_INFO_BEGIN = 'FETCH_COUNTRY_INFO_BEGIN'
 export const FETCH_COUNTRY_INFO_SUCCESS = 'FETCH_COUNTRY_INFO_SUCCESS'
@@ -107,9 +107,8 @@ const followCountryFailure = (error) => ({
 })
 
 
-export const toggleFollowed = (followed) => ({
-  type: TOGGLE_FOLLOWED,
-  payload: {followed}
+export const toggleFollowed = () => ({
+  type: TOGGLE_FOLLOWED
 })
 
 
@@ -131,6 +130,7 @@ export const followCountry = (resource, method) => {
           })
           .then((data) => {
               dispatch(followCountrySuccess(data))
+              dispatch(toggleFollowed())
               return data
           })
           .catch(error => {

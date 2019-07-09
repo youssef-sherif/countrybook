@@ -9,7 +9,7 @@ import {
     FOLLOW_COUNTRY_SUCCESS,    
     FOLLOW_COUNTRY_FAILURE,
     TOGGLE_FOLLOWED
-} from '../actions/countryProfileActions'
+} from '../actions/countryInfoActions'
 
 
 const initialState = {
@@ -28,7 +28,7 @@ const initialState = {
     postsCount: 0
 }
 
-export function countryProfileReducer(state = initialState,
+export function countryInfoReducer(state = initialState,
     action) {
     switch (action.type) {
 
@@ -118,7 +118,7 @@ export function countryProfileReducer(state = initialState,
 
             return {
                 ...state,
-                followed: action.payload.followed
+                followed: !state.followed
             }              
 
         default:

@@ -14,7 +14,6 @@ export default class FollowButton extends Component {
             return (
                 <button className={`btn ${this.props.style}`} type="submit" onClick={(e) => {
                     this.props.followCountry(this.props.resource,  'delete');
-                    this.props.toggleFollowed(false);
                 }}>
                     unfollow
                 </button>
@@ -23,7 +22,6 @@ export default class FollowButton extends Component {
             return (
                 <button className={`btn ${this.props.style}`} type="submit" onClick={(e) => {
                     this.props.followCountry(this.props.resource, 'put');
-                    this.props.toggleFollowed(true);
                 }}>
                     follow
                 </button>

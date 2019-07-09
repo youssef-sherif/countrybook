@@ -4,8 +4,7 @@ import CountryDetails from './CountryDetails'
 
 import { fetchCountryInfo, 
     fetchPostsCount,
-    followCountry,
-    toggleFollowed } from '../../../actions/countryProfileActions'
+    followCountry } from '../../../actions/countryInfoActions'
 import { connect } from 'react-redux'
 import styles from './CountryProfile.scss'
 
@@ -31,7 +30,6 @@ class CountryProfile extends Component {
                     resource={this.props.followResource}
                     loading={this.props.followCountryLoading}
                     successful={this.props.followCountrySuccessful}
-                    toggleFollowed={this.props.toggleFollowed.bind(this)}
                     followed={this.props.countryFollowed} />
             </div>
         )
@@ -39,27 +37,25 @@ class CountryProfile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    profileImageUrl: state.countryProfile.profileImageUrl,
+    profileImageUrl: state.countryInfo.profileImageUrl,
 
-    postsCountResource: state.countryProfile.postsCountResource,
-    followersCountResource: state.countryProfile.followersCountResource,
-    countryName: state.countryProfile.countryName,
-    countryId: state.countryProfile.countryId,
-    postsCount: state.countryProfile.postsCount,
-    successful: state.countryProfile.successful,
-    loading: state.countryProfile.loading,
-    countryFollowed: state.countryProfile.followed,
-    followResource: state.countryProfile.followResource,
-    followCountryLoading: state.countryProfile.followLoading,
-    followCountrySuccessful: state.countryProfile.followSuccessful,
+    postsCountResource: state.countryInfo.postsCountResource,
+    followersCountResource: state.countryInfo.followersCountResource,
+    countryName: state.countryInfo.countryName,
+    countryId: state.countryInfo.countryId,
+    postsCount: state.countryInfo.postsCount,
+    successful: state.countryInfo.successful,
+    loading: state.countryInfo.loading,
+    countryFollowed: state.countryInfo.followed,
+    followResource: state.countryInfo.followResource,
+    followCountryLoading: state.countryInfo.followLoading,
+    followCountrySuccessful: state.countryInfo.followSuccessful,
 })
 
 const mapDispatchToProps = (dispatch) => ({
     fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)),
     followCountry: (resource, method) => dispatch(followCountry(resource, method)),
-    fetchPostsCount: (resource) => dispatch(fetchPostsCount(resource)),
-    toggleFollowed: (bool) => dispatch(toggleFollowed(bool))
-    
+    fetchPostsCount: (resource) => dispatch(fetchPostsCount(resource))  
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryProfile)

@@ -4,7 +4,7 @@ import PostList from '../../components/postlist/PostList'
 import CountryProfile from './countryprofile/CountryProfile'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import { fetchCountryInfo} from '../../actions/countryProfileActions'
+import { fetchCountryInfo} from '../../actions/countryInfoActions'
 import { newPost2 } from '../../actions/newPostActions'
 import PostArea from '../../components/postarea/PostArea'
 
@@ -86,8 +86,8 @@ class CountryViewer extends Component {
 
 
 const mapStateToProps = (state) => ({
-    countryName: state.countryProfile.countryName,
-    postsResource: state.countryProfile.postsResource,
+    countryName: state.countryInfo.countryName,
+    postsResource: state.countryInfo.postsResource,
     loading: state.posts.loading,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     navigateTo: (e) => dispatch(push(e)),
-    fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)).countryProfile,
+    fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)),
     newPost2: (countryId, content) =>  dispatch(newPost2(countryId, content)),
 
 })
