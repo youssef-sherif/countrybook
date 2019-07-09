@@ -17,6 +17,8 @@ public class Post {
 
     private Map<Long, String> timeDiff;
 
+    private Integer parentPostId;
+
 
     public Post() {}
 
@@ -102,6 +104,14 @@ public class Post {
 
     public Map<Long, String> getTimeDiff() {
         return timeDiff;
+    }
+
+    public Integer getParentPostId() {
+        return parentPostId;
+    }
+
+    public void setParentPostId(Integer parentPostId) {
+        this.parentPostId = parentPostId;
     }
 
     public void calculateTimeDifference() {

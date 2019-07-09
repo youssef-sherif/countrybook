@@ -19,11 +19,11 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  *
  * @author Youssef
  */
-public class FeedResource extends ResourceSupport {
+public class PostListResource extends ResourceSupport {
 
     private  final List<PostResource> postResources;
 
-    public FeedResource(List<PostResource> postResources, int currentPage) {
+    public PostListResource(List<PostResource> postResources) {
         this.postResources = postResources;
     }
 
