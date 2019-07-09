@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({
     successful: state.posts.successful,
     loading: state.posts.loading,
     favouritesResource: state.posts.favouritesResource,
-    countryPostsResource: state.countryProfile.postsResource,
+    countryPostsResource: state.countryInfo.postsResource,
     nextPostsResource: state.posts.nextResource,    
 })
 
