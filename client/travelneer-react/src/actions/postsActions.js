@@ -1,3 +1,5 @@
+import { toggleFavourite } from "./postInfoActions"
+
 export const FETCH_POSTS_BEGIN = 'FETCH_POSTS_BEGIN'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE'
@@ -51,6 +53,7 @@ export const favouritePost = (resource, method) => {
                     dispatch(favouritePostSuccess(data.post))
                 else
                     dispatch(unFavouritePostSuccess(data.post))
+                dispatch(toggleFavourite())                
                 return data
             })
             .catch(error => {
