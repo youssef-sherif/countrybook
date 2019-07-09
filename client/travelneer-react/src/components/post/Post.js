@@ -16,11 +16,16 @@ class Post extends Component {
                 <div className={styles.user}>
                     <img className={styles.avatar} src={traveler} alt='user' />
                     <div className={styles.details}>
-                        {this.props.name} <span>{this.props.email}</span>
+                        {this.props.name} 
+                        <span> 
+                            {` ${this.props.email}`}
+                        </span>
+                        <span>
+                            <div className={styles.timeStamp}>
+                                {`${this.props.timeDiff} ago`}
+                            </div>
+                        </span>
                     </div>
-                </div>
-                <div className={styles.timeStamp}>
-                        {`${this.props.timeDiff} ago`}
                 </div>
                 <blockquote className={styles.content} onClick={() => {
                     this.props.navigateTo(`/post/${this.props.postId}`) 
@@ -28,14 +33,16 @@ class Post extends Component {
                     {this.props.content}
                 </blockquote>
                 <div className={`container ${styles.actions}`}>
-                    <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.icon}`}></i>
-                    <FavouritesButton
-                        styles={styles}
-                        isFavourite={this.props.isFavourite}
-                        favourite={this.props.favouritePost.bind(this)}    
-                        resource={this.props.favouritesResource}
-                        loading={this.props.favouritePostLoading}
-                        />
+                    <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.commentIcon}`}></i>
+                    <div className={`col-sm-6 col-xs-6 col-lg-6 col-md-6`}>
+                        <FavouritesButton
+                            styles={styles}
+                            isFavourite={this.props.isFavourite}
+                            favourite={this.props.favouritePost.bind(this)}    
+                            resource={this.props.favouritesResource}
+                            loading={this.props.favouritePostLoading}
+                            />
+                    </div>
                 </div>
             </div>
         )

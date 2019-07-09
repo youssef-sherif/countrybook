@@ -28,7 +28,16 @@
     position: relative;
     margin-bottom: 10px;
 
+    .commentIcon {
+        float: left;
+        color: #999;
+        margin-right: 20px;
+        width: 5px;
+        height: 5px;
+    }
+
     .icon {
+        float: left;
         color: #999;
         margin-right: 20px;
         width: 5px;
@@ -36,6 +45,7 @@
     }
 
     .goldIcon {
+        float: left;
         color: yellow;
         margin-right: 20px;
         width: 5px;
