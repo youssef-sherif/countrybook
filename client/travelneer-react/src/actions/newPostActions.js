@@ -1,5 +1,5 @@
 import { fetchPosts } from './postsActions'
-import { fetchCountryInfo } from './countryProfileActions'
+import { fetchCountryInfo } from './countryInfoActions'
 import { push } from 'connected-react-router'
 
 export const NEW_POST_BEGIN = 'NEW_POST_BEGIN'
