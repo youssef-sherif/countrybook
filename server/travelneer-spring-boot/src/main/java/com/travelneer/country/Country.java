@@ -49,13 +49,13 @@ public class Country {
         this.flagUrl = flagUrl;
     }
 
-    public CountryResource toCountryResource() {
+    public CountryResource toResource() {
         var countryResource = new CountryResource(this);
 
         return countryResource;
     }
 
-    public CountryDetailsResource toCountryDetailsResource() {
+    public CountryDetailsResource toDetailsResource() {
         var countryDetailsResource = new CountryDetailsResource(this, 0);
 
         return countryDetailsResource;
