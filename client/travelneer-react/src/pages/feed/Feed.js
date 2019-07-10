@@ -16,7 +16,11 @@ import { fetchPosts } from '../../actions/postsActions'
 class Feed extends Component {
 
     componentDidMount() {
-        this.props.fetchPosts()
+        if(this.props.backButtonPressed === true) {
+            window.scrollTo(0, this.props.scrollPositionY)
+        } else {
+            this.props.fetchPosts()
+        }        
     }
     
     onPost = () => {
@@ -28,12 +32,14 @@ class Feed extends Component {
             <div className={`container ${this.props.showNewState? styles.NewPostShow : styles.NewPostHide}`}>                    
                 <br/><br/><br/>
                 <CountrySelect />
-                <PostArea refresh={false}
+                <PostArea 
+                    refresh={false}
                     countryId={this.props.countryId} 
                     countryName={this.props.countryName === "" ? 
                         "(choose a country)" : this.props.countryName}
                     onPost={this.onPost.bind(this)}
-                    newPost={this.props.newPost.bind(this)} />                                            
+                    newPost={this.props.newPost.bind(this)} 
+                />                                            
             </div>
         )
     }
@@ -46,16 +52,21 @@ class Feed extends Component {
                     :
                     <div className={`container`}  >
                         <CountrySelect />
-                        <PostArea refresh={true}
+                        <PostArea 
+                            refresh={true}
                             countryId={this.props.countryId} 
                             countryName={this.props.countryName === "" ? 
                             "(choose a country)" : this.props.countryName}
                             onPost={this.onPost.bind(this)}
-                            newPost={this.props.newPost.bind(this)} />                        
+                            newPost={this.props.newPost.bind(this)} 
+                        />                        
                     </div>
                 }              
                 <br/>      
-                <PostList fromFeed={true}/>
+                <PostList 
+                    fromFeed={true}
+                    originalPath={"/feed"}
+                />
             </div>)
     }
 
@@ -106,7 +117,9 @@ const mapStateToProps = (state) => ({
     newPostErrorMessage: state.newPost.errorMessage,
     countryId: state.countries.selectedCountryId,
     countryName: state.countries.selectedCountryName,
-    countries: state.countries.countries
+    countries: state.countries.countries,
+    scrollPositionY: state.posts.scrollPositionY,
+    backButtonPressed: state.posts.backButtonPressed
 })
 
 

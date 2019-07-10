@@ -8,13 +8,20 @@ import UserProfile from './userprofile/UserProfile';
 class UserViewer extends Component {
 
     componentDidMount() {        
-        this.props.fetchUserInfo()
+        if(this.props.backButtonPressed === true) {
+            window.scrollTo(0, this.props.scrollPositionY)
+        } else {
+            this.props.fetchUserInfo()
+        }                
     }
 
     getPostsDiv = () => {
         return (
             <div>
-                <PostList fromProfile={true}/>
+                <PostList 
+                    fromProfile={true}
+                    originalPath={"/me"}
+                />
             </div>)
     }
 
@@ -40,7 +47,8 @@ class UserViewer extends Component {
 
 
 const mapStateToProps = (state) => ({
-
+    backButtonPressed: state.posts.backButtonPressed,
+    scrollPositionY: state.posts.scrollPositionY
 })
 
 const mapDispatchToProps = (dispatch) => ({

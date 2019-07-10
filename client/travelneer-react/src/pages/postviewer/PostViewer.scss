@@ -1,5 +1,9 @@
 @import "../../variables.scss";
 
+.BackButton {
+    float: left;    
+}
+
 .user {
     &:after {
         display: block;

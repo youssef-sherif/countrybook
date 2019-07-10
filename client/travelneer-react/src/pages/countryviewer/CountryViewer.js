@@ -14,7 +14,11 @@ import Indicator from '../../components/indicator/Indicator'
 class CountryViewer extends Component {
 
     componentDidMount() {        
-        this.props.fetchCountryInfo(this.props.match.params.countryId)
+        if(this.props.backButtonPressed === true) {
+            window.scrollTo(0, this.props.scrollPositionY)
+        } else {
+            this.props.fetchCountryInfo(this.props.match.params.countryId)
+        }                        
     }
 
     onPost = () => {
@@ -25,12 +29,17 @@ class CountryViewer extends Component {
         return (
             <div>
                 {this.props.compose ?
-                <PostArea  countryId={this.props.match.params.countryId}
+                <PostArea  
+                    countryId={this.props.match.params.countryId}
                     countryName={this.props.countryName}
                     onPost={this.onPost.bind(this)}
-                    newPost={this.props.newPost2.bind(this)}/> 
+                    newPost={this.props.newPost2.bind(this)}
+                /> 
                 :
-                <PostList fromCountryViewer={true}/>
+                <PostList 
+                    fromCountryViewer={true}
+                    originalPath={`/countries/${this.props.match.params.countryId}`}
+                />
                 }
                 
             </div>)
@@ -77,7 +86,8 @@ class CountryViewer extends Component {
                         successful={this.props.newPostSuccessful}
                         loading={this.props.newPostLoading} 
                         error={this.props.newPostError}
-                        errorMessage={this.props.newPostErrorMessage}/>
+                        errorMessage={this.props.newPostErrorMessage}
+                />
             </div>
         )
     }
@@ -92,7 +102,9 @@ const mapStateToProps = (state) => ({
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
     newPostError: state.newPost.error,
-    newPostErrorMessage: state.newPost.errorMessage
+    newPostErrorMessage: state.newPost.errorMessage,
+    backButtonPressed: state.posts.backButtonPressed,
+    scrollPositionY: state.posts.scrollPositionY
 })
 
 const mapDispatchToProps = (dispatch) => ({

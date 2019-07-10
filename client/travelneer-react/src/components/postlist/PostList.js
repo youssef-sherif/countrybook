@@ -42,7 +42,8 @@ import { fetchPosts, fetchCountryPosts, fetchMyPosts } from '../../actions/posts
             return (
             <div className={`container ${styles.div}`}>
                 {this.props.posts.map((post) => {                    
-                    return <Post key={post.postId}
+                    return <Post 
+                                key={post.postId}
                                 postId={post.postId}
                                 content={post.content}
                                 name={post.name}                    
@@ -50,6 +51,7 @@ import { fetchPosts, fetchCountryPosts, fetchMyPosts } from '../../actions/posts
                                 timeDiff={post.timeDiff}
                                 isFavourite={post.favourite}
                                 favouritesResource={post._links.favourite.href}
+                                originalPath={this.props.originalPath}
                             />
                 })}
                 

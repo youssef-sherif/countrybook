@@ -6,9 +6,9 @@ import FavouritesButton from '../../components/post/FavouritesButton'
 import styles from './PostViewer.scss'
 
 import { fetchPostInfo } from '../../actions/postInfoActions'
-import { favouritePost } from '../../actions/postsActions'
+import { favouritePost, backButtonPressed } from '../../actions/postsActions'
 import PostHeader from '../../components/postheader/PostHeader';
-
+import BackButton from './BackButton'
 
 class PostViewer extends Component {
 
@@ -17,16 +17,23 @@ class PostViewer extends Component {
     }
 
     render() {
-
+        console.log('postviewer', this.props.originalPath)
         return (
            <div>
                <AppNavbar />
                <br /><br /><br />                  
                 <div className={`container ${styles.div} ${styles.story}`}>
-
-                <PostHeader user={this.props.user}
+                <BackButton 
+                    styles={styles}
+                    backButtonPressed={this.props.backButtonPressed.bind(this)} 
+                    originalPath={this.props.originalPath}
+                />
+                <br /><br /><br />
+                <PostHeader 
+                    user={this.props.user}
                     email={this.props.email}
-                    timeDiff={this.props.timeDiff} />
+                    timeDiff={this.props.timeDiff} 
+                />
 
                 <blockquote className={styles.content}>
                     {this.props.content}
@@ -41,7 +48,7 @@ class PostViewer extends Component {
                             favourite={this.props.favouritePost.bind(this)}    
                             resource={this.props.favouritesResource}
                             loading={this.props.favouritePostLoading}
-                            />
+                        />
                     </div>
                     <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.favouritesCount}</div>
                 </div>               
@@ -64,12 +71,14 @@ const mapStateToProps = (state) => ({
     favouritesCount: state.postInfo.favouritesCount,
     commentsCount: state.postInfo.commentsCount,
     favouritesResource: state.postInfo.favouritesResource,
-    favouritePostLoading: state.posts.favouriteLoading    
+    favouritePostLoading: state.posts.favouriteLoading,
+    originalPath: state.posts.originalPath    
 })
 
 const mapDispatchToProps = (dispatch) => ({
     favouritePost: (resource, method) => dispatch(favouritePost(resource, method)),
-    fetchPostInfo: (postId) => dispatch(fetchPostInfo(postId))
+    fetchPostInfo: (postId) => dispatch(fetchPostInfo(postId)),
+    backButtonPressed: (path) => dispatch(backButtonPressed(path))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostViewer)

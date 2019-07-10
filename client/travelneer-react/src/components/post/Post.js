@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import styles from './Post.scss'
-import { favouritePost } from '../../actions/postsActions'
+import { favouritePost, saveScrollPosition } from '../../actions/postsActions'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
@@ -10,15 +10,18 @@ import PostHeader from '../postheader/PostHeader';
 
 class Post extends Component {
 
-    render() {
+    render() {        
         return (
             <div className={styles.story}>
-                <PostHeader user={this.props.user}
+                <PostHeader 
+                    user={this.props.user}
                     email={this.props.email}
-                    timeDiff={this.props.timeDiff} />
+                    timeDiff={this.props.timeDiff} 
+                />
 
                 <blockquote className={styles.content} onClick={() => {
-                    this.props.navigateTo(`/post/${this.props.postId}`) 
+                    this.props.saveScrollPosition(this.props.originalPath, window.scrollY);
+                    this.props.navigateTo(`/post/${this.props.postId}`)
                 }}>
                     {this.props.content}
                 </blockquote>
@@ -32,7 +35,7 @@ class Post extends Component {
                             favourite={this.props.favouritePost.bind(this)}    
                             resource={this.props.favouritesResource}
                             loading={this.props.favouritePostLoading}
-                            />
+                        />
                     </div>
                 </div>
             </div>
@@ -47,7 +50,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     favouritePost: (resource, method) => dispatch(favouritePost(resource, method)),
-    navigateTo: (location) => dispatch(push(location))
+    navigateTo: (location) => dispatch(push(location)),
+    saveScrollPosition: (originalPath, scrollY) => dispatch(saveScrollPosition(originalPath, scrollY))
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Post)

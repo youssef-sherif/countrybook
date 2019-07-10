@@ -1,4 +1,5 @@
 import { toggleFavourite } from "./postInfoActions"
+import { push } from 'connected-react-router'
 
 export const FETCH_POSTS_BEGIN = 'FETCH_POSTS_BEGIN'
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS'
@@ -7,6 +8,8 @@ export const FAVOURITE_POST_BEGIN = 'FAVOURITE_POST_BEGIN'
 export const FAVOURITE_POST = 'FAVOURITE_POST'
 export const UNFAVOURITE_POST = 'UNFAVOURITE_POST'
 export const FAVOURITE_POST_FAILURE = 'FAVOURITE_POST_FAILURE'
+export const SAVE_SCROLL_POSITION = 'SAVE_SCROLL_POSITION'
+export const BACK_BUTTON_PRESSED = 'BACK_BUTTON_PRESSED'
 
 const favouritePostBegin = () => ({
     type: FAVOURITE_POST_BEGIN
@@ -156,3 +159,18 @@ export const fetchMyPosts = (resource, loadMore=false) => {
             })
     }
 }
+
+export const backButtonPressed = (originalPath) => {
+    console.log(originalPath)
+    return (dispatch) => {
+        dispatch(push(originalPath))
+        dispatch({
+            type: BACK_BUTTON_PRESSED
+        })
+    }    
+}
+
+export const saveScrollPosition = (originalPath, scrollY) => ({
+    type: SAVE_SCROLL_POSITION,
+    payload: {originalPath, scrollY}
+})
