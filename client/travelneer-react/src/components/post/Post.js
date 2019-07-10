@@ -5,33 +5,24 @@ import { favouritePost } from '../../actions/postsActions'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import traveler from '../../images/traveler.png'
 import FavouritesButton from './FavouritesButton'
+import PostHeader from '../postheader/PostHeader';
 
 class Post extends Component {
 
     render() {
         return (
             <div className={styles.story}>
-                <div className={styles.user}>
-                    <img className={styles.avatar} src={traveler} alt='user' />
-                    <div className={styles.details}>
-                        {this.props.name} 
-                        <span> 
-                            {` ${this.props.email}`}
-                        </span>
-                        <span>
-                            <div className={styles.timeStamp}>
-                                {`${this.props.timeDiff} ago`}
-                            </div>
-                        </span>
-                    </div>
-                </div>
+                <PostHeader user={this.props.user}
+                    email={this.props.email}
+                    timeDiff={this.props.timeDiff} />
+
                 <blockquote className={styles.content} onClick={() => {
                     this.props.navigateTo(`/post/${this.props.postId}`) 
                 }}>
                     {this.props.content}
                 </blockquote>
+
                 <div className={`container ${styles.actions}`}>
                     <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.commentIcon}`}></i>
                     <div className={`col-sm-6 col-xs-6 col-lg-6 col-md-6`}>

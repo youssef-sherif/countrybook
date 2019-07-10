@@ -1,29 +1,5 @@
 @import "../../variables";
 
-
-.user {
-    &:after {
-        display: block;
-        float: left;
-    }
-
-    .avatar {
-        border-radius: 5px;
-        height: 30px;
-        width: auto;
-        float: left;
-        margin-right: 10px;
-    }
-
-    .details {
-        font-weight: bold;
-    }
-}
-
-.timeStamp {
-    float: right;
-}
-
 .actions {
     position: relative;
     margin-bottom: 10px;

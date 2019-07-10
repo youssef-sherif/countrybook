@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import AppNavbar from '../../components/appnavbar/AppNavbar'
 import { connect } from 'react-redux'
-import traveler from '../../images/traveler.png'
 import FavouritesButton from '../../components/post/FavouritesButton'
 
 import styles from './PostViewer.scss'
 
 import { fetchPostInfo } from '../../actions/postInfoActions'
 import { favouritePost } from '../../actions/postsActions'
+import PostHeader from '../../components/postheader/PostHeader';
 
 
 class PostViewer extends Component {
@@ -23,20 +23,11 @@ class PostViewer extends Component {
                <AppNavbar />
                <br /><br /><br />                  
                 <div className={`container ${styles.div} ${styles.story}`}>
-                <div className={styles.user}>
-                    <img className={styles.avatar} src={traveler} alt='user' />
-                    <div className={styles.details}>
-                        {this.props.name} 
-                        <span> 
-                            {` ${this.props.email}`}
-                        </span>
-                        <span>
-                            <div className={styles.timeStamp}>
-                                {`${this.props.timeDiff} ago`}
-                            </div>
-                        </span>
-                    </div>
-                </div>
+
+                <PostHeader user={this.props.user}
+                    email={this.props.email}
+                    timeDiff={this.props.timeDiff} />
+
                 <blockquote className={styles.content}>
                     {this.props.content}
                 </blockquote>
