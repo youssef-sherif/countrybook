@@ -8,7 +8,7 @@ import PostArea from '../../components/postarea/PostArea'
 
 import newPostImg from '../../images/new-post.png'
 import styles from './Feed.scss'
-import { showNew, newPost } from '../../actions/newPostActions'
+import { showCollapsablePostArea, newPost } from '../../actions/newPostActions'
 import Indicator from '../../components/indicator/Indicator'
 
 import { fetchPosts } from '../../actions/postsActions'
@@ -22,14 +22,10 @@ class Feed extends Component {
             this.props.fetchPosts()
         }        
     }
-    
-    onPost = () => {
-        this.props.showNew(false);    
-    }    
 
     getCollapsablePostArea = () => {
         return (
-            <div className={`container ${this.props.showNewState? styles.NewPostShow : styles.NewPostHide}`}>                    
+            <div className={`container ${this.props.collapsablePostAreaState? styles.NewPostShow : styles.NewPostHide}`}>                    
                 <br/><br/><br/>
                 <CountrySelect />
                 <PostArea 
@@ -37,7 +33,6 @@ class Feed extends Component {
                     countryId={this.props.countryId} 
                     countryName={this.props.countryName === "" ? 
                         "(choose a country)" : this.props.countryName}
-                    onPost={this.onPost.bind(this)}
                     newPost={this.props.newPost.bind(this)} 
                 />                                            
             </div>
@@ -47,7 +42,7 @@ class Feed extends Component {
     getPostArea = () => {
         return(
             <div>
-                {this.props.showNewState?
+                {this.props.collapsablePostAreaState?
                     <div />
                     :
                     <div className={`container`}  >
@@ -57,7 +52,6 @@ class Feed extends Component {
                             countryId={this.props.countryId} 
                             countryName={this.props.countryName === "" ? 
                             "(choose a country)" : this.props.countryName}
-                            onPost={this.onPost.bind(this)}
                             newPost={this.props.newPost.bind(this)} 
                         />                        
                     </div>
@@ -76,7 +70,7 @@ class Feed extends Component {
                 alt='new post'
                 src={newPostImg}
                 onClick={() => {
-                    this.props.showNew(!this.props.showNewState)
+                    this.props.showCollapsablePostArea(!this.props.collapsablePostAreaState)
                 }} />
         )
     }
@@ -110,7 +104,7 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    showNewState: state.newPost.showNew,
+    collapsablePostAreaState: state.newPost.collapsablePostAreaState,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
     newPostError: state.newPost.error,
@@ -125,7 +119,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     navigateTo: (path) => dispatch(push(path)),
-    showNew: (showNewState) => dispatch(showNew(showNewState)),
+    showCollapsablePostArea: (showNewState) => dispatch(showCollapsablePostArea(showNewState)),
     newPost: (countryId, content, refresh) =>  dispatch(newPost(countryId, content, refresh)),
     fetchPosts: () => dispatch(fetchPosts())
 })

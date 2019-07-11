@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import { writePost, showNew } from '../../actions/newPostActions'
+import { writePost } from '../../actions/newPostActions'
 import {fetchPosts} from '../../actions/postsActions'
 import styles from './PostArea.scss'
 
@@ -20,8 +20,7 @@ class PostArea extends Component {
                                     
                 <div className={styles.buttonsDiv}>
                     <button className={`btn ${styles.button}`} onClick={(e) => {
-                            this.props.newPost(this.props.countryId, this.props.content, this.props.refresh);  
-                            this.props.onPost();                  
+                            this.props.newPost(this.props.countryId, this.props.content, this.props.refresh);                              
                     }}>
                         post
                     </button>
@@ -35,8 +34,7 @@ class PostArea extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    content: state.newPost.content,
-    showNewState: state.newPost.showNew,
+    content: state.newPost.content,    
     selectedCountry: state.countries.selectedCountry,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
@@ -46,8 +44,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     writePost: (content) => dispatch(writePost(content)),   
     fetchPosts: () => dispatch(fetchPosts()),
-    navigateTo: (path) => dispatch(push(path)),
-    showNew: (showNewState) => dispatch(showNew(showNewState))
+    navigateTo: (path) => dispatch(push(path)),    
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostArea)

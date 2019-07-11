@@ -8,7 +8,7 @@ export const NEW_POST_FAILURE = 'NEW_POST_FAILURE'
 
 export const WRITE_POST = 'WRITE_POST'
 
-export const SHOW_NEW = 'SHOW_NEW'
+export const SHOW_COLLAPSABLE_POST_AREA = 'SHOW_COLLAPSABLE_POST_AREA'
 
 const handleErrors = (response) => {
     if (!response.ok) {
@@ -17,8 +17,8 @@ const handleErrors = (response) => {
     return response
 }
 
-export const showNew = (showNew) => ({
-    type: SHOW_NEW,
+export const showCollapsablePostArea = (showNew) => ({
+    type: SHOW_COLLAPSABLE_POST_AREA,
     payload: {showNew}
 })
 
