@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Post extends TableImpl<PostRecord> {
 
-    private static final long serialVersionUID = -1640793673;
+    private static final long serialVersionUID = -1285264014;
 
     /**
      * The reference instance of <code>travelneer.post</code>
@@ -73,9 +73,9 @@ public class Post extends TableImpl<PostRecord> {
     public final TableField<PostRecord, Integer> AUTHOR_ID = createField("author_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>travelneer.post.country_id</code>.
+     * The column <code>travelneer.post.country_code</code>.
      */
-    public final TableField<PostRecord, Short> COUNTRY_ID = createField("country_id", org.jooq.impl.SQLDataType.SMALLINT.nullable(false), this, "");
+    public final TableField<PostRecord, String> COUNTRY_CODE = createField("country_code", org.jooq.impl.SQLDataType.VARCHAR(2).nullable(false), this, "");
 
     /**
      * The column <code>travelneer.post.created_at</code>.
@@ -128,7 +128,7 @@ public class Post extends TableImpl<PostRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.POST_AUTHOR_ID, Indexes.POST_COUNTRY_ID, Indexes.POST_PRIMARY);
+        return Arrays.<Index>asList(Indexes.POST_FK_POST_COUNTRY_CODE, Indexes.POST_FK_POST_USER_ID, Indexes.POST_PRIMARY);
     }
 
     /**
@@ -160,15 +160,15 @@ public class Post extends TableImpl<PostRecord> {
      */
     @Override
     public List<ForeignKey<PostRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<PostRecord, ?>>asList(Keys.POST_IBFK_1, Keys.POST_IBFK_2);
+        return Arrays.<ForeignKey<PostRecord, ?>>asList(Keys.FK_POST_USER_ID, Keys.FK_POST_COUNTRY_CODE);
     }
 
     public User user() {
-        return new User(this, Keys.POST_IBFK_1);
+        return new User(this, Keys.FK_POST_USER_ID);
     }
 
     public Country country() {
-        return new Country(this, Keys.POST_IBFK_2);
+        return new Country(this, Keys.FK_POST_COUNTRY_CODE);
     }
 
     /**

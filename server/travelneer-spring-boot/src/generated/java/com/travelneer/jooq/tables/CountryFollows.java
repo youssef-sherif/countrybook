@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class CountryFollows extends TableImpl<CountryFollowsRecord> {
 
-    private static final long serialVersionUID = 2058749066;
+    private static final long serialVersionUID = -1296894437;
 
     /**
      * The reference instance of <code>travelneer.country_follows</code>
@@ -61,9 +61,9 @@ public class CountryFollows extends TableImpl<CountryFollowsRecord> {
     public final TableField<CountryFollowsRecord, Integer> USER_ID = createField("user_id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>travelneer.country_follows.country_id</code>.
+     * The column <code>travelneer.country_follows.country_code</code>.
      */
-    public final TableField<CountryFollowsRecord, Short> COUNTRY_ID = createField("country_id", org.jooq.impl.SQLDataType.SMALLINT.nullable(false), this, "");
+    public final TableField<CountryFollowsRecord, String> COUNTRY_CODE = createField("country_code", org.jooq.impl.SQLDataType.VARCHAR(2).nullable(false), this, "");
 
     /**
      * Create a <code>travelneer.country_follows</code> table reference
@@ -111,7 +111,7 @@ public class CountryFollows extends TableImpl<CountryFollowsRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.COUNTRY_FOLLOWS_COUNTRY_ID, Indexes.COUNTRY_FOLLOWS_PRIMARY);
+        return Arrays.<Index>asList(Indexes.COUNTRY_FOLLOWS_FK_COUNTRY_FOLLOWS_COUNTRY_CODE, Indexes.COUNTRY_FOLLOWS_PRIMARY);
     }
 
     /**
@@ -135,15 +135,15 @@ public class CountryFollows extends TableImpl<CountryFollowsRecord> {
      */
     @Override
     public List<ForeignKey<CountryFollowsRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<CountryFollowsRecord, ?>>asList(Keys.COUNTRY_FOLLOWS_IBFK_1, Keys.COUNTRY_FOLLOWS_IBFK_2);
+        return Arrays.<ForeignKey<CountryFollowsRecord, ?>>asList(Keys.FK_COUNTRY_FOLLOWS_USER_ID, Keys.FK_COUNTRY_FOLLOWS_COUNTRY_CODE);
     }
 
     public User user() {
-        return new User(this, Keys.COUNTRY_FOLLOWS_IBFK_1);
+        return new User(this, Keys.FK_COUNTRY_FOLLOWS_USER_ID);
     }
 
     public Country country() {
-        return new Country(this, Keys.COUNTRY_FOLLOWS_IBFK_2);
+        return new Country(this, Keys.FK_COUNTRY_FOLLOWS_COUNTRY_CODE);
     }
 
     /**

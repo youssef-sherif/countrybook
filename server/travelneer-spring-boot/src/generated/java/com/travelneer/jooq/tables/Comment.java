@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment extends TableImpl<CommentRecord> {
 
-    private static final long serialVersionUID = 1803074857;
+    private static final long serialVersionUID = 572963352;
 
     /**
      * The reference instance of <code>travelneer.comment</code>
@@ -128,7 +128,7 @@ public class Comment extends TableImpl<CommentRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.COMMENT_AUTHOR_ID, Indexes.COMMENT_PARENT_POST_ID, Indexes.COMMENT_PRIMARY);
+        return Arrays.<Index>asList(Indexes.COMMENT_FK_COMMENT_POST_ID, Indexes.COMMENT_FK_COMMENT_USER_ID, Indexes.COMMENT_PRIMARY);
     }
 
     /**
@@ -160,15 +160,15 @@ public class Comment extends TableImpl<CommentRecord> {
      */
     @Override
     public List<ForeignKey<CommentRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<CommentRecord, ?>>asList(Keys.COMMENT_IBFK_1, Keys.COMMENT_IBFK_2);
+        return Arrays.<ForeignKey<CommentRecord, ?>>asList(Keys.FK_COMMENT_USER_ID, Keys.FK_COMMENT_POST_ID);
     }
 
     public User user() {
-        return new User(this, Keys.COMMENT_IBFK_1);
+        return new User(this, Keys.FK_COMMENT_USER_ID);
     }
 
     public Post post() {
-        return new Post(this, Keys.COMMENT_IBFK_2);
+        return new Post(this, Keys.FK_COMMENT_POST_ID);
     }
 
     /**

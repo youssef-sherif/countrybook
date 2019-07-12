@@ -41,7 +41,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Country extends TableImpl<CountryRecord> {
 
-    private static final long serialVersionUID = -1566444599;
+    private static final long serialVersionUID = -253794369;
 
     /**
      * The reference instance of <code>travelneer.country</code>
@@ -64,12 +64,12 @@ public class Country extends TableImpl<CountryRecord> {
     /**
      * The column <code>travelneer.country.code</code>.
      */
-    public final TableField<CountryRecord, String> CODE = createField("code", org.jooq.impl.SQLDataType.VARCHAR(2).nullable(false).defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.VARCHAR)), this, "");
+    public final TableField<CountryRecord, String> CODE = createField("code", org.jooq.impl.SQLDataType.VARCHAR(2).nullable(false), this, "");
 
     /**
      * The column <code>travelneer.country.name</code>.
      */
-    public final TableField<CountryRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false).defaultValue(org.jooq.impl.DSL.field("", org.jooq.impl.SQLDataType.VARCHAR)), this, "");
+    public final TableField<CountryRecord, String> NAME = createField("name", org.jooq.impl.SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
      * The column <code>travelneer.country.profile_image_url</code>.
@@ -127,7 +127,7 @@ public class Country extends TableImpl<CountryRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.COUNTRY_PRIMARY);
+        return Arrays.<Index>asList(Indexes.COUNTRY_CODE, Indexes.COUNTRY_PRIMARY);
     }
 
     /**
@@ -151,7 +151,7 @@ public class Country extends TableImpl<CountryRecord> {
      */
     @Override
     public List<UniqueKey<CountryRecord>> getKeys() {
-        return Arrays.<UniqueKey<CountryRecord>>asList(Keys.KEY_COUNTRY_PRIMARY);
+        return Arrays.<UniqueKey<CountryRecord>>asList(Keys.KEY_COUNTRY_PRIMARY, Keys.KEY_COUNTRY_CODE);
     }
 
     /**

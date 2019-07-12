@@ -59,6 +59,7 @@ public class Keys {
 
     public static final UniqueKey<CommentRecord> KEY_COMMENT_PRIMARY = UniqueKeys0.KEY_COMMENT_PRIMARY;
     public static final UniqueKey<CountryRecord> KEY_COUNTRY_PRIMARY = UniqueKeys0.KEY_COUNTRY_PRIMARY;
+    public static final UniqueKey<CountryRecord> KEY_COUNTRY_CODE = UniqueKeys0.KEY_COUNTRY_CODE;
     public static final UniqueKey<CountryFollowsRecord> KEY_COUNTRY_FOLLOWS_PRIMARY = UniqueKeys0.KEY_COUNTRY_FOLLOWS_PRIMARY;
     public static final UniqueKey<FavouritesRecord> KEY_FAVOURITES_PRIMARY = UniqueKeys0.KEY_FAVOURITES_PRIMARY;
     public static final UniqueKey<PostRecord> KEY_POST_PRIMARY = UniqueKeys0.KEY_POST_PRIMARY;
@@ -73,16 +74,16 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<CommentRecord, UserRecord> COMMENT_IBFK_1 = ForeignKeys0.COMMENT_IBFK_1;
-    public static final ForeignKey<CommentRecord, PostRecord> COMMENT_IBFK_2 = ForeignKeys0.COMMENT_IBFK_2;
-    public static final ForeignKey<CountryFollowsRecord, UserRecord> COUNTRY_FOLLOWS_IBFK_1 = ForeignKeys0.COUNTRY_FOLLOWS_IBFK_1;
-    public static final ForeignKey<CountryFollowsRecord, CountryRecord> COUNTRY_FOLLOWS_IBFK_2 = ForeignKeys0.COUNTRY_FOLLOWS_IBFK_2;
-    public static final ForeignKey<FavouritesRecord, PostRecord> FAVOURITES_IBFK_2 = ForeignKeys0.FAVOURITES_IBFK_2;
-    public static final ForeignKey<FavouritesRecord, UserRecord> FAVOURITES_IBFK_1 = ForeignKeys0.FAVOURITES_IBFK_1;
-    public static final ForeignKey<PostRecord, UserRecord> POST_IBFK_1 = ForeignKeys0.POST_IBFK_1;
-    public static final ForeignKey<PostRecord, CountryRecord> POST_IBFK_2 = ForeignKeys0.POST_IBFK_2;
-    public static final ForeignKey<UserRolesRecord, UserRecord> USER_ROLES_IBFK_1 = ForeignKeys0.USER_ROLES_IBFK_1;
-    public static final ForeignKey<UserRolesRecord, RoleRecord> USER_ROLES_IBFK_2 = ForeignKeys0.USER_ROLES_IBFK_2;
+    public static final ForeignKey<CommentRecord, UserRecord> FK_COMMENT_USER_ID = ForeignKeys0.FK_COMMENT_USER_ID;
+    public static final ForeignKey<CommentRecord, PostRecord> FK_COMMENT_POST_ID = ForeignKeys0.FK_COMMENT_POST_ID;
+    public static final ForeignKey<CountryFollowsRecord, UserRecord> FK_COUNTRY_FOLLOWS_USER_ID = ForeignKeys0.FK_COUNTRY_FOLLOWS_USER_ID;
+    public static final ForeignKey<CountryFollowsRecord, CountryRecord> FK_COUNTRY_FOLLOWS_COUNTRY_CODE = ForeignKeys0.FK_COUNTRY_FOLLOWS_COUNTRY_CODE;
+    public static final ForeignKey<FavouritesRecord, PostRecord> FK_FAVOURITES_POST_ID = ForeignKeys0.FK_FAVOURITES_POST_ID;
+    public static final ForeignKey<FavouritesRecord, UserRecord> FK_FAVOURITES_USER_ID = ForeignKeys0.FK_FAVOURITES_USER_ID;
+    public static final ForeignKey<PostRecord, UserRecord> FK_POST_USER_ID = ForeignKeys0.FK_POST_USER_ID;
+    public static final ForeignKey<PostRecord, CountryRecord> FK_POST_COUNTRY_CODE = ForeignKeys0.FK_POST_COUNTRY_CODE;
+    public static final ForeignKey<UserRolesRecord, UserRecord> FK_USER_ROLES_USER_ID = ForeignKeys0.FK_USER_ROLES_USER_ID;
+    public static final ForeignKey<UserRolesRecord, RoleRecord> FK_USER_ROLES_ROLE_ID = ForeignKeys0.FK_USER_ROLES_ROLE_ID;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
@@ -99,7 +100,8 @@ public class Keys {
     private static class UniqueKeys0 {
         public static final UniqueKey<CommentRecord> KEY_COMMENT_PRIMARY = Internal.createUniqueKey(Comment.COMMENT, "KEY_comment_PRIMARY", Comment.COMMENT.ID);
         public static final UniqueKey<CountryRecord> KEY_COUNTRY_PRIMARY = Internal.createUniqueKey(Country.COUNTRY, "KEY_country_PRIMARY", Country.COUNTRY.ID);
-        public static final UniqueKey<CountryFollowsRecord> KEY_COUNTRY_FOLLOWS_PRIMARY = Internal.createUniqueKey(CountryFollows.COUNTRY_FOLLOWS, "KEY_country_follows_PRIMARY", CountryFollows.COUNTRY_FOLLOWS.USER_ID, CountryFollows.COUNTRY_FOLLOWS.COUNTRY_ID);
+        public static final UniqueKey<CountryRecord> KEY_COUNTRY_CODE = Internal.createUniqueKey(Country.COUNTRY, "KEY_country_code", Country.COUNTRY.CODE);
+        public static final UniqueKey<CountryFollowsRecord> KEY_COUNTRY_FOLLOWS_PRIMARY = Internal.createUniqueKey(CountryFollows.COUNTRY_FOLLOWS, "KEY_country_follows_PRIMARY", CountryFollows.COUNTRY_FOLLOWS.USER_ID, CountryFollows.COUNTRY_FOLLOWS.COUNTRY_CODE);
         public static final UniqueKey<FavouritesRecord> KEY_FAVOURITES_PRIMARY = Internal.createUniqueKey(Favourites.FAVOURITES, "KEY_favourites_PRIMARY", Favourites.FAVOURITES.USER_ID, Favourites.FAVOURITES.POST_ID);
         public static final UniqueKey<PostRecord> KEY_POST_PRIMARY = Internal.createUniqueKey(Post.POST, "KEY_post_PRIMARY", Post.POST.ID);
         public static final UniqueKey<RoleRecord> KEY_ROLE_PRIMARY = Internal.createUniqueKey(Role.ROLE, "KEY_role_PRIMARY", Role.ROLE.ID);
@@ -111,15 +113,15 @@ public class Keys {
     }
 
     private static class ForeignKeys0 {
-        public static final ForeignKey<CommentRecord, UserRecord> COMMENT_IBFK_1 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Comment.COMMENT, "comment_ibfk_1", Comment.COMMENT.AUTHOR_ID);
-        public static final ForeignKey<CommentRecord, PostRecord> COMMENT_IBFK_2 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_POST_PRIMARY, Comment.COMMENT, "comment_ibfk_2", Comment.COMMENT.PARENT_POST_ID);
-        public static final ForeignKey<CountryFollowsRecord, UserRecord> COUNTRY_FOLLOWS_IBFK_1 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, CountryFollows.COUNTRY_FOLLOWS, "country_follows_ibfk_1", CountryFollows.COUNTRY_FOLLOWS.USER_ID);
-        public static final ForeignKey<CountryFollowsRecord, CountryRecord> COUNTRY_FOLLOWS_IBFK_2 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_COUNTRY_PRIMARY, CountryFollows.COUNTRY_FOLLOWS, "country_follows_ibfk_2", CountryFollows.COUNTRY_FOLLOWS.COUNTRY_ID);
-        public static final ForeignKey<FavouritesRecord, PostRecord> FAVOURITES_IBFK_2 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_POST_PRIMARY, Favourites.FAVOURITES, "favourites_ibfk_2", Favourites.FAVOURITES.POST_ID);
-        public static final ForeignKey<FavouritesRecord, UserRecord> FAVOURITES_IBFK_1 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Favourites.FAVOURITES, "favourites_ibfk_1", Favourites.FAVOURITES.USER_ID);
-        public static final ForeignKey<PostRecord, UserRecord> POST_IBFK_1 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Post.POST, "post_ibfk_1", Post.POST.AUTHOR_ID);
-        public static final ForeignKey<PostRecord, CountryRecord> POST_IBFK_2 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_COUNTRY_PRIMARY, Post.POST, "post_ibfk_2", Post.POST.COUNTRY_ID);
-        public static final ForeignKey<UserRolesRecord, UserRecord> USER_ROLES_IBFK_1 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, UserRoles.USER_ROLES, "user_roles_ibfk_1", UserRoles.USER_ROLES.USER_ID);
-        public static final ForeignKey<UserRolesRecord, RoleRecord> USER_ROLES_IBFK_2 = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_ROLE_PRIMARY, UserRoles.USER_ROLES, "user_roles_ibfk_2", UserRoles.USER_ROLES.ROLE_ID);
+        public static final ForeignKey<CommentRecord, UserRecord> FK_COMMENT_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Comment.COMMENT, "fk_comment_user_id", Comment.COMMENT.AUTHOR_ID);
+        public static final ForeignKey<CommentRecord, PostRecord> FK_COMMENT_POST_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_POST_PRIMARY, Comment.COMMENT, "fk_comment_post_id", Comment.COMMENT.PARENT_POST_ID);
+        public static final ForeignKey<CountryFollowsRecord, UserRecord> FK_COUNTRY_FOLLOWS_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, CountryFollows.COUNTRY_FOLLOWS, "fk_country_follows_user_id", CountryFollows.COUNTRY_FOLLOWS.USER_ID);
+        public static final ForeignKey<CountryFollowsRecord, CountryRecord> FK_COUNTRY_FOLLOWS_COUNTRY_CODE = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_COUNTRY_CODE, CountryFollows.COUNTRY_FOLLOWS, "fk_country_follows_country_code", CountryFollows.COUNTRY_FOLLOWS.COUNTRY_CODE);
+        public static final ForeignKey<FavouritesRecord, PostRecord> FK_FAVOURITES_POST_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_POST_PRIMARY, Favourites.FAVOURITES, "fk_favourites_post_id", Favourites.FAVOURITES.POST_ID);
+        public static final ForeignKey<FavouritesRecord, UserRecord> FK_FAVOURITES_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Favourites.FAVOURITES, "fk_favourites_user_id", Favourites.FAVOURITES.USER_ID);
+        public static final ForeignKey<PostRecord, UserRecord> FK_POST_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Post.POST, "fk_post_user_id", Post.POST.AUTHOR_ID);
+        public static final ForeignKey<PostRecord, CountryRecord> FK_POST_COUNTRY_CODE = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_COUNTRY_CODE, Post.POST, "fk_post_country_code", Post.POST.COUNTRY_CODE);
+        public static final ForeignKey<UserRolesRecord, UserRecord> FK_USER_ROLES_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, UserRoles.USER_ROLES, "fk_user_roles_user_id", UserRoles.USER_ROLES.USER_ID);
+        public static final ForeignKey<UserRolesRecord, RoleRecord> FK_USER_ROLES_ROLE_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_ROLE_PRIMARY, UserRoles.USER_ROLES, "fk_user_roles_role_id", UserRoles.USER_ROLES.ROLE_ID);
     }
 }

@@ -41,7 +41,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Favourites extends TableImpl<FavouritesRecord> {
 
-    private static final long serialVersionUID = 612830689;
+    private static final long serialVersionUID = 514646046;
 
     /**
      * The reference instance of <code>travelneer.favourites</code>
@@ -117,7 +117,7 @@ public class Favourites extends TableImpl<FavouritesRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.FAVOURITES_POST_ID, Indexes.FAVOURITES_PRIMARY);
+        return Arrays.<Index>asList(Indexes.FAVOURITES_FK_FAVOURITES_POST_ID, Indexes.FAVOURITES_PRIMARY);
     }
 
     /**
@@ -141,15 +141,15 @@ public class Favourites extends TableImpl<FavouritesRecord> {
      */
     @Override
     public List<ForeignKey<FavouritesRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<FavouritesRecord, ?>>asList(Keys.FAVOURITES_IBFK_2, Keys.FAVOURITES_IBFK_1);
+        return Arrays.<ForeignKey<FavouritesRecord, ?>>asList(Keys.FK_FAVOURITES_POST_ID, Keys.FK_FAVOURITES_USER_ID);
     }
 
     public Post post() {
-        return new Post(this, Keys.FAVOURITES_IBFK_2);
+        return new Post(this, Keys.FK_FAVOURITES_POST_ID);
     }
 
     public User user() {
-        return new User(this, Keys.FAVOURITES_IBFK_1);
+        return new User(this, Keys.FK_FAVOURITES_USER_ID);
     }
 
     /**
