@@ -18,8 +18,8 @@ public class PostTest {
     public void withEmptyPosts_ItShouldThrowException() {
 
         Post post = new Post();
-        post.setCountryId((short) 1);
         post.setAuthorId(1);
+        post.setCountryCode("EG");
         post.setContent("");
         post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 
@@ -43,7 +43,7 @@ public class PostTest {
         content = stringBuilder.toString();
 
         Post post = new Post();
-        post.setCountryId((short) 1);
+        post.setCountryCode("EG");
         post.setAuthorId(1);
         post.setContent(content);
         post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
