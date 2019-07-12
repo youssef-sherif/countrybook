@@ -36,14 +36,14 @@ public class UserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public boolean emailExists(String email) throws SQLException {
+    public boolean emailExists(String email) {
 
         return create.fetchExists(USER,
                 USER.EMAIL.eq(email));
     }
 
     @Override
-    public boolean exists(User user) throws SQLException {
+    public boolean exists(User user) {
 
         return create.fetchExists(USER,
                 USER.EMAIL.eq(user.getEmail().getValue())
@@ -60,14 +60,14 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public boolean nameExists(String name) throws SQLException {
+    public boolean nameExists(String name) {
 
         return create.fetchExists(USER,
                 USER.NAME.eq(name));
     }
 
     @Override
-    public void save(User user) throws SQLException {
+    public void save(User user) {
 
         Integer userId = create.insertInto(USER,
                 USER.NAME, USER.EMAIL, USER.PASSWORD, USER.CREATED_AT)
@@ -79,7 +79,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User getOneByName(String name) throws SQLException {
+    public User getOneByName(String name) {
 
         UserRecord userRecord = create.fetchOne(USER,
                 USER.NAME.eq(name));
@@ -88,7 +88,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void delete(User user) throws SQLException {
+    public void delete(User user) {
         create.deleteFrom(USER).where(USER.ID.eq(user.getId()));
     }
 }
