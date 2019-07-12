@@ -1,7 +1,7 @@
 INSERT INTO country VALUES (null, 'AF', 'Afghanistan', null, null);
 INSERT INTO country VALUES (null, 'AL', 'Albania', null, null);
 INSERT INTO country VALUES (null, 'DZ', 'Algeria', null, null);
-INSERT INTO country VALUES (null, 'DS', 'American Samoa', null, null);
+INSERT INTO country VALUES (null, 'AS', 'American Samoa', null, null);
 INSERT INTO country VALUES (null, 'AD', 'Andorra', null, null);
 INSERT INTO country VALUES (null, 'AO', 'Angola', null, null);
 INSERT INTO country VALUES (null, 'AI', 'Anguilla', null, null);
@@ -44,7 +44,7 @@ INSERT INTO country VALUES (null, 'CX', 'Christmas Island', null, null);
 INSERT INTO country VALUES (null, 'CC', 'Cocos Island', null, null);
 INSERT INTO country VALUES (null, 'CO', 'Colombia', null, null);
 INSERT INTO country VALUES (null, 'KM', 'Comoros', null, null);
-INSERT INTO country VALUES (null, 'CG', 'Democratic Republic of Congo', null, null);
+INSERT INTO country VALUES (null, 'CD', 'Democratic Republic of Congo', null, null);
 INSERT INTO country VALUES (null, 'CG', 'Republic of The Congo', null, null);
 INSERT INTO country VALUES (null, 'CK', 'Cook Islands', null, null);
 INSERT INTO country VALUES (null, 'CR', 'Costa Rica', null, null);
