@@ -20,7 +20,7 @@ class UserViewer extends Component {
             <div>
                 <PostList 
                     fromProfile={true}
-                    originalPath={"/me"}
+                    originalPath={"/profile"}
                 />
             </div>)
     }
