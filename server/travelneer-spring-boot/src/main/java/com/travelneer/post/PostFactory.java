@@ -36,17 +36,17 @@ public class PostFactory {
         this.commentRepository = commentRepository;
     }
 
-    public Post createPost(String content, Short countryId) throws Exception {
+    public Post createPost(String countryCode, String content) throws Exception {
 
         Post post = new Post();
         post.setContent(content);
-        post.setCountryId(countryId);
+        post.setCountryCode(countryCode);
         post.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         post.setAuthorId(validator.getUserId());
 
         post.validate();
 
-        if(!countryRepository.isCountryFollowedByUser(validator.getUserId(), countryId)){
+        if(!countryRepository.isCountryFollowedByUser(validator.getUserId(), countryCode)){
             throw new Exception("You must be followed to post");
         }
 
@@ -89,6 +89,9 @@ public class PostFactory {
 
         List<PostResource> postResources = transformPostListToPostResourceList(posts);
 
+        postResources.forEach(e ->
+                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
+
         PostListResource postListResource = new PostListResource(postResources);
         postListResource.add(linkTo(methodOn(PostsController.class).getFeed(page)).withSelfRel());
         postListResource.add(linkTo(methodOn(PostsController.class).getFeed(page+10)).withRel("next"));
@@ -111,14 +114,17 @@ public class PostFactory {
         return postListResource;
     }
 
-    public PostListResource getCountryPosts(short countryId, int page) throws Exception {
-        List<Post> posts = postRepository.getPostsByCountryId(countryId, page);
+    public PostListResource getCountryPosts(String countryCode, int page) throws Exception {
+        List<Post> posts = postRepository.getPostsByCountryCode(countryCode, page);
 
         List<PostResource> postResources = transformPostListToPostResourceList(posts);
 
+        postResources.forEach(e ->
+                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
+
         PostListResource postListResource = new PostListResource(postResources);
-        postListResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryId, page)).withSelfRel());;
-        postListResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryId, page+10)).withRel("next"));
+        postListResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryCode, page)).withSelfRel());;
+        postListResource.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(countryCode, page+10)).withRel("next"));
 
         return postListResource;
     }
@@ -128,6 +134,9 @@ public class PostFactory {
         List<Post> posts = postRepository.getPostsByAuthorId(validator.getUserId(), page);
 
         List<PostResource> postResources = transformPostListToPostResourceList(posts);
+
+        postResources.forEach(e ->
+                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
         PostListResource postListResource = new PostListResource(postResources);
         postListResource.add(linkTo(methodOn(PostsController.class).getMyPosts(page)).withSelfRel());
@@ -142,9 +151,6 @@ public class PostFactory {
         posts.forEach(Post::calculateTimeDifference);
         List<PostResource> postResources = posts.stream().map(Post::toResource)
                 .collect(Collectors.toList());
-
-        postResources.forEach(e ->
-                e.setFavourite(postRepository.isPostFavouriteByUser(e.getPostId(), validator.getUserId())));
 
         return postResources;
     }

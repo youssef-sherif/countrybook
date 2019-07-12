@@ -18,15 +18,15 @@ public interface CountryRepository extends IRepository<Country> {
 
     List<Country> search(String searchParam) throws SQLException;
 
-    Country getOneById(Short countryId) throws SQLException;
+    Country getOneByCode(String countryCode) throws SQLException;
 
     List<Country> getAll() throws SQLException;
 
     List<Country> getCountriesFollowed(int userId) throws SQLException;
 
-    Integer getFollowersCount(Short countryId) throws SQLException;
+    Integer getFollowersCount(String countryCode) throws SQLException;
 
-    boolean isCountryFollowedByUser(Integer userId, Short countryId) throws SQLException;
+    boolean isCountryFollowedByUser(Integer userId, String countryCode) throws SQLException;
 
     Integer getCountriesFollowedCount(int userId) throws SQLException;
 }

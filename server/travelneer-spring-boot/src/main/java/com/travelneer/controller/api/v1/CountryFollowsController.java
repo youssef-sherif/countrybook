@@ -55,13 +55,13 @@ public class CountryFollowsController {
         }
     }
 
-    @RequestMapping(value = "/followed-countries/{countryId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> followCountry(@PathVariable("countryId") short countryId) {
+    @RequestMapping(value = "/followed-countries/{countryCode}", method = RequestMethod.PUT)
+    public ResponseEntity<?> followCountry(@PathVariable("countryCode") String countryCode) {
 
         var responseBody = new HashMap<String, Object>();
         try {
             CountryFollowsRecord countryFollows = create.newRecord(COUNTRY_FOLLOWS);
-            countryFollows.setCountryId(countryId);
+            countryFollows.setCountryCode(countryCode);
             countryFollows.setUserId(validator.getUserId());
 
             countryFollows.store();
@@ -76,12 +76,12 @@ public class CountryFollowsController {
     }
 
     @RequestMapping(value = "/followed-countries/{countryId}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> unFollowCountry(@PathVariable("countryId") short countryId) {
+    public ResponseEntity<?> unFollowCountry(@PathVariable("countryId") String countryCode) {
 
         var responseBody = new HashMap<String, Object>();
         try {
             CountryFollowsRecord countryFollows = create.newRecord(COUNTRY_FOLLOWS);
-            countryFollows.setCountryId(countryId);
+            countryFollows.setCountryCode(countryCode);
             countryFollows.setUserId(validator.getUserId());
 
             countryFollows.delete();
@@ -96,11 +96,11 @@ public class CountryFollowsController {
     }
 
     @RequestMapping(value = "/countries/{countryId}/followers-count", method = RequestMethod.GET)
-    public ResponseEntity<?> getFollowersCount(@PathVariable("countryId") Short countryId) {
+    public ResponseEntity<?> getFollowersCount(@PathVariable("countryId") String countryCode) {
 
         var responseBody = new HashMap<String, Object>();
         try {
-            Integer count = countryRepository.getFollowersCount(countryId);
+            Integer count = countryRepository.getFollowersCount(countryCode);
 
             responseBody.put("followersCount", count);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);

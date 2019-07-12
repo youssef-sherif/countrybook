@@ -9,7 +9,6 @@ public class Post {
     private Integer id;
     private String content;
     private Integer authorId;
-    private Short countryId;
     private Timestamp createdAt;
 
     private String name;
@@ -19,31 +18,7 @@ public class Post {
 
     private Integer parentPostId;
 
-
-    public Post() {}
-
-    public Post(Post value) {
-        this.id = value.id;
-        this.countryId = value.countryId;
-        this.createdAt = value.createdAt;
-        this.authorId = value.authorId;
-        this.content = value.content;
-    }
-
-    public Post(
-            Integer   id,
-            Integer   authorId,
-            Short     countryId,
-            String content,
-            Timestamp createdAt
-
-    ) {
-        this.id = id;
-        this.countryId = countryId;
-        this.authorId = authorId;
-        this.content = content;
-        this.createdAt = createdAt;
-    }
+    private String countryCode;
 
 
     public Integer getId() {
@@ -68,14 +43,6 @@ public class Post {
 
     public void setAuthorId(Integer authorId) {
         this.authorId = authorId;
-    }
-
-    public Short getCountryId() {
-        return this.countryId;
-    }
-
-    public void setCountryId(Short countryId) {
-        this.countryId = countryId;
     }
 
     public Timestamp getCreatedAt() {
@@ -114,6 +81,14 @@ public class Post {
         this.parentPostId = parentPostId;
     }
 
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
     public void calculateTimeDifference() {
         long timeDifference = System.currentTimeMillis() - this.getCreatedAt().getTime();
 
@@ -145,7 +120,7 @@ public class Post {
             throw new Exception("Posts cannot exceed length of 500");
         }
 
-        if(countryId == null) {
+        if(countryCode == null) {
             throw new Exception("No country selected");
         }
 
@@ -160,17 +135,4 @@ public class Post {
         return postResource;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("Post (");
-
-        sb.append(id);
-        sb.append(", ").append(content);
-        sb.append(", ").append(authorId);
-        sb.append(", ").append(countryId);
-        sb.append(", ").append(createdAt);
-
-        sb.append(")");
-        return sb.toString();
-    }
 }

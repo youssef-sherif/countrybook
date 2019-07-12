@@ -34,7 +34,7 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public List<Country> getAll() throws SQLException {
+    public List<Country> getAll() {
         List<Country> countries = create.select().from(COUNTRY)
                 .fetchInto(Country.class);
 
@@ -42,47 +42,47 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public Country getOneById(Short countryId) throws SQLException {
-        CountryRecord countriesRecord = create.fetchOne(COUNTRY, COUNTRY.ID.eq(countryId));
+    public Country getOneByCode(String code) {
+        CountryRecord countryRecord = create.fetchOne(COUNTRY, COUNTRY.CODE.eq(code));
 
-        return countriesRecord.into(Country.class);
+        return countryRecord.into(Country.class);
     }
 
     @Override
-    public List<Country> search(String searchValue) throws SQLException {
+    public List<Country> search(String searchValue) {
         List<Country> countries = create.select().from(COUNTRY)
                 .where(COUNTRY.NAME.like(searchValue + "%")).fetchInto(Country.class);
         return countries;
     }
 
     @Override
-    public boolean isCountryFollowedByUser(Integer userId, Short countryId) throws SQLException {
+    public boolean isCountryFollowedByUser(Integer userId, String countryCode) {
 
         return create.fetchExists(COUNTRY_FOLLOWS,
-                COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId)
+                COUNTRY_FOLLOWS.COUNTRY_CODE.eq(countryCode)
                         .and(COUNTRY_FOLLOWS.USER_ID.eq(userId)));
     }
 
     @Override
-    public Integer getCountriesFollowedCount(int userId) throws SQLException {
+    public Integer getCountriesFollowedCount(int userId) {
         return create.select(count()).from(COUNTRY_FOLLOWS)
                 .where(COUNTRY_FOLLOWS.USER_ID.eq(userId))
                 .fetchOne(0, Integer.class);
     }
 
     @Override
-    public Integer getFollowersCount(Short countryId) throws SQLException {
+    public Integer getFollowersCount(String countryCode) {
         return create.fetchCount(COUNTRY_FOLLOWS,
-                COUNTRY_FOLLOWS.COUNTRY_ID.eq(countryId));
+                COUNTRY_FOLLOWS.COUNTRY_CODE.eq(countryCode));
     }
 
     @Override
-    public List<Country> getCountriesFollowed(int userId) throws SQLException {
+    public List<Country> getCountriesFollowed(int userId) {
         List<Country> countries = create.select()
                 .from(COUNTRY)
                 .innerJoin(COUNTRY_FOLLOWS)
-                .on(COUNTRY_FOLLOWS.COUNTRY_ID
-                        .eq(COUNTRY.ID))
+                .on(COUNTRY_FOLLOWS.COUNTRY_CODE
+                        .eq(COUNTRY.CODE))
                 .where(COUNTRY_FOLLOWS.USER_ID.eq(userId))
                 .fetch().into(Country.class);
 
@@ -90,13 +90,13 @@ public class CountryRepositoryImpl implements CountryRepository {
     }
 
     @Override
-    public void save(Country entity) throws SQLException {
+    public void save(Country entity) {
         CountryRecord record = create.newRecord(COUNTRY);
         record.from(entity);
     }
 
     @Override
-    public void delete(Country entity) throws SQLException {
+    public void delete(Country entity) {
         create.deleteFrom(COUNTRY).where(COUNTRY.ID.eq(entity.getId()));
     }
 

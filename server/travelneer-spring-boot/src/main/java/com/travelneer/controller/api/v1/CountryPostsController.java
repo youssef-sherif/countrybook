@@ -29,12 +29,12 @@ public class CountryPostsController {
     }
 
 
-    @RequestMapping(value = "/countries/{countryId}/posts", method = RequestMethod.GET)
-    public ResponseEntity<?> getCountryPosts(@PathVariable("countryId") short countryId,
+    @RequestMapping(value = "/countries/{countryCode}/posts", method = RequestMethod.GET)
+    public ResponseEntity<?> getCountryPosts(@PathVariable("countryCode") String countryCode,
                                              @RequestParam(name = "next", defaultValue = "0") int next) {
 
         try {
-            var feedResource = postFactory.getCountryPosts(countryId, next);
+            var feedResource = postFactory.getCountryPosts(countryCode, next);
 
             return new ResponseEntity<>(feedResource, HttpStatus.OK);
         } catch(Exception e) {
@@ -43,10 +43,10 @@ public class CountryPostsController {
     }
 
     @RequestMapping(value = "/countries/{countryId}/posts-count", method = RequestMethod.GET)
-    public ResponseEntity<?> getPostsCount(@PathVariable("countryId") Short countryId) {
+    public ResponseEntity<?> getPostsCount(@PathVariable("countryId") String countryCode) {
         var responseBody = new HashMap<String, Object>();
         try {
-            Integer postsCount = postRepository.getPostsCountByCountryId(countryId);
+            Integer postsCount = postRepository.getPostsCountByCountryCode(countryCode);
 
             responseBody.put("postsCount", postsCount);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);

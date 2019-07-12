@@ -6,6 +6,8 @@
 package com.travelneer.repository;
 
 import com.travelneer.post.Post;
+import org.jooq.SQL;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,15 +21,15 @@ public interface PostRepository extends IRepository<Post> {
 
 	List<Post> getPostsByAuthorId(int authorId, int offset) throws SQLException;
 
-	List<Post> getPostsByCountryId(short countryId, int offset) throws SQLException;
+	List<Post> getPostsByCountryCode(String countryCode, int offset) throws SQLException;
 
     List<Post> getFeed(int userId, int offset) throws SQLException;
 
-    Integer getPostsCountByCountryId(short id);
+    Integer getPostsCountByCountryCode(String countryCode) throws SQLException;
 
     Boolean isPostFavouriteByUser(int postId, int userId);
 
-    Integer getPostsCountByUserId(int userId);
+    Integer getPostsCountByUserId(int userId) throws  SQLException;
 
-    Integer getFavouritesCountByPostId(int postId);
+    Integer getFavouritesCountByPostId(int postId) throws SQLException;
 }

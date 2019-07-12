@@ -34,12 +34,12 @@ public class CountryDetailsResource extends ResourceSupport {
         this.name = country.getName();
         this.profileImageUrl = country.getProfileImageUrl();
 
-        this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withSelfRel());
-        this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getId())).withRel("follow"));
-        this.add(linkTo(methodOn(CountryFollowsController.class).unFollowCountry(country.getId())).withRel("unFollow"));
-        this.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(country.getId(), currentPage)).withRel("countryPosts"));
-        this.add(linkTo(methodOn(CountryFollowsController.class).getFollowersCount(country.getId())).withRel("followersCount"));
-        this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getId())).withRel("postsCount"));
+        this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getCode())).withSelfRel());
+        this.add(linkTo(methodOn(CountryFollowsController.class).followCountry(country.getCode())).withRel("follow"));
+        this.add(linkTo(methodOn(CountryFollowsController.class).unFollowCountry(country.getCode())).withRel("unFollow"));
+        this.add(linkTo(methodOn(CountryPostsController.class).getCountryPosts(country.getCode(), currentPage)).withRel("countryPosts"));
+        this.add(linkTo(methodOn(CountryFollowsController.class).getFollowersCount(country.getCode())).withRel("followersCount"));
+        this.add(linkTo(methodOn(CountryPostsController.class).getPostsCount(country.getCode())).withRel("postsCount"));
     }
 
     public Short getCountryId() {

@@ -58,23 +58,6 @@ public class CountriesController {
         }
     }
 
-
-    @RequestMapping(value = "/countries/{countryId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getCountryDetails(@PathVariable("countryId") short countryId) {
-
-        try {
-            var country = countryRepository.getOneById(countryId);
-            country.setProfileImageUrl(s3Service.getImage(country.getProfileImageUrl()));
-
-            var countryDetailsResource = country.toDetailsResource();
-            countryDetailsResource.setFollowed(countryRepository.isCountryFollowedByUser(validator.getUserId(), countryId));
-
-            return new ResponseEntity<>(countryDetailsResource, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
     @RequestMapping(value = "/countries-search", method = RequestMethod.GET, params = "name")
     public ResponseEntity<?> searchCountries(@RequestParam(name = "name") String searchParam) {
 
@@ -88,6 +71,22 @@ public class CountriesController {
             var countriesResource = new CountriesResource(countryResources);
 
             return new ResponseEntity<>(countriesResource, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/countries/{countryCode}", method = RequestMethod.GET)
+    public ResponseEntity<?> getCountryDetails(@PathVariable("countryCode") String countryCode) {
+
+        try {
+            var country = countryRepository.getOneByCode(countryCode);
+            country.setProfileImageUrl(s3Service.getImage(country.getProfileImageUrl()));
+
+            var countryDetailsResource = country.toDetailsResource();
+            countryDetailsResource.setFollowed(countryRepository.isCountryFollowedByUser(validator.getUserId(), country.getCode()));
+
+            return new ResponseEntity<>(countryDetailsResource, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

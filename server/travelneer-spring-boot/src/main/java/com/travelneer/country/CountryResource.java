@@ -31,7 +31,7 @@ public class CountryResource extends ResourceSupport {
         this.name = country.getName();
         this.flagUrl = country.getFlagUrl();
 
-        this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getId())).withRel("countryDetails"));
+        this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getCode())).withRel("countryDetails"));
     }
 
     public Short getCountryId() {

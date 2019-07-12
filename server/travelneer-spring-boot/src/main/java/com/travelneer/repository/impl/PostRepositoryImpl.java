@@ -38,7 +38,7 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public Post getOneById(int id) throws SQLException {
         Post post = create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
-                POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
+                POST.COUNTRY_CODE, POST.CREATED_AT, USER.NAME, USER.EMAIL)
                 .from(POST)
                 .innerJoin(USER).on(USER.ID
                         .eq(POST.AUTHOR_ID))
@@ -50,18 +50,18 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public void save(Post entity) throws SQLException {
+    public void save(Post entity) {
         PostRecord postRecord = create.newRecord(POST);
         postRecord.from(entity);
         postRecord.store();
     }
 
     @Override
-    public List<Post> getPostsByAuthorId(int authorId, int offset) throws SQLException {
+    public List<Post> getPostsByAuthorId(int authorId, int offset) {
 
         List<Post> posts =
                 create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
-                        POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
+                        POST.COUNTRY_CODE, POST.CREATED_AT, USER.NAME, USER.EMAIL)
                         .from(POST)
                         .innerJoin(USER).on(USER.ID
                         .eq(POST.AUTHOR_ID))
@@ -76,17 +76,17 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public List<Post> getPostsByCountryId(short countryId, int offset) throws SQLException {
+    public List<Post> getPostsByCountryCode(String countryCode, int offset) {
 
         List<Post> posts =
                 create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
-                        POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
+                        POST.COUNTRY_CODE, POST.CREATED_AT, USER.NAME, USER.EMAIL)
                         .from(POST)
                         .innerJoin(USER).on(POST.AUTHOR_ID.eq(USER.ID))
-                        .innerJoin(COUNTRY).on(COUNTRY.ID
-                        .eq(POST.COUNTRY_ID))
-                        .where(COUNTRY.ID
-                                .eq(countryId))
+                        .innerJoin(COUNTRY).on(COUNTRY.CODE
+                        .eq(POST.COUNTRY_CODE))
+                        .where(COUNTRY.CODE
+                                .eq(countryCode))
                         .orderBy(POST.CREATED_AT.desc())
                         .offset(offset)
                         .limit(10)
@@ -96,15 +96,15 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public List<Post> getFeed(int userId, int offset) throws SQLException {
+    public List<Post> getFeed(int userId, int offset) {
 
         List<Post> posts =
                 create.select(POST.CONTENT, POST.AUTHOR_ID, POST.ID,
-                        POST.COUNTRY_ID, POST.CREATED_AT, USER.NAME, USER.EMAIL)
+                        POST.COUNTRY_CODE, POST.CREATED_AT, USER.NAME, USER.EMAIL)
                         .from(POST)
                         .innerJoin(USER).on(POST.AUTHOR_ID.eq(USER.ID))
-                        .innerJoin(COUNTRY_FOLLOWS).on(COUNTRY_FOLLOWS.COUNTRY_ID
-                        .eq(POST.COUNTRY_ID))
+                        .innerJoin(COUNTRY_FOLLOWS).on(COUNTRY_FOLLOWS.COUNTRY_CODE
+                        .eq(POST.COUNTRY_CODE))
                         .where(COUNTRY_FOLLOWS.USER_ID
                                 .eq(userId))
                         .orderBy(POST.CREATED_AT.desc())
@@ -117,14 +117,14 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Integer getPostsCountByCountryId(short id) {
+    public Integer getPostsCountByCountryCode(String countryCode) {
         return create.select(count()).from(POST)
-                .where(POST.COUNTRY_ID.eq(id))
+                .where(POST.COUNTRY_CODE.eq(countryCode))
                 .fetchOne(0, Integer.class);
     }
 
     @Override
-    public void delete(Post entity) throws SQLException {
+    public void delete(Post entity) {
         create.deleteFrom(POST).where(POST.ID.eq(entity.getId()));
     }
 

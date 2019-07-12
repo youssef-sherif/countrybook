@@ -26,12 +26,13 @@ public class PostResource extends ResourceSupport {
     private final String content;
     private final String name;
     private final String email;
-    private final Short countryId;
     private final Map<Long, String> timeDiff;
 
     private Boolean isFavourite;
     private Boolean isComment;
     private Integer parentPostId;
+
+    private String countryCode;
 
     @JsonCreator
     public PostResource(Post post) {
@@ -39,10 +40,10 @@ public class PostResource extends ResourceSupport {
         this.content = post.getContent();
         this.name = post.getName();
         this.email = post.getEmail();
-        this.countryId = post.getCountryId();
         this.timeDiff = post.getTimeDiff();
         this.isComment = post.getParentPostId() != null;
         this.parentPostId = post.getParentPostId();
+        this.countryCode = post.getCountryCode();
 
         this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
         this.add(linkTo(methodOn(FavouritesController.class).favouritePost(post.getId())).withRel("favourite"));
@@ -63,10 +64,6 @@ public class PostResource extends ResourceSupport {
 
     public String getEmail() {
         return email;
-    }
-
-    public Short getCountryId() {
-        return countryId;
     }
 
     public String getTimeDiff() {
@@ -97,5 +94,13 @@ public class PostResource extends ResourceSupport {
 
     public void setParentPostId(Integer parentPostId) {
         this.parentPostId = parentPostId;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
     }
 }
