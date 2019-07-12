@@ -1,7 +1,6 @@
 package com.travelneer.integration;
 
 import com.travelneer.controller.AuthenticationController;
-import com.travelneer.dto.UserSignUpDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -31,12 +31,12 @@ public class AuthenticationControllerTest {
         String email = "youssef@travelneer.com";
         String password = "Yo654321";
 
-        UserSignUpDTO user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        var request = new HashMap<String, String>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(user);
+        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNotNull();
@@ -45,12 +45,12 @@ public class AuthenticationControllerTest {
         email = "youssef1@travelneer.com";
         password = "Yo654321";
 
-        user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        request = new HashMap<>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        responseEntity = authenticationController.signUp(user);
+        responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNull();
@@ -59,11 +59,11 @@ public class AuthenticationControllerTest {
         email = "youssef@travelneer.com";
         password = "Yo654321";
 
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        responseEntity = authenticationController.signUp(user);
+        responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNull();
@@ -75,12 +75,12 @@ public class AuthenticationControllerTest {
         String email = "sherif";
         String password = "Yo654321";
 
-        UserSignUpDTO user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        var request = new HashMap<String, String>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(user);
+        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNull();
@@ -90,12 +90,12 @@ public class AuthenticationControllerTest {
         email = "sherif@travelneer.com";
         password = "Yo654321";
 
-        user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        request = new HashMap<>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        responseEntity = authenticationController.signUp(user);
+        responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNull();
@@ -105,12 +105,12 @@ public class AuthenticationControllerTest {
         email = "sherif@travelneer.com";
         password = "password";
 
-        user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        request = new HashMap<>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        responseEntity = authenticationController.signUp(user);
+        responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNull();
@@ -124,12 +124,12 @@ public class AuthenticationControllerTest {
         String email = "ahmed@travelneer.com";
         String password = "Yo654321";
 
-        UserSignUpDTO user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
+        var request = new HashMap<String, String>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
 
-        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(user);
+        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNotNull();

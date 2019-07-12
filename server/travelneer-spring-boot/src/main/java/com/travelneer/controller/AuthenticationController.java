@@ -5,18 +5,14 @@
  */
 package com.travelneer.controller;
 
-import com.travelneer.jwt.JwtValidator;
 import com.travelneer.user.*;
-import com.travelneer.dto.UserSignUpDTO;
 import com.travelneer.jwt.JwtGenerator;
-import com.travelneer.repository.UserRepository;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -39,13 +35,13 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/users",
             method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<Map<String, String>> signUp(@RequestBody UserSignUpDTO signUpDto) {
+    public ResponseEntity<Map<String, String>> signUp(@RequestBody Map<String, String> request) {
         var body = new HashMap<String, String>();
 
         try {
-            User user  = userFactory.createUser(new Username(signUpDto.getName()),
-                            new Email(signUpDto.getEmail()),
-                            new Password(signUpDto.getPassword()));
+            User user  = userFactory.createUser(new Username(request.get("name")),
+                            new Email(request.get("email")),
+                            new Password(request.get("password")));
 
             var token = jwtGenerator.generate(user);
 

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -65,12 +66,11 @@ public class ValidationsControllerTest {
         String email = "taken@travelneer.com";
         String password = "Yo654321";
 
-        UserSignUpDTO user = new UserSignUpDTO();
-        user.setName(username);
-        user.setEmail(email);
-        user.setPassword(password);
-
-        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(user);
+        var request = new HashMap<String, String>();
+        request.put("name", username);
+        request.put("email", email);
+        request.put("password", password);
+        ResponseEntity<Map<String, String>> responseEntity = authenticationController.signUp(request);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(Objects.requireNonNull(responseEntity.getBody()).get("token")).isNotNull();

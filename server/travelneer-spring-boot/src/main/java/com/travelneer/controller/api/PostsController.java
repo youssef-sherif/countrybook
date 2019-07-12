@@ -1,10 +1,10 @@
 package com.travelneer.controller.api;
 
-import com.travelneer.dto.NewPostDTO;
 import com.travelneer.post.PostListResource;
 import com.travelneer.post.PostFactory;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import com.travelneer.post.PostResource;
 
@@ -43,12 +43,12 @@ public class PostsController {
 
     @RequestMapping(value = "/feed",
             method = RequestMethod.POST, headers = {"Content-type=application/json"})
-    public ResponseEntity<?> newPost(@RequestBody NewPostDTO postDTO) {
+    public ResponseEntity<?> newPost(@RequestBody Map<String, String> request) {
 
         var body = new HashMap<>();
         try {
 
-            postFactory.createPost(postDTO.getContent(), postDTO.getCountryId());
+            postFactory.createPost(request.get("countryCode"), request.get("content"));
 
             body.put("created", true);
 
