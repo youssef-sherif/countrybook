@@ -66,12 +66,12 @@ const fetchCountryInfoFailure = (error) => ({
   payload: { error }
 })
 
-export const fetchCountryInfo = (countryId) => {
+export const fetchCountryInfo = (countryCode) => {
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
   return (dispatch) => {
     dispatch(fetchCountryInfoBegin());
     dispatch(fetchPostsBegin());
-    return fetch(`http://localhost:8080/api/countries/${countryId}`, {
+    return fetch(`http://localhost:8080/api/countries/${countryCode}`, {
       headers: {
         'Authorization': tokenBearer,
         'Access-Control-Allow-origin': 'http://localhost:8080'

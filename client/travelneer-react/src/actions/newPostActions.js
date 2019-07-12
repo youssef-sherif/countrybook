@@ -41,7 +41,7 @@ const newPostFailure = (error) => ({
 })
 
 
-export const newPost = (countryId, content, refresh) => {
+export const newPost = (countryCode, content, refresh) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newPostBegin())
@@ -54,7 +54,7 @@ export const newPost = (countryId, content, refresh) => {
               },             
             body: JSON.stringify({
                 content: content,                
-                countryId: countryId
+                countryCode: countryCode
             })
         })
             .then(handleErrors)
@@ -74,7 +74,7 @@ export const newPost = (countryId, content, refresh) => {
     }
 }
 
-export const newPost2 = (countryId, content) => {
+export const newPost2 = (countryCode, content) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newPostBegin())
@@ -87,7 +87,7 @@ export const newPost2 = (countryId, content) => {
               },             
             body: JSON.stringify({
                 content: content,                
-                countryId: countryId
+                countryCode: countryCode
             })
         })
             .then(handleErrors)
@@ -96,8 +96,8 @@ export const newPost2 = (countryId, content) => {
             })
             .then((data) => {
                 dispatch(newPostSuccess());   
-                dispatch(fetchCountryInfo(countryId));
-                dispatch(push(`/countries/${countryId}`))
+                dispatch(fetchCountryInfo(countryCode));
+                dispatch(push(`/${countryCode}`))
                 return data
             })
             .catch((error) => { 
