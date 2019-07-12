@@ -26,7 +26,7 @@ class AppNavbar extends Component {
                     </div>
                     <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} 
                         onClick={() => { 
-                            this.props.navigateTo('/me');
+                            this.props.navigateTo('/profile');
                             window.scroll(0, 0) 
                             } } >
                         <img className={styles.img} alt='profile' src={profile} />
