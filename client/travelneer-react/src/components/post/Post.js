@@ -21,7 +21,7 @@ class Post extends Component {
 
                 <blockquote className={styles.content} onClick={() => {
                     this.props.saveScrollPosition(this.props.originalPath, window.scrollY);
-                    this.props.navigateTo(`/post/${this.props.postId}`)
+                    this.props.navigateTo(`/${this.props.countryCode}/posts/${this.props.postId}`)
                 }}>
                     {this.props.content}
                 </blockquote>

@@ -52,6 +52,7 @@ import { fetchPosts, fetchCountryPosts, fetchMyPosts } from '../../actions/posts
                                 isFavourite={post.favourite}
                                 favouritesResource={post._links.favourite.href}
                                 originalPath={this.props.originalPath}
+                                countryCode={post.countryCode}
                             />
                 })}
                 
