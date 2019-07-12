@@ -23,7 +23,7 @@ class CountrySelect extends Component {
                             Select a Country
                         </option>  
                     {this.props.countries.map((country) => 
-                        <option  key={country.countryId} value={country.countryId} className={`${styles.option}`}>
+                        <option  key={country.countryId} value={country.code} className={`${styles.option}`}>
                             {country.name}
                         </option>                    
                     )}
@@ -42,7 +42,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     fetchCountries: () => dispatch(fetchCountries()),
-    selectCountry: (countryId) => dispatch(selectCountry(countryId))
+    selectCountry: (countryCode) => dispatch(selectCountry(countryCode))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountrySelect)

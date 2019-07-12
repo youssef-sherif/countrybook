@@ -109,9 +109,9 @@ export const fetchFollowedCountries = (resource) => {
 }
 
 
-export const selectCountry = (countryId) => ({
+export const selectCountry = (countryCode) => ({
   type: SELECT_COUNTRY,
-  payload: {countryId}  
+  payload: {countryCode}  
 })
 
 // Handle HTTP errors since fetch won't.
