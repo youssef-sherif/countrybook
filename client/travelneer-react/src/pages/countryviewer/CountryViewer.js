@@ -17,7 +17,7 @@ class CountryViewer extends Component {
         if(this.props.backButtonPressed === true) {
             window.scrollTo(0, this.props.scrollPositionY)
         } else {
-            this.props.fetchCountryInfo(this.props.match.params.countryId)
+            this.props.fetchCountryInfo(this.props.match.params.countryCode)
         }                        
     }
 
@@ -30,7 +30,7 @@ class CountryViewer extends Component {
             <div>
                 {this.props.compose ?
                 <PostArea  
-                    countryId={this.props.match.params.countryId}
+                    countryCode={this.props.match.params.countryCode}
                     countryName={this.props.countryName}
                     onPost={this.onPost.bind(this)}
                     newPost={this.props.newPost2.bind(this)}
@@ -38,7 +38,7 @@ class CountryViewer extends Component {
                 :
                 <PostList 
                     fromCountryViewer={true}
-                    originalPath={`/countries/${this.props.match.params.countryId}`}
+                    originalPath={`/${this.props.match.params.countryCode}`}
                 />
                 }
                 
@@ -50,13 +50,13 @@ class CountryViewer extends Component {
             <div className={styles.buttonsDiv}>
                 <button className={`btn ${styles.btn} ${styles.postsButton}`}
                     onClick={(e) => {                            
-                        this.props.navigateTo({ pathname: `/countries/${this.props.match.params.countryId}` });
+                        this.props.navigateTo({ pathname: `/${this.props.match.params.countryCode}` });
                     }}>
                     Posts
                 </button>            
                 <button className={`btn ${styles.btn} ${styles.newPostButton}`}
                     onClick={(e) => {      
-                        this.props.navigateTo({ pathname: `/countries/${this.props.match.params.countryId}/new`});
+                        this.props.navigateTo({ pathname: `/${this.props.match.params.countryCode}/new`});
                     }}>
                     New
                 </button>
