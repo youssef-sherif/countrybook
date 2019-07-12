@@ -30,7 +30,7 @@ class Feed extends Component {
                 <CountrySelect />
                 <PostArea 
                     refresh={false}
-                    countryId={this.props.countryId} 
+                    countryCode={this.props.countryCode} 
                     countryName={this.props.countryName === "" ? 
                         "(choose a country)" : this.props.countryName}
                     newPost={this.props.newPost.bind(this)} 
@@ -49,7 +49,7 @@ class Feed extends Component {
                         <CountrySelect />
                         <PostArea 
                             refresh={true}
-                            countryId={this.props.countryId} 
+                            countryCode={this.props.countryCode} 
                             countryName={this.props.countryName === "" ? 
                             "(choose a country)" : this.props.countryName}
                             newPost={this.props.newPost.bind(this)} 
@@ -109,7 +109,7 @@ const mapStateToProps = (state) => ({
     newPostLoading: state.newPost.loading,
     newPostError: state.newPost.error,
     newPostErrorMessage: state.newPost.errorMessage,
-    countryId: state.countries.selectedCountryId,
+    countryCode: state.countries.selectedCountryCode,
     countryName: state.countries.selectedCountryName,
     countries: state.countries.countries,
     scrollPositionY: state.posts.scrollPositionY,

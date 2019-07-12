@@ -20,7 +20,7 @@ class PostArea extends Component {
                                     
                 <div className={styles.buttonsDiv}>
                     <button className={`btn ${styles.button}`} onClick={(e) => {
-                            this.props.newPost(this.props.countryId, this.props.content, this.props.refresh);                              
+                            this.props.newPost(this.props.countryCode, this.props.content, this.props.refresh);                              
                     }}>
                         post
                     </button>
