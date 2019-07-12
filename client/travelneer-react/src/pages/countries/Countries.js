@@ -10,58 +10,31 @@ import styles from './Countries.scss'
     
 class Countries extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         this.props.fetchCountries()
     }
 
-    getSearchedCountries = () => {
-        return (
-            <div>
-                <input onChange={(e) =>
-                    this.props.searchCountries(this.props.searchResource, e.target.value)}
-                    rows='1' placeholder='Search for a country' />
-                <br/><br/>
-                <CountryList countries={this.props.countries}
-                    navigateTo={this.props.navigateTo}
-                    loading={this.props.loading}
-                    successful={this.props.successful} />
-            </div>)
-    }
-
-    getCountries = () => {
-        return (
-            <div>
-                <p>Countries</p>
-                <br />
-                <CountryList countries={this.props.countries}
-                    navigateTo={this.props.navigateTo}
-                    loading={this.props.loading}
-                    successful={this.props.successful} />
-            </div>)
-    }
-
     render() {
-        const countries = this.getCountries()
-        const searchedCountries = this.getSearchedCountries()
+
         return (
             <div>
                 <AppNavbar />
                 <br /><br /><br />
-                <div className={styles.div}>
-                    <button className={`btn ${styles.button}`}
-                        onClick={() => this.props.navigateTo('/countries')}>
-                        countries
-                    </button>
-                    <button className={`btn ${styles.button}`}
-                        onClick={() => this.props.navigateTo('/search_countries')}>
-                        search
-                    </button>
-                </div>
-                <br />
-                <br />
                 <div className={`container`}>
-                    {this.props.search ?
-                       searchedCountries : countries}
+                    <input
+                        className={styles.search} 
+                        onChange={(e) => {
+                            this.props.searchCountries(this.props.searchResource, e.target.value);                    
+                        }}
+                        rows='1' placeholder='Search for a country' 
+                    />
+                    <br/><br/>            
+                    <CountryList 
+                        countries={this.props.countries}
+                        navigateTo={this.props.navigateTo}
+                        loading={this.props.loading}
+                        successful={this.props.successful} 
+                    />                    
                 </div>
             </div>
         )

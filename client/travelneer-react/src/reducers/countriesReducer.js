@@ -12,7 +12,7 @@ const getCountriesState = {
   error: "",
   loading: false,
   successful: false,
-  countries: [{name: "", id: 0}],
+  countries: [],
   searchCountriesResource: "",
   followedCountriesResource: "",
   selectedCountryCode: "",
