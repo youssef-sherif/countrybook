@@ -5,8 +5,8 @@ CREATE TABLE comment (
     parent_post_id INT,
     created_at TIMESTAMP,
     PRIMARY KEY (id),
-	FOREIGN KEY (author_id) REFERENCES user (id)
+	CONSTRAINT fk_comment_user_id FOREIGN KEY (author_id) REFERENCES user (id)
 	ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (parent_post_id) REFERENCES post (id)
+	CONSTRAINT fk_comment_post_id FOREIGN KEY (parent_post_id) REFERENCES post (id)
 	ON DELETE SET NULL ON UPDATE NO ACTION
 );

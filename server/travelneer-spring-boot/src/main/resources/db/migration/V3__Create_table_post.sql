@@ -5,8 +5,8 @@ CREATE TABLE post (
     country_id SMALLINT NOT NULL,
     created_at TIMESTAMP,
     PRIMARY KEY (id),
-	FOREIGN KEY (author_id) REFERENCES user (id)
+	CONSTRAINT fk_post_user_id FOREIGN KEY (author_id) REFERENCES user (id)
 	ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (country_id) REFERENCES country (id)
+	CONSTRAINT fk_post_country_id FOREIGN KEY (country_id) REFERENCES country (id)
 	ON DELETE CASCADE ON UPDATE CASCADE
 );
