@@ -42,8 +42,8 @@ public class CountryPostsController {
         }
     }
 
-    @RequestMapping(value = "/countries/{countryId}/posts-count", method = RequestMethod.GET)
-    public ResponseEntity<?> getPostsCount(@PathVariable("countryId") String countryCode) {
+    @RequestMapping(value = "/countries/{countryCode}/posts-count", method = RequestMethod.GET)
+    public ResponseEntity<?> getPostsCount(@PathVariable("countryCode") String countryCode) {
         var responseBody = new HashMap<String, Object>();
         try {
             Integer postsCount = postRepository.getPostsCountByCountryCode(countryCode);
