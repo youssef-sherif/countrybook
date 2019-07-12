@@ -16,11 +16,10 @@ export default class Routes extends Component {
                 <Route path="/" exact component={Home} />
                 <Route path="/feed" exact component={Feed} />
                 <Route path="/profile" exact render={(props) => <UserViewer {...props} />} />
-                <Route path="/countries" exact render={(props) => <Countries {...props} search={false} />} />
-                <Route path="/search_countries" render={(props) => <Countries {...props} search={true} />} />
-                <Route path="/:countryCode" exact render={(props) => <CountryViewer {...props} compose={false} />} />
-                <Route path="/:countryCode/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />
-                <Route path="/:countryCode/posts/:postId" exact render={(props) => <PostViewer {...props} />} />
+                <Route path="/countries" exact render={(props) => <Countries {...props} />} />                
+                <Route path="/c/:countryCode" exact render={(props) => <CountryViewer {...props} compose={false} />} />
+                <Route path="/c/:countryCode/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />
+                <Route path="/c/:countryCode/posts/:postId" exact render={(props) => <PostViewer {...props} />} />
             </Switch>
         )
     }

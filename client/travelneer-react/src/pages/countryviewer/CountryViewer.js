@@ -21,9 +21,6 @@ class CountryViewer extends Component {
         }                        
     }
 
-    onPost = () => {
-        console.log("success")
-    }
 
     getPostsDiv = () => {
         return (
@@ -31,14 +28,13 @@ class CountryViewer extends Component {
                 {this.props.compose ?
                 <PostArea  
                     countryCode={this.props.match.params.countryCode}
-                    countryName={this.props.countryName}
-                    onPost={this.onPost.bind(this)}
+                    countryName={this.props.countryName}                    
                     newPost={this.props.newPost2.bind(this)}
                 /> 
                 :
                 <PostList 
                     fromCountryViewer={true}
-                    originalPath={`/${this.props.match.params.countryCode}`}
+                    originalPath={`/c/${this.props.match.params.countryCode}`}
                 />
                 }
                 
@@ -50,13 +46,13 @@ class CountryViewer extends Component {
             <div className={styles.buttonsDiv}>
                 <button className={`btn ${styles.btn} ${styles.postsButton}`}
                     onClick={(e) => {                            
-                        this.props.navigateTo({ pathname: `/${this.props.match.params.countryCode}` });
+                        this.props.navigateTo({ pathname: `/c/${this.props.match.params.countryCode}` });
                     }}>
                     Posts
                 </button>            
                 <button className={`btn ${styles.btn} ${styles.newPostButton}`}
                     onClick={(e) => {      
-                        this.props.navigateTo({ pathname: `/${this.props.match.params.countryCode}/new`});
+                        this.props.navigateTo({ pathname: `/c/${this.props.match.params.countryCode}/new`});
                     }}>
                     New
                 </button>
