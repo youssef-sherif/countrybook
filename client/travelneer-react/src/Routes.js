@@ -12,16 +12,16 @@ export default class Routes extends Component {
 
     render() {
         return (
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/feed" exact component={Feed} />
-                    <Route path="/countries" exact render={(props) => <Countries {...props} search={false} />} />
-                    <Route path="/search_countries" render={(props) => <Countries {...props} search={true} />} />                                
-                    <Route path="/countries/:countryId" exact render={(props) => <CountryViewer {...props} compose={false} />} />
-                    <Route path="/countries/:countryId/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />                
-                    <Route path="/me" exact render={(props) => <UserViewer {...props} />} />
-                    <Route path="/post/:postId" exact render={(props) => <PostViewer {...props} />} />
-                </Switch>            
-                )
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/feed" exact component={Feed} />
+                <Route path="/profile" exact render={(props) => <UserViewer {...props} />} />
+                <Route path="/countries" exact render={(props) => <Countries {...props} search={false} />} />
+                <Route path="/search_countries" render={(props) => <Countries {...props} search={true} />} />
+                <Route path="/:countryCode" exact render={(props) => <CountryViewer {...props} compose={false} />} />
+                <Route path="/:countryCode/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />
+                <Route path="/:countryCode/posts/:postId" exact render={(props) => <PostViewer {...props} />} />
+            </Switch>
+        )
     }
 }
