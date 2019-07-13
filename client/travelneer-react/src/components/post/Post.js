@@ -10,29 +10,31 @@ import PostHeader from '../postheader/PostHeader';
 
 class Post extends Component {
 
-    render() {        
+    render() {
         return (
             <div className={styles.story}>
-                <PostHeader 
+                <PostHeader
                     user={this.props.user}
                     email={this.props.email}
-                    timeDiff={this.props.timeDiff} 
+                    timeDiff={this.props.timeDiff}
                 />
 
-                <blockquote className={styles.content} onClick={() => {
-                    this.props.saveScrollPosition(this.props.originalPath, window.scrollY);
-                    this.props.navigateTo(`/c/${this.props.countryCode}/posts/${this.props.postId}`)
-                }}>
+                <blockquote className={styles.content}>
                     {this.props.content}
                 </blockquote>
 
                 <div className={`container ${styles.actions}`}>
-                    <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.commentIcon}`}></i>
+                    <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.commentIcon}`}
+                        onClick={() => {
+                            this.props.saveScrollPosition(this.props.originalPath, window.scrollY);
+                            this.props.navigateTo(`/c/${this.props.countryCode}/posts/${this.props.postId}`)
+                        }}
+                    />
                     <div className={`col-sm-6 col-xs-6 col-lg-6 col-md-6`}>
                         <FavouritesButton
                             styles={styles}
                             isFavourite={this.props.isFavourite}
-                            favourite={this.props.favouritePost.bind(this)}    
+                            favourite={this.props.favouritePost.bind(this)}
                             resource={this.props.favouritesResource}
                             loading={this.props.favouritePostLoading}
                         />
@@ -51,8 +53,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     favouritePost: (resource, method) => dispatch(favouritePost(resource, method)),
     navigateTo: (location) => dispatch(push(location)),
-    saveScrollPosition: (originalPath, scrollY) => dispatch(saveScrollPosition(originalPath, scrollY))
-
+    saveScrollPosition: (originalPath, scrollY) => dispatch(saveScrollPosition(originalPath, scrollY))    
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Post)
 
