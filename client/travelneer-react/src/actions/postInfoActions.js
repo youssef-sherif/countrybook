@@ -126,10 +126,10 @@ export const fetchPostInfo = (postId) => {
         return response.json()
       })
       .then((data) => {        
-        dispatch(fetchPostInfoSuccess(data));
-        dispatch(fetchComments(data._links.comments.href));
+        dispatch(fetchPostInfoSuccess(data));        
         dispatch(fetchFavouritesCount(data._links.favouritesCount.href));
         dispatch(fetchCommentsCount(data._links.commentsCount.href));
+        dispatch(fetchComments(data._links.comments.href));
 
         return data
       })
@@ -151,7 +151,7 @@ const fetchCommentsFailure = (error) => ({
     payload: {error}
 })
 
-const fetchComments = (resource, loadMore=false) => {
+export const fetchComments = (resource, loadMore=false) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`
     return (dispatch) => {
         dispatch(fetchCommentsBegin())

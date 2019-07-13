@@ -13,6 +13,7 @@ import {postsReducer} from './reducers/postsReducer'
 import {newPostReducer} from './reducers/newPostReducer'
 import {countryInfoReducer} from './reducers/countryInfoReducer'
 import {postInfoReducer} from './reducers/postInfoReducer'
+import {newCommentReducer} from './reducers/newCommentReducer'
 
 import myHistory from './history'
 
@@ -28,7 +29,8 @@ const reducers = combineReducers({
     router: connectRouter(myHistory),
     newPost: newPostReducer,  
     auth: authReducer,
-    postInfo: postInfoReducer 
+    postInfo: postInfoReducer,
+    newComment: newCommentReducer
   })
 
 const myStore = createStore(reducers,
