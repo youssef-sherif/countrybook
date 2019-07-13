@@ -161,7 +161,6 @@ export const fetchMyPosts = (resource, loadMore=false) => {
 }
 
 export const backButtonPressed = (originalPath) => {
-    console.log(originalPath)
     return (dispatch) => {
         dispatch(push(originalPath))
         dispatch({
