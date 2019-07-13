@@ -7,53 +7,83 @@ import styles from './PostViewer.scss'
 
 import { fetchPostInfo } from '../../actions/postInfoActions'
 import { favouritePost, backButtonPressed } from '../../actions/postsActions'
-import PostHeader from '../../components/postheader/PostHeader';
+import { showCollapsableCommentArea } from '../../actions/newCommentActions'
+import PostHeader from '../../components/postheader/PostHeader'
 import BackButton from './BackButton'
+import CommentArea from '../../components/commentarea/CommentArea'
+import CollapsableView from '../../components/collapsableview/CollapsableView'
+import CommentTree from '../../components/commenttree/CommentTree'
 
 class PostViewer extends Component {
 
-    componentDidMount() {        
-        this.props.fetchPostInfo(this.props.match.params.postId)
+    componentDidMount() {
+        this.props.fetchPostInfo(this.props.match.params.postId)        
     }
 
-    render() {
-        console.log('postviewer', this.props.originalPath)
-        return (
-           <div>
-               <AppNavbar />
-               <br /><br /><br />                  
-                <div className={`container ${styles.div} ${styles.story}`}>
-                <BackButton 
-                    styles={styles}
-                    backButtonPressed={this.props.backButtonPressed.bind(this)} 
-                    originalPath={this.props.originalPath}
-                />
-                <br /><br /><br />
-                <PostHeader 
-                    user={this.props.user}
-                    email={this.props.email}
-                    timeDiff={this.props.timeDiff} 
-                />
 
-                <blockquote className={styles.content}>
-                    {this.props.content}
-                </blockquote>
-                <div className={`container ${styles.actions}`}>
-                    <i className={`col-sm-3 col-xs-3 col-lg-3 col-md-3 glyphicon glyphicon-comment ${styles.commentIcon}`}></i>                
-                    <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.commentsCount}</div>
-                    <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>
-                        <FavouritesButton
-                            styles={styles}
-                            isFavourite={this.props.favourite}
-                            favourite={this.props.favouritePost.bind(this)}    
-                            resource={this.props.favouritesResource}
-                            loading={this.props.favouritePostLoading}
+    render() {
+        
+        return (
+            <div>
+                <AppNavbar />
+                <CollapsableView 
+                    visible={this.props.commentAreaVisible}
+                    showCollapsableArea={this.props.showCollapsableCommentArea.bind(this)}
+                    
+                >
+                    <CommentArea
+                        className={styles.commentArea}
+                        parentPostAuthorName={this.props.name}
+                        parentPostId={this.props.match.params.postId}
+                    />
+                </CollapsableView>
+
+                <br /> <br /> <br />
+
+                <div className={`container ${styles.div} ${styles.story}`}>
+                    <BackButton
+                        styles={styles}
+                        backButtonPressed={this.props.backButtonPressed.bind(this)}
+                        originalPath={this.props.originalPath}
+                    />
+
+                    <br /><br /><br />
+
+                    <PostHeader
+                        user={this.props.user}
+                        email={this.props.email}
+                        timeDiff={this.props.timeDiff}
+                    />
+
+                    <blockquote className={styles.content}>
+                        {this.props.content}
+                    </blockquote>
+
+                    <div className={`container ${styles.actions}`}>
+                        <i className={`col-sm-3 col-xs-3 col-lg-3 col-md-3 glyphicon glyphicon-comment ${styles.commentIcon}`}
+                            onClick={() => {
+                                this.props.showCollapsableCommentArea(true);
+                            }}
                         />
+                        <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.commentsCount}</div>
+
+                        <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>
+                            <FavouritesButton
+                                styles={styles}
+                                isFavourite={this.props.favourite}
+                                favourite={this.props.favouritePost.bind(this)}
+                                resource={this.props.favouritesResource}
+                                loading={this.props.favouritePostLoading}
+                            />
+                        </div>
+                        <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.favouritesCount}</div>
                     </div>
-                    <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.favouritesCount}</div>
-                </div>               
-                </div> 
-            </div>
+                </div>
+
+                <br /><br />
+
+                <CommentTree />
+            </div >
 
         )
     }
@@ -72,13 +102,15 @@ const mapStateToProps = (state) => ({
     commentsCount: state.postInfo.commentsCount,
     favouritesResource: state.postInfo.favouritesResource,
     favouritePostLoading: state.posts.favouriteLoading,
-    originalPath: state.posts.originalPath    
+    originalPath: state.posts.originalPath,
+    commentAreaVisible: state.newComment.commentAreaVisible
 })
 
 const mapDispatchToProps = (dispatch) => ({
     favouritePost: (resource, method) => dispatch(favouritePost(resource, method)),
     fetchPostInfo: (postId) => dispatch(fetchPostInfo(postId)),
-    backButtonPressed: (path) => dispatch(backButtonPressed(path))
+    backButtonPressed: (path) => dispatch(backButtonPressed(path)),
+    showCollapsableCommentArea: (bool) => dispatch(showCollapsableCommentArea(bool)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostViewer)

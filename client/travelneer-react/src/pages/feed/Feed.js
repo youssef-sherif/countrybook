@@ -12,6 +12,7 @@ import { showCollapsablePostArea, newPost } from '../../actions/newPostActions'
 import Indicator from '../../components/indicator/Indicator'
 
 import { fetchPosts } from '../../actions/postsActions'
+import CollapsableView from '../../components/collapsableview/CollapsableView';
 
 class Feed extends Component {
 
@@ -25,8 +26,10 @@ class Feed extends Component {
 
     getCollapsablePostArea = () => {
         return (
-            <div className={`container ${this.props.collapsablePostAreaState? styles.NewPostShow : styles.NewPostHide}`}>                    
-                <br/><br/><br/>
+            <CollapsableView 
+                visible={this.props.postAreaVisible}
+                showCollapsableArea={this.props.showCollapsablePostArea.bind(this)}             
+            >                
                 <CountrySelect />
                 <PostArea 
                     refresh={false}
@@ -35,33 +38,8 @@ class Feed extends Component {
                         "(choose a country)" : this.props.countryName}
                     newPost={this.props.newPost.bind(this)} 
                 />                                            
-            </div>
+            </CollapsableView>
         )
-    }
-
-    getPostArea = () => {
-        return(
-            <div>
-                {this.props.collapsablePostAreaState?
-                    <div />
-                    :
-                    <div className={`container`}  >
-                        <CountrySelect />
-                        <PostArea 
-                            refresh={true}
-                            countryCode={this.props.countryCode} 
-                            countryName={this.props.countryName === "" ? 
-                            "(choose a country)" : this.props.countryName}
-                            newPost={this.props.newPost.bind(this)} 
-                        />                        
-                    </div>
-                }              
-                <br/>      
-                <PostList 
-                    fromFeed={true}
-                    originalPath={"/feed"}
-                />
-            </div>)
     }
 
     getNewPostButton = () => {
@@ -70,15 +48,14 @@ class Feed extends Component {
                 alt='new post'
                 src={newPostImg}
                 onClick={() => {
-                    this.props.showCollapsablePostArea(!this.props.collapsablePostAreaState)
+                    this.props.showCollapsablePostArea(true)
                 }} />
         )
     }
 
     render() {
 
-        const collapsablePostArea = this.getCollapsablePostArea()
-        const postArea = this.getPostArea()
+        const collapsablePostArea = this.getCollapsablePostArea()        
         const newPostButton = this.getNewPostButton()
 
         return (
@@ -89,7 +66,11 @@ class Feed extends Component {
 
                 <br/><br/><br/>
 
-                {postArea}
+                <br/>      
+                <PostList 
+                    fromFeed={true}
+                    originalPath={"/feed"}
+                />
 
                 {newPostButton}
 
@@ -104,7 +85,7 @@ class Feed extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    collapsablePostAreaState: state.newPost.collapsablePostAreaState,
+    postAreaVisible: state.newPost.postAreaVisible,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
     newPostError: state.newPost.error,

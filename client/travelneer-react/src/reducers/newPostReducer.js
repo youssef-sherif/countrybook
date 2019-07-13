@@ -12,7 +12,7 @@ const initialState = {
       error: false,
       errorMessage: "aa",
       content: "",
-      collapsablePostAreaState: false
+      postAreaVisible: false
   }
   
 export function newPostReducer(state = initialState, action) {
@@ -49,7 +49,7 @@ export function newPostReducer(state = initialState, action) {
       case SHOW_COLLAPSABLE_POST_AREA:
         return {
           ...state,
-          collapsablePostAreaState: action.payload.showNew
+          postAreaVisible: action.payload.showNew
         }
 
       default:
