@@ -1,5 +1,6 @@
-package com.travelneer.controller.api.v1;
+package com.travelneer.controller.api;
 
+import com.travelneer.post.CommentListResource;
 import com.travelneer.post.PostFactory;
 import com.travelneer.post.PostListResource;
 import com.travelneer.repository.CommentRepository;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/api")
 public class CommentsController {
 
     private final PostFactory postFactory;
@@ -29,9 +30,9 @@ public class CommentsController {
     public ResponseEntity<?> getComments(@PathVariable("postId")int postId,
                                          @RequestParam(name = "next", defaultValue = "0") int next)  {
         try {
-            PostListResource postListResource =  postFactory.getComments(postId, next);
+            CommentListResource commentListResource =  postFactory.getComments(postId, next);
 
-            return new ResponseEntity<>(postListResource, HttpStatus.OK);
+            return new ResponseEntity<>(commentListResource, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -42,7 +43,7 @@ public class CommentsController {
                                         @RequestBody Map<String, String> request)  {
         var response = new HashMap<>();
         try {
-            postFactory.createComment(postId, request.get("comment"));
+            postFactory.createComment(postId, request.get("content"));
             response.put("created", true);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
