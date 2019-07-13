@@ -1,6 +1,7 @@
 package com.travelneer.repository.impl;
 
 import com.travelneer.jooq.tables.records.CommentRecord;
+import com.travelneer.post.Comment;
 import com.travelneer.post.Post;
 import com.travelneer.repository.CommentRepository;
 import org.jooq.DSLContext;
@@ -26,9 +27,9 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public List<Post> getCommentsByParentPostId(int postId, int offset) {
+    public List<Comment> getCommentsByParentPostId(int postId, int offset) {
 
-        List<Post> comments =
+        List<Comment> comments =
                 create.select(COMMENT.ID, COMMENT.CONTENT, COMMENT.CREATED_AT, COMMENT.AUTHOR_ID, COMMENT.PARENT_POST_ID,
                         USER.NAME, USER.EMAIL)
                         .from(COMMENT)
@@ -37,7 +38,7 @@ public class CommentRepositoryImpl implements CommentRepository {
                         .orderBy(COMMENT.CREATED_AT.desc())
                         .offset(offset)
                         .limit(10)
-                        .fetch().into(Post.class);
+                        .fetch().into(Comment.class);
 
         return comments;
     }
@@ -51,14 +52,14 @@ public class CommentRepositoryImpl implements CommentRepository {
 
 
     @Override
-    public void save(Post entity) throws SQLException {
+    public void save(Comment entity) throws SQLException {
         CommentRecord record = create.newRecord(COMMENT);
         record.from(entity);
         record.store();
     }
 
     @Override
-    public void delete(Post entity) throws SQLException {
+    public void delete(Comment entity) throws SQLException {
         create.deleteFrom(COMMENT).where(COMMENT.ID.eq(entity.getId()));
     }
 }

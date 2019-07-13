@@ -19,10 +19,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  *
  * @author Youssef
  */
-public class PostResource extends ResourceSupport {
+public class CommentResource extends ResourceSupport {
 
 
-    private final Integer postId;
+    private final Integer commentId;
     private final String content;
     private final String name;
     private final String email;
@@ -31,25 +31,19 @@ public class PostResource extends ResourceSupport {
     private Boolean isFavourite;
     private Integer parentPostId;
 
-    private String countryCode;
 
     @JsonCreator
-    public PostResource(Post post) {
-        this.postId = post.getId();
-        this.content = post.getContent();
-        this.name = post.getName();
-        this.email = post.getEmail();
-        this.timeDiff = post.getTimeDiff();
-        this.parentPostId = post.getParentPostId();
-        this.countryCode = post.getCountryCode();
-
-        this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
-        this.add(linkTo(methodOn(FavouritesController.class).favouritePost(post.getId())).withRel("favourite"));
-        this.add(linkTo(methodOn(FavouritesController.class).unFavouritePost(post.getId())).withRel("unFavourite"));
+    public CommentResource(Comment comment) {
+        this.commentId = comment.getId();
+        this.content = comment.getContent();
+        this.name = comment.getName();
+        this.email = comment.getEmail();
+        this.timeDiff = comment.getTimeDiff();
+        this.parentPostId = comment.getParentPostId();
     }
 
-    public Integer getPostId() {
-        return postId;
+    public Integer getCommentId() {
+        return commentId;
     }
 
     public String getContent() {
@@ -78,19 +72,9 @@ public class PostResource extends ResourceSupport {
         isFavourite = favourite;
     }
 
+
     public Integer getParentPostId() {
         return parentPostId;
     }
 
-    public void setParentPostId(Integer parentPostId) {
-        this.parentPostId = parentPostId;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
 }
