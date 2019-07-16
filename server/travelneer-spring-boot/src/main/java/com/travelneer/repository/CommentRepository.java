@@ -10,5 +10,7 @@ public interface CommentRepository extends IRepository<Comment> {
 
     List<Comment> getCommentsByParentPostId(int postId, int offset) throws SQLException;
 
+    List<Comment> getCommentsByParentCommentId(int commentId, int offset) throws SQLException;
+
     Integer getCommentsCountByParentPostId(int postId) throws SQLException;
 }
