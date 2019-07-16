@@ -25,15 +25,13 @@ public class PostFactory {
     private final JwtValidator validator;
     private final PostRepository postRepository;
     private final CountryRepository countryRepository;
-    private final CommentRepository commentRepository;
 
 
     @Autowired
-    public PostFactory(JwtValidator validator, PostRepository postRepository, CountryRepository countryRepository, CommentRepository commentRepository) {
+    public PostFactory(JwtValidator validator, PostRepository postRepository, CountryRepository countryRepository) {
         this.validator = validator;
         this.postRepository = postRepository;
         this.countryRepository = countryRepository;
-        this.commentRepository = commentRepository;
     }
 
     public Post createPost(String countryCode, String content) throws Exception {
@@ -55,20 +53,7 @@ public class PostFactory {
         return post;
     }
 
-    public Comment createComment(int parentPostId, String content) throws Exception {
-        Comment comment = new Comment();
-        comment.setContent(content);
-        comment.setParentPostId(parentPostId);
-        comment.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-        comment.setAuthorId(validator.getUserId());
 
-        comment.validate();
-
-        commentRepository.save(comment);
-
-        return comment;
-
-    }
 
     public PostResource getPost(int postId) throws Exception {
         Post post =  postRepository.getOneById(postId);
@@ -99,21 +84,6 @@ public class PostFactory {
         postListResource.add(linkTo(methodOn(PostsController.class).getFeed(page+10)).withRel("next"));
 
         return postListResource;
-    }
-
-    public CommentListResource getComments(int postId, int page) throws SQLException {
-
-        List<Comment> comments = commentRepository.getCommentsByParentPostId(postId, page);
-
-        comments.forEach(Comment::calculateTimeDifference);
-        List<CommentResource> commentResources = comments.stream().map(Comment::toResource)
-                .collect(Collectors.toList());
-
-        CommentListResource commentListResource = new CommentListResource(commentResources);
-        commentListResource.add(linkTo(methodOn(CommentsController.class).getComments(postId, page)).withSelfRel());
-        commentListResource.add(linkTo(methodOn(CommentsController.class).getComments(postId, page+10)).withRel("next"));
-
-        return commentListResource;
     }
 
     public PostListResource getCountryPosts(String countryCode, int page) throws Exception {

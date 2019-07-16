@@ -28,7 +28,7 @@ public class CommentListResource extends ResourceSupport {
     }
 
     @JsonProperty("comments")
-    public List<CommentResource> getPosts() {
+    public List<CommentResource> getComments() {
         return commentResources;
     }
 

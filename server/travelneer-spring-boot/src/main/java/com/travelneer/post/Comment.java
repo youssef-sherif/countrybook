@@ -17,6 +17,7 @@ public class Comment {
     private Map<Long, String> timeDiff;
 
     private Integer parentPostId;
+    private Integer parentCommentId;
 
 
     public Integer getId() {
@@ -79,6 +80,14 @@ public class Comment {
         this.parentPostId = parentPostId;
     }
 
+    public Integer getParentCommentId() {
+        return parentCommentId;
+    }
+
+    public void setParentCommentId(Integer parentCommentId) {
+        this.parentCommentId = parentCommentId;
+    }
+
     public void calculateTimeDifference() {
         long timeDifference = System.currentTimeMillis() - this.getCreatedAt().getTime();
 
@@ -116,7 +125,7 @@ public class Comment {
     }
 
     public CommentResource toResource() {
-        var commentResource = new CommentResource(this);
+        var commentResource = new CommentResource(this, 0);
 
         return commentResource;
     }

@@ -29,7 +29,6 @@ public class PostResource extends ResourceSupport {
     private final Map<Long, String> timeDiff;
 
     private Boolean isFavourite;
-    private Integer parentPostId;
 
     private String countryCode;
 
@@ -40,7 +39,6 @@ public class PostResource extends ResourceSupport {
         this.name = post.getName();
         this.email = post.getEmail();
         this.timeDiff = post.getTimeDiff();
-        this.parentPostId = post.getParentPostId();
         this.countryCode = post.getCountryCode();
 
         this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
@@ -76,14 +74,6 @@ public class PostResource extends ResourceSupport {
 
     public void setFavourite(Boolean favourite) {
         isFavourite = favourite;
-    }
-
-    public Integer getParentPostId() {
-        return parentPostId;
-    }
-
-    public void setParentPostId(Integer parentPostId) {
-        this.parentPostId = parentPostId;
     }
 
     public String getCountryCode() {
