@@ -1,8 +1,6 @@
 package com.travelneer.controller.api;
 
-import com.travelneer.post.CommentListResource;
-import com.travelneer.post.PostFactory;
-import com.travelneer.post.PostListResource;
+import com.travelneer.post.*;
 import com.travelneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,20 +15,59 @@ import java.util.Map;
 @RequestMapping(value = "/api")
 public class CommentsController {
 
-    private final PostFactory postFactory;
+    private final CommentFactory commentFactory;
     private final CommentRepository commentRepository;
 
     @Autowired
-    public CommentsController(PostFactory postFactory, CommentRepository commentRepository) {
-        this.postFactory = postFactory;
+    public CommentsController(CommentFactory commentFactory, CommentRepository commentRepository) {
+        this.commentFactory = commentFactory;
         this.commentRepository = commentRepository;
+    }
+
+    @RequestMapping(value = "/comments/{commentId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getComment(@PathVariable("commentId")int commentId,
+                                              @RequestParam(name = "next", defaultValue = "0") int next)  {
+        try {
+            CommentResource commentResource =  commentFactory.getComment(commentId);
+
+            return new ResponseEntity<>(commentResource, HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/comments/{commentId}/replies", method = RequestMethod.GET)
+    public ResponseEntity<?> getNestedReplies(@PathVariable("commentId")int commentId,
+                                              @RequestParam(name = "next", defaultValue = "0") int next)  {
+        try {
+            CommentListResource commentListResource =  commentFactory.getNestedReplies(commentId, next);
+
+            return new ResponseEntity<>(commentListResource, HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/comments/{commentId}/replies", method = RequestMethod.POST)
+    public ResponseEntity<?> replyToComment(@PathVariable("commentId")int commentId,
+                                            @RequestBody Map<String, String> request)  {
+        var response = new HashMap<>();
+        try {
+            commentFactory.createNestedReply(commentId, request.get("content"));
+
+            response.put("created", true);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/posts/{postId}/comments", method = RequestMethod.GET)
     public ResponseEntity<?> getComments(@PathVariable("postId")int postId,
                                          @RequestParam(name = "next", defaultValue = "0") int next)  {
         try {
-            CommentListResource commentListResource =  postFactory.getComments(postId, next);
+            CommentListResource commentListResource =  commentFactory.getComments(postId, next);
 
             return new ResponseEntity<>(commentListResource, HttpStatus.OK);
         } catch(Exception e) {
@@ -43,7 +80,7 @@ public class CommentsController {
                                         @RequestBody Map<String, String> request)  {
         var response = new HashMap<>();
         try {
-            postFactory.createComment(postId, request.get("content"));
+            commentFactory.createComment(postId, request.get("content"));
             response.put("created", true);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
