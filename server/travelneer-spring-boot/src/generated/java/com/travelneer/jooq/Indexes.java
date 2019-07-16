@@ -39,6 +39,7 @@ public class Indexes {
 
     public static final Index COMMENT_FK_COMMENT_POST_ID = Indexes0.COMMENT_FK_COMMENT_POST_ID;
     public static final Index COMMENT_FK_COMMENT_USER_ID = Indexes0.COMMENT_FK_COMMENT_USER_ID;
+    public static final Index COMMENT_FK_PARENT_COMMENT_ID = Indexes0.COMMENT_FK_PARENT_COMMENT_ID;
     public static final Index COMMENT_PRIMARY = Indexes0.COMMENT_PRIMARY;
     public static final Index COUNTRY_CODE = Indexes0.COUNTRY_CODE;
     public static final Index COUNTRY_PRIMARY = Indexes0.COUNTRY_PRIMARY;
@@ -64,6 +65,7 @@ public class Indexes {
     private static class Indexes0 {
         public static Index COMMENT_FK_COMMENT_POST_ID = Internal.createIndex("fk_comment_post_id", Comment.COMMENT, new OrderField[] { Comment.COMMENT.PARENT_POST_ID }, false);
         public static Index COMMENT_FK_COMMENT_USER_ID = Internal.createIndex("fk_comment_user_id", Comment.COMMENT, new OrderField[] { Comment.COMMENT.AUTHOR_ID }, false);
+        public static Index COMMENT_FK_PARENT_COMMENT_ID = Internal.createIndex("fk_parent_comment_id", Comment.COMMENT, new OrderField[] { Comment.COMMENT.PARENT_COMMENT_ID }, false);
         public static Index COMMENT_PRIMARY = Internal.createIndex("PRIMARY", Comment.COMMENT, new OrderField[] { Comment.COMMENT.ID }, true);
         public static Index COUNTRY_CODE = Internal.createIndex("code", Country.COUNTRY, new OrderField[] { Country.COUNTRY.CODE }, true);
         public static Index COUNTRY_PRIMARY = Internal.createIndex("PRIMARY", Country.COUNTRY, new OrderField[] { Country.COUNTRY.ID }, true);

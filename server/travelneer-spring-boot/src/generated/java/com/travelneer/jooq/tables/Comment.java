@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment extends TableImpl<CommentRecord> {
 
-    private static final long serialVersionUID = 572963352;
+    private static final long serialVersionUID = 218573781;
 
     /**
      * The reference instance of <code>travelneer.comment</code>
@@ -76,6 +76,11 @@ public class Comment extends TableImpl<CommentRecord> {
      * The column <code>travelneer.comment.parent_post_id</code>.
      */
     public final TableField<CommentRecord, Integer> PARENT_POST_ID = createField("parent_post_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>travelneer.comment.parent_comment_id</code>.
+     */
+    public final TableField<CommentRecord, Integer> PARENT_COMMENT_ID = createField("parent_comment_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>travelneer.comment.created_at</code>.
@@ -128,7 +133,7 @@ public class Comment extends TableImpl<CommentRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.COMMENT_FK_COMMENT_POST_ID, Indexes.COMMENT_FK_COMMENT_USER_ID, Indexes.COMMENT_PRIMARY);
+        return Arrays.<Index>asList(Indexes.COMMENT_FK_COMMENT_POST_ID, Indexes.COMMENT_FK_COMMENT_USER_ID, Indexes.COMMENT_FK_PARENT_COMMENT_ID, Indexes.COMMENT_PRIMARY);
     }
 
     /**
@@ -160,7 +165,7 @@ public class Comment extends TableImpl<CommentRecord> {
      */
     @Override
     public List<ForeignKey<CommentRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<CommentRecord, ?>>asList(Keys.FK_COMMENT_USER_ID, Keys.FK_COMMENT_POST_ID);
+        return Arrays.<ForeignKey<CommentRecord, ?>>asList(Keys.FK_COMMENT_USER_ID, Keys.FK_COMMENT_POST_ID, Keys.FK_PARENT_COMMENT_ID);
     }
 
     public User user() {
@@ -169,6 +174,10 @@ public class Comment extends TableImpl<CommentRecord> {
 
     public Post post() {
         return new Post(this, Keys.FK_COMMENT_POST_ID);
+    }
+
+    public com.travelneer.jooq.tables.Comment comment() {
+        return new com.travelneer.jooq.tables.Comment(this, Keys.FK_PARENT_COMMENT_ID);
     }
 
     /**

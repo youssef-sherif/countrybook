@@ -76,6 +76,7 @@ public class Keys {
 
     public static final ForeignKey<CommentRecord, UserRecord> FK_COMMENT_USER_ID = ForeignKeys0.FK_COMMENT_USER_ID;
     public static final ForeignKey<CommentRecord, PostRecord> FK_COMMENT_POST_ID = ForeignKeys0.FK_COMMENT_POST_ID;
+    public static final ForeignKey<CommentRecord, CommentRecord> FK_PARENT_COMMENT_ID = ForeignKeys0.FK_PARENT_COMMENT_ID;
     public static final ForeignKey<CountryFollowsRecord, UserRecord> FK_COUNTRY_FOLLOWS_USER_ID = ForeignKeys0.FK_COUNTRY_FOLLOWS_USER_ID;
     public static final ForeignKey<CountryFollowsRecord, CountryRecord> FK_COUNTRY_FOLLOWS_COUNTRY_CODE = ForeignKeys0.FK_COUNTRY_FOLLOWS_COUNTRY_CODE;
     public static final ForeignKey<FavouritesRecord, PostRecord> FK_FAVOURITES_POST_ID = ForeignKeys0.FK_FAVOURITES_POST_ID;
@@ -115,6 +116,7 @@ public class Keys {
     private static class ForeignKeys0 {
         public static final ForeignKey<CommentRecord, UserRecord> FK_COMMENT_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, Comment.COMMENT, "fk_comment_user_id", Comment.COMMENT.AUTHOR_ID);
         public static final ForeignKey<CommentRecord, PostRecord> FK_COMMENT_POST_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_POST_PRIMARY, Comment.COMMENT, "fk_comment_post_id", Comment.COMMENT.PARENT_POST_ID);
+        public static final ForeignKey<CommentRecord, CommentRecord> FK_PARENT_COMMENT_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_COMMENT_PRIMARY, Comment.COMMENT, "fk_parent_comment_id", Comment.COMMENT.PARENT_COMMENT_ID);
         public static final ForeignKey<CountryFollowsRecord, UserRecord> FK_COUNTRY_FOLLOWS_USER_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_USER_PRIMARY, CountryFollows.COUNTRY_FOLLOWS, "fk_country_follows_user_id", CountryFollows.COUNTRY_FOLLOWS.USER_ID);
         public static final ForeignKey<CountryFollowsRecord, CountryRecord> FK_COUNTRY_FOLLOWS_COUNTRY_CODE = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_COUNTRY_CODE, CountryFollows.COUNTRY_FOLLOWS, "fk_country_follows_country_code", CountryFollows.COUNTRY_FOLLOWS.COUNTRY_CODE);
         public static final ForeignKey<FavouritesRecord, PostRecord> FK_FAVOURITES_POST_ID = Internal.createForeignKey(com.travelneer.jooq.Keys.KEY_POST_PRIMARY, Favourites.FAVOURITES, "fk_favourites_post_id", Favourites.FAVOURITES.POST_ID);
