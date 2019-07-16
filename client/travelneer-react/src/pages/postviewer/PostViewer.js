@@ -7,34 +7,56 @@ import styles from './PostViewer.scss'
 
 import { fetchPostInfo } from '../../actions/postInfoActions'
 import { favouritePost, backButtonPressed } from '../../actions/postsActions'
+import { newComment } from '../../actions/newCommentActions'
 import { showCollapsableCommentArea } from '../../actions/newCommentActions'
 import PostHeader from '../../components/postheader/PostHeader'
 import BackButton from './BackButton'
 import CommentArea from '../../components/commentarea/CommentArea'
 import CollapsableView from '../../components/collapsableview/CollapsableView'
 import CommentTree from '../../components/commenttree/CommentTree'
+import newPostImg from '../../images/new-post.png'
 
 class PostViewer extends Component {
 
-    componentDidMount() {
-        this.props.fetchPostInfo(this.props.match.params.postId)        
+    constructor(props) {
+        super(props);
+        this.state = { isReplying: false };
     }
 
+    componentDidMount() {
+        this.props.fetchPostInfo(this.props.match.params.postId)
+    }
+
+    getNewPostButton = () => {
+        return (
+            <img className={`btn ${styles.newPostImg}`}
+                alt='new post'
+                src={newPostImg}
+                onClick={() => {
+                    this.props.showCollapsableCommentArea(true)
+                }} />
+        )
+    }
 
     render() {
-        
+
+        const newPostButton = this.getNewPostButton()
+
         return (
             <div>
                 <AppNavbar />
-                <CollapsableView 
+
+                <CollapsableView
+                    collapsableStyle={styles.collapsable}
                     visible={this.props.commentAreaVisible}
                     showCollapsableArea={this.props.showCollapsableCommentArea.bind(this)}
-                    
                 >
                     <CommentArea
+                        collapsable={true}                        
                         className={styles.commentArea}
                         parentPostAuthorName={this.props.name}
-                        parentPostId={this.props.match.params.postId}
+                        parentPostId={this.props.match.params.postId}                        
+                        newComment={this.props.newComment.bind(this)}
                     />
                 </CollapsableView>
 
@@ -50,7 +72,7 @@ class PostViewer extends Component {
                     <br /><br /><br />
 
                     <PostHeader
-                        user={this.props.user}
+                        name={this.props.name}
                         email={this.props.email}
                         timeDiff={this.props.timeDiff}
                     />
@@ -60,12 +82,9 @@ class PostViewer extends Component {
                     </blockquote>
 
                     <div className={`container ${styles.actions}`}>
-                        <i className={`col-sm-3 col-xs-3 col-lg-3 col-md-3 glyphicon glyphicon-comment ${styles.commentIcon}`}
-                            onClick={() => {
-                                this.props.showCollapsableCommentArea(true);
-                            }}
-                        />
+                        <i className={`col-sm-3 col-xs-3 col-lg-3 col-md-3 glyphicon glyphicon-comment ${styles.commentIcon}`} />
                         <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.commentsCount}</div>
+
 
                         <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>
                             <FavouritesButton
@@ -78,11 +97,24 @@ class PostViewer extends Component {
                         </div>
                         <div className={`col-sm-3 col-xs-3 col-lg-3 col-md-3`}>{this.props.favouritesCount}</div>
                     </div>
+
+                    <br />
+
+                    <CommentArea
+                        isReplying={true}
+                        className={styles.commentArea}
+                        parentPostAuthorName={this.props.name}
+                        parentPostId={this.props.match.params.postId}                        
+                        newComment={this.props.newComment.bind(this)}
+                    />
                 </div>
 
                 <br /><br />
 
                 <CommentTree />
+
+                {newPostButton}
+
             </div >
 
         )
@@ -111,6 +143,7 @@ const mapDispatchToProps = (dispatch) => ({
     fetchPostInfo: (postId) => dispatch(fetchPostInfo(postId)),
     backButtonPressed: (path) => dispatch(backButtonPressed(path)),
     showCollapsableCommentArea: (bool) => dispatch(showCollapsableCommentArea(bool)),
+    newComment: (postId, commentId, content) => dispatch(newComment(postId, commentId, content)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostViewer)

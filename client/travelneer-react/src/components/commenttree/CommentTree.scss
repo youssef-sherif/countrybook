@@ -1,9 +1,13 @@
 @import "../../variables.scss";
 
+.replies {        
+    float: right;
+}
+
 @media only screen and (min-width: $xl-screen-min) {
     .div {
         position: relative;
-        width: 60%;
+        width: 80%;
     }
 }
 

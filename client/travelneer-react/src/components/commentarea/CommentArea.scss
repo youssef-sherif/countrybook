@@ -1,6 +1,17 @@
 @import "../../variables.scss";
 
 
+.commentAreaVisible {    
+    z-index: 1;    
+    width: 70%;
+}
+
+.commentAreaInvisible {
+    z-index: -1;
+    visibility: hidden;    
+}
+
+
 @media only screen and (min-width: $xl-screen-min) {
     .buttonsDiv {
         position: relative;

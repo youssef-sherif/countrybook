@@ -97,7 +97,7 @@ export const newPost2 = (countryCode, content) => {
             .then((data) => {
                 dispatch(newPostSuccess());   
                 dispatch(fetchCountryInfo(countryCode));
-                dispatch(push(`/${countryCode}`))
+                dispatch(push(`/c/${countryCode}`))
                 return data
             })
             .catch((error) => { 

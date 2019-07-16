@@ -31,7 +31,8 @@ import {
     favourite: null,
     favouritesCount: null,
     commentsCount: null,
-    favouritesResource: ""       
+    favouritesResource: "",
+    postId: null      
   }
   
   export function postInfoReducer(state = initialState, action) {
@@ -73,7 +74,8 @@ import {
                countryId: action.payload.data.countryId,
                timeDiff: action.payload.data.timeDiff,    
                favourite: action.payload.data.favourite,
-               favouritesResource: action.payload.data._links.favourite.href  
+               postId: action.payload.data.postId,
+               favouritesResource: action.payload.data._links.favourite.href               
            } 
 
         case FETCH_POST_INFO_FAILURE:    

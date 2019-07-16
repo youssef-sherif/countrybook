@@ -34,11 +34,17 @@ const newCommentFailure = (error) => ({
 })
 
 
-export const newComment = (postId, content) => {
+export const newComment = (postId, commentId=null, content) => {
+    let resource = "";
+    if(commentId === null) {
+        resource = `http://localhost:8080/api/posts/${postId}/comments`
+    } else {
+        resource = `http://localhost:8080/api/comments/${commentId}/replies`
+    }
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newCommentBegin())
-        fetch(`http://localhost:8080/api/posts/${postId}/comments`, {
+        fetch(resource, {
             method: 'post',
             headers: {
                 'Authorization': tokenBearer, 
@@ -54,8 +60,7 @@ export const newComment = (postId, content) => {
                 return response.json();
             })
             .then((data) => {
-                dispatch(newCommentSuccess());     
-                dispatch(showCollapsableCommentArea(false));     
+                dispatch(newCommentSuccess());                       
                 dispatch(fetchComments(`http://localhost:8080/api/posts/${postId}/comments`));        
                 return data
             })
