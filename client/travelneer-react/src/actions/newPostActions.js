@@ -74,7 +74,7 @@ export const newPost = (countryCode, content, refresh) => {
     }
 }
 
-export const newPost2 = (countryCode, content) => {
+export const newPostCountryViewer = (countryCode, content) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newPostBegin())

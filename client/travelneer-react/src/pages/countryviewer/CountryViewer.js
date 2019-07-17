@@ -5,7 +5,7 @@ import CountryProfile from './countryprofile/CountryProfile'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { fetchCountryInfo} from '../../actions/countryInfoActions'
-import { newPost2 } from '../../actions/newPostActions'
+import { newPostCountryViewer } from '../../actions/newPostActions'
 import PostArea from '../../components/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
@@ -29,7 +29,7 @@ class CountryViewer extends Component {
                 <PostArea  
                     countryCode={this.props.match.params.countryCode}
                     countryName={this.props.countryName}                    
-                    newPost={this.props.newPost2.bind(this)}
+                    newPost={this.props.newPostCountryViewer.bind(this)}
                 /> 
                 :
                 <PostList 
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     navigateTo: (e) => dispatch(push(e)),
     fetchCountryInfo: (countryId) => dispatch(fetchCountryInfo(countryId)),
-    newPost2: (countryId, content) =>  dispatch(newPost2(countryId, content)),
+    newPostCountryViewer: (countryId, content) =>  dispatch(newPostCountryViewer(countryId, content)),
 
 })
 
