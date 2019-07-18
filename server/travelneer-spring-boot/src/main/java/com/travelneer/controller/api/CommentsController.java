@@ -24,36 +24,28 @@ public class CommentsController {
         this.commentRepository = commentRepository;
     }
 
-    @RequestMapping(value = "/comments/{commentId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getComment(@PathVariable("commentId")int commentId,
-                                              @RequestParam(name = "next", defaultValue = "0") int next)  {
+    @RequestMapping(value = "/posts/{postId}/threads/{commentId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getThread(@PathVariable("postId") int postId,
+                                       @PathVariable("commentId")int commentId,
+                                       @RequestParam(name = "next", defaultValue = "0") int next)  {
         try {
-            CommentResource commentResource =  commentFactory.getComment(commentId);
+            CommentResource commentResource =  commentFactory.getThread(postId, commentId);
+            commentResource.setReplies(commentFactory.getNestedReplies(postId, commentId, 0));
+            CommentListResource threadResource = new CommentListResource(commentResource);
 
-            return new ResponseEntity<>(commentResource, HttpStatus.OK);
+            return new ResponseEntity<>(threadResource, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
-    @RequestMapping(value = "/comments/{commentId}/replies", method = RequestMethod.GET)
-    public ResponseEntity<?> getNestedReplies(@PathVariable("commentId")int commentId,
-                                              @RequestParam(name = "next", defaultValue = "0") int next)  {
-        try {
-            CommentListResource commentListResource =  commentFactory.getNestedReplies(commentId, next);
-
-            return new ResponseEntity<>(commentListResource, HttpStatus.OK);
-        } catch(Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @RequestMapping(value = "/comments/{commentId}/replies", method = RequestMethod.POST)
-    public ResponseEntity<?> replyToComment(@PathVariable("commentId")int commentId,
+    @RequestMapping(value = "/posts/{postId}/comments/{commentId}/replies", method = RequestMethod.POST)
+    public ResponseEntity<?> replyToComment(@PathVariable("postId") int postId,
+                                            @PathVariable("commentId")int commentId,
                                             @RequestBody Map<String, String> request)  {
         var response = new HashMap<>();
         try {
-            commentFactory.createNestedReply(commentId, request.get("content"));
+            commentFactory.createNestedReply(postId, commentId, request.get("content"));
 
             response.put("created", true);
 

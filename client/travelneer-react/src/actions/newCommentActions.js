@@ -1,4 +1,5 @@
 import { fetchComments } from './postInfoActions'
+import { continueThread } from './threadsActions';
 
 export const NEW_COMMENT_BEGIN = 'NEW_COMMENT_BEGIN'
 export const NEW_COMMENT_SUCCESS = 'NEW_COMMENT_SUCCESS'
@@ -39,7 +40,7 @@ export const newComment = (postId, commentId=null, content) => {
     if(commentId === null) {
         resource = `http://localhost:8080/api/posts/${postId}/comments`
     } else {
-        resource = `http://localhost:8080/api/comments/${commentId}/replies`
+        resource = `http://localhost:8080/api/posts/${postId}/comments/${commentId}/replies`
     }
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
@@ -52,7 +53,7 @@ export const newComment = (postId, commentId=null, content) => {
                 'Access-Control-Allow-Origin': 'http://localhost:8080',  
               },             
             body: JSON.stringify({
-                content: content,                                
+                content: content                                        
             })
         })
             .then(handleErrors)
@@ -60,8 +61,9 @@ export const newComment = (postId, commentId=null, content) => {
                 return response.json();
             })
             .then((data) => {
-                dispatch(newCommentSuccess());                       
-                dispatch(fetchComments(`http://localhost:8080/api/posts/${postId}/comments`));        
+                dispatch(newCommentSuccess());      
+                dispatch(fetchComments(`http://localhost:8080/api/posts/${postId}/comments`)); 
+                dispatch(continueThread(postId, commentId));                                       
                 return data
             })
             .catch((error) => { 

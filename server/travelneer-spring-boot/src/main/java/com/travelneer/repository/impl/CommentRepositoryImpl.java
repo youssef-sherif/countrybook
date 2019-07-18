@@ -7,6 +7,7 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import static com.travelneer.jooq.Tables.COMMENT;
@@ -31,7 +32,7 @@ public class CommentRepositoryImpl implements CommentRepository {
                         USER.NAME, USER.EMAIL)
                         .from(COMMENT)
                         .innerJoin(USER).on(COMMENT.AUTHOR_ID.eq(USER.ID))
-                        .where(COMMENT.PARENT_POST_ID.eq(postId))
+                        .where(COMMENT.PARENT_POST_ID.eq(postId)).and(COMMENT.PARENT_COMMENT_ID.isNull())
                         .orderBy(COMMENT.CREATED_AT.desc())
                         .offset(offset)
                         .limit(10)
@@ -41,14 +42,14 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public List<Comment> getCommentsByParentCommentId(int commentId, int offset) {
+    public List<Comment> getCommentsByParentCommentId(int postId, int commentId, int offset) {
         List<Comment> comments =
                 create.select(COMMENT.ID, COMMENT.CONTENT, COMMENT.CREATED_AT, COMMENT.AUTHOR_ID,
                         COMMENT.PARENT_POST_ID, COMMENT.PARENT_COMMENT_ID,
                         USER.NAME, USER.EMAIL)
                         .from(COMMENT)
                         .innerJoin(USER).on(COMMENT.AUTHOR_ID.eq(USER.ID))
-                        .where(COMMENT.PARENT_COMMENT_ID.eq(commentId))
+                        .where(COMMENT.PARENT_COMMENT_ID.eq(commentId)).and(COMMENT.PARENT_POST_ID.eq(postId))
                         .orderBy(COMMENT.CREATED_AT.desc())
                         .offset(offset)
                         .limit(10)
@@ -62,6 +63,20 @@ public class CommentRepositoryImpl implements CommentRepository {
         return create.select(count()).from(COMMENT)
                 .where(COMMENT.PARENT_POST_ID.eq(postId))
                 .fetchOne(0, Integer.class);
+    }
+
+    @Override
+    public Comment getOneById(int postId, int commentId) throws SQLException {
+        Comment comment =
+                create.select(COMMENT.ID, COMMENT.PARENT_COMMENT_ID, COMMENT.PARENT_POST_ID, COMMENT.AUTHOR_ID,
+                    COMMENT.CONTENT, COMMENT.CREATED_AT,
+                    USER.NAME, USER.EMAIL)
+                    .from(COMMENT)
+                    .innerJoin(USER).on(USER.ID.eq(COMMENT.AUTHOR_ID))
+                    .where(COMMENT.ID.eq(commentId).and(COMMENT.PARENT_POST_ID.eq(postId)))
+                    .fetchOne().into(Comment.class);
+
+        return comment;
     }
 
 

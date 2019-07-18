@@ -3,8 +3,10 @@ import React, { Component } from 'react'
 import styles from './Comment.scss'
 import { connect } from 'react-redux'
 import PostHeader from '../postheader/PostHeader'
-import CommentArea from '../commentarea/CommentArea';
+import CommentArea from '../commentarea/CommentArea'
 import { newComment } from '../../actions/newCommentActions'
+import { Link } from 'react-router-dom'
+import { continueThread } from '../../actions/threadsActions'
 
 class Comment extends Component {
 
@@ -45,47 +47,60 @@ class Comment extends Component {
                             parentPostAuthorName={this.props.name}
                             parentPostId={this.props.parentPostId}
                             parentCommentId={this.props.commentId}
-                            newComment={this.props.newComment.bind(this)}
+                            newComment={this.props.newComment.bind(this)}                            
                         />
                     </div>
                     :
                     <br />}
-                    
-                    {this.props.replies === null ?
-                        <div />
-                        :
+
+                {this.props.replies === null ?
+                    <div />
+                    :
+                    this.props.maxDepth > 0 ?
                         this.props.replies.map((comment) => {
-                        return (
-                            <div>
-                                <Comment
-                                    key={comment.commentId}
-                                    commentId={comment.commentId}
-                                    parentPostId={this.props.parentPostId}
-                                    content={comment.content}
-                                    name={comment.name}
-                                    email={comment.email}
-                                    timeDiff={comment.timeDiff}
-                                    replies={comment.replies.comments}         
-                                    newComment={this.props.newComment}                        
-                                />
-                            </div>
-                        )
-                    })                
-                
-            }                    
-                    
+                            return (
+                                <div>
+                                    <Comment
+                                        key={comment.commentId}
+                                        commentId={comment.commentId}
+                                        parentPostId={this.props.parentPostId}
+                                        parentCommentId={comment.parentCommentId}
+                                        content={comment.content}
+                                        name={comment.name}
+                                        email={comment.email}
+                                        timeDiff={comment.timeDiff}
+                                        replies={comment.replies.comments}
+                                        newComment={this.props.newComment}
+                                        maxDepth={this.props.maxDepth - 1}
+                                        countryCode={this.props.countryCode}                                        
+                                    />
+                                </div>
+                            )
+                        })
+                        :                         
+                        <Link 
+                            to={`/c/${this.props.countryCode}/posts/${this.props.parentPostId}/threads/${this.props.commentId}`}
+                            onClick={() => {
+                                this.props.continueThread(this.props.parentPostId, this.props.commentId)
+                            }}
+                        >
+                            continue thread ->
+                        </Link>                            
+            }
+
                 <br />
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({    
+const mapStateToProps = (state) => ({
     parentPostId: state.postInfo.postId
 })
 
 const mapDispatchToProps = (dispatch) => ({
     newComment: (postId, commentId, content) => dispatch(newComment(postId, commentId, content)),
+    continueThread: (postId, commentId) => dispatch(continueThread(postId, commentId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment)

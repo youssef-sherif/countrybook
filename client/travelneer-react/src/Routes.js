@@ -19,7 +19,8 @@ export default class Routes extends Component {
                 <Route path="/countries" exact render={(props) => <Countries {...props} />} />                
                 <Route path="/c/:countryCode" exact render={(props) => <CountryViewer {...props} compose={false} />} />
                 <Route path="/c/:countryCode/new" exact render={(props) => <CountryViewer {...props} compose={true} />} />
-                <Route path="/c/:countryCode/posts/:postId" exact render={(props) => <PostViewer {...props} />} />
+                <Route path="/c/:countryCode/posts/:postId" exact render={(props) => <PostViewer {...props} commentView={false} />} />
+                <Route path="/c/:countryCode/posts/:postId/threads/:commentId" exact render={(props) => <PostViewer {...props} commentView={true} />} />
             </Switch>
         )
     }

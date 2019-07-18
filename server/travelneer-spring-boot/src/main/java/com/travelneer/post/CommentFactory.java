@@ -42,10 +42,11 @@ public class CommentFactory {
 
     }
 
-    public Comment createNestedReply(int commentId, String content) throws Exception {
+    public Comment createNestedReply(int postId, int commentId, String content) throws Exception {
         Comment comment = new Comment();
         comment.setContent(content);
         comment.setParentCommentId(commentId);
+        comment.setParentPostId(postId);
         comment.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         comment.setAuthorId(validator.getUserId());
 
@@ -66,7 +67,7 @@ public class CommentFactory {
                 .collect(Collectors.toList());
 
         for (CommentResource commentResource : commentResources) {
-            CommentListResource replies = getNestedReplies(commentResource.getCommentId(), 0);
+            CommentListResource replies = getNestedReplies(postId, commentResource.getCommentId(), 0);
             commentResource.setReplies(replies);
         }
 
@@ -77,27 +78,28 @@ public class CommentFactory {
         return commentListResource;
     }
 
-    public CommentListResource getNestedReplies(int commentId, int page) throws SQLException {
+    public CommentListResource getNestedReplies(int postId, int commentId, int page) throws SQLException {
 
-        List<Comment> comments = commentRepository.getCommentsByParentCommentId(commentId, page);
+        List<Comment> comments = commentRepository.getCommentsByParentCommentId(postId, commentId, page);
 
         comments.forEach(Comment::calculateTimeDifference);
         List<CommentResource> commentResources = comments.stream().map(Comment::toResource)
                 .collect(Collectors.toList());
 
         for(CommentResource commentResource: commentResources) {
-            CommentListResource replies = getNestedReplies(commentResource.getCommentId(), 0);
+            CommentListResource replies = getNestedReplies(postId, commentResource.getCommentId(), 0);
             commentResource.setReplies(replies);
         }
 
         CommentListResource commentListResource = new CommentListResource(commentResources);
-        commentListResource.add(linkTo(methodOn(CommentsController.class).getNestedReplies(commentId, page)).withSelfRel());
-        commentListResource.add(linkTo(methodOn(CommentsController.class).getNestedReplies(commentId, page+10)).withRel("next"));
 
         return commentListResource;
     }
 
-    public CommentResource getComment(int commentId) {
-        return null;
+    public CommentResource getThread(int postId, int commentId) throws SQLException {
+        Comment comment = commentRepository.getOneById(postId, commentId);
+        comment.calculateTimeDifference();
+
+        return comment.toResource();
     }
 }

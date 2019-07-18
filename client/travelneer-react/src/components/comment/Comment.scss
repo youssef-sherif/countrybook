@@ -34,8 +34,7 @@
 }
 
 @media only screen and (min-width: $xl-screen-min) {
-    .story {
-        border: 1px solid #ccc;
+    .story {        
         padding: 25px 50px;
         border-radius: 5px;
         width: 100%;
@@ -53,8 +52,7 @@
 }
 
 @media only screen and (min-width: $l-screen-min) and (max-width: $l-screen-max) {
-    .story {
-        border: 1px solid #ccc;
+    .story {        
         padding: 15px;
         padding-bottom: 5px;
         border-radius: 5px;
@@ -72,8 +70,7 @@
 }
 
 @media only screen and (min-width: $s-screen-min) and (max-width: $s-screen-max) {
-    .story {
-        border: 1px solid #ccc;
+    .story {        
         padding: 15px;
         padding-bottom: 5px;
         border-radius: 5px;
@@ -91,8 +88,7 @@
 }
 
 @media only screen and (max-width: $xs-screen-max) {
-    .story {
-        border: 1px solid #ccc;
+    .story {     
         padding: 15px;
         padding-bottom: 5px;
         border-radius: 5px;

@@ -14,6 +14,7 @@ import {newPostReducer} from './reducers/newPostReducer'
 import {countryInfoReducer} from './reducers/countryInfoReducer'
 import {postInfoReducer} from './reducers/postInfoReducer'
 import {newCommentReducer} from './reducers/newCommentReducer'
+import {threadsReducer} from './reducers/threadsReducer'
 
 import myHistory from './history'
 
@@ -30,7 +31,8 @@ const reducers = combineReducers({
     newPost: newPostReducer,  
     auth: authReducer,
     postInfo: postInfoReducer,
-    newComment: newCommentReducer
+    newComment: newCommentReducer,
+    threads: threadsReducer    
   })
 
 const myStore = createStore(reducers,

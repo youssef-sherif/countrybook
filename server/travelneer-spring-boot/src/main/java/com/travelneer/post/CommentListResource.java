@@ -6,6 +6,7 @@
  */
 package com.travelneer.post;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,6 +26,11 @@ public class CommentListResource extends ResourceSupport {
 
     public CommentListResource(List<CommentResource> commentResources) {
         this.commentResources = commentResources;
+    }
+
+    public CommentListResource(CommentResource commentResource) {
+        commentResources = new ArrayList<>();
+        commentResources.add(commentResource);
     }
 
     @JsonProperty("comments")

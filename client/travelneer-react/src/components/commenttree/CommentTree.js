@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Comment from '../comment/Comment'
 import { connect } from 'react-redux'
 
 import styles from './CommentTree.scss'
@@ -15,23 +14,8 @@ class CommentTree extends Component {
         if (this.props.successful)
             return (
                 <div className={`container ${styles.div}`}>
-                    {this.props.comments.map((comment) => {
 
-                        return (
-                            <div className={`${styles.toplevelComments}`}>
-                                <Comment
-                                    key={comment.commentId}
-                                    commentId={comment.commentId}
-                                    content={comment.content}
-                                    name={comment.name}
-                                    email={comment.email}
-                                    timeDiff={comment.timeDiff}
-                                    replies={comment.replies.comments}
-                                />
-                                <br />
-                            </div>
-                        )
-                    })}
+                    {this.props.children}
 
                     <LoadMoreButton
                         loadMore={this.props.loadMoreComments.bind(this)}
@@ -47,7 +31,6 @@ class CommentTree extends Component {
 
 const mapStateToProps = (state) => ({
     successful: state.postInfo.successful,
-    comments: state.postInfo.comments,
     nextCommentsResource: state.postInfo.nextResource
 })
 

@@ -32,6 +32,7 @@ public class CommentResource extends ResourceSupport {
 
     private Boolean isFavourite;
     private Integer parentPostId;
+    private Integer parentCommentId;
 
     private CommentListResource replies;
 
@@ -44,9 +45,9 @@ public class CommentResource extends ResourceSupport {
         this.email = comment.getEmail();
         this.timeDiff = comment.getTimeDiff();
         this.parentPostId = comment.getParentPostId();
+        this.parentCommentId = comment.getParentCommentId();
 
         add(linkTo(methodOn(CommentsController.class).getComments(commentId, 0)).withSelfRel());
-        add(linkTo(methodOn(CommentsController.class).getNestedReplies(commentId, next)).withRel("replies"));
     }
 
     public Integer getCommentId() {
@@ -79,9 +80,12 @@ public class CommentResource extends ResourceSupport {
         isFavourite = favourite;
     }
 
-
     public Integer getParentPostId() {
         return parentPostId;
+    }
+
+    public Integer getParentCommentId() {
+        return parentCommentId;
     }
 
     public CommentListResource getReplies() {
