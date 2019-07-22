@@ -7,15 +7,13 @@ package com.travelneer.post;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.travelneer.controller.api.CommentsController;
-import com.travelneer.controller.api.PostsController;
-import com.travelneer.controller.api.v1.FavouritesController;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.hateoas.core.DummyInvocationUtils.methodOn;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
  *
@@ -33,12 +31,13 @@ public class CommentResource extends ResourceSupport {
     private Boolean isFavourite;
     private Integer parentPostId;
     private Integer parentCommentId;
+    private Short depth;
 
     private CommentListResource replies;
 
 
     @JsonCreator
-    public CommentResource(Comment comment, int next) {
+    public CommentResource(Comment comment) {
         this.commentId = comment.getId();
         this.content = comment.getContent();
         this.name = comment.getName();
@@ -46,8 +45,7 @@ public class CommentResource extends ResourceSupport {
         this.timeDiff = comment.getTimeDiff();
         this.parentPostId = comment.getParentPostId();
         this.parentCommentId = comment.getParentCommentId();
-
-        add(linkTo(methodOn(CommentsController.class).getComments(commentId, 0)).withSelfRel());
+        this.depth = comment.getDepth();
     }
 
     public Integer getCommentId() {
@@ -86,6 +84,10 @@ public class CommentResource extends ResourceSupport {
 
     public Integer getParentCommentId() {
         return parentCommentId;
+    }
+
+    public Short getDepth() {
+        return depth;
     }
 
     public CommentListResource getReplies() {

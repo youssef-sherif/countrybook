@@ -19,6 +19,7 @@ public class Comment {
     private Integer parentPostId;
     private Integer parentCommentId;
 
+    private Short depth;
 
     public Integer getId() {
         return this.id;
@@ -88,6 +89,14 @@ public class Comment {
         this.parentCommentId = parentCommentId;
     }
 
+    public Short getDepth() {
+        return depth;
+    }
+
+    public void setDepth(Short depth) {
+        this.depth = depth;
+    }
+
     public void calculateTimeDifference() {
         long timeDifference = System.currentTimeMillis() - this.getCreatedAt().getTime();
 
@@ -125,7 +134,7 @@ public class Comment {
     }
 
     public CommentResource toResource() {
-        var commentResource = new CommentResource(this, 0);
+        var commentResource = new CommentResource(this);
 
         return commentResource;
     }
