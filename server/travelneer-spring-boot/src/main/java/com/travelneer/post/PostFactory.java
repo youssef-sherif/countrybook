@@ -5,7 +5,6 @@ import com.travelneer.controller.api.CommentsController;
 import com.travelneer.controller.api.v1.CountryPostsController;
 import com.travelneer.controller.api.v1.FavouritesController;
 import com.travelneer.jwt.JwtValidator;
-import com.travelneer.repository.CommentRepository;
 import com.travelneer.repository.CountryRepository;
 import com.travelneer.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +64,7 @@ public class PostFactory {
         postResource.add(linkTo(methodOn(FavouritesController.class).getFavouritesCount(postId)).withRel("favouritesCount"));
         postResource.add(linkTo(methodOn(CommentsController.class).getCommentsCount(postId)).withRel("commentsCount"));
         postResource.add(linkTo(methodOn(CommentsController.class).newComment(postId, null)).withRel("newComment"));
-        postResource.add(linkTo(methodOn(CommentsController.class).getComments(postId, 0)).withRel("comments"));
+        postResource.add(linkTo(methodOn(CommentsController.class).getMainComments(postId, 0)).withRel("comments"));
 
         return postResource;
     }

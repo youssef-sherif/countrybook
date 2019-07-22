@@ -1,6 +1,9 @@
 package com.travelneer.controller.api;
 
-import com.travelneer.post.*;
+import com.travelneer.comment.CommentFactory;
+import com.travelneer.comment.CommentListResource;
+import com.travelneer.comment.CommentResource;
+import com.travelneer.comment.CommentTreeBuilder;
 import com.travelneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,24 +19,27 @@ import java.util.Map;
 public class CommentsController {
 
     private final CommentFactory commentFactory;
+    private final CommentTreeBuilder commentTreeBuilder;
     private final CommentRepository commentRepository;
 
     @Autowired
-    public CommentsController(CommentFactory commentFactory, CommentRepository commentRepository) {
+    public CommentsController(CommentFactory commentFactory, CommentTreeBuilder commentTreeBuilder, CommentRepository commentRepository) {
         this.commentFactory = commentFactory;
+        this.commentTreeBuilder = commentTreeBuilder;
         this.commentRepository = commentRepository;
     }
 
-    @RequestMapping(value = "/posts/{postId}/threads/{commentId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getThread(@PathVariable("postId") int postId,
+    @RequestMapping(value = "/posts/{postId}/comments/{commentId}/tree", method = RequestMethod.GET)
+    public ResponseEntity<?> getCommentTree(@PathVariable("postId") int postId,
                                        @PathVariable("commentId")int commentId,
                                        @RequestParam(name = "next", defaultValue = "0") int next)  {
         try {
-            CommentResource commentResource =  commentFactory.getThread(postId, commentId);
-            commentResource.setReplies(commentFactory.getNestedReplies(postId, commentId, 0));
-            CommentListResource threadResource = new CommentListResource(commentResource);
+            CommentResource commentResource =  commentFactory.getComment(postId, commentId);
+            CommentListResource commentResourceList = commentTreeBuilder.buildSubTree(commentResource, next);
+            commentResource.setReplies(commentResourceList);
+            CommentListResource commentListResource = new CommentListResource(commentResource);
 
-            return new ResponseEntity<>(threadResource, HttpStatus.OK);
+            return new ResponseEntity<>(commentListResource, HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -56,10 +62,10 @@ public class CommentsController {
     }
 
     @RequestMapping(value = "/posts/{postId}/comments", method = RequestMethod.GET)
-    public ResponseEntity<?> getComments(@PathVariable("postId")int postId,
-                                         @RequestParam(name = "next", defaultValue = "0") int next)  {
+    public ResponseEntity<?> getMainComments(@PathVariable("postId")int postId,
+                                             @RequestParam(name = "next", defaultValue = "0") int next)  {
         try {
-            CommentListResource commentListResource =  commentFactory.getComments(postId, next);
+            CommentListResource commentListResource =  commentTreeBuilder.buildMainTree(postId, next);
 
             return new ResponseEntity<>(commentListResource, HttpStatus.OK);
         } catch(Exception e) {
