@@ -2,7 +2,7 @@ import {
     CONTINUE_THREAD_BEGIN,
     CONTINUE_THREAD_SUCCESS,
     CONTINUE_THREAD_FAILURE
-} from '../actions/threadsActions'
+} from '../actions/commentTreeActions'
 
 const initialState = {    
     replies: [],
@@ -10,7 +10,7 @@ const initialState = {
     loading: false,
 }
 
-export function threadsReducer(state = initialState, action) {
+export function commentTreeReducer(state = initialState, action) {
     switch (action.type) {
 
         case CONTINUE_THREAD_BEGIN:

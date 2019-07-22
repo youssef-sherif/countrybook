@@ -3,25 +3,25 @@ export const CONTINUE_THREAD_SUCCESS = 'CONTINUE_THREAD_SUCCESS'
 export const CONTINUE_THREAD_FAILURE = 'CONTINUE_THREAD_FAILURE'
 
 
-const continueThreadBegin = () => ({
+const continueCommentTreeBegin = () => ({
   type: CONTINUE_THREAD_BEGIN
 })
 
-const continueThreadSuccess = (data) => ({
+const continueCommentTreeSuccess = (data) => ({
   type: CONTINUE_THREAD_SUCCESS,
   payload: { data }
 })
 
-const continueThreadFailure = (error) => ({
+const continueCommentTreeFailure = (error) => ({
   type: CONTINUE_THREAD_FAILURE,
   payload: { error }
 })
 
-export const continueThread = (postId, commentId) => {
+export const continueCommentTree = (postId, commentId) => {
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
   return (dispatch) => {
-    dispatch(continueThreadBegin());    
-    return fetch(`http://localhost:8080/api/posts/${postId}/threads/${commentId}`, {
+    dispatch(continueCommentTreeBegin());    
+    return fetch(`http://localhost:8080/api/posts/${postId}/comments/${commentId}/tree`, {
       headers: {
         'Authorization': tokenBearer,
         'Access-Control-Allow-origin': 'http://localhost:8080'
@@ -32,11 +32,11 @@ export const continueThread = (postId, commentId) => {
         return response.json()
       })
       .then((data) => {        
-        dispatch(continueThreadSuccess(data.comments));                
+        dispatch(continueCommentTreeSuccess(data.comments));                
 
         return data
       })
-      .catch(error => dispatch(continueThreadFailure(error)))
+      .catch(error => dispatch(continueCommentTreeFailure(error)))
   }
 }
 

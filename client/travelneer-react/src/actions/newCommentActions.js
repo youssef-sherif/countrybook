@@ -1,5 +1,5 @@
 import { fetchComments } from './postInfoActions'
-import { continueThread } from './threadsActions';
+import { continueCommentTree } from './commentTreeActions';
 
 export const NEW_COMMENT_BEGIN = 'NEW_COMMENT_BEGIN'
 export const NEW_COMMENT_SUCCESS = 'NEW_COMMENT_SUCCESS'
@@ -63,11 +63,10 @@ export const newComment = (postId, commentId=null, content) => {
             .then((data) => {
                 dispatch(newCommentSuccess());      
                 dispatch(fetchComments(`http://localhost:8080/api/posts/${postId}/comments`)); 
-                dispatch(continueThread(postId, commentId));                                       
+                dispatch(continueCommentTree(postId, commentId));                                       
                 return data
             })
-            .catch((error) => { 
-                console.log("error", error);
+            .catch((error) => {                 
                 dispatch(newCommentFailure(error))                                
             })
     }

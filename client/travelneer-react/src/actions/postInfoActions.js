@@ -36,8 +36,7 @@ const fetchFavouritesCountFailure = (error) => ({
   payload: { error }
 })
 
-export const fetchFavouritesCount = (resource) => {
-  console.log(resource)
+export const fetchFavouritesCount = (resource) => {  
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
   return (dispatch) => {
     dispatch(fetchFavouritesCountBegin())
@@ -73,8 +72,7 @@ const fetchCommentsCountBegin = () => ({
     payload: { error }
   })
   
-export const fetchCommentsCount = (resource) => {
-    console.log(resource)
+export const fetchCommentsCount = (resource) => {    
     let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
     return (dispatch) => {
       dispatch(fetchCommentsCountBegin())
