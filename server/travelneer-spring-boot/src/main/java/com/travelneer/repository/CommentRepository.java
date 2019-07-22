@@ -1,7 +1,6 @@
 package com.travelneer.repository;
 
-import com.travelneer.post.Comment;
-import com.travelneer.post.Post;
+import com.travelneer.comment.Comment;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,4 +14,6 @@ public interface CommentRepository extends IRepository<Comment> {
     Integer getCommentsCountByParentPostId(int postId) throws SQLException;
 
     Comment getOneById(int postId, int commentId) throws SQLException;
+
+    Short getDepthByCommentId(int commentId) throws SQLException;
 }

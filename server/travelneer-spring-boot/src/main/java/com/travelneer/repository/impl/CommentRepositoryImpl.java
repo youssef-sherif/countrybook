@@ -1,9 +1,10 @@
 package com.travelneer.repository.impl;
 
 import com.travelneer.jooq.tables.records.CommentRecord;
-import com.travelneer.post.Comment;
+import com.travelneer.comment.Comment;
 import com.travelneer.repository.CommentRepository;
 import org.jooq.DSLContext;
+import org.jooq.Record1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +29,8 @@ public class CommentRepositoryImpl implements CommentRepository {
     public List<Comment> getCommentsByParentPostId(int postId, int offset) {
 
         List<Comment> comments =
-                create.select(COMMENT.ID, COMMENT.CONTENT, COMMENT.CREATED_AT, COMMENT.AUTHOR_ID, COMMENT.PARENT_POST_ID,
+                create.select(COMMENT.ID, COMMENT.CONTENT, COMMENT.CREATED_AT, COMMENT.AUTHOR_ID,
+                        COMMENT.PARENT_POST_ID, COMMENT.DEPTH,
                         USER.NAME, USER.EMAIL)
                         .from(COMMENT)
                         .innerJoin(USER).on(COMMENT.AUTHOR_ID.eq(USER.ID))
@@ -45,7 +47,7 @@ public class CommentRepositoryImpl implements CommentRepository {
     public List<Comment> getCommentsByParentCommentId(int postId, int commentId, int offset) {
         List<Comment> comments =
                 create.select(COMMENT.ID, COMMENT.CONTENT, COMMENT.CREATED_AT, COMMENT.AUTHOR_ID,
-                        COMMENT.PARENT_POST_ID, COMMENT.PARENT_COMMENT_ID,
+                        COMMENT.PARENT_POST_ID, COMMENT.PARENT_COMMENT_ID, COMMENT.DEPTH,
                         USER.NAME, USER.EMAIL)
                         .from(COMMENT)
                         .innerJoin(USER).on(COMMENT.AUTHOR_ID.eq(USER.ID))
@@ -69,7 +71,7 @@ public class CommentRepositoryImpl implements CommentRepository {
     public Comment getOneById(int postId, int commentId) throws SQLException {
         Comment comment =
                 create.select(COMMENT.ID, COMMENT.PARENT_COMMENT_ID, COMMENT.PARENT_POST_ID, COMMENT.AUTHOR_ID,
-                    COMMENT.CONTENT, COMMENT.CREATED_AT,
+                    COMMENT.CONTENT, COMMENT.DEPTH, COMMENT.CREATED_AT,
                     USER.NAME, USER.EMAIL)
                     .from(COMMENT)
                     .innerJoin(USER).on(USER.ID.eq(COMMENT.AUTHOR_ID))
@@ -77,6 +79,17 @@ public class CommentRepositoryImpl implements CommentRepository {
                     .fetchOne().into(Comment.class);
 
         return comment;
+    }
+
+    @Override
+    public Short getDepthByCommentId(int commentId) throws SQLException {
+        Record1<Short> record1 =
+                create.select(COMMENT.DEPTH)
+                    .from(COMMENT)
+                    .where(COMMENT.ID.eq(commentId))
+                    .fetchOne();
+
+        return record1.value1();
     }
 
 
