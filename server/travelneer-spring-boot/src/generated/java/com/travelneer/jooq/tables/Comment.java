@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Comment extends TableImpl<CommentRecord> {
 
-    private static final long serialVersionUID = 218573781;
+    private static final long serialVersionUID = -1699425012;
 
     /**
      * The reference instance of <code>travelneer.comment</code>
@@ -81,6 +81,11 @@ public class Comment extends TableImpl<CommentRecord> {
      * The column <code>travelneer.comment.parent_comment_id</code>.
      */
     public final TableField<CommentRecord, Integer> PARENT_COMMENT_ID = createField("parent_comment_id", org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>travelneer.comment.depth</code>.
+     */
+    public final TableField<CommentRecord, Short> DEPTH = createField("depth", org.jooq.impl.SQLDataType.SMALLINT, this, "");
 
     /**
      * The column <code>travelneer.comment.created_at</code>.
