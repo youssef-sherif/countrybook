@@ -8,14 +8,14 @@ import styles from './PostViewer.scss'
 import { fetchPostInfo } from '../../actions/postInfoActions'
 import { favouritePost, backButtonPressed } from '../../actions/postsActions'
 import { newComment } from '../../actions/newCommentActions'
-import { continueThread } from '../../actions/threadsActions'
+import { continueCommentTree } from '../../actions/commentTreeActions'
 import { showCollapsableCommentArea } from '../../actions/newCommentActions'
 import PostHeader from '../../components/postheader/PostHeader'
 import BackButton from './BackButton'
 import CommentArea from '../../components/commentarea/CommentArea'
-import Comment from '../../components/comment/Comment'
-import CollapsableView from '../../components/collapsableview/CollapsableView'
 import CommentTree from '../../components/commenttree/CommentTree'
+import CollapsableView from '../../components/collapsableview/CollapsableView'
+import CommentTreeList from '../../components/commenttreelist/CommentTreeList'
 import { Link } from 'react-router-dom'
 import newPostImg from '../../images/new-post.png'
 
@@ -24,11 +24,11 @@ class PostViewer extends Component {
     componentDidMount() {
         this.props.fetchPostInfo(this.props.match.params.postId)    
         if (this.props.commentView === true) {            
-            this.props.continueThread(this.props.match.params.postId, this.props.match.params.commentId)                            
+            this.props.continueCommentTree(this.props.match.params.postId, this.props.match.params.commentId)                            
         }
     }
 
-    getNewPostButton = () => {
+    getNewCommentButton = () => {
         return (
             <img className={`btn ${styles.newPostImg}`}
                 alt='new post'
@@ -39,24 +39,22 @@ class PostViewer extends Component {
         )
     }
 
-    getCommentTree = () => {
+    getComments = () => {
 
         if (this.props.commentView === true) {
-            
-            // this.props.continueThread(this.props.match.params.postId, this.props.match.params.commentId)            
 
             return (
 
-                <CommentTree>
+                <CommentTreeList>
 
                     <Link to={`/c/${this.props.match.params.countryCode}/posts/${this.props.match.params.postId}`} >
                         go back to full comment list
                     </Link>
-                    {this.props.threadReplies.map((comment) => {
+                    {this.props.replies.map((comment) => {
 
                         return (
                             <div>
-                                <Comment
+                                <CommentTree
                                     key={comment.commentId}
                                     commentId={comment.commentId}
                                     parentCommentId={comment.parentCommentId}
@@ -67,22 +65,23 @@ class PostViewer extends Component {
                                     timeDiff={comment.timeDiff}
                                     replies={comment.replies.comments}
                                     maxDepth={5}
+                                    depth={0}
                                     countryCode={this.props.match.params.countryCode}
                                 />
                                 <br />
                             </div>
                         )
                     })}
-                </CommentTree>
+                </CommentTreeList>
             )
         } else {
             return (
-                <CommentTree>
+                <CommentTreeList>
                     {this.props.comments.map((comment) => {
 
                         return (
                             <div>
-                                <Comment
+                                <CommentTree
                                     key={comment.commentId}
                                     commentId={comment.commentId}
                                     parentCommentId={comment.parentCommentId}
@@ -93,21 +92,22 @@ class PostViewer extends Component {
                                     timeDiff={comment.timeDiff}
                                     replies={comment.replies.comments}
                                     maxDepth={5}
+                                    depth={0}                            
                                     countryCode={this.props.match.params.countryCode}
                                 />
                                 <br />
                             </div>
                         )
                     })}
-                </CommentTree>
+                </CommentTreeList>
             )
         }
     }
 
     render() {
 
-        const newPostButton = this.getNewPostButton()
-        const commentTree = this.getCommentTree()
+        const newCommentButton = this.getNewCommentButton()
+        const comments = this.getComments()
 
         return (
             <div>
@@ -179,9 +179,9 @@ class PostViewer extends Component {
 
                 <br /><br />
 
-                {commentTree}
+                {comments}
 
-                {newPostButton}
+                {newCommentButton}
 
             </div >
 
@@ -204,7 +204,7 @@ const mapStateToProps = (state) => ({
     favouritePostLoading: state.posts.favouriteLoading,
     originalPath: state.posts.originalPath,
     commentAreaVisible: state.newComment.commentAreaVisible,
-    threadReplies: state.threads.replies
+    replies: state.commentTree.replies
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -213,7 +213,7 @@ const mapDispatchToProps = (dispatch) => ({
     backButtonPressed: (path) => dispatch(backButtonPressed(path)),
     showCollapsableCommentArea: (bool) => dispatch(showCollapsableCommentArea(bool)),
     newComment: (postId, commentId, content) => dispatch(newComment(postId, commentId, content)),
-    continueThread: (postId, commentId) => dispatch(continueThread(postId, commentId))
+    continueCommentTree: (postId, commentId) => dispatch(continueCommentTree(postId, commentId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostViewer)
