@@ -4,7 +4,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { Provider } from 'react-redux'
 import myStore from './storeConfig'
 import myHistory from './history'
-
+import './App.scss'
 
 export default class App extends Component {
 
