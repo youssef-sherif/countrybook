@@ -57,7 +57,11 @@ class PostList extends Component {
                         />
                     })}
 
-                    {loadMoreButton}
+                    {this.props.posts.length > 10?
+                        loadMoreButton
+                        :
+                        <div />
+                    }
                 </div>
             )
         }
