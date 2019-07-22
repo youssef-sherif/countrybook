@@ -1,4 +1,4 @@
-package com.travelneer.post;
+package com.travelneer.comment;
 
 import java.sql.Timestamp;
 import java.util.HashMap;

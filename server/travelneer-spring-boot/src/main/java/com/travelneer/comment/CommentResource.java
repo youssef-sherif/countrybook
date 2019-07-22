@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.post;
+package com.travelneer.comment;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.travelneer.controller.api.CommentsController;
 import org.springframework.hateoas.ResourceSupport;
 
-import java.util.List;
 import java.util.Map;
 
-import static org.springframework.hateoas.core.DummyInvocationUtils.methodOn;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 /**

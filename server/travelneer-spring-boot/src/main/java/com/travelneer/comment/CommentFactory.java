@@ -1,4 +1,4 @@
-package com.travelneer.post;
+package com.travelneer.comment;
 
 import com.travelneer.controller.api.CommentsController;
 import com.travelneer.jwt.JwtValidator;
