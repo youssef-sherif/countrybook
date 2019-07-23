@@ -1,0 +1,56 @@
+@import "../../variables.scss";
+  
+.img {
+    width: 25px;
+    height: 25px;    
+}
+  
+
+.greenMessage {
+    font-size: 10px;    
+    color: green;
+}
+
+.redMessage {      
+    font-size: 10px;
+    color: red;
+}
+
+
+@media only screen and  (min-width: $xl-screen-min) {
+    .input {
+        margin-right: 10px;
+        text-align: center;
+        height: 40px;
+        width: 100%;
+    }
+}
+
+
+@media only screen and  (min-width: $l-screen-min) and (max-width: $l-screen-max) {
+    .input {
+        margin-right: 10px;
+        text-align: center;
+        height: 40px;
+        width: 100%;
+    }
+}
+
+
+@media only screen and  (min-width: $s-screen-min) and (max-width: $s-screen-max) {
+    .input {
+        margin-right: 10px;
+        text-align: center;
+        height: 30px;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: $xs-screen-max) {
+    .input {
+        margin-right: 10px;
+        text-align: center;
+        height: 25px;
+        width: 100%;
+    }
+}
