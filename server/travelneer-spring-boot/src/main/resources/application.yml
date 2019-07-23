@@ -1,0 +1,28 @@
+# Keep JWT keys/email-credentials private
+# Keep this file checked to source control with keys and email credentials hidden
+
+key:
+  access: ""
+  password-reset: ""
+
+# 15 minutes for password reset token and 10 days for access token
+token-expiration-time:
+  access: 864_000_000
+  password-reset: 9000_00
+
+
+spring:
+  mail:
+    host:
+    port: 587
+    username: ""
+    password: ""
+
+    # Other properties
+    properties:
+      mail:
+        smtp:
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
