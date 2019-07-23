@@ -24,4 +24,8 @@ public interface UserRepository extends IRepository<User> {
     boolean exists(User user) throws SQLException;
 
     User getOneById(int userId) throws SQLException;
+
+    User getOneByEmail(String email);
+
+    void updatePasswordById(int userId, String password);
 }

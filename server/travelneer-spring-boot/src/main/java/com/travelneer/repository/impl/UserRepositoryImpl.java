@@ -8,8 +8,6 @@ package com.travelneer.repository.impl;
 import com.travelneer.repository.UserRepository;
 import com.travelneer.user.User;
 
-import java.sql.*;
-
 import com.travelneer.jooq.tables.records.UserRecord;
 import org.jooq.DSLContext;
 import org.modelmapper.ModelMapper;
@@ -57,6 +55,24 @@ public class UserRepositoryImpl implements UserRepository {
                 USER.ID.eq(userId));
 
         return modelMapper.map(record, User.class);
+    }
+
+    @Override
+    public User getOneByEmail(String email) {
+        UserRecord record = create.fetchOne(USER,
+                USER.EMAIL.eq(email));
+
+        return modelMapper.map(record, User.class);
+
+    }
+
+    @Override
+    public void updatePasswordById(int userId, String password) {
+        create.update(USER)
+                .set(USER.PASSWORD, password)
+                .where(USER.ID.eq(userId))
+                .execute();
+
     }
 
     @Override
