@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
-import InputText from './inputtext/InputText'
-import InputPassword from './inputpassword/InputPassword'
+import InputText from '../../../components/inputtext/InputText'
+import InputPassword from '../../../components/inputpassword/InputPassword'
 import SignUpButton from './SignUpButton'
 
 import {
@@ -76,7 +76,7 @@ const mapStateToProps = (state) => {
     email: state.user.email.value,
     password: state.user.password.value,
 
-    signUpLoading: state.signUp.signUp.loading | state.login.login.loading,    
+    signUpLoading: state.signUp.signUp.loading,    
     signUpSuccessful: state.signUp.signUp.successful
   }
 }
