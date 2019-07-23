@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-integration-test.properties")
-public class ValidationsTest {
+public class ValidationsControllerTest {
 
 
     @Autowired
