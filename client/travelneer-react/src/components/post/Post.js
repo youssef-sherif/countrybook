@@ -14,8 +14,7 @@ class Post extends Component {
         return (
             <div className={styles.story}>
                 <PostHeader
-                    user={this.props.user}
-                    email={this.props.email}
+                    name={this.props.name}                    
                     timeDiff={this.props.timeDiff}
                 />
 

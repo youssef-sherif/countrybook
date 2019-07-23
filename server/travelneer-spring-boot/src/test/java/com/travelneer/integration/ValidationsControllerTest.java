@@ -3,7 +3,6 @@ package com.travelneer.integration;
 
 import com.travelneer.controller.AuthenticationController;
 import com.travelneer.controller.ValidationsController;
-import com.travelneer.dto.UserSignUpDTO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-integration-test.properties")
-public class ValidationsControllerTest {
+public class ValidationsTest {
 
 
     @Autowired

@@ -12,10 +12,7 @@ export default class PostHeader extends Component {
             <div className={styles.user}>
                 <img className={styles.avatar} src={traveler} alt='user' />
                 <div className={styles.details}>
-                    {this.props.name}
-                    <span>
-                        {` ${this.props.email}`}
-                    </span>
+                    {this.props.name}                
                     <br />
                     <div className={styles.timeStamp}>
                         {`${this.props.timeDiff} ago  `}

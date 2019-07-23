@@ -140,8 +140,7 @@ class PostViewer extends Component {
                     <br /><br /><br />
 
                     <PostHeader
-                        name={this.props.name}
-                        email={this.props.email}
+                        name={this.props.name}                        
                         timeDiff={this.props.timeDiff}
                     />
 
