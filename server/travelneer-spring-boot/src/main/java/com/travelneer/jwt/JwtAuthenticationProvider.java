@@ -49,7 +49,7 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
             throw new AuthenticationException("Invalid JWT"){};
         }
         
-        validator.validate(token);
+        validator.validateAccessToken(token);
 
         return validator.getUserDetails();
     }
