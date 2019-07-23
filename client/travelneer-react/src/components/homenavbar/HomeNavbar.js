@@ -6,6 +6,7 @@ import styles from './HomeNavbar.scss'
 
 import { connect } from 'react-redux'
 import { authorizeUserHome } from '../../actions/authActions'
+import { Link } from 'react-router-dom'
 
 
 class HomeNavbar extends Component {
@@ -20,7 +21,9 @@ class HomeNavbar extends Component {
             <nav>
                 <div className={`container-fluid`}>
                     <div>                     
-                        <img alt="logo" src={logo} />                        
+                        <Link to="/">
+                            <img alt="logo" src={logo} />       
+                        </Link>                 
                     </div>                    
                     <div className={styles.input} >
                         <LoginNavbar />

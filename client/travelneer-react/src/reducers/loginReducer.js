@@ -5,41 +5,30 @@ import {
   } from '../actions/loginActions'
   
   const initialState = {
-    login: {
-      usernameOrEmail: "",
-      password: "",
       loading: false,
       successful: false,
       error: false
-    }
   }
   
   export function loginReducer(state = initialState, action) {
     switch (action.type) {
       case LOGIN_BEGIN:
         return {
-          ...state,
-          login: {
-            loading: true
-          }
+          ...state,          
+            loading: true          
         }
       case LOGIN_SUCCESS:
         return {
           ...state,
-          login: {
             loading: false,
-            successful: true,
-            usernameOrEmail: "",
-            password: ""
-          }        
+            successful: true
         }
       case LOGIN_FAILURE:
         return {
-          ...state,
-          login: {
+          ...state,          
+            loading: false,
             successful: false,
-            error: true
-          }
+            error: true          
         }
 
       default:
