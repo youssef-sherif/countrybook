@@ -5,6 +5,7 @@
  */
 package com.travelneer.controller;
 
+import com.travelneer.repository.UserRepository;
 import com.travelneer.user.*;
 import com.travelneer.jwt.JwtGenerator;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -25,12 +27,16 @@ public class AuthenticationController {
 
     private final JwtGenerator jwtGenerator;
     private final UserFactory userFactory;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
 
     @Autowired
-    public AuthenticationController(JwtGenerator jwtGenerator, UserFactory userFactory) {
+    public AuthenticationController(JwtGenerator jwtGenerator, UserFactory userFactory, PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.jwtGenerator = jwtGenerator;
         this.userFactory = userFactory;
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
     }
 
     @RequestMapping(value = "/users",
@@ -43,7 +49,7 @@ public class AuthenticationController {
                             new Email(request.get("email")),
                             new Password(request.get("password")));
 
-            var token = jwtGenerator.generate(user);
+            var token = jwtGenerator.generateAccessToken(user);
 
             body.put("token", token);
 
@@ -62,9 +68,10 @@ public class AuthenticationController {
     	var body = new HashMap<String, String>();
 
         try {
-            User user = userFactory.getUser(username, password);
+            User user = userRepository.getOneByName(username);
+            user.login(password, passwordEncoder);
 
-            var token = jwtGenerator.generate(user);
+            var token = jwtGenerator.generateAccessToken(user);
 
             body.put("token", token);
 

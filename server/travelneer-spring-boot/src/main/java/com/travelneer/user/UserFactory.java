@@ -34,11 +34,4 @@ public class UserFactory {
     public User createUser() {
         return new User();
     }
-
-    public User getUser(String username, String password) throws Exception {
-        User user = userRepository.getOneByName(username);
-        user.login(username, password, passwordEncoder);
-
-        return user;
-    }
 }
