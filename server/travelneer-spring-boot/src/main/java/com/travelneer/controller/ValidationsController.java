@@ -5,9 +5,7 @@
  */
 package com.travelneer.controller;
 
-import com.travelneer.user.Password;
-import com.travelneer.user.User;
-import com.travelneer.user.UserFactory;
+import com.travelneer.user.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +43,8 @@ public class ValidationsController {
             if(userRepository.nameExists(username)) {
                 throw new Exception("Username Exists");
             }
-            user.validateUsername(username);
+            user.setName(username);
+            user.validateUsername();
 
             body.put("isValid", true);
             body.put("username", username);
@@ -67,7 +66,8 @@ public class ValidationsController {
             if(userRepository.emailExists(email)) {
                 throw new Exception("Email exists");
             }
-            user.validateEmail(email);
+            user.setEmail(email);
+            user.validateEmail();
 
             body.put("isValid", true);
             body.put("email", email);

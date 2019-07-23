@@ -1,5 +1,7 @@
 package com.travelneer.user;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
@@ -79,21 +81,20 @@ public class User {
     }
 
 
-    public void login(String username, String password, PasswordEncoder passwordEncoder) throws Exception {
+    public void login(String password, PasswordEncoder passwordEncoder) throws Exception {
         if(!passwordEncoder.matches(password, this.password.getEncoded())) {
             throw new Exception("Invalid Username or Password");
         }
     }
 
-    public void validateUsername(String username) throws Exception {
-        if ( !this.name.isValid(username)) {
+    public void validateUsername() throws Exception {
+        if ( !this.name.isValid()) {
             throw new Exception("Invalid Username");
         }
     }
 
-
-    public void validateEmail(String email) throws Exception {
-        if( !this.email.isValid(email) ) {
+    public void validateEmail() throws Exception {
+        if( !this.email.isValid() ) {
             throw new Exception("Invalid Email");
         }
     }

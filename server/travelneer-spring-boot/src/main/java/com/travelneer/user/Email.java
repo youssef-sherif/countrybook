@@ -29,14 +29,4 @@ public class Email {
         }
         return true;
     }
-
-    public boolean isValid(String value) {
-        try {
-            InternetAddress internetAddress = new InternetAddress(value);
-            internetAddress.validate();
-        } catch (AddressException e) {
-            return false;
-        }
-        return true;
-    }
 }

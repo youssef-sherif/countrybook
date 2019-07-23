@@ -6,7 +6,7 @@ public class Username {
 
     private String name;
 
-    private final String USER_NAME_REGEX = "((((\\w)|([0-9])|[-]|[_])){4,20}(\\b))";
+    private static final String USER_NAME_REGEX = "((((\\w)|([0-9])|[-]|[_])){4,20}(\\b))";
 
     public Username() {}
 
@@ -27,8 +27,4 @@ public class Username {
         return ptr.matcher(name).matches();
     }
 
-    public boolean isValid(String value) {
-        Pattern ptr = Pattern.compile(USER_NAME_REGEX);
-        return ptr.matcher(value).matches();
-    }
 }
