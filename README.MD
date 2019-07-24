@@ -1,6 +1,6 @@
 
 [![Build Status](https://cloud.drone.io/api/badges/youssef-sherif/countrybook/status.svg)](https://cloud.drone.io/youssef-sherif/countrybook)
 
-server built using Java and Spring Boot
+Server built using Java Spring Boot framework https://github.com/spring-projects/spring-boot
 
-client built using React and created with Create React App
+Client built using React https://github.com/facebook/react and webpack build is based on ejected Create React App https://github.com/facebook/create-react-app
