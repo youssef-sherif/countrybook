@@ -45,6 +45,13 @@ class CommentTree extends Component {
                         <div className={`container ${styles.replyArea}`}>
                             <CommentArea
                                 isReplying={this.state.isReplying}
+                                isDirectReplyToPost={false}
+                                closeCommentArea={() => {
+                                    this.setState((state, props) => {
+                                        return {
+                                        isReplying: !state.isReplying
+                                        };
+                                })}}
                                 parentPostAuthorName={this.props.name}
                                 parentPostId={this.props.parentPostId}
                                 parentCommentId={this.props.commentId}

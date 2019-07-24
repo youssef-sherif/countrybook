@@ -169,6 +169,7 @@ class PostViewer extends Component {
 
                     <CommentArea
                         isReplying={true}
+                        isDirectReplyToPost={true}
                         className={styles.commentArea}
                         parentPostAuthorName={this.props.name}
                         parentPostId={this.props.match.params.postId}

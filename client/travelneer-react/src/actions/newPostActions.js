@@ -7,6 +7,7 @@ export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS'
 export const NEW_POST_FAILURE = 'NEW_POST_FAILURE'
 
 export const WRITE_POST = 'WRITE_POST'
+export const CLEAR_AREA = 'CLEAR_AREA'
 
 export const SHOW_COLLAPSABLE_POST_AREA = 'SHOW_COLLAPSABLE_POST_AREA'
 
@@ -25,6 +26,10 @@ export const showCollapsablePostArea = (showNew) => ({
 export const writePost = (content) => ({
     type: WRITE_POST,
     payload: {content}
+})
+
+export const clearArea = () => ({
+    type: CLEAR_AREA    
 })
 
 const newPostBegin = () => ({
@@ -65,6 +70,7 @@ export const newPost = (countryCode, content, refresh) => {
                 dispatch(newPostSuccess());   
                 if(refresh)
                     dispatch(fetchPosts());
+                    dispatch(showCollapsablePostArea(false));
                 return data
             })
             .catch((error) => { 

@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import { writePost } from '../../actions/newPostActions'
-import {fetchPosts} from '../../actions/postsActions'
+import { writePost, clearArea } from '../../actions/newPostActions'
 import styles from './PostArea.scss'
 
 
 class PostArea extends Component {
 
-    render() {
+    componentDidMount() {
+        this.props.clearArea();
+    }
+
+    render() {        
         return (
             <div className={`container ${styles.div}`}>
                 <textarea className={`${styles.textarea}`}
@@ -16,17 +19,23 @@ class PostArea extends Component {
                     id="" cols="20"
                     rows="10"
                     maxLength='500'
-                    onChange={(e) => this.props.writePost(e.target.value)}/>
-                                    
+                    onChange={(e) => this.props.writePost(e.target.value)} />                
+
                 <div className={styles.buttonsDiv}>
-                    <button className={`btn ${styles.button}`} onClick={(e) => {
-                            this.props.newPost(this.props.countryCode, this.props.content, this.props.refresh);                              
-                    }}>
-                        post
-                    </button>
-                    <button className={`btn ${styles.button}`}>
-                        upload
-                    </button>
+                    {
+                        this.props.content.length === 0 || this.props.countryName === "(choose a country)" ?
+                            <button className={`btn ${styles.disabledButton}`}>
+                                write something and select a country
+                            </button>
+                            :
+                            <button className={`btn ${styles.button}`}
+                                onClick={(e) => {
+                                    this.props.newPost(this.props.countryCode, this.props.content, this.props.refresh);
+                                    this.props.clearArea();
+                                }}>
+                                post
+                        </button>
+                    }
                 </div>
             </div>
         )
@@ -35,16 +44,15 @@ class PostArea extends Component {
 
 const mapStateToProps = (state) => ({
     content: state.newPost.content,    
-    selectedCountry: state.countries.selectedCountry,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
     newPostError: state.newPost.error
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    writePost: (content) => dispatch(writePost(content)),   
-    fetchPosts: () => dispatch(fetchPosts()),
-    navigateTo: (path) => dispatch(push(path)),    
+    writePost: (content) => dispatch(writePost(content)),
+    clearArea: () => dispatch(clearArea()),
+    navigateTo: (path) => dispatch(push(path)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostArea)

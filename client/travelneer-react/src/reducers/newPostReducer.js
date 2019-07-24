@@ -3,7 +3,8 @@ import {
     NEW_POST_SUCCESS,
     NEW_POST_FAILURE,
     WRITE_POST,  
-    SHOW_COLLAPSABLE_POST_AREA
+    SHOW_COLLAPSABLE_POST_AREA,
+    CLEAR_AREA
   } from '../actions/newPostActions'
   
 const initialState = {
@@ -44,7 +45,13 @@ export function newPostReducer(state = initialState, action) {
         return {
           ...state,
             content: action.payload.content,          
-        }  
+        }
+      
+      case CLEAR_AREA:
+        return {
+          ...state,
+          content: ""
+        }
       
       case SHOW_COLLAPSABLE_POST_AREA:
         return {

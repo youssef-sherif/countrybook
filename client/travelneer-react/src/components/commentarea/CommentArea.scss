@@ -11,6 +11,25 @@
     visibility: hidden;    
 }
 
+.button {
+    float: right;
+    height: 30px;
+    margin-right: 5px;
+    font-size: 12px;
+    text-align: center;
+    background-color: $travelneer-green;
+}
+
+.disabledButton  {
+    float: right;
+    height: 30px;
+    margin-right: 5px;
+    font-size: 12px;
+    color: $travelneer-green;
+    text-align: center;
+    background-color: $travelneer-dark;  
+}
+
 
 @media only screen and (min-width: $xl-screen-min) {
     .buttonsDiv {
@@ -71,13 +90,4 @@
         height: 150px;
         resize: none;    
     }
-}
-
-.button {
-    float: right;
-    height: 30px;
-    margin-right: 5px;
-    font-size: 12px;
-    text-align: center;
-    background-color: $travelneer-green;
 }
