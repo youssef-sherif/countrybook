@@ -1,4 +1,4 @@
-package com.travelneer.controller;
+package com.travelneer.api;
 
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.jwt.JwtValidator;
@@ -9,7 +9,6 @@ import com.travelneer.user.UserMailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +43,9 @@ public class PasswordsController {
             User user = userRepository.getOneByEmail(email);
             String token = jwtGenerator.generatePasswordResetToken(user);
 
-            userMailer.sendPasswordResetEmail(user.getEmail(), token);
+//            userMailer.sendPasswordResetEmail(user.getEmail(), token);
+
+            response.put("token", token);
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
@@ -77,6 +78,5 @@ public class PasswordsController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
-
 
 }

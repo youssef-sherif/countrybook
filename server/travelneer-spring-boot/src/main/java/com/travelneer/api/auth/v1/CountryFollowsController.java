@@ -1,4 +1,4 @@
-package com.travelneer.controller.api.v1;
+package com.travelneer.api.api.v1;
 
 import com.travelneer.country.CountriesResource;
 import com.travelneer.country.Country;
@@ -87,22 +87,6 @@ public class CountryFollowsController {
             countryFollows.delete();
 
             responseBody.put("successful", true);
-            return new ResponseEntity<>(responseBody, HttpStatus.OK);
-        } catch (Exception e) {
-            responseBody.put("successful", false);
-            responseBody.put("errorMessage", e.getMessage());
-            return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @RequestMapping(value = "/countries/{countryCode}/followers-count", method = RequestMethod.GET)
-    public ResponseEntity<?> getFollowersCount(@PathVariable("countryCode") String countryCode) {
-
-        var responseBody = new HashMap<String, Object>();
-        try {
-            Integer count = countryRepository.getFollowersCount(countryCode);
-
-            responseBody.put("followersCount", count);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);
         } catch (Exception e) {
             responseBody.put("successful", false);

@@ -1,4 +1,4 @@
-package com.travelneer.controller.api;
+package com.travelneer.api.api;
 
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryRepository;
@@ -63,7 +63,7 @@ public class UserController {
         }
     }
 
-        @RequestMapping(value = "/api/me/countries-followed-count", method = RequestMethod.GET)
+        @RequestMapping(value = "/api/me/getCountries-followed-count", method = RequestMethod.GET)
     public ResponseEntity<?> getCountriesFollowedCount() {
 
         var responseBody = new HashMap<String, Object>();

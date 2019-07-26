@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travelneer.controller;
+package com.travelneer.api;
 
 import com.travelneer.repository.UserRepository;
 import com.travelneer.user.*;

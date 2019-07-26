@@ -1,4 +1,4 @@
-package com.travelneer.controller.api.v1;
+package com.travelneer.api.api.v1;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
