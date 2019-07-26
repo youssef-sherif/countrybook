@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import PostList from '../../components/postlist/PostList'
-import AppNavbar from '../../components/appnavbar/AppNavbar'
 import CountrySelect from '../../components/countryselect/CountrySelect'
 import PostArea from '../../components/postarea/PostArea'
 
@@ -12,7 +11,8 @@ import { showCollapsablePostArea, newPost } from '../../actions/newPostActions'
 import Indicator from '../../components/indicator/Indicator'
 
 import { fetchPosts } from '../../actions/postsActions'
-import CollapsableView from '../../components/collapsableview/CollapsableView';
+import CollapsableView from '../../components/collapsableview/CollapsableView'
+import PrivateRoute from '../../routes/PrivateRoute'
 
 class Feed extends Component {
 
@@ -59,8 +59,7 @@ class Feed extends Component {
         const newPostButton = this.getNewPostButton()
 
         return (
-            <div>
-                <AppNavbar />                
+            <PrivateRoute>                         
             
                 {collapsablePostArea}
 
@@ -78,8 +77,10 @@ class Feed extends Component {
                     successful={this.props.newPostSuccessful}
                     loading={this.props.newPostLoading} 
                     error={this.props.newPostError}
-                    errorMessage={this.props.newPostErrorMessage}/>
-            </div>
+                    errorMessage={this.props.newPostErrorMessage}
+                />
+
+            </PrivateRoute>
         )
     }
 }

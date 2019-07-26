@@ -32,7 +32,7 @@ class LoginNavbar extends Component {
             successful={this.props.loginSuccessful}
             navigateTo={this.props.navigateTo}
           />
-          <Link to="/reset-password">
+          <Link to="/request-password-reset">
             trouble logging in?
           </Link>
         </form>

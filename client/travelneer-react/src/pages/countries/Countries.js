@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { fetchCountries, fetchFollowedCountries, searchCountries } from '../../actions/countriesActions'
 
-import AppNavbar from '../../components/appnavbar/AppNavbar'
 import CountryList from './countrylist/CountryList'
 
 import styles from './Countries.scss'
+import AccountNotRequiredRoute from '../../routes/AccountNotRequiredRoute';
     
 class Countries extends Component {
 
@@ -17,9 +17,8 @@ class Countries extends Component {
     render() {
 
         return (
-            <div>
-                <AppNavbar />
-                <br /><br /><br />
+            <AccountNotRequiredRoute>      
+                <br />  
                 <div className={`container`}>
                     <input
                         className={styles.search} 
@@ -36,7 +35,7 @@ class Countries extends Component {
                         successful={this.props.successful} 
                     />                    
                 </div>
-            </div>
+            </AccountNotRequiredRoute>
         )
     }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import AppNavbar from '../../components/appnavbar/AppNavbar'
 import { connect } from 'react-redux'
 import FavouritesButton from '../../components/post/FavouritesButton'
 
@@ -18,6 +17,7 @@ import CollapsableView from '../../components/collapsableview/CollapsableView'
 import CommentTreeList from '../../components/commenttreelist/CommentTreeList'
 import { Link } from 'react-router-dom'
 import newPostImg from '../../images/new-post.png'
+import AccountNotRequiredRoute from '../../routes/AccountNotRequiredRoute'
 
 class PostViewer extends Component {
 
@@ -110,8 +110,8 @@ class PostViewer extends Component {
         const comments = this.getComments()
 
         return (
-            <div>
-                <AppNavbar />
+            <AccountNotRequiredRoute>                   
+            <br />    
 
                 <CollapsableView
                     collapsableStyle={styles.collapsable}
@@ -183,7 +183,7 @@ class PostViewer extends Component {
 
                 {newCommentButton}
 
-            </div >
+            </AccountNotRequiredRoute >
 
         )
     }

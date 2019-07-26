@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import AppNavbar from '../../components/appnavbar/AppNavbar'
 import PostList from '../../components/postlist/PostList'
 import CountryProfile from './countryprofile/CountryProfile'
 import { connect } from 'react-redux'
@@ -10,6 +9,7 @@ import PostArea from '../../components/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
 import Indicator from '../../components/indicator/Indicator'
+import AccountNotRequiredRoute from '../../routes/AccountNotRequiredRoute';
 
 class CountryViewer extends Component {
 
@@ -64,10 +64,8 @@ class CountryViewer extends Component {
         const buttons = this.getButtons()
 
         return (
-            <div>
-                <AppNavbar />
-                <br /><br /><br />
-                
+            <AccountNotRequiredRoute>                   
+                <br />
                 <CountryProfile countryId={this.props.match.params.countryId} />
 
                 <br /><br />
@@ -84,7 +82,8 @@ class CountryViewer extends Component {
                         error={this.props.newPostError}
                         errorMessage={this.props.newPostErrorMessage}
                 />
-            </div>
+
+            </AccountNotRequiredRoute>
         )
     }
 

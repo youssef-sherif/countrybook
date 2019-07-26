@@ -4,16 +4,10 @@ import LoginNavbar from './login/LoginNavbar'
 import logo from '../../images/logo.png'
 import styles from './HomeNavbar.scss'
 
-import { connect } from 'react-redux'
-import { authorizeUserHome } from '../../actions/authActions'
 import { Link } from 'react-router-dom'
 
 
-class HomeNavbar extends Component {
-
-    componentDidMount() {
-        this.props.authorizeUserHome()
-    }
+export default class HomeNavbar extends Component {
 
     render() {
 
@@ -33,17 +27,3 @@ class HomeNavbar extends Component {
         )
     }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-    authorizeUserHome: () => dispatch(authorizeUserHome())
-  })
-  
-
-  const mapStateToProps = (state) => {
-    return {
-        authSuccessful: state.auth.successful,
-        authLoading: state.auth.loading
-    }
-  }
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeNavbar)

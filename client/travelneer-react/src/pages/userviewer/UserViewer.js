@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import AppNavbar from '../../components/appnavbar/AppNavbar'
 import PostList from '../../components/postlist/PostList'
 import { connect } from 'react-redux'
 import { fetchUserInfo } from '../../actions/authActions'
-import UserProfile from './userprofile/UserProfile';
+import UserProfile from './userprofile/UserProfile'
+import PrivateRoute from '../../routes/PrivateRoute'
 
 class UserViewer extends Component {
 
@@ -29,9 +29,7 @@ class UserViewer extends Component {
         const postsDiv = this.getPostsDiv()
 
         return (
-            <div>
-                <AppNavbar />
-                <br /><br /><br />
+            <PrivateRoute>
 
                 <UserProfile />
 
@@ -39,7 +37,7 @@ class UserViewer extends Component {
                 
                 {postsDiv}
 
-            </div>
+            </PrivateRoute>
         )
     }
 
