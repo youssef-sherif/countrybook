@@ -1,8 +1,8 @@
 package com.travelneer.integration;
 
 
-import com.travelneer.controller.AuthenticationController;
-import com.travelneer.controller.ValidationsController;
+import com.travelneer.api.noauth.AuthenticationController;
+import com.travelneer.api.noauth.ValidationsController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
