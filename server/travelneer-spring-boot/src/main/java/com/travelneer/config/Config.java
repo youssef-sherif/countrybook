@@ -80,7 +80,7 @@ public class Config extends WebSecurityConfigurerAdapter {
         http
                 .cors()
                 .and()
-                .csrf().disable().authorizeRequests().antMatchers("**/api/**").authenticated()
+                .csrf().disable().authorizeRequests().antMatchers("**/auth/**").authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
