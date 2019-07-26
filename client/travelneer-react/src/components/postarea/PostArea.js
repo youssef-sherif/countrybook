@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { writePost, clearArea } from '../../actions/newPostActions'
 import styles from './PostArea.scss'
+import PostButton from './PostButton'
 
 
 class PostArea extends Component {
@@ -11,39 +12,36 @@ class PostArea extends Component {
         this.props.clearArea();
     }
 
-    render() {        
+    render() {
         return (
             <div className={`container ${styles.div}`}>
-                <textarea className={`${styles.textarea}`}
+
+                <textarea
+                    className={`${styles.textarea}`}
                     placeholder={`What's happening in ${this.props.countryName}`}
                     id="" cols="20"
                     rows="10"
                     maxLength='500'
-                    onChange={(e) => this.props.writePost(e.target.value)} />                
+                    onChange={(e) => this.props.writePost(e.target.value)}
+                />
 
-                <div className={styles.buttonsDiv}>
-                    {
-                        this.props.content.length === 0 || this.props.countryName === "(choose a country)" ?
-                            <button className={`btn ${styles.disabledButton}`}>
-                                write something and select a country
-                            </button>
-                            :
-                            <button className={`btn ${styles.button}`}
-                                onClick={(e) => {
-                                    this.props.newPost(this.props.countryCode, this.props.content, this.props.refresh);
-                                    this.props.clearArea();
-                                }}>
-                                post
-                        </button>
-                    }
-                </div>
+                <PostButton
+                    styles={styles}
+                    newPost={this.props.newPost.bind(this)}
+                    clearArea={this.props.clearArea.bind(this)}
+                    countryCode={this.props.countryCode}
+                    countryName={this.props.countryName}
+                    refresh={this.props.refresh}
+                    content={this.props.content}
+                />
+
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    content: state.newPost.content,    
+    content: state.newPost.content,
     newPostSuccessful: state.newPost.successful,
     newPostLoading: state.newPost.loading,
     newPostError: state.newPost.error
