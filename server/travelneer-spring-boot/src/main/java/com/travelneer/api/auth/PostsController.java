@@ -1,4 +1,4 @@
-package com.travelneer.api.api;
+package com.travelneer.api.auth;
 
 import com.travelneer.post.PostListResource;
 import com.travelneer.post.PostFactory;
@@ -18,7 +18,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
  * @author Youssef
  */
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/auth")
 @RestController
 public class PostsController {
 

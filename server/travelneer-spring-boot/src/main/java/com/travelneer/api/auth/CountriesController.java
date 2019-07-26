@@ -1,7 +1,7 @@
-package com.travelneer.api.api;
+package com.travelneer.api.auth;
 
-import com.travelneer.api.CountriesPublicController;
-import com.travelneer.api.api.v1.CountryPostsController;
+import com.travelneer.api.noauth.CountriesPublicController;
+import com.travelneer.api.auth.v1.CountryPostsController;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CountryRepository;
 import com.travelneer.service.S3Service;
@@ -18,7 +18,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
  */
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/auth")
 public class CountriesController {
 
     private final CountryRepository countryRepository;

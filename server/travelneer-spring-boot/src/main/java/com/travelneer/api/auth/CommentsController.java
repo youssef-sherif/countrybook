@@ -1,4 +1,4 @@
-package com.travelneer.api.api;
+package com.travelneer.api.auth;
 
 import com.travelneer.comment.CommentFactory;
 import com.travelneer.comment.CommentTreeBuilder;
@@ -13,18 +13,14 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/auth")
 public class CommentsController {
 
     private final CommentFactory commentFactory;
-    private final CommentTreeBuilder commentTreeBuilder;
-    private final CommentRepository commentRepository;
 
     @Autowired
-    public CommentsController(CommentFactory commentFactory, CommentTreeBuilder commentTreeBuilder, CommentRepository commentRepository) {
+    public CommentsController(CommentFactory commentFactory) {
         this.commentFactory = commentFactory;
-        this.commentTreeBuilder = commentTreeBuilder;
-        this.commentRepository = commentRepository;
     }
 
     @RequestMapping(value = "/posts/{postId}/comments/{commentId}/replies", method = RequestMethod.POST)

@@ -1,4 +1,4 @@
-package com.travelneer.api.api.v1;
+package com.travelneer.api.auth.v1;
 
 import com.travelneer.country.CountriesResource;
 import com.travelneer.country.Country;
@@ -21,7 +21,7 @@ import static com.travelneer.jooq.Tables.COUNTRY_FOLLOWS;
 
 @RestController
 @CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/auth/v1")
 public class CountryFollowsController {
 
     private final CountryRepository countryRepository;

@@ -1,4 +1,4 @@
-package com.travelneer.api;
+package com.travelneer.api.noauth;
 
 import com.travelneer.jwt.JwtGenerator;
 import com.travelneer.jwt.JwtValidator;

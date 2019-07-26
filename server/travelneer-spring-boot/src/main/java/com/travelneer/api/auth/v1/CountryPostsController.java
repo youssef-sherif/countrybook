@@ -1,4 +1,4 @@
-package com.travelneer.api.api.v1;
+package com.travelneer.api.auth.v1;
 
 import com.travelneer.post.PostFactory;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/auth/v1")
 public class CountryPostsController {
 
     private final PostRepository postRepository;

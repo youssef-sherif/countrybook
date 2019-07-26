@@ -1,4 +1,4 @@
-package com.travelneer.api.api.v1;
+package com.travelneer.api.auth.v1;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import static com.travelneer.jooq.Tables.FAVOURITES;
  */
 @RestController
 @CrossOrigin( origins = {"http://localhost:3000", "http://localhost:5000"})
-@RequestMapping(value = "/api/v1")
+@RequestMapping(value = "/auth/v1")
 public class FavouritesController {
 
     private final JwtValidator validator;
