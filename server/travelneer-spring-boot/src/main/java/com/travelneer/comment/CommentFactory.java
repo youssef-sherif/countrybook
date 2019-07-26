@@ -1,6 +1,6 @@
 package com.travelneer.comment;
 
-import com.travelneer.controller.api.CommentsController;
+import com.travelneer.api.noauth.CommentsPublicController;
 import com.travelneer.jwt.JwtValidator;
 import com.travelneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +62,7 @@ public class CommentFactory {
         comment.calculateTimeDifference();
 
         CommentResource commentResource = comment.toResource();
-        commentResource.add(linkTo(methodOn(CommentsController.class).getCommentTree(postId, commentId, 0)).withSelfRel());
+        commentResource.add(linkTo(methodOn(CommentsPublicController.class).getCommentTree(postId, commentId, 0)).withSelfRel());
 
         return commentResource;
     }

@@ -1,8 +1,8 @@
 package com.travelneer.user;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.travelneer.controller.api.PostsController;
-import com.travelneer.controller.api.UserController;
+import com.travelneer.api.auth.PostsController;
+import com.travelneer.api.auth.UserController;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

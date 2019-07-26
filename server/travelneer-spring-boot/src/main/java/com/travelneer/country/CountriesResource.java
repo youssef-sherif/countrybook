@@ -9,8 +9,8 @@ package com.travelneer.country;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.travelneer.controller.api.CountriesController;
-import com.travelneer.controller.api.v1.CountryFollowsController;
+import com.travelneer.api.noauth.CountriesPublicController;
+import com.travelneer.api.auth.v1.CountryFollowsController;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -27,9 +27,8 @@ public class CountriesResource extends ResourceSupport {
     public CountriesResource(List<CountryResource> countryResources) {
         this.countryResources = countryResources;
 
-        this.add(linkTo(methodOn(CountriesController.class).countries()).withSelfRel());
         this.add(linkTo(methodOn(CountryFollowsController.class).getFollowedCountries()).withRel("followedCountries"));
-        this.add(linkTo(methodOn(CountriesController.class).searchCountries("")).withRel("searchCountries"));
+        this.add(linkTo(methodOn(CountriesPublicController.class).searchCountries("")).withRel("searchCountries"));
     }
 
     @JsonProperty("countries")

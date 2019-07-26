@@ -56,7 +56,7 @@ public class Country {
     }
 
     public CountryDetailsResource toDetailsResource() {
-        var countryDetailsResource = new CountryDetailsResource(this, 0);
+        var countryDetailsResource = new CountryDetailsResource(this);
 
         return countryDetailsResource;
     }

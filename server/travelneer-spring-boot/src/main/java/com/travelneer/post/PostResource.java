@@ -6,8 +6,8 @@
 package com.travelneer.post;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.travelneer.controller.api.PostsController;
-import com.travelneer.controller.api.v1.FavouritesController;
+import com.travelneer.api.noauth.PostsPublicController;
+import com.travelneer.api.auth.v1.FavouritesController;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.util.Map;
@@ -41,7 +41,7 @@ public class PostResource extends ResourceSupport {
         this.timeDiff = post.getTimeDiff();
         this.countryCode = post.getCountryCode();
 
-        this.add(linkTo(methodOn(PostsController.class).getPost(post.getId())).withSelfRel());
+        this.add(linkTo(methodOn(PostsPublicController.class).getPost(post.getId())).withSelfRel());
         this.add(linkTo(methodOn(FavouritesController.class).favouritePost(post.getId())).withRel("favourite"));
         this.add(linkTo(methodOn(FavouritesController.class).unFavouritePost(post.getId())).withRel("unFavourite"));
     }

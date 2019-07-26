@@ -6,7 +6,7 @@
 package com.travelneer.country;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.travelneer.controller.api.CountriesController;
+import com.travelneer.api.noauth.CountriesPublicController;
 
 import org.springframework.hateoas.ResourceSupport;
 
@@ -31,7 +31,7 @@ public class CountryResource extends ResourceSupport {
         this.name = country.getName();
         this.flagUrl = country.getFlagUrl();
 
-        this.add(linkTo(methodOn(CountriesController.class).getCountryDetails(country.getCode())).withRel("countryDetails"));
+        this.add(linkTo(methodOn(CountriesPublicController.class).getCountryDetails(country.getCode())).withSelfRel());
     }
 
     public Short getCountryId() {

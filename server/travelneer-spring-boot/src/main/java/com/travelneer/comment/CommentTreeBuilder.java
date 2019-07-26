@@ -1,6 +1,6 @@
 package com.travelneer.comment;
 
-import com.travelneer.controller.api.CommentsController;
+import com.travelneer.api.noauth.CommentsPublicController;
 import com.travelneer.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,8 +38,8 @@ public class CommentTreeBuilder {
         }
 
         CommentListResource commentListResource = new CommentListResource(commentResourceList);
-        commentListResource.add(linkTo(methodOn(CommentsController.class).getMainComments(postId, page)).withSelfRel());
-        commentListResource.add(linkTo(methodOn(CommentsController.class).getMainComments(postId, page+10)).withRel("next"));
+        commentListResource.add(linkTo(methodOn(CommentsPublicController.class).getMainComments(postId, page)).withSelfRel());
+        commentListResource.add(linkTo(methodOn(CommentsPublicController.class).getMainComments(postId, page+10)).withRel("next"));
 
         return commentListResource;
     }
@@ -76,7 +76,7 @@ public class CommentTreeBuilder {
             e.setReplies(new CommentListResource(replies));
         }
 
-        commentResource.add(linkTo(methodOn(CommentsController.class).getCommentTree(commentResource.getParentPostId(), commentResource.getCommentId(), 0)).withSelfRel());
+        commentResource.add(linkTo(methodOn(CommentsPublicController.class).getCommentTree(commentResource.getParentPostId(), commentResource.getCommentId(), 0)).withSelfRel());
 
         return commentResourceList;
     }
