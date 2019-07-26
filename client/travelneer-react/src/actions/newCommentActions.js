@@ -62,7 +62,7 @@ export const newComment = (postId, commentId=null, content) => {
             })
             .then((data) => {
                 dispatch(newCommentSuccess());      
-                dispatch(fetchComments(`http://localhost:8080/auth/posts/${postId}/comments`)); 
+                dispatch(fetchComments(`http://localhost:8080/posts/${postId}/comments`)); 
                 dispatch(continueCommentTree(postId, commentId));                                       
                 dispatch(showCollapsableCommentArea(false));
                 return data
