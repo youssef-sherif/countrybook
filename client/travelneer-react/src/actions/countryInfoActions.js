@@ -34,7 +34,7 @@ export const fetchPostsCount = (resource) => {
   return (dispatch) => {
     dispatch(fetchPostsCountBegin())
     return fetch(resource, {
-      headers: {        
+      headers: {
         'Authorization': tokenBearer,
         'Access-Control-Allow-origin': 'http://localhost:8080'
       }
@@ -67,29 +67,35 @@ const fetchCountryInfoFailure = (error) => ({
 })
 
 export const fetchCountryInfo = (countryCode) => {
-  let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
+  let resource = `http://localhost:8080/countries/${countryCode}`
+  if (localStorage.getItem('logged_in') === 'true') {
+    resource = `http://localhost:8080/auth/countries/${countryCode}`
+  }
   return (dispatch) => {
     dispatch(fetchCountryInfoBegin());
-    dispatch(fetchPostsBegin());
-    return fetch(`http://localhost:8080/api/countries/${countryCode}`, {
-      headers: {
-        'Authorization': tokenBearer,
-        'Access-Control-Allow-origin': 'http://localhost:8080'
-      }
-    })
-      .then(handleErrors)
-      .then((response) => {
-        return response.json()
+    dispatch(fetchPostsBegin());    
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+      
+    return fetch(resource, {
+        headers: {
+          'Authorization': tokenBearer,
+          'Access-Control-Allow-origin': 'http://localhost:8080'
+        }
       })
-      .then((data) => {        
-        dispatch(fetchCountryInfoSuccess(data));
-        dispatch(fetchCountryPosts(data._links.countryPosts.href));
-        dispatch(fetchPostsCount(data._links.postsCount.href));
+        .then(handleErrors)
+        .then((response) => {
+          return response.json()
+        })
+        .then((data) => {
+          console.log(data._links)
+          dispatch(fetchCountryInfoSuccess(data));
+          dispatch(fetchCountryPosts(data._links.countryPosts.href));
+          dispatch(fetchPostsCount(data._links.postsCount.href));
 
-        return data
-      })
-      .catch(error => dispatch(fetchCountryInfoFailure(error)))
-  }
+          return data
+        })
+        .catch(error => dispatch(fetchCountryInfoFailure(error)))
+    }
 }
 
 const followCountryBegin = () => ({
@@ -98,7 +104,7 @@ const followCountryBegin = () => ({
 
 const followCountrySuccess = (data) => ({
   type: FOLLOW_COUNTRY_SUCCESS,
-  payload: {data}
+  payload: { data }
 })
 
 const followCountryFailure = (error) => ({
@@ -115,27 +121,27 @@ export const toggleFollowed = () => ({
 export const followCountry = (resource, method) => {
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
   return (dispatch) => {
-      dispatch(followCountryBegin())
-      return fetch(resource, {
-          method: method,
-          headers: {
-              'Authorization': tokenBearer,
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-origin': 'http://localhost:8080'
-          }
+    dispatch(followCountryBegin())
+    return fetch(resource, {
+      method: method,
+      headers: {
+        'Authorization': tokenBearer,
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-origin': 'http://localhost:8080'
+      }
+    })
+      .then(handleErrors)
+      .then((response) => {
+        return response.json()
       })
-          .then(handleErrors)
-          .then((response) => {
-              return response.json()
-          })
-          .then((data) => {
-              dispatch(followCountrySuccess(data))
-              dispatch(toggleFollowed())
-              return data
-          })
-          .catch(error => {
-              dispatch(followCountryFailure(error));
-          })
+      .then((data) => {
+        dispatch(followCountrySuccess(data))
+        dispatch(toggleFollowed())
+        return data
+      })
+      .catch(error => {
+        dispatch(followCountryFailure(error));
+      })
   }
 }
 

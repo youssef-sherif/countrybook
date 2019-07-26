@@ -33,14 +33,11 @@ const fetchFollowedCountriesSuccess = (data) => ({
 })
 
 export const fetchCountries = () => {
-  let tokenBearer = `Bearer ${localStorage.getItem('token')}`
-
   return (dispatch) => {    
       dispatch(fetchCountriesBegin())
-      fetch('http://localhost:8080/api/countries', {
+      fetch('http://localhost:8080/countries', {
           method: 'get',
-          headers: {
-              'Authorization': tokenBearer,
+          headers: {              
               'Content-Type': 'application/json',
               'Access-Control-Allow-origin': 'http://localhost:8080'
             }
@@ -58,15 +55,13 @@ export const fetchCountries = () => {
 }
 
 
-export const searchCountries = (resource, searchParam) => {  
-  let tokenBearer = `Bearer ${localStorage.getItem('token')}`  
+export const searchCountries = (resource, searchParam) => {      
 
   return (dispatch) => {
       dispatch(fetchCountriesBegin())
       fetch(`${resource}${searchParam}`, {
           method: 'get',
-          headers: {
-              'Authorization': tokenBearer,
+          headers: {              
               'Content-Type': 'application/json',
               'Access-Control-Allow-origin': 'http://localhost:8080'
             }

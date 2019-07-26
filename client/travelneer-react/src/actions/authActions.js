@@ -25,40 +25,11 @@ const authorizeUserFailure = () => ({
     type: AUTHORIZE_USER_FAILURE
 })
 
-
-export const authorizeUser = () => {
-    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
-    return (dispatch) => {
-        dispatch(authorizeUserBegin())
-        fetch('http://localhost:8080/api/me', {
-            method: 'get',
-            headers: {
-                'Authorization': tokenBearer,
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-origin': 'http://localhost:8080'
-            }
-        })
-            .then(handleErrors)
-            .then((response) => response.json())
-            .then((data) => {
-                dispatch(authorizeUserSuccess(data))
-                localStorage.setItem('logged_in', 'true')   
-                
-                return data
-            })
-            .catch((error) => { 
-                dispatch(authorizeUserFailure())                
-                localStorage.setItem('logged_in', 'false')   
-                dispatch(push('/'))
-            })
-    }
-}
-
 export const fetchUserInfo = () => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`
     return (dispatch) => {
         dispatch(authorizeUserBegin())
-        fetch('http://localhost:8080/api/me', {
+        fetch('http://localhost:8080/auth/me', {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
@@ -77,17 +48,16 @@ export const fetchUserInfo = () => {
             })
             .catch((error) => { 
                 dispatch(authorizeUserFailure())                
-                localStorage.setItem('logged_in', 'false')   
-                dispatch(push('/'))
+                localStorage.setItem('logged_in', 'false')                   
             })
     }
 }
 
-export const authorizeUserHome = () => {
+export const authorizeUser = () => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`
     return (dispatch) => {
         dispatch(authorizeUserBegin())
-        fetch('http://localhost:8080/api/me', {
+        fetch('http://localhost:8080/auth/me', {
             method: 'get',
             headers: {
                 'Authorization': tokenBearer,
@@ -100,13 +70,69 @@ export const authorizeUserHome = () => {
             .then((data) => {
                 dispatch(authorizeUserSuccess(data))
                 localStorage.setItem('logged_in', 'true')   
-                dispatch(push('/feed'))
                 
                 return data
             })
             .catch((error) => { 
                 dispatch(authorizeUserFailure())                
+                localStorage.setItem('logged_in', 'false')                   
+            })
+    }
+}
+
+
+export const authorizeAccessToPrivateRoute = () => {
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+    return (dispatch) => {
+        dispatch(authorizeUserBegin())
+        fetch('http://localhost:8080/auth/me', {
+            method: 'get',
+            headers: {
+                'Authorization': tokenBearer,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
+            }
+        })
+            .then(handleErrors)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(authorizeUserSuccess(data))
+                localStorage.setItem('logged_in', 'true')                
+
+                return data
+            })
+            .catch((error) => { 
+                dispatch(authorizeUserFailure())                
                 localStorage.setItem('logged_in', 'false')   
+                dispatch(push('/'))
+            })
+    }
+}
+
+export const authorizeAccessToPublicRoute = () => {
+    let tokenBearer = `Bearer ${localStorage.getItem('token')}`
+    return (dispatch) => {
+        dispatch(authorizeUserBegin())
+        fetch('http://localhost:8080/auth/me', {
+            method: 'get',
+            headers: {
+                'Authorization': tokenBearer,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-origin': 'http://localhost:8080'
+            }
+        })
+            .then(handleErrors)
+            .then((response) => response.json())
+            .then((data) => {
+                dispatch(authorizeUserSuccess(data))
+                localStorage.setItem('logged_in', 'true')    
+                dispatch(push("/feed"))            
+
+                return data
+            })
+            .catch((error) => { 
+                dispatch(authorizeUserFailure())                
+                localStorage.setItem('logged_in', 'false')                   
             })
     }
 }

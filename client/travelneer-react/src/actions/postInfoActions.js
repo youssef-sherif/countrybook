@@ -111,9 +111,13 @@ const fetchPostInfoFailure = (error) => ({
 
 export const fetchPostInfo = (postId) => {
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
+  let resource = `http://localhost:8080/posts/${postId}`
+  if(localStorage.getItem('logged_in') === 'true') {
+    resource = `http://localhost:8080/auth/posts/${postId}`
+  }
   return (dispatch) => {
     dispatch(fetchPostInfoBegin());    
-    return fetch(`http://localhost:8080/api/posts/${postId}`, {
+    return fetch(resource, {
       headers: {
         'Authorization': tokenBearer,
         'Access-Control-Allow-origin': 'http://localhost:8080'

@@ -50,7 +50,7 @@ export const newPost = (countryCode, content, refresh) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newPostBegin())
-        fetch('http://localhost:8080/api/feed', {
+        fetch('http://localhost:8080/auth/feed', {
             method: 'post',
             headers: {
                 'Authorization': tokenBearer, 
@@ -84,7 +84,7 @@ export const newPostCountryViewer = (countryCode, content) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`;
     return (dispatch) => {
         dispatch(newPostBegin())
-        fetch('http://localhost:8080/api/feed', {
+        fetch('http://localhost:8080/auth/feed', {
             method: 'post',            
             headers: {
                 'Authorization': tokenBearer, 

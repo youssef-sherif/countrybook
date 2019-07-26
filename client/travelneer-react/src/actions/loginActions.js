@@ -1,5 +1,3 @@
-import { push } from 'connected-react-router'
-
 export const LOGIN_BEGIN = 'LOGIN_BEGIN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -38,8 +36,8 @@ const handleErrors = (response) =>{
         .then((data) => {
           dispatch(loginSuccess())        
           localStorage.setItem('token', data.token)      
-          localStorage.setItem('logged_in', true)  
-          dispatch(push('/feed'))
+          localStorage.setItem('logged_in', true)
+          window.location.reload()                   
           return data
         })
         .catch((error) => dispatch(loginFailure()) )

@@ -21,7 +21,7 @@ export const continueCommentTree = (postId, commentId) => {
   let tokenBearer = 'Bearer '.concat(localStorage.getItem('token'))
   return (dispatch) => {
     dispatch(continueCommentTreeBegin());    
-    return fetch(`http://localhost:8080/api/posts/${postId}/comments/${commentId}/tree`, {
+    return fetch(`http://localhost:8080/posts/${postId}/comments/${commentId}/tree`, {
       headers: {
         'Authorization': tokenBearer,
         'Access-Control-Allow-origin': 'http://localhost:8080'

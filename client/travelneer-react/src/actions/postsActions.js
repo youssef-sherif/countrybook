@@ -88,7 +88,7 @@ const fetchPostsFailure = (error) => ({
 })
 
 
-export const fetchPosts = (resource='http://localhost:8080/api/feed', loadMore=false) => {
+export const fetchPosts = (resource='http://localhost:8080/auth/feed', loadMore=false) => {
     let tokenBearer = `Bearer ${localStorage.getItem('token')}`
     return (dispatch) => {
         dispatch(fetchPostsBegin())
