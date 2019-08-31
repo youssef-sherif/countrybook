@@ -63,7 +63,7 @@ public class PasswordsController {
         var response = new HashMap<String, String>();
         String rawPassword = request.get("password");
         try {
-            jwtValidator.validatePasswordResetToken(token);
+            jwtValidator.validateToken(token);
             String password = passwordEncoder.encode(rawPassword);
             if(Password.getStrength(rawPassword) == Password.INVALID_PASSWORD) {
                 throw new Exception("Invalid Password");
