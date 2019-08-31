@@ -54,29 +54,4 @@ public class PasswordsController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
-
-    @RequestMapping(value = "/change-password",
-        method = RequestMethod.POST, params = "token", headers = {"Content-type=application/json"})
-    public ResponseEntity<Map<String, String>> changePassword(@RequestParam(name = "token")String token,
-                                                              @RequestBody Map<String, String> request) {
-
-        var response = new HashMap<String, String>();
-        String rawPassword = request.get("password");
-        try {
-            jwtValidator.validateToken(token);
-            String password = passwordEncoder.encode(rawPassword);
-            if(Password.getStrength(rawPassword) == Password.INVALID_PASSWORD) {
-                throw new Exception("Invalid Password");
-            }
-            userRepository.updatePasswordById(jwtValidator.getUserId(), password);
-
-            return new ResponseEntity<>(response, HttpStatus.OK);
-
-        } catch (Exception e) {
-            response.put("error", e.getMessage());
-
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
-    }
-
 }

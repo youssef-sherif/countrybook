@@ -1,14 +1,11 @@
 # Keep JWT keys/email-credentials private
 # Generate all random key for production
-
-key:
-  access:
-  password-reset:
-
 # 15 minutes for password reset token and 10 days for access token
-token-expiration-time:
-  access: 864_000_000
-  password-reset: 9000_00
+jwt:
+  key: # random key
+  token-expiration-time:
+    access: 864_000_000
+    password-reset: 9000_00
 
 
 spring:

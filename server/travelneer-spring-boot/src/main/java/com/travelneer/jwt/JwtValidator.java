@@ -21,38 +21,17 @@ public class JwtValidator {
     private JwtUserDetails userDetails;
     private Integer userId;
 
-    @Value("${key.password-reset}")
-    private String passwordResetSecret;
+    @Value("${jwt.key}")
+    private String jwtKey;
 
-    @Value("${key.access}")
-    private String accessSecret;
-
-
-    public void validatePasswordResetToken(String token) throws AuthenticationException {
+    public void validateToken(String token) throws AuthenticationException {
 
         try {
             Claims body = Jwts.parser()
-                    .setSigningKey(passwordResetSecret)
+                    .setSigningKey(jwtKey)
                     .parseClaimsJws(token)
                     .getBody();
 
-            this.userDetails = new JwtUserDetails(body.getSubject(), body.getExpiration(), Integer.parseInt(body.getId()));
-            this.userId = Integer.parseInt(body.getId());
-
-        } catch (MalformedJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            throw new AuthenticationException("Invalid Token"){};
-        }
-    }
-
-    public void validateAccessToken(String token) throws AuthenticationException {
-        
-        try {
-            Claims body = Jwts.parser()
-                    .setSigningKey(accessSecret)
-                    .parseClaimsJws(token)
-                    .getBody();            
-            
             this.userDetails = new JwtUserDetails(body.getSubject(), body.getExpiration(), Integer.parseInt(body.getId()));
             this.userId = Integer.parseInt(body.getId());
 

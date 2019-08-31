@@ -21,16 +21,13 @@ import java.util.Date;
 @Service
 public class JwtGenerator {
 
-    @Value("${key.password-reset}")
-    private String passwordResetSecret;
+    @Value("${jwt.key}")
+    private String jwtKey;
 
-    @Value("${key.access}")
-    private String accessSecret;
-
-    @Value("${token-expiration-time.password-reset}")
+    @Value("${jwt.token-expiration-time.password-reset}")
     private Long passwordResetTokenExpirationTime;
 
-    @Value("${token-expiration-time.access}")
+    @Value("${jwt.token-expiration-time.access}")
     private Long accessTokenExpirationTime;
 
     public String generatePasswordResetToken(User user) {
@@ -41,7 +38,7 @@ public class JwtGenerator {
 
         return Jwts.builder()
                 .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, passwordResetSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtKey)
                 .compact();
     }
 
@@ -53,7 +50,7 @@ public class JwtGenerator {
 
         return Jwts.builder()
                 .setClaims(claims)
-                .signWith(SignatureAlgorithm.HS512, accessSecret)
+                .signWith(SignatureAlgorithm.HS512, jwtKey)
                 .compact();
     }
 
