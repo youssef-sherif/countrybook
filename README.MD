@@ -77,6 +77,11 @@ Note: You can use -DskipTests if you would like to skip tests
 Client:
 - Supports npm 6+ / nodejs 9+ / webpack 4+
 
+- Install dependencies
+```
+$ npm install
+```
+
 - For development build
 ```
 $ yarn start
