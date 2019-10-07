@@ -4,7 +4,7 @@ name: default
 steps:
 
   - name: frontend
-    image: node:11.8.0
+    image: node:12.10.0
     commands:
       - cd client/travelneer-react
       - yarn install
