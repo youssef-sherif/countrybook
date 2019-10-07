@@ -9,10 +9,11 @@ import SignUpButton from './SignUpButton'
 import {
   validateUsername,
   validateEmail,
-  validatePassword
+  validatePassword,
+  retypePassword
 } from '../../../actions/validationActions'
 import { createUser } from '../../../actions/signUpActions'
-import { login } from '../../../actions/loginActions' 
+import { login } from '../../../actions/loginActions'
 import styles from './SignUpForm.scss'
 
 class SignUpForm extends Component {
@@ -40,11 +41,21 @@ class SignUpForm extends Component {
             validate={this.props.validateEmail.bind(this)} />
           <br />
           <InputPassword
-            className={styles.password}
             data={this.props.password}
             isLoading={this.props.isLoadingPassword}
             passwordStrength={this.props.passwordStrength}
-            validate={this.props.validatePassword.bind(this)} />
+            validate={this.props.validatePassword.bind(this)}
+          />
+          <br />
+          <p>retype password</p>
+          <InputPassword
+            data={this.props.retype}
+            password={this.props.password}
+            retype={true}
+            isLoading={this.props.isLoadingPassword}
+            passwordStrength={this.props.passwordStrength}
+            validate={this.props.retypePassword.bind(this)}
+          />
           <br />
           <SignUpButton className={styles.SignUpButton}
             createUser={this.props.createUser.bind(this)}
@@ -75,8 +86,9 @@ const mapStateToProps = (state) => {
     username: state.user.username.value,
     email: state.user.email.value,
     password: state.user.password.value,
+    retype: state.user.password.retype,
 
-    signUpLoading: state.signUp.signUp.loading,    
+    signUpLoading: state.signUp.signUp.loading,
     signUpSuccessful: state.signUp.signUp.successful
   }
 }
@@ -85,6 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
   validateUsername: (e) => dispatch(validateUsername(e)),
   validateEmail: (e) => dispatch(validateEmail(e)),
   validatePassword: (e) => dispatch(validatePassword(e)),
+  retypePassword: (e) => dispatch(retypePassword(e)),
   createUser: (username, email, password) => dispatch(createUser(username, email, password)),
   login: (username, email, password) => dispatch(login(username, email, password)),
   navigateTo: (e) => dispatch(push(e))
