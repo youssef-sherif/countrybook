@@ -8,7 +8,8 @@ import PostArea from '../../components/postarea/PostArea'
 import newPostImg from '../../images/new-post.png'
 import styles from './Feed.scss'
 import { showCollapsablePostArea, newPost } from '../../actions/newPostActions'
-import Indicator from '../../components/indicator/Indicator'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { fetchPosts } from '../../actions/postsActions'
 import CollapsableView from '../../components/collapsableview/CollapsableView'
@@ -73,12 +74,7 @@ class Feed extends Component {
 
                 {newPostButton}
 
-                <Indicator
-                    successful={this.props.newPostSuccessful}
-                    loading={this.props.newPostLoading} 
-                    error={this.props.newPostError}
-                    errorMessage={this.props.newPostErrorMessage}
-                />
+                <ToastContainer enableMultiContainer containerId={'newPostToast'} position={toast.POSITION.TOP_RIGHT} />
 
             </PrivateRoute>
         )

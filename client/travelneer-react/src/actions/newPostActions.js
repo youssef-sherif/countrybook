@@ -1,6 +1,7 @@
 import { fetchPosts } from './postsActions'
 import { fetchCountryInfo } from './countryInfoActions'
 import { push } from 'connected-react-router'
+import { toast } from 'react-toastify';
 
 export const NEW_POST_BEGIN = 'NEW_POST_BEGIN'
 export const NEW_POST_SUCCESS = 'NEW_POST_SUCCESS'
@@ -71,11 +72,13 @@ export const newPost = (countryCode, content, refresh) => {
                 if(refresh)
                     dispatch(fetchPosts());
                     dispatch(showCollapsablePostArea(false));
+                    toast('success', {containerId: 'newPostToast'});
                 return data
             })
             .catch((error) => { 
                 console.log("error", error);
-                dispatch(newPostFailure(error))                                
+                dispatch(newPostFailure(error))       
+                toast('error', {containerId: 'newPostToast'});                         
             })
     }
 }
@@ -104,10 +107,12 @@ export const newPostCountryViewer = (countryCode, content) => {
                 dispatch(newPostSuccess());   
                 dispatch(fetchCountryInfo(countryCode));
                 dispatch(push(`/c/${countryCode}`))
+                toast('success', {containerId: 'newPostToast'});
                 return data
             })
             .catch((error) => { 
                 dispatch(newPostFailure(error))                                
+                toast('error', {containerId: 'newPostToast'});  
             })
     }
 }

@@ -8,7 +8,8 @@ import { newPostCountryViewer } from '../../actions/newPostActions'
 import PostArea from '../../components/postarea/PostArea'
 
 import styles from './CountryViewer.scss'
-import Indicator from '../../components/indicator/Indicator'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AccountNotRequiredRoute from '../../routes/AccountNotRequiredRoute';
 
 class CountryViewer extends Component {
@@ -76,12 +77,7 @@ class CountryViewer extends Component {
                 
                 {postsDiv}
 
-                <Indicator
-                        successful={this.props.newPostSuccessful}
-                        loading={this.props.newPostLoading} 
-                        error={this.props.newPostError}
-                        errorMessage={this.props.newPostErrorMessage}
-                />
+                <ToastContainer enableMultiContainer containerId={'newPostToast'} position={toast.POSITION.TOP_RIGHT} />
 
             </AccountNotRequiredRoute>
         )
