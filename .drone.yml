@@ -8,5 +8,4 @@ steps:
     commands:
       - cd client/travelneer-react
       - yarn install
-      - yarn test  
-      - yarn audit
+      - yarn test    
