@@ -29,14 +29,16 @@ public class AuthenticationController {
     private final UserFactory userFactory;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final UserMailer userMailer;
 
 
     @Autowired
-    public AuthenticationController(JwtGenerator jwtGenerator, UserFactory userFactory, PasswordEncoder passwordEncoder, UserRepository userRepository) {
+    public AuthenticationController(JwtGenerator jwtGenerator, UserFactory userFactory, PasswordEncoder passwordEncoder, UserRepository userRepository, UserMailer userMailer) {
         this.jwtGenerator = jwtGenerator;
         this.userFactory = userFactory;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.userMailer = userMailer;
     }
 
     @RequestMapping(value = "/users",
@@ -83,4 +85,24 @@ public class AuthenticationController {
         }
     }
 
+    @RequestMapping(value = "/password-reset-token",
+            method = RequestMethod.GET,  params = "email")
+    public ResponseEntity<Map<String, String>> getPasswordResetToken(@RequestParam(name = "email") String email) {
+
+        var response = new HashMap<String, String>();
+        try {
+            User user = userRepository.getOneByEmail(email);
+            String token = jwtGenerator.generatePasswordResetToken(user);
+
+            userMailer.sendPasswordResetEmail(user.getEmail(), token);
+
+            response.put("token", token);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("error", e.getMessage());
+
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
 }
