@@ -11,6 +11,8 @@ import {
     VALIDATE_PASSWORD_SUCCESS,
     VALIDATE_PASSWORD_FAILURE,
 
+    RETYPE_PASSWORD,
+
     USERNAME_OR_EMAIL,
     PASSWORD
 } from '../actions/validationActions'
@@ -19,7 +21,7 @@ import {
 const initialState = {
     loginUsername: "",
     loginPassword: "",
-    username: { 
+    username: {
         value: "",
         loading: false,
         errorMessage: null,
@@ -37,6 +39,7 @@ const initialState = {
     },
     password: {
         value: "",
+        retype: "",
         loading: false,
         errorMessage: null,
         error: null,
@@ -127,12 +130,23 @@ export function validationReducer(state = initialState, action) {
                 }
             }
 
+        case RETYPE_PASSWORD:
+            return {
+                ...state,                                
+                password: {              
+                    value: state.password.value,
+                    retype: action.payload.password,
+                    loading: false,                    
+                    isEmpty: false
+                }
+            }
+
         case VALIDATE_PASSWORD_FAILURE:
             return {
                 ...state,
                 password: {
                     errorMessage: action.payload.error,
-                    passwordStrength: 3,                    
+                    passwordStrength: 3,
                     error: action.payload.error,
                     isEmpty: false
                 }
@@ -140,15 +154,15 @@ export function validationReducer(state = initialState, action) {
 
         case USERNAME_OR_EMAIL:
             return {
-              ...state,
-              loginUsername: action.payload.usernameOrEmail   
+                ...state,
+                loginUsername: action.payload.usernameOrEmail
             }
 
         case PASSWORD:
             return {
-              ...state,
-              loginPassword: action.payload.password
-            }            
+                ...state,
+                loginPassword: action.payload.password
+            }
 
         default:
             return {

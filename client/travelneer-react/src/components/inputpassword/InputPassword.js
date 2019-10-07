@@ -17,6 +17,23 @@ export default class InputPassword extends Component {
     if (this.props.isLoading) {
       return (<img alt="loading" src={loading} />)
     }
+    if (this.props.retype === true)
+      if (this.props.data === this.props.password)
+        return (
+          <div className={styles.div}>
+            <img alt="valid" src={strongPassword}
+              className={styles.img} />
+            <span className={styles.greenMessage}> Passwords Match </span>
+          </div>
+        )
+      else
+        return (
+          <div className={styles.div}>
+            <img alt="invalid" src={invalid}
+              className={styles.img} />
+            <span className={styles.redMessage}> Passwords Must Match </span>
+          </div>
+        )
     if (this.props.passwordStrength === STRONG_PASSWORD) {
       return (
         <div className={styles.div}>

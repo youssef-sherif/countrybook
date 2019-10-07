@@ -10,6 +10,8 @@ export const VALIDATE_PASSWORD_BEGIN = 'VALIDATE_PASSWORD_BEGIN'
 export const VALIDATE_PASSWORD_SUCCESS = 'VALIDATE_PASSWORD_SUCCESS'
 export const VALIDATE_PASSWORD_FAILURE = 'VALIDATE_PASSWORD_FAILURE'
 
+export const RETYPE_PASSWORD = 'RETYPE_PASSWORD'
+
 export const USERNAME_OR_EMAIL = 'USERNAME_OR_EMAIL'
 export const PASSWORD = 'PASSWORD'
 
@@ -119,6 +121,11 @@ const handleErrors = (response) =>{
       .catch(error => dispatch(validatePasswordFailure(error)))
     }
   }
+
+  export const retypePassword = (password) => ({
+    type: RETYPE_PASSWORD,
+    payload: {password}
+  })
 
   export const changeUsernameOrEmail = (usernameOrEmail) => ({
     type: USERNAME_OR_EMAIL,

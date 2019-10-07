@@ -33,7 +33,7 @@ class UserViewer extends Component {
 
                 <UserProfile />
 
-                <br /><br />
+                <br />
                 
                 {postsDiv}
 
