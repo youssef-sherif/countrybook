@@ -9,8 +9,8 @@ export default class CollapsableView extends Component {
 
         return (
             <div className={`container ${this.props.visible ?
-                styles.childrenVisible : styles.childrenInvisible}`}>
-                <br /><br /><br />
+                styles.childrenVisible : styles.childrenInvisible}`}>   
+                <br />             
                 <img src={close} 
                     alt='close button' 
                     className={styles.img} 

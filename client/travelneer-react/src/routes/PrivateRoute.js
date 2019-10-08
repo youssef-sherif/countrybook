@@ -15,7 +15,7 @@ class PrivateRoute extends Component {
         return (
             <div>
                 <AppNavbar />
-                <br /><br /><br />
+                <br /><br />
                 {this.props.children}
             </div>
         )

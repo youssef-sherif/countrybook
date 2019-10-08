@@ -60,13 +60,12 @@ class Feed extends Component {
         const newPostButton = this.getNewPostButton()
 
         return (
-            <PrivateRoute>                         
+            <PrivateRoute>                          
             
-                {collapsablePostArea}
-
-                <br/><br/><br/>
-
-                <br/>      
+                {collapsablePostArea}  
+                
+                <br />
+                
                 <PostList 
                     fromFeed={true}
                     originalPath={"/feed"}

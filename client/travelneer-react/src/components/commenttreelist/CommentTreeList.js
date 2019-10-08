@@ -17,7 +17,7 @@ class CommentTreeList extends Component {
 
                     {this.props.children}
 
-                    {this.props.children.length > 10 ?
+                    {this.props.children.length >= 10 ?
                         <LoadMoreButton
                             loadMore={this.props.loadMoreComments.bind(this)}
                             nextPostsResource={this.props.nextCommentsResource} />

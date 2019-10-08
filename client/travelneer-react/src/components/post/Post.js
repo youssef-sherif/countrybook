@@ -24,9 +24,10 @@ class Post extends Component {
 
                 <div className={`container ${styles.actions}`}>
                     <i className={`col-sm-6 col-xs-6 col-lg-6 col-md-6 glyphicon glyphicon-comment ${styles.commentIcon}`}
-                        onClick={() => {
+                        onClick={() => {                            
                             this.props.saveScrollPosition(this.props.originalPath, window.scrollY);
                             this.props.navigateTo(`/c/${this.props.countryCode}/posts/${this.props.postId}`)
+                            window.scrollTo(0, 0)
                         }}
                     />
                     <div className={`col-sm-6 col-xs-6 col-lg-6 col-md-6`}>

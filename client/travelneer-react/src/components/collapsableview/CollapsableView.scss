@@ -16,6 +16,30 @@
     z-index: -1;
 }
 
-.img {
-    float: right;
+@media only screen and (min-width: $xl-screen-min) {
+    .img {
+        float: right;
+    }
+}
+
+@media only screen and (min-width: $l-screen-min) and (max-width: $l-screen-max) {
+    .img {
+        float: right;
+    }
+}
+
+@media only screen and (min-width: $s-screen-min) and (max-width: $s-screen-max) {
+    .img {
+        float: right;
+        width: 35px;
+        height: auto;
+    }
+}
+
+@media only screen and (max-width: $xs-screen-max) {
+    .img {
+        float: right;
+        width: 25px;
+        height: auto;
+    }
 }

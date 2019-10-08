@@ -110,8 +110,7 @@ class PostViewer extends Component {
         const comments = this.getComments()
 
         return (
-            <AccountNotRequiredRoute>                   
-            <br />    
+            <AccountNotRequiredRoute>                               
 
                 <CollapsableView
                     collapsableStyle={styles.collapsable}
@@ -127,7 +126,7 @@ class PostViewer extends Component {
                     />
                 </CollapsableView>
 
-                <br /> <br /> <br />
+                <br />    
 
                 <BackButton
                     styles={styles}
@@ -135,9 +134,7 @@ class PostViewer extends Component {
                     originalPath={this.props.originalPath}
                 />
 
-                <div className={`container ${styles.div} ${styles.story}`}>
-
-                    <br /><br /><br />
+                <div className={`container ${styles.div} ${styles.story}`}>                    
 
                     <PostHeader
                         name={this.props.name}                        

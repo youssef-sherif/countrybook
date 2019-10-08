@@ -19,20 +19,22 @@ export default class AppNavbar extends Component {
                         <img alt='logo' src={logo} />
                     </div>
                     <Link to="/profile">
-                        <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} >
+                        <div onClick={() => window.scroll(0, 0)} className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} >
                             <img className={styles.img} alt='profile' src={profile} />
                         </div>
                     </Link>
-                    <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
-                        <img className={styles.img} alt='bags' src={notifications} />
-                    </div>
+                    <Link to="/notifications">
+                        <div onClick={() => window.scroll(0, 0)} className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`}>
+                            <img className={styles.img} alt='bags' src={notifications} />
+                        </div>
+                    </Link>
                     <Link to="/countries">
-                        <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} >
+                        <div onClick={() => window.scroll(0, 0)} className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} >
                             <img className={styles.img} alt='globe' src={globe} />
                         </div>
                     </Link>
                     <Link to="/feed">
-                        <div className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} >
+                        <div onClick={() => window.scroll(0, 0)} className={`btn col-sm-2 col-xs-3 col-md-2 col-l-2 col-xl-2`} >
                             <img className={styles.img} alt='feed' src={posts} />
                         </div>
                     </Link>
