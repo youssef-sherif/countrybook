@@ -1,17 +1,11 @@
-package com.travelneer.unit;
+package com.travelneer.post;
 
-import com.travelneer.post.Post;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Timestamp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@TestPropertySource(locations="classpath:application-unit-test.properties")
 public class PostTest {
 
     @Test

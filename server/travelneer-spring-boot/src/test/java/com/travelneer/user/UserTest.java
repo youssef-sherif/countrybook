@@ -1,20 +1,11 @@
-package com.travelneer.unit;
+package com.travelneer.user;
 
-import com.travelneer.user.Email;
-import com.travelneer.user.Password;
-import com.travelneer.user.User;
-import com.travelneer.user.Username;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
-@TestPropertySource(locations="classpath:application-unit-test.properties")
 public class UserTest {
 
     @Test
