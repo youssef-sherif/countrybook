@@ -15,13 +15,17 @@ class PublicRoute extends Component {
     render() {
         return (
             <div>
-                { localStorage.getItem('logged_in') === 'true'?
+                {localStorage.getItem('logged_in') === 'true' ?
                     <div>
                         <AppNavbar />
                         <br /><br />
-                    </div> 
-                    : 
-                    <HomeNavbar /> }            
+                    </div>
+                    :
+                    <div>
+                        <HomeNavbar />
+                        <br /><br /><br />
+                    </div>
+                }
                 {this.props.children}
             </div>
         )
@@ -31,13 +35,13 @@ class PublicRoute extends Component {
 const mapDispatchToProps = (dispatch) => ({
     authorizeUser: () => dispatch(authorizeUser())
 })
-  
 
-  const mapStateToProps = (state) => {
+
+const mapStateToProps = (state) => {
     return {
         authSuccessful: state.auth.successful,
         authLoading: state.auth.loading
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicRoute)

@@ -11,7 +11,7 @@
     height: 25px;   
     font-size: 14px;
     color: white;
-    padding: 3px;     
+    padding: 3px;    
 }
 
 .newPostButton {
@@ -30,7 +30,7 @@
     left: 40%;    
 }
 
-@media only screen and (min-width: $xl-screen-min) {
+@media only screen and (max-width: $l-screen-min) {
 
     .postsDiv {
         width: 100%;
@@ -39,20 +39,20 @@
     .postsButton {
         margin-right: 10px;
         float: left;
-        width: 80px;
-        height: 35px;   
-        font-size: 14px;
-        color: white;
-        padding: 3px;     
+        width: auto;
+        height: 30px;   
+        font-size: 0.7em;
+        padding: 3px;
+        color: white;            
     }
     
     .newPostButton {
         margin-right: 10px;
         float: left;
-        width: 80px;
-        height: 35px;   
-        font-size: 14px;
-        padding: 3px;     
+        width: auto;
+        height: 30px;   
+        font-size: 0.7em;  
+        padding: 3px;                   
         color: white;
     }
 }

@@ -49,13 +49,13 @@ class CountryViewer extends Component {
                     onClick={(e) => {                            
                         this.props.navigateTo({ pathname: `/c/${this.props.match.params.countryCode}` });
                     }}>
-                    Posts
+                    posts
                 </button>            
                 <button className={`btn ${styles.btn} ${styles.newPostButton}`}
                     onClick={(e) => {      
                         this.props.navigateTo({ pathname: `/c/${this.props.match.params.countryCode}/new`});
                     }}>
-                    New
+                    new
                 </button>
             </div>)
     }

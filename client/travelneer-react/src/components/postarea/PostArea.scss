@@ -55,8 +55,9 @@
 
 @media only screen and (min-width: $s-screen-min) and (max-width: $s-screen-max) {
     .buttonsDiv {
-        position: relative;        
-        width: 100%;       
+        width: 75%;
+        position: relative; 
+        left: 30%;       
     }
 
     .textarea{
@@ -69,7 +70,9 @@
 
 @media only screen and (max-width: $xs-screen-max) {
     .buttonsDiv {
-        width: 100%;
+        width: 75%;
+        position: relative; 
+        left: 30%;       
     }
 
     .textarea {

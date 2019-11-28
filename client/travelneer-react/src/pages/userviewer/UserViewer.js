@@ -30,7 +30,8 @@ class UserViewer extends Component {
 
         return (
             <PrivateRoute>
-
+                <br />
+                
                 <UserProfile />
 
                 <br />

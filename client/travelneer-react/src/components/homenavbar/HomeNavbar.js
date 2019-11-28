@@ -12,7 +12,7 @@ export default class HomeNavbar extends Component {
     render() {
 
         return (
-            <nav>
+            <div className={`navbar navbar-fixed-top ${styles.navbar}`}>
                 <div className={`container-fluid`}>
                     <div>                     
                         <Link to="/">
@@ -23,7 +23,7 @@ export default class HomeNavbar extends Component {
                         <LoginNavbar />
                     </div>
                 </div>
-            </nav>
+            </div>
         )
     }
 }

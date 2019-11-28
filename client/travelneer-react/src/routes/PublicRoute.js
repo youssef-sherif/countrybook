@@ -14,7 +14,8 @@ class PublicRoute extends Component {
     render() {
         return (
             <div>
-                <HomeNavbar />                
+                <HomeNavbar />
+                <br /><br />
                 {this.props.children}
             </div>
         )
@@ -24,13 +25,13 @@ class PublicRoute extends Component {
 const mapDispatchToProps = (dispatch) => ({
     authorizeAccessToPublicRoute: () => dispatch(authorizeAccessToPublicRoute())
 })
-  
 
-  const mapStateToProps = (state) => {
+
+const mapStateToProps = (state) => {
     return {
         authSuccessful: state.auth.successful,
         authLoading: state.auth.loading
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(PublicRoute)
